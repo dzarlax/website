@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexey Panfilov</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header, nav, main {
+            padding: 20px 40px;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        main {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Alexey Panfilov</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+            <div id="lang-switch">
+                <button onclick="switchLang('ru')">🇷🇺</button>
+                <button onclick="switchLang('en')">🇬🇧</button>
+                <button onclick="switchLang('rs')">🇷🇸</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="intro">
+        <h2></h2>
+        <p></p>
+    </section>
+
+    <section id="skills">
+        <h2>Технические навыки:</h2>
+        <ul></ul>
+    </section>
+
+    <section id="experience">
+        <h2>Опыт и навыки:</h2>
+        <ul></ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: me@dzarlax.dev</p>
+        <p>LinkedIn: linkedin.com/in/dzarlax/</p>
+    </section>
+
+    <script>
+ import { experience } from './experience.js';
+import { skills } from './skills.js';
+
+function switchLang(lang) {
+    document.querySelector('#intro h2').textContent = experience[lang].intro.title;
+    document.querySelector('#intro p').textContent = experience[lang].intro.description;
+
+    const skillsList = document.querySelector('#skills ul');
+    skillsList.innerHTML = "";
+    skills[lang].coreCompetencies.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        skillsList.appendChild(li);
+    });
+
+    const experienceList = document.querySelector('#experience ul');
+    experienceList.innerHTML = "";
+    experience[lang].items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        experienceList.appendChild(li);
+    });
+}
+
+// По умолчанию устанавливаем английский язык
+switchLang('en');
+
+
+    </script>
+</body>
+
+</html>
