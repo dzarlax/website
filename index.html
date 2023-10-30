@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Alexey Panfilov</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
-            rel="stylesheet">
-        <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexey Panfilov</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
         body {
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
@@ -73,79 +71,164 @@
         }
 
     </style>
-    </head>
+</head>
 
-    <body>
-        <header>
-            <h1>Alexey Panfilov</h1>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
-                <div id="lang-switch">
-                    <button onclick="switchLang('ru')">🇷🇺</button>
-                    <button onclick="switchLang('en')">🇬🇧</button>
-                    <button onclick="switchLang('rs')">🇷🇸</button>
-                </div>
-            </nav>
-        </header>
+<body>
+    <header>
+        <h1>Alexey Panfilov</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+            <div id="lang-switch">
+                <button onclick="switchLang('ru')">🇷🇺</button>
+                <button onclick="switchLang('en')">🇬🇧</button>
+                <button onclick="switchLang('rs')">🇷🇸</button>
+            </div>
+        </nav>
+    </header>
 
-        <section id="intro">
-            <h2></h2>
-            <p></p>
-        </section>
+    <section id="intro">
+        <h2></h2>
+        <p></p>
+    </section>
 
-        <section id="skills">
-            <h2>Технические навыки:</h2>
-            <ul></ul>
-        </section>
+    <section id="skills">
+        <h2>Технические навыки:</h2>
+        <ul></ul>
+    </section>
 
-        <section id="experience">
-            <h2>Опыт и навыки:</h2>
-            <ul></ul>
-        </section>
+    <section id="experience">
+        <h2>Опыт и навыки:</h2>
+        <ul></ul>
+    </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: me@dzarlax.dev</p>
-            <p>LinkedIn: linkedin.com/in/dzarlax/</p>
-        </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: me@dzarlax.dev</p>
+        <p>LinkedIn: linkedin.com/in/dzarlax/</p>
+    </section>
 
-        <script type="module">
-        import * as ExperienceModule from './experience.js';
-        import * as SkillsModule from './skills.js';
+    <script>
+        const content = {
+    ru: {
+        intro: {
+            title: "Мобильный менеджер продукта",
+            description: "8+ лет опыта инноваций в области технологий..."
+        },
+        skills: {
+            title: "Технические навыки",
+            items: [
+                "Управление продуктом",
+                "UI/UX прототипирование",
+                "Анализ пользователей",
+                "Агильное управление проектами",
+                "Мобильная разработка",
+                "Анализ данных",
+                "Оптимизация процессов",
+                "Стратегия продукта"
+            ]
+        },
+        experience: {
+            title: "Опыт работы",
+            items: [
+                "Технический менеджер проекта, Яндекс.Облако (8/2022 - по настоящее время)",
+                "Менеджер продукта, Яндекс.Маркет (4/2021 - 8/2022)",
+                "Product Owner, Почта России (6/2020 - 4/2021)",
+                "Product Owner, Anywayanyday (2/2019 - 6/2020)",
+                "Старший аналитик | Менеджер продукта, Москва (7/2017 - 2/2019)",
+                "Генеральный директор, Social Technologies, Москва (7/2016 - 8/2017)"
+            ]
+        },
+    },
+    en: {
+        intro: {
+            title: "Mobile Product Manager",
+            description: "8+ years’ experience driving technology innovation..."
+        },
+        skills: {
+            title: "Technical Proficiencies",
+            items: [
+                "Product Management",
+                "UI/UX Prototyping",
+                "Audience/User Analysis",
+                "Agile Project Management",
+                "Mobile Development",
+                "Data Analysis",
+                "Process Optimization",
+                "Product Strategy"
+            ]
+        },
+        experience: {
+            title: "Professional Experience",
+            items: [
+                "Technical Project Manager, Yandex Cloud (8/2022 - Present)",
+                "Product Manager, Yandex.Market (4/2021 - 8/2022)",
+                "Product Owner, Russian Post (6/2020 - 4/2021)",
+                "Product Owner, Anywayanyday (2/2019 - 6/2020)",
+                "Senior Analyst | Product Manager, Moscow (7/2017 - 2/2019)",
+                "Chief Executive Officer, Social Technologies, Moscow (7/2016 - 8/2017)"
+            ]
+        },
+    },
+    rs: {
+        intro: {
+            title: "Мобилни Продукт Менаџер",
+            description: "8+ година искуства у покретању технолошке иновације..."
+        },
+        skills: {
+            title: "Техничке способности",
+            items: [
+                "Менаџмент производа",
+                "UI/UX прототипирање",
+                "Анализа корисника",
+                "Агилно управљање пројектима",
+                "Мобилни развој",
+                "Анализа података",
+                "Оптимизација процеса",
+                "Стратегија производа"
+            ]
+        },
+        experience: {
+            title: "Професионално искуство",
+            items: [
+                "Технички Менаџер пројекта, Јандекс Облак (8/2022 - сада)",
+                "Менаџер производа, Јандекс.Маркет (4/2021 - 8/2022)",
+                "Product Owner, Руска пошта (6/2020 - 4/2021)",
+                "Product Owner, Anywayanyday (2/2019 - 6/2020)",
+                "Стари аналитичар | Менаџер производа, Москва (7/2017 - 2/2019)",
+                "Генерални директор, Social Technologies, Москва (7/2016 - 8/2017)"
+            ]
+        },
+    }
+};
 
-        const experience = ExperienceModule.experience;
-        const skills = SkillsModule.skills;
+function switchLang(lang) {
+    document.querySelector('#intro h2').textContent = content[lang].intro.title;
+    document.querySelector('#intro p').textContent = content[lang].intro.description;
 
+    const skillsList = document.querySelector('#skills ul');
+    skillsList.innerHTML = "";
+    content[lang].skills.items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        skillsList.appendChild(li);
+    });
 
-        function switchLang(lang) {
-            document.querySelector('#intro h2').textContent = experience[lang].intro.title;
-            document.querySelector('#intro p').textContent = experience[lang].intro.description;
+    const experienceList = document.querySelector('#experience ul');
+    experienceList.innerHTML = "";
+    content[lang].experience.items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        experienceList.appendChild(li);
+    });
+}
 
-            const skillsList = document.querySelector('#skills ul');
-            skillsList.innerHTML = "";
-            skills[lang].coreCompetencies.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                skillsList.appendChild(li);
-            });
-
-            const experienceList = document.querySelector('#experience ul');
-            experienceList.innerHTML = "";
-            experience[lang].items.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                experienceList.appendChild(li);
-            });
-        }
-
-        // По умолчанию устанавливаем английский язык
-        switchLang('en');
-
+// По умолчанию устанавливаем английский язык
+switchLang('en');
 
     </script>
-    </body>
+</body>
 
 </html>
