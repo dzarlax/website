@@ -46,6 +46,7 @@
         </li>
       </ul>
     </section>
+
     <script>
       function switchLang(lang) {
         document.querySelector('#intro h2').textContent = content_intro[lang].intro.title;
@@ -68,8 +69,7 @@
           experienceList.appendChild(li);
         });
       }
-      // По умолчанию устанавливаем английский язык
-      const userLanguage = navigator.language;
+      const userLanguage = (navigator.language || 'en').toLowerCase().slice(0,2) ;
       switchLang(userLanguage);
     </script>
   </body>
