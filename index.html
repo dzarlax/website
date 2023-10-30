@@ -1,238 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexey Panfilov</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+      body {
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
 
-        header, nav, main {
-            padding: 20px 40px;
-        }
+      header,
+      nav,
+      main,
+      section {
+        padding: 20px 40px;
+      }
 
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-        }
+      header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        position: relative;
+      }
 
-        nav {
-            background-color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
+      nav {
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
 
-        nav a {
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #333;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
+      nav a {
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #333;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
 
-        nav a:hover {
-            background-color: #333;
-            color: #fff;
-        }
+      nav a:hover {
+        background-color: #333;
+        color: #fff;
+      }
 
-        main {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+      main {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
 
-        h2 {
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
+      h2 {
+        font-weight: 700;
+        font-size: 28px;
+        color: #0077b6;
+        border-bottom: 3px solid #e1e1e1;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        position: relative;
+        padding-left: 30px;
+      }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+      h2:before,
+      li:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
 
-        li {
-            margin-bottom: 10px;
-        }
-        #lang-switch {
-            display: flex;
-            gap: 5px;
-        }
+      h2:before {
+        width: 20px;
+        height: 2px;
+        background-color: #0077b6;
+      }
 
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 25px;
+      }
+
+      li {
+        position: relative;
+        padding-left: 30px;
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e1e1e1;
+      }
+
+      li:before {
+        content: '•';
+        color: #0077b6;
+        font-size: 24px;
+      }
+
+      li:not(:last-child) {
+        margin-bottom: 15px;
+      }
+
+      #lang-switch {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+      }
+
+      #contact ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: left;
+        /* центрирование контактов */
+      }
+
+      #contact li {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        border: 1px solid #e1e1e1;
+        padding: 5px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+
+      #contact li:hover {
+        background-color: #f9f9f9;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #contact li:before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        background-size: cover;
+      }
+
+      #experience span {
+        display: block;
+        color: #666;
+      }
+
+      #experience li span.job-title {
+        font-weight: 500;
+      }
+
+      #experience li span.job-duration {
+        font-style: italic;
+        color: #555;
+      }
+
+      .skill-tag {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #e1e1e1;
+        border-radius: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+
+      #contact li:nth-child(1):before {
+        background-image: url('path/to/email-icon.png');
+      }
+
+      #contact li:nth-child(2):before {
+        background-image: url('path/to/linkedin-icon.png');
+      }
     </style>
-</head>
-
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Alexey Panfilov</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
-            <div id="lang-switch">
-                <button onclick="switchLang('ru')">🇷🇺</button>
-                <button onclick="switchLang('en')">🇬🇧</button>
-                <button onclick="switchLang('rs')">🇷🇸</button>
-            </div>
-        </nav>
+      <h1>Alexey Panfilov</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <div id="lang-switch">
+          <button onclick="switchLang('ru')">🇷🇺</button>
+          <button onclick="switchLang('en')">🇬🇧</button>
+          <button onclick="switchLang('rs')">🇷🇸</button>
+        </div>
+      </nav>
     </header>
-
     <section id="intro">
-        <h2></h2>
-        <p></p>
+      <h2></h2>
+      <p></p>
     </section>
-
     <section id="skills">
-        <h2>Технические навыки:</h2>
-        <ul></ul>
+      <h2></h2>
+      <div></div>
+      <!-- Заменено на div -->
     </section>
-
     <section id="experience">
-        <h2>Опыт и навыки:</h2>
-        <ul></ul>
+      <h2></h2>
+      <ul></ul>
     </section>
-
     <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: me@dzarlax.dev</p>
-        <p>LinkedIn: linkedin.com/in/dzarlax/</p>
+      <h2>Contact</h2>
+      <ul>
+        <li>Email: <a href="mailto:me@dzarlax.dev">me@dzarlax.dev</a>
+        </li>
+        <li>LinkedIn: <a href="https://linkedin.com/in/dzarlax/" target="_blank">linkedin.com/in/dzarlax/</a>
+        </li>
+      </ul>
     </section>
-
     <script>
-        const content = {
-    ru: {
-        intro: {
+      const content = {
+        ru: {
+          intro: {
             title: "Мобильный менеджер продукта",
             description: "8+ лет опыта инноваций в области технологий..."
-        },
-        skills: {
+          },
+          skills: {
             title: "Технические навыки",
-            items: [
-                "Управление продуктом",
-                "UI/UX прототипирование",
-                "Анализ пользователей",
-                "Агильное управление проектами",
-                "Мобильная разработка",
-                "Анализ данных",
-                "Оптимизация процессов",
-                "Стратегия продукта"
-            ]
-        },
-        experience: {
+            items: ["Управление продуктом", "UI/UX прототипирование", "Анализ пользователей", "Агильное управление проектами", "Мобильная разработка", "Анализ данных", "Оптимизация процессов", "Стратегия продукта"]
+          },
+          experience: {
             title: "Опыт работы",
-            items: [
-                "Технический менеджер проекта, Яндекс.Облако (8/2022 - по настоящее время)",
-                "Менеджер продукта, Яндекс.Маркет (4/2021 - 8/2022)",
-                "Product Owner, Почта России (6/2020 - 4/2021)",
-                "Product Owner, Anywayanyday (2/2019 - 6/2020)",
-                "Старший аналитик | Менеджер продукта, Москва (7/2017 - 2/2019)",
-                "Генеральный директор, Social Technologies, Москва (7/2016 - 8/2017)"
-            ]
+            items: ["Технический менеджер проекта, Яндекс.Облако (8/2022 - по настоящее время)", "Менеджер продукта, Яндекс.Маркет (4/2021 - 8/2022)", "Product Owner, Почта России (6/2020 - 4/2021)", "Product Owner, Anywayanyday (2/2019 - 6/2020)", "Старший аналитик | Менеджер продукта, Москва (7/2017 - 2/2019)", "Генеральный директор, Social Technologies, Москва (7/2016 - 8/2017)"]
+          },
         },
-    },
-    en: {
-        intro: {
+        en: {
+          intro: {
             title: "Mobile Product Manager",
-            description: "8+ years’ experience driving technology innovation..."
-        },
-        skills: {
+            description: "Data-driven  product and project manager with 8+ years’ experience driving technology innovation. Integrate analytics tools with UI/UX knowledge to develop feature-rich apps that are simple to use. Track record of thriving in constantly evolving environments and leveraging process optimization skills. Adept at communicating goals, analyses, and value propositions. Fluent in Russian and English, basic knowledge of French and Italian."
+          },
+          skills: {
             title: "Technical Proficiencies",
-            items: [
-                "Product Management",
-                "UI/UX Prototyping",
-                "Audience/User Analysis",
-                "Agile Project Management",
-                "Mobile Development",
-                "Data Analysis",
-                "Process Optimization",
-                "Product Strategy"
-            ]
-        },
-        experience: {
+            items: ["Product Management", "UI/UX Prototyping", "Audience/User Analysis", "Agile Project Management", "Mobile Development", "Data Analysis", "Process Optimization", "Product Strategy"]
+          },
+          experience: {
             title: "Professional Experience",
-            items: [
-                "Technical Project Manager, Yandex Cloud (8/2022 - Present)",
-                "Product Manager, Yandex.Market (4/2021 - 8/2022)",
-                "Product Owner, Russian Post (6/2020 - 4/2021)",
-                "Product Owner, Anywayanyday (2/2019 - 6/2020)",
-                "Senior Analyst | Product Manager, Moscow (7/2017 - 2/2019)",
-                "Chief Executive Officer, Social Technologies, Moscow (7/2016 - 8/2017)"
-            ]
+            items: ["Technical Project Manager, Yandex Cloud (8/2022 - Present)", "Product Manager, Yandex.Market (4/2021 - 8/2022)", "Product Owner, Russian Post (6/2020 - 4/2021)", "Product Owner, Anywayanyday (2/2019 - 6/2020)", "Senior Analyst | Product Manager, Moscow (7/2017 - 2/2019)", "Chief Executive Officer, Social Technologies, Moscow (7/2016 - 8/2017)"]
+          },
         },
-    },
-    rs: {
-        intro: {
+        rs: {
+          intro: {
             title: "Мобилни Продукт Менаџер",
             description: "8+ година искуства у покретању технолошке иновације..."
-        },
-        skills: {
+          },
+          skills: {
             title: "Техничке способности",
-            items: [
-                "Менаџмент производа",
-                "UI/UX прототипирање",
-                "Анализа корисника",
-                "Агилно управљање пројектима",
-                "Мобилни развој",
-                "Анализа података",
-                "Оптимизација процеса",
-                "Стратегија производа"
-            ]
-        },
-        experience: {
+            items: ["Менаџмент производа", "UI/UX прототипирање", "Анализа корисника", "Агилно управљање пројектима", "Мобилни развој", "Анализа података", "Оптимизација процеса", "Стратегија производа"]
+          },
+          experience: {
             title: "Професионално искуство",
-            items: [
-                "Технички Менаџер пројекта, Јандекс Облак (8/2022 - сада)",
-                "Менаџер производа, Јандекс.Маркет (4/2021 - 8/2022)",
-                "Product Owner, Руска пошта (6/2020 - 4/2021)",
-                "Product Owner, Anywayanyday (2/2019 - 6/2020)",
-                "Стари аналитичар | Менаџер производа, Москва (7/2017 - 2/2019)",
-                "Генерални директор, Social Technologies, Москва (7/2016 - 8/2017)"
-            ]
-        },
-    }
-};
+            items: ["Технички Менаџер пројекта, Јандекс Облак (8/2022 - сада)", "Менаџер производа, Јандекс.Маркет (4/2021 - 8/2022)", "Product Owner, Руска пошта (6/2020 - 4/2021)", "Product Owner, Anywayanyday (2/2019 - 6/2020)", "Стари аналитичар | Менаџер производа, Москва (7/2017 - 2/2019)", "Генерални директор, Social Technologies, Москва (7/2016 - 8/2017)"]
+          },
+        }
+      };
 
-function switchLang(lang) {
-    document.querySelector('#intro h2').textContent = content[lang].intro.title;
-    document.querySelector('#intro p').textContent = content[lang].intro.description;
-
-    const skillsList = document.querySelector('#skills ul');
-    skillsList.innerHTML = "";
-    content[lang].skills.items.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        skillsList.appendChild(li);
-    });
-
-    const experienceList = document.querySelector('#experience ul');
-    experienceList.innerHTML = "";
-    content[lang].experience.items.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        experienceList.appendChild(li);
-    });
-}
-
-// По умолчанию устанавливаем английский язык
-switchLang('en');
-
+      function switchLang(lang) {
+        document.querySelector('#intro h2').textContent = content[lang].intro.title;
+        document.querySelector('#intro p').textContent = content[lang].intro.description;
+        document.querySelector('#skills h2').textContent = content[lang].skills.title;
+        document.querySelector('#experience h2').textContent = content[lang].experience.title;
+        const skillsDiv = document.querySelector('#skills div');
+        skillsDiv.innerHTML = "";
+        content[lang].skills.items.forEach(item => {
+          const span = document.createElement('span');
+          span.textContent = item;
+          span.className = "skill-tag";
+          skillsDiv.appendChild(span);
+        });
+        const experienceList = document.querySelector('#experience ul');
+        experienceList.innerHTML = "";
+        content[lang].experience.items.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          experienceList.appendChild(li);
+        });
+      }
+      // По умолчанию устанавливаем английский язык
+      switchLang('en');
     </script>
-</body>
-
+  </body>
 </html>
