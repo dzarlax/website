@@ -1,4 +1,4 @@
-const content_inro = {
+const content_intro = {
     ru: {
         intro: {
             title: "Менеджер продукта",

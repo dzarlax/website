@@ -32,7 +32,6 @@
     <section id="skills">
       <h2></h2>
       <div></div>
-      <!-- Заменено на div -->
     </section>
     <section id="experience">
       <h2></h2>
@@ -49,8 +48,8 @@
     </section>
     <script>
       function switchLang(lang) {
-        document.querySelector('#intro h2').textContent = content_inro[lang].intro.title;
-        document.querySelector('#intro p').textContent = content_inro[lang].intro.description;
+        document.querySelector('#intro h2').textContent = content_intro[lang].intro.title;
+        document.querySelector('#intro p').textContent = content_intro[lang].intro.description;
         document.querySelector('#skills h2').textContent = content_skills[lang].skills.title;
         document.querySelector('#experience h2').textContent = content_experience[lang].experience.title;
         const skillsDiv = document.querySelector('#skills div');
@@ -70,7 +69,8 @@
         });
       }
       // По умолчанию устанавливаем английский язык
-      switchLang('en');
+      const userLanguage = navigator.language;
+      switchLang(userLanguage);
     </script>
   </body>
 </html>
