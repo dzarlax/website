@@ -1,3 +1,4 @@
+/* Общие стили */
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
@@ -7,20 +8,14 @@ body {
     color: #333;
 }
 
-header,
-nav,
-main,
-section {
-    padding: 20px 40px;
-}
-
+/* Стили для хедера */
 header {
-    background-image: url('header.jpg'); /* Замените 'your-header-background.jpg' на путь к вашему фоновому изображению для хедера */
+    background-image: url('header.jpg');
     background-size: cover;
     background-position: center;
     color: #fff;
     text-align: center;
-    padding: 80px 0; /* Увеличьте вертикальный отступ для центрирования содержимого */
+    padding: 80px 0;
     position: relative;
 }
 
@@ -39,17 +34,18 @@ h1 {
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 20px;
-    letter-spacing: 2px; /* Разрешение между символами */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень текста */
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Стили для навигации */
 nav {
     background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    padding: 10px 0; /* Уменьшаем верхний и нижний отступ */
+    padding: 10px 0;
 }
 
 nav a {
@@ -59,21 +55,18 @@ nav a {
     border: 1px solid #ddd;
     border-radius: 5px;
     transition: background-color 0.3s;
-    font-weight: 600; /* Увеличиваем жирность шрифта */
-    font-size: 18px; /* Увеличиваем размер шрифта */
+    font-weight: 600;
+    font-size: 18px;
 }
 
-nav a:hover {
-    background-color: #333;
-    color: #fff;
-}
-
+/* Стили для основного содержания */
 main {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Стили для заголовков */
 h2 {
     font-weight: 700;
     font-size: 28px;
@@ -85,143 +78,30 @@ h2 {
     padding-left: 30px;
 }
 
-h2:before,
-li:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
+/* Остальные стили... */
 
-h2:before {
-    width: 20px;
-    height: 2px;
-    background-color: #0077b6;
-}
-
-ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 25px;
-}
-
-li {
-    position: relative;
-    padding-left: 30px;
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e1e1e1;
-}
-
-li:before {
-    content: '•';
-    color: #0077b6;
-    font-size: 24px;
-}
-
-li:not(:last-child) {
-    margin-bottom: 15px;
-}
-
-#lang-switch {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-}
-
-#lang-switch button {
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    margin-left: 10px;
-    cursor: pointer;
-    outline: none;
-}
-
-#lang-switch button:hover {
-    color: #0077b6; /* Цвет при наведении */
-}
-
-#contact ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: left;
-    /* центрирование контактов */
-}
-
-#contact li {
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    border: 1px solid #e1e1e1;
-    padding: 5px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-#contact li:hover {
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#contact li:before {
-    content: "";
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-    background-size: cover;
-}
-
-#experience span {
-    display: block;
-    color: #666;
-}
-
-.skill-tag {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #e1e1e1;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-/* Стили для больших экранов (например, десктоп) */
-body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-/* Стили для экранов шириной менее 768px (мобильные устройства) */
+/* Стили для мобильных экранов */
 @media (max-width: 768px) {
     header, nav, main, section {
-        padding: 10px 20px; /* Уменьшаем отступы для мобильных экранов */
+        padding: 10px 20px;
     }
 
     header {
-        padding: 60px 0; /* Увеличиваем вертикальный отступ для хедера на мобильных экранах */
+        padding: 60px 0;
     }
 
     h1 {
-        font-size: 36px; /* Уменьшаем размер шрифта для h1 на мобильных экранах */
+        font-size: 36px;
     }
 
     h2 {
-        font-size: 24px; /* Уменьшаем размер шрифта для h2 на мобильных экранах */
+        font-size: 24px;
     }
 
     nav {
         flex-direction: column;
-        align-items: center; /* Центрируем элементы по горизонтали */
-        text-align: center; /* Центрируем текст по горизонтали */
+        align-items: center;
+        text-align: center;
     }
 
     nav a {
@@ -230,7 +110,7 @@ body {
     }
 
     #lang-switch {
-        top: 10px; /* Уменьшаем верхний отступ для переключателя языков на мобильных экранах */
-        right: 20px; /* Уменьшаем правый отступ для переключателя языков на мобильных экранах */
+        top: 10px;
+        right: 20px;
     }
 }
