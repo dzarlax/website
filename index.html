@@ -11,6 +11,7 @@
   <script src="intro.js"></script>
   <script src="menu.js"></script>
   <script src="localization.js"></script>
+  <script src="contacts.js"></script>
 </head>
 <body>
 <header>
@@ -40,14 +41,14 @@
   <ul></ul>
 </section>
 <section id="contact">
-  <h2>Contact</h2>
-  <ul>
-    <li>Email: <a href="mailto:me@dzarlax.dev">me@dzarlax.dev</a>
-    </li>
-    <li>LinkedIn: <a href="https://linkedin.com/in/dzarlax/" target="_blank">linkedin.com/in/dzarlax/</a>
-    </li>
-  </ul>
+  <h2></h2>
+  <div class="contact-buttons">
+    <button class="contact-button" onclick="sendEmail()"></button>
+    <button class="contact-button" onclick="openLinkedIn()"></button>
+    <button class="contact-button" onclick="openGithub()"></button>
+  </div>
 </section>
+
 <script>
         const userLanguage = (navigator.language || 'en').toLowerCase().slice(0, 2);
         switchLang(userLanguage);

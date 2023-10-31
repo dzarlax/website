@@ -5,6 +5,10 @@ function switchLang(lang) {
     document.querySelector('#intro p').textContent = content_intro[lang].intro.description;
     document.querySelector('#skills h2').textContent = content_skills[lang].skills.title;
     document.querySelector('#experience h2').textContent = content_experience[lang].experience.title;
+    document.querySelector('#contact h2').textContent = menuText[lang].contact;
+    document.querySelector('.contact-buttons .contact-button:nth-child(1)').textContent = content_contacts[lang].email;
+    document.querySelector('.contact-buttons .contact-button:nth-child(2)').textContent = content_contacts[lang].linkedin;
+    document.querySelector('.contact-buttons .contact-button:nth-child(3)').textContent = content_contacts[lang].github;
 
     const skillsDiv = document.querySelector('#skills div');
     skillsDiv.innerHTML = "";
