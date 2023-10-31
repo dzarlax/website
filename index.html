@@ -1,76 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexey Panfilov</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="skills.js"></script>
-    <script src="experience.js"></script>
-    <script src="intro.js"></script>
-  </head>
-  <body>
-    <header>
-      <h1>Alexey Panfilov</h1>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-        <div id="lang-switch">
-          <button onclick="switchLang('ru')">🇷🇺</button>
-          <button onclick="switchLang('en')">🇬🇧</button>
-          <button onclick="switchLang('rs')">🇷🇸</button>
-        </div>
-      </nav>
-    </header>
-    <section id="intro">
-      <h2></h2>
-      <p></p>
-    </section>
-    <section id="skills">
-      <h2></h2>
-      <div></div>
-    </section>
-    <section id="experience">
-      <h2></h2>
-      <ul></ul>
-    </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <ul>
-        <li>Email: <a href="mailto:me@dzarlax.dev">me@dzarlax.dev</a>
-        </li>
-        <li>LinkedIn: <a href="https://linkedin.com/in/dzarlax/" target="_blank">linkedin.com/in/dzarlax/</a>
-        </li>
-      </ul>
-    </section>
-
-    <script>
-      function switchLang(lang) {
-        document.querySelector('#intro h2').textContent = content_intro[lang].intro.title;
-        document.querySelector('#intro p').textContent = content_intro[lang].intro.description;
-        document.querySelector('#skills h2').textContent = content_skills[lang].skills.title;
-        document.querySelector('#experience h2').textContent = content_experience[lang].experience.title;
-        const skillsDiv = document.querySelector('#skills div');
-        skillsDiv.innerHTML = "";
-        content_skills[lang].skills.items.forEach(item => {
-          const span = document.createElement('span');
-          span.textContent = item;
-          span.className = "skill-tag";
-          skillsDiv.appendChild(span);
-        });
-        const experienceList = document.querySelector('#experience ul');
-        experienceList.innerHTML = "";
-        content_experience[lang].experience.items.forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = item;
-          experienceList.appendChild(li);
-        });
-      }
-      const userLanguage = (navigator.language || 'en').toLowerCase().slice(0,2) ;
-      switchLang(userLanguage);
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexey Panfilov</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="skills.js"></script>
+  <script src="experience.js"></script>
+  <script src="intro.js"></script>
+  <script src="menu.js"></script>
+  <script src="localization.js"></script>
+</head>
+<body>
+<header>
+  <h1>Alexey Panfilov</h1>
+  <nav>
+    <a href="#" data-lang="home">Home</a>
+    <a href="#skills" data-lang="skills">Skills</a>
+    <a href="#experience" data-lang="experience">Experience</a>
+    <a href="#contact" data-lang="contact">Contact</a>
+    <div id="lang-switch">
+      <button onclick="switchLang('ru')">🇷🇺</button>
+      <button onclick="switchLang('en')">🇬🇧</button>
+      <button onclick="switchLang('rs')">🇷🇸</button>
+    </div>
+  </nav>
+</header>
+<section id="intro">
+  <h2></h2>
+  <p></p>
+</section>
+<section id="skills">
+  <h2></h2>
+  <div></div>
+</section>
+<section id="experience">
+  <h2></h2>
+  <ul></ul>
+</section>
+<section id="contact">
+  <h2>Contact</h2>
+  <ul>
+    <li>Email: <a href="mailto:me@dzarlax.dev">me@dzarlax.dev</a>
+    </li>
+    <li>LinkedIn: <a href="https://linkedin.com/in/dzarlax/" target="_blank">linkedin.com/in/dzarlax/</a>
+    </li>
+  </ul>
+</section>
+<script src="localization.js"></script>
+</body>
 </html>
