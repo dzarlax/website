@@ -15,7 +15,7 @@ section {
 }
 
 header {
-    background-image: url('header.jpg'); /* Замените 'your-header-background.jpg' на путь к вашему фоновому изображению для хедера */
+    background-image: url('https://s3.dzarlax.dev/header.jpg'); /* Замените 'your-header-background.jpg' на путь к вашему фоновому изображению для хедера */
     background-size: cover;
     background-position: center;
     color: #fff;
