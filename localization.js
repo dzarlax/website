@@ -1,7 +1,23 @@
-// Функция для изменения текста элементов меню на основе выбранного языка
 
-function switchLang(lang) {
-    document.querySelector('#intro h2').textContent = content_intro[lang].intro.title;
+async function loadLocalizationData(lang) {
+    try {
+        console.log(lang)
+        const response = await fetch(`localization/${lang}.json`);
+        if (!response.ok) {
+            throw new Error('Ошибка при загрузке данных');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Произошла ошибка при загрузке данных:', error);
+        return null;
+    }
+}
+
+
+async function switchLang(lang) {
+    const localizationData = await loadLocalizationData(lang);
+    document.querySelector('#intro h2').textContent = localizationData.intro.title;
     document.querySelector('#intro p').textContent = content_intro[lang].intro.description;
     document.querySelector('#skills h2').textContent = content_skills[lang].skills.title;
     document.querySelector('#experience h2').textContent = content_experience[lang].experience.title;
