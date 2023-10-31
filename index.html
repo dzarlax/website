@@ -7,7 +7,6 @@
   <meta property="og:description" content="Personal page">
   <meta property="og:image" content="https://s3.dzarlax.dev/logo.png">
   <title>Alexey Panfilov</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="skills.js"></script>
   <script src="experience.js"></script>
@@ -15,6 +14,7 @@
   <script src="menu.js"></script>
   <script src="localization.js"></script>
   <script src="contacts.js"></script>
+  <script src="optimization.js"></script>
 </head>
 <body>
 <header>
@@ -56,6 +56,8 @@
         const userLanguage = (navigator.language || 'en').toLowerCase().slice(0, 2);
         switchLang(userLanguage);
         src="localization.js"
+        // Вызовите функцию для асинхронной загрузки шрифтов
+        loadGoogleFonts();
 </script>
 </body>
 </html>
