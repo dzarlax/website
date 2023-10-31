@@ -1,5 +1,4 @@
 // Функция для изменения текста элементов меню на основе выбранного языка
-const userLanguage = (navigator.language || 'en').toLowerCase().slice(0, 2);
 
 function switchLang(lang) {
     document.querySelector('#intro h2').textContent = content_intro[lang].intro.title;
@@ -33,4 +32,3 @@ function switchLang(lang) {
     });
 }
 
-switchLang(userLanguage);

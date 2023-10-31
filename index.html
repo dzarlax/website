@@ -48,6 +48,10 @@
     </li>
   </ul>
 </section>
-<script src="localization.js"></script>
+<script>
+        const userLanguage = (navigator.language || 'en').toLowerCase().slice(0, 2);
+        switchLang(userLanguage);
+        src="localization.js"
+</script>
 </body>
 </html>
