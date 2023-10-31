@@ -17,10 +17,6 @@
   <meta property="og:image" content="https://s3.dzarlax.dev/logo.png">
   <title>Alexey Panfilov</title>
   <link rel="stylesheet" href="style.css">
-  <script src="skills.js"></script>
-  <script src="experience.js"></script>
-  <script src="intro.js"></script>
-  <script src="menu.js"></script>
   <script src="localization.js"></script>
   <script src="contacts.js"></script>
   <script src="optimization.js"></script>
@@ -55,9 +51,9 @@
 <section id="contact">
   <h2></h2>
   <div class="contact-buttons">
-    <button class="contact-button" onclick="sendEmail()"></button>
-    <button class="contact-button" onclick="openLinkedIn()"></button>
-    <button class="contact-button" onclick="openGithub()"></button>
+    <button id="emailButton" class="contact-button" onclick="sendEmail()"></button>
+    <button id="linkedinButton" class="contact-button" onclick="openLinkedIn()"></button>
+    <button id="githubButton" class="contact-button" onclick="openGithub()"></button>
   </div>
 </section>
 
