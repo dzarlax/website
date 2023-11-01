@@ -185,18 +185,6 @@ body {
     color: #333;
 }
 
-.tooltip {
-    display: none;
-    position: absolute;
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    max-width: 300px;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляем тень для лучшего визуального восприятия */
-}
-
-
 /* Стили для экранов шириной менее 768px (мобильные устройства) */
 @media (max-width: 768px) {
     header, nav, main, section {
@@ -229,14 +217,5 @@ body {
     #lang-switch {
         top: 10px; /* Уменьшаем верхний отступ для переключателя языков на мобильных экранах */
         right: 20px; /* Уменьшаем правый отступ для переключателя языков на мобильных экранах */
-    }
-    .tooltip {
-        display: none;
-        position: absolute;
-        background: #fff;
-        border: 1px solid #ddd;
-        padding: 10px;
-        max-width: 300px;
-        z-index: 1000;
     }
 }

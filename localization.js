@@ -39,43 +39,8 @@ async function switchLang(lang) {
         const span = document.createElement('span');
         span.textContent = item;
         span.className = "skill-tag";
-        span.setAttribute('data-skill', item);
         skillsDiv.appendChild(span);
     });
-
-    const skills = skillsDiv.querySelectorAll('.skill-tag');
-    skills.forEach(skill => {
-        skill.addEventListener('mouseover', function() {
-            const skillName = this.getAttribute('data-skill');
-
-            fetch(`https://wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro&explaintext&titles=${skillName}`)
-                .then(response => response.json())
-                .then(data => {
-                    const pages = data.query.pages;
-                    const page = Object.values(pages)[0];
-                    const extract = page.extract;
-
-                    const tooltip = document.createElement('div');
-                    tooltip.classList.add('tooltip');
-                    tooltip.innerHTML = extract;
-
-                    document.body.appendChild(tooltip);
-
-                    const rect = this.getBoundingClientRect();
-                    tooltip.style.left = rect.left + 'px';
-                    tooltip.style.top = (rect.bottom + 10) + 'px';
-                    tooltip.style.display = 'block';
-                });
-        });
-
-        skill.addEventListener('mouseout', function() {
-            const tooltips = document.querySelectorAll('.tooltip');
-            tooltips.forEach(tooltip => {
-                tooltip.remove();
-            });
-        });
-    });
-
 
     const experienceList = document.querySelector('#experience ul');
     experienceList.innerHTML = "";
