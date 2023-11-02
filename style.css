@@ -7,6 +7,10 @@ body {
     color: #333;
 }
 
+element.style {
+    scroll-behavior: smooth;
+}
+
 body.dark_theme {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
@@ -147,37 +151,13 @@ li:not(:last-child) {
     color: #0077b6;
 }
 
-
-#contact .contact-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    justify-content: center;
-}
-
-
-.skill-tag {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #0077b6;
-    color: white;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
-.skill-tag.dark_theme {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #032233;
-    color: white;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
+.active-lang {
+    text-decoration: underline; /* или другой стиль для выделения активной кнопки */
+  }
 
 /* Оформление переключателя */
 .switch {
+    left: 10px;
     position: relative;
     display: inline-block;
     width: 30px;
@@ -236,6 +216,36 @@ li:not(:last-child) {
   .slider.round:before {
     border-radius: 50%;
   }
+
+#contact .contact-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+
+.skill-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #0077b6;
+    color: white;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.skill-tag.dark_theme {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #032233;
+    color: white;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+
   
 
 /* Стили для экранов шириной менее 768px (мобильные устройства) */
@@ -262,10 +272,12 @@ li:not(:last-child) {
         text-align: center; /* Центрируем текст по горизонтали */
     }
 
-    nav a {
+    nav a, #contact .contact-button, .skill-tag {
         padding: 10px 0;
         width: 100%;
+        text-align: center;
     }
+    
 
     #lang-switch {
         top: 10px; /* Уменьшаем верхний отступ для переключателя языков на мобильных экранах */

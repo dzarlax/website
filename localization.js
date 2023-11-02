@@ -57,5 +57,12 @@ async function switchLang(lang) {
             item.textContent = localizationData.menu[translationKey];
         }
     });
+    // Удаляем класс .active-lang со всех кнопок
+  document.querySelectorAll('button').forEach(button => {
+    button.classList.remove('active-lang');
+  });
+  
+  // Добавляем класс .active-lang к кнопке, соответствующей выбранному языку
+  document.getElementById('lang-' + lang).classList.add('active-lang');
 }
 
