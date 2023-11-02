@@ -26,7 +26,6 @@
       webvisor:true
     });
   </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/84564265" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
 </head>
 <body>
@@ -41,6 +40,10 @@
       <button onclick="switchLang('ru')">🇷🇺</button>
       <button onclick="switchLang('en')">🇬🇧</button>
       <button onclick="switchLang('rs')">🇷🇸</button>
+      <label class="switch">
+        <input type="checkbox" id="theme-toggler">
+        <span class="slider round"></span>
+      </label>
     </div>
   </nav>
 </header>
@@ -66,11 +69,22 @@
 </section>
 
 <script>
-        const userLanguage = (navigator.language || 'en').toLowerCase().slice(0, 2);
-        switchLang(userLanguage);
-        src="localization.js"
-        // Вызовите функцию для асинхронной загрузки шрифтов
-        loadGoogleFonts();
+  document.getElementById('theme-toggler').addEventListener('click', function() {
+    document.body.classList.toggle('dark_theme');
+    document.querySelectorAll('h2').forEach(function(tag) {
+      // Для каждого элемента переключаем класс 'new-class-name', который вы хотите добавить или удалить
+      tag.classList.toggle('dark_theme');
+  });
+    document.querySelectorAll('.skill-tag').forEach(function(tag) {
+      // Для каждого элемента переключаем класс 'new-class-name', который вы хотите добавить или удалить
+      tag.classList.toggle('dark_theme');
+  });
+})
+  const userLanguage = (navigator.language || 'en').toLowerCase().slice(0, 2);
+  switchLang(userLanguage);
+  src="localization.js"
+  // Вызовите функцию для асинхронной загрузки шрифтов
+  loadGoogleFonts();
 </script>
 </body>
 </html>
