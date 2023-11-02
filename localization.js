@@ -38,7 +38,11 @@ async function switchLang(lang) {
     localizationData.skills.items.forEach(item => {
         const span = document.createElement('span');
         span.textContent = item;
-        span.className = "skill-tag";
+        span.classList.add('skill-tag'); // Добавляем класс skill-tag всегда
+        // Добавляем класс dark_theme если включена темная тема
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            span.classList.add('dark_theme');
+        }
         skillsDiv.appendChild(span);
     });
 

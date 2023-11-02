@@ -11,6 +11,7 @@
   <script src="localization.js"></script>
   <script src="contacts.js"></script>
   <script src="optimization.js"></script>
+  <script src="theme.js"></script>
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript" >
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -69,22 +70,33 @@
 </section>
 
 <script>
-  document.getElementById('theme-toggler').addEventListener('click', function() {
-    document.body.classList.toggle('dark_theme');
-    document.querySelectorAll('h2').forEach(function(tag) {
-      // Для каждого элемента переключаем класс 'new-class-name', который вы хотите добавить или удалить
-      tag.classList.toggle('dark_theme');
-  });
-    document.querySelectorAll('.skill-tag').forEach(function(tag) {
-      // Для каждого элемента переключаем класс 'new-class-name', который вы хотите добавить или удалить
-      tag.classList.toggle('dark_theme');
-  });
-})
   const userLanguage = (navigator.language || 'en').toLowerCase().slice(0, 2);
   switchLang(userLanguage);
   src="localization.js"
+
   // Вызовите функцию для асинхронной загрузки шрифтов
   loadGoogleFonts();
+
+
+// Проверяем, активирована ли темная тема на уровне системы
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // Устанавливаем чекбокс в положение "checked"
+    document.getElementById('theme-toggler').checked = true;
+    applyDarkTheme(); // Применяем темную тему
+} else {
+    removeDarkTheme(); // Удаляем темную тему
+}
+
+// Обработчик изменения состояния чекбокса
+document.getElementById('theme-toggler').addEventListener('change', function() {
+    if (this.checked) {
+        applyDarkTheme(); // Применяем темную тему
+    } else {
+        removeDarkTheme(); // Удаляем темную тему
+    }
+});
+
+
 </script>
 </body>
 </html>
