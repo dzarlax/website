@@ -28,8 +28,8 @@
     --skill-bg-color: #032233;
     --skill-text-color: #fff;
     --list-icon-cloolr: #79ffe1;
-    --popover-bg-clolor: var(--dark-theme-bg-color);
-    --popover-text-clolor: var(--dark-theme-text-color);
+    --popover-bg-clolor: var(--bg-color);
+    --popover-text-clolor: var(--text-color);
     --popover-border-clolor: #D0D0D0;
     --popover-shadow-clolor: #D0D0D0;
 }
@@ -42,11 +42,6 @@ body {
     padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
-}
-
-body.dark_theme {
-    background-color: var(--dark-theme-bg-color);
-    color: var(--dark-theme-header-text-color);
 }
 
 element.style {
@@ -101,25 +96,11 @@ nav a,
     border: none;
 }
 
-body.dark_theme nav a,
-body.dark_theme #contact .contact-button {
-    background-color: var(--dark-theme-button-bg-color); 
-    color: var(--dark-theme-button-text-color); 
-    border: 1px solid #a6e3ff; 
-}
-
 nav a:hover,
 #contact .contact-button:hover {
     background-color: var(--button-hover-bg-color);
-    color: var(--dark-theme-button-text-color);
+    color: var(--button-hover-text-color);
     box-shadow: 0px 4px 4px 0px var(--button-hover-bg-color);
-}
-
-body.dark_theme nav a:hover,
-body.dark_theme #contact .contact-button:hover {
-    background-color: var(--dark-theme-button-hover-bg-color); 
-    color: var(--dark-theme-button-hover-text-color); 
-    box-shadow: 0px 4px 4px 0px rgba(3, 83, 136, 0.5);
 }
 
 h2 {
@@ -131,11 +112,6 @@ h2 {
     margin-bottom: 20px;
     position: relative;
     padding-left: 30px;
-}
-
-body.dark_theme h2 {
-    color: var(--dark-theme-h2-color);
-    border-bottom: 3px solid var(--dark-theme-h2-color);
 }
 
 
@@ -170,10 +146,6 @@ li:before {
     content: '•  ';
     color: var(--list-icon-clolor);
     font-size: 24px;
-}
-
-body.dark_theme li:before {
-    color: var(--dark-theme-list-icon-cloolr);
 }
 
 li:not(:last-child) {
@@ -287,15 +259,6 @@ input:checked+.slider:before {
     box-shadow: 0px 4px 4px 0px var(--skill-bg-color);
 }
 
-body.dark_theme .skill-tag {
-    background-color: var(--dark-theme-skill-bg-color);
-}
-
-body.dark_theme .skill-tag:hover {
-    background-color: var(--dark-theme-skill-bg-color);
-    box-shadow: 0px 4px 4px 0px var(--dark-theme-skill-bg-color);
-}
-
 .popover {
     position: absolute;
     border: 1px solid var(--popover-border-clolor);
@@ -306,25 +269,6 @@ body.dark_theme .skill-tag:hover {
     border-radius: 5px;
     box-shadow: 0 5px 10px var(--popover-shadow-clolor);
   }
-
-body.dark_theme .popover {
-    border: 1px solid var(--dark-theme-popover-border-clolor);
-    background-color: var(--dark-theme-popover-bg-clolor);
-    color: var(--dark-theme-popover-text-clolor);
-    box-shadow: 0 5px 10px var(--dark-theme-popover-shadow-clolor);
-}
-.collapsible-content {
-    transition: max-height 0.2s ease-out;
-    overflow: hidden;
-    max-height: 0; /* Начальное состояние будет без высоты, так что текст скрыт */
-    /* Добавьте необходимые стили для отображения */
-}
-.skill-tag.active + .collapsible-content {
-    max-height: 100px; /* Примерная максимальная высота, достаточная для вашего содержимого */
-    margin-top: 5px;
-    margin-bottom: 5px;
-    /* Другие стили для активного состояния если нужно */
-}
   
 /* Стили для экранов шириной менее 768px (мобильные устройства) */
 @media (max-width: 768px) {
@@ -375,6 +319,18 @@ body.dark_theme .popover {
         /* Уменьшаем верхний отступ для переключателя языков на мобильных экранах */
         right: 20px;
         /* Уменьшаем правый отступ для переключателя языков на мобильных экранах */
+    }
+    .collapsible-content {
+        transition: max-height 0.2s ease-out;
+        overflow: hidden;
+        max-height: 0; /* Начальное состояние будет без высоты, так что текст скрыт */
+        /* Добавьте необходимые стили для отображения */
+    }
+    .skill-tag.active + .collapsible-content {
+        max-height: 100px; /* Примерная максимальная высота, достаточная для вашего содержимого */
+        margin-top: 5px;
+        margin-bottom: 5px;
+        /* Другие стили для активного состояния если нужно */
     }
  
 }
