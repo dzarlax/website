@@ -25,12 +25,13 @@ section {
 }
 
 header {
-    background-image: url('https://s3.dzarlax.dev/header.jpg'); /* Замените 'your-header-background.jpg' на путь к вашему фоновому изображению для хедера */
+    background-image: url('https://s3.dzarlax.dev/header.jpg');
     background-size: cover;
     background-position: center;
     color: #fff;
     text-align: center;
-    padding: 80px 0; /* Увеличьте вертикальный отступ для центрирования содержимого */
+    padding: 80px 0;
+    /* Увеличьте вертикальный отступ для центрирования содержимого */
     position: relative;
 }
 
@@ -39,8 +40,10 @@ h1 {
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 20px;
-    letter-spacing: 2px; /* Разрешение между символами */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень текста */
+    letter-spacing: 2px;
+    /* Разрешение между символами */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* Тень текста */
 }
 
 nav {
@@ -49,25 +52,46 @@ nav {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    padding: 10px 0; /* Уменьшаем верхний и нижний отступ */
+    padding: 10px 0;
+    /* Уменьшаем верхний и нижний отступ */
 }
 
-nav a, #contact .contact-button  {
+nav a,
+#contact .contact-button {
     padding: 10px 20px;
     text-decoration: none;
     color: #333;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-weight: 600; /* Увеличиваем жирность шрифта */
-    font-size: 18px; /* Увеличиваем размер шрифта */
+    font-weight: 600;
+    /* Увеличиваем жирность шрифта */
+    font-size: 18px;
+    /* Увеличиваем размер шрифта */
     background-color: white;
 }
 
-nav a:hover, #contact .contact-button:hover {
+body.dark_theme nav a,
+body.dark_theme #contact .contact-button {
+    background-color: #008858; /* Темный оттенок синего для темной темы */
+    color: #79ffe1; /* Светлый оттенок синего для текста */
+    box-shadow: 0px 4px 4px 0px rgba(3, 83, 136, 0.5);
+    border: 1px solid #a6e3ff; /* Светлый оттенок синего для границы */
+}
+
+nav a:hover,
+#contact .contact-button:hover {
     background-color: #0077b6;
     color: #fff;
     box-shadow: 0px 4px 4px 0px #0077b6;
     border: 1px solid #0077b6;
+}
+
+body.dark_theme nav a:hover,
+body.dark_theme #contact .contact-button:hover {
+    background-color: #035388; /* Темный оттенок синего для темной темы */
+    color: #79ffe1; /* Светлый оттенок синего для текста */
+    box-shadow: 0px 4px 4px 0px rgba(3, 83, 136, 0.5);
+    border: 1px solid #a6e3ff; /* Светлый оттенок синего для границы */
 }
 
 h2 {
@@ -81,7 +105,7 @@ h2 {
     padding-left: 30px;
 }
 
-h2.dark_theme {
+body.dark_theme h2 {
     color: #79ffe1;
     border-bottom: 3px solid #D0D0D0;
 }
@@ -121,6 +145,10 @@ li:before {
     font-size: 24px;
 }
 
+body.dark_theme li:before {
+    color: #79ffe1;
+}
+
 li:not(:last-child) {
     margin-bottom: 15px;
 }
@@ -142,8 +170,9 @@ li:not(:last-child) {
 }
 
 .active-lang {
-    text-decoration: underline; /* или другой стиль для выделения активной кнопки */
-  }
+    text-decoration: underline;
+    /* или другой стиль для выделения активной кнопки */
+}
 
 /* Оформление переключателя */
 .switch {
@@ -152,17 +181,17 @@ li:not(:last-child) {
     display: inline-block;
     width: 30px;
     height: 20px;
-  }
-  
-  /* Скрыть стандартный checkbox */
-  .switch input {
+}
+
+/* Скрыть стандартный checkbox */
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  /* Стили для слайдера */
-  .slider {
+}
+
+/* Стили для слайдера */
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -172,9 +201,9 @@ li:not(:last-child) {
     background-color: #ccc;
     transition: .4s;
     border-radius: 34px;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 13px;
@@ -184,28 +213,28 @@ li:not(:last-child) {
     background-color: white;
     transition: .4s;
     border-radius: 50%;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked+.slider {
     background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
+}
+
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     transform: translateX(10px);
-  }
-  
-  /* Добавить "выключенное" и "включенное" положение */
-  .slider.round {
+}
+
+/* Добавить "выключенное" и "включенное" положение */
+.slider.round {
     border-radius: 34px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
+}
 
 #contact .contact-buttons {
     display: flex;
@@ -225,48 +254,58 @@ li:not(:last-child) {
     margin-bottom: 10px;
 }
 
-.skill-tag.dark_theme {
-    display: inline-block;
-    padding: 5px 10px;
+body.dark_theme .skill-tag {
     background-color: #032233;
-    color: white;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
 }
+
 /* Стили для экранов шириной менее 768px (мобильные устройства) */
 @media (max-width: 768px) {
-    header, nav, main, section {
-        padding: 10px 20px; /* Уменьшаем отступы для мобильных экранов */
+
+    header,
+    nav,
+    main,
+    section {
+        padding: 10px 20px;
+        /* Уменьшаем отступы для мобильных экранов */
     }
 
     header {
-        padding: 60px 0; /* Увеличиваем вертикальный отступ для хедера на мобильных экранах */
+        padding: 60px 0;
+        /* Увеличиваем вертикальный отступ для хедера на мобильных экранах */
     }
 
     h1 {
-        font-size: 36px; /* Уменьшаем размер шрифта для h1 на мобильных экранах */
+        font-size: 36px;
+        /* Уменьшаем размер шрифта для h1 на мобильных экранах */
     }
 
     h2 {
-        font-size: 24px; /* Уменьшаем размер шрифта для h2 на мобильных экранах */
+        font-size: 24px;
+        /* Уменьшаем размер шрифта для h2 на мобильных экранах */
     }
 
-    nav, #contact .contact-buttons{
+    nav,
+    #contact .contact-buttons {
         flex-direction: column;
-        align-items: center; /* Центрируем элементы по горизонтали */
-        text-align: center; /* Центрируем текст по горизонтали */
+        align-items: center;
+        /* Центрируем элементы по горизонтали */
+        text-align: center;
+        /* Центрируем текст по горизонтали */
     }
 
-    nav a, #contact .contact-button, .skill-tag {
+    nav a,
+    #contact .contact-button,
+    .skill-tag {
         padding: 10px 0;
         width: 100%;
         text-align: center;
     }
-    
+
 
     #lang-switch {
-        top: 10px; /* Уменьшаем верхний отступ для переключателя языков на мобильных экранах */
-        right: 20px; /* Уменьшаем правый отступ для переключателя языков на мобильных экранах */
+        top: 10px;
+        /* Уменьшаем верхний отступ для переключателя языков на мобильных экранах */
+        right: 20px;
+        /* Уменьшаем правый отступ для переключателя языков на мобильных экранах */
     }
 }

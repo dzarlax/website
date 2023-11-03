@@ -22,12 +22,12 @@ async function switchLang(lang) {
     document.querySelector('#skills h2').textContent = localizationData.skills.title;
     document.querySelector('#experience h2').textContent = localizationData.experience.title;
     document.querySelector('#contact h2').textContent = localizationData.contacts.contact;
-// Получаем кнопки по их id
+    // Получаем кнопки по их id
     const emailButton = document.getElementById('emailButton');
     const linkedinButton = document.getElementById('linkedinButton');
     const githubButton = document.getElementById('githubButton');
 
-// Устанавливаем текст с использованием локализационных данных
+    // Устанавливаем текст с использованием локализационных данных
     emailButton.textContent = localizationData.contacts.email;
     linkedinButton.textContent = localizationData.contacts.linkedin;
     githubButton.textContent = localizationData.contacts.github;
@@ -62,11 +62,11 @@ async function switchLang(lang) {
         }
     });
     // Удаляем класс .active-lang со всех кнопок
-  document.querySelectorAll('button').forEach(button => {
-    button.classList.remove('active-lang');
-  });
-  
-  // Добавляем класс .active-lang к кнопке, соответствующей выбранному языку
-  document.getElementById('lang-' + lang).classList.add('active-lang');
+    document.querySelectorAll('button').forEach(button => {
+        button.classList.remove('active-lang');
+    });
+
+    // Добавляем класс .active-lang к кнопке, соответствующей выбранному языку
+    document.getElementById('lang-' + lang).classList.add('active-lang');
 }
 

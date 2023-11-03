@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" style="scroll-behavior: smooth;">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Dzarlax">
-  <meta property="og:description" content="Personal page">
-  <meta property="og:image" content="https://s3.dzarlax.dev/logo.png">
-  <title>Alexey Panfilov</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="localization.js"></script>
-  <script src="contacts.js"></script>
-  <script src="optimization.js"></script>
-  <script src="theme.js"></script>
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript" >
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Dzarlax">
+    <meta property="og:description" content="Personal page">
+    <meta property="og:image" content="https://s3.dzarlax.dev/logo.png">
+    <title>Alexey Panfilov</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="localization.js"></script>
+    <script src="contacts.js"></script>
+    <script src="optimization.js"></script>
+    <script src="theme.js"></script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
       m[i].l=1*new Date();
       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -27,49 +27,50 @@
       webvisor:true
     });
   </script>
-  <!-- /Yandex.Metrika counter -->
-</head>
-<body>
-<header>
-  <h1>Alexey Panfilov</h1>
-  <nav>
-    <a href="#" data-lang="home">Home</a>
-    <a href="#skills" data-lang="skills">Skills</a>
-    <a href="#experience" data-lang="experience">Experience</a>
-    <a href="#contact" data-lang="contact">Contact</a>
-    <div id="lang-switch">
-      <button id="lang-ru" onclick="switchLang('ru')">🇷🇺</button>
-      <button id="lang-en" onclick="switchLang('en')">🇬🇧</button>
-      <button id="lang-rs" onclick="switchLang('rs')">🇷🇸</button>
-      <label class="switch">
-        <input type="checkbox" id="theme-toggler">
-        <span class="slider round"></span>
-      </label>
-    </div>
-  </nav>
-</header>
-<section id="intro">
-  <h2></h2>
-  <p></p>
-</section>
-<section id="skills">
-  <h2></h2>
-  <div></div>
-</section>
-<section id="experience">
-  <h2></h2>
-  <ul></ul>
-</section>
-<section id="contact">
-  <h2></h2>
-  <div class="contact-buttons">
-    <button id="emailButton" class="contact-button" onclick="sendEmail()"></button>
-    <button id="linkedinButton" class="contact-button" onclick="openLinkedIn()"></button>
-    <button id="githubButton" class="contact-button" onclick="openGithub()"></button>
-  </div>
-</section>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body>
+    <header>
+      <h1>Alexey Panfilov</h1>
+      <nav>
+        <a href="#" data-lang="home">Home</a>
+        <a href="#skills" data-lang="skills">Skills</a>
+        <a href="#experience" data-lang="experience">Experience</a>
+        <a href="#contact" data-lang="contact">Contact</a>
+        <div id="lang-switch">
+          <button id="lang-ru" onclick="switchLang('ru')">🇷🇺</button>
+          <button id="lang-en" onclick="switchLang('en')">🇬🇧</button>
+          <button id="lang-rs" onclick="switchLang('rs')">🇷🇸</button>
+          <label class="switch">
+            <input type="checkbox" id="theme-toggler">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </nav>
+    </header>
+    <section id="intro">
+      <h2></h2>
+      <p></p>
+    </section>
+    <section id="skills">
+      <h2></h2>
+      <div></div>
+    </section>
+    <section id="experience">
+      <h2></h2>
+      <ul></ul>
+    </section>
+    <section id="contact">
+      <h2></h2>
+      <div class="contact-buttons">
+        <button id="emailButton" class="contact-button" onclick="sendEmail()"></button>
+        <button id="linkedinButton" class="contact-button"
+          onclick="openLinkedIn()"></button>
+        <button id="githubButton" class="contact-button" onclick="openGithub()"></button>
+      </div>
+    </section>
 
-<script>
+    <script>
   const userLanguage = (navigator.language || 'en').toLowerCase().slice(0, 2);
   switchLang(userLanguage);
   src="localization.js"
@@ -98,5 +99,5 @@ document.getElementById('theme-toggler').addEventListener('change', function() {
 
 
 </script>
-</body>
+  </body>
 </html>
