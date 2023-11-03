@@ -1,15 +1,50 @@
+:root{
+    --light-theme-bg-color: #e0f2f1;
+    --light-theme-header-text-color: #fff;
+    --light-theme-h2-color: #0077b6;
+    --light-theme-text-color: #333;
+    --light-theme-button-bg-color: #fff;
+    --light-theme-button-text-color: #333;
+    --light-theme-button-hover-bg-color: #0077b6;
+    --light-theme-button-hover-text-color: #fff;
+    --light-theme-skill-bg-color: #0077b6;
+    --light-theme-skill-text-color: #fff;
+    --light-theme-list-icon-clolor: #0077b6;
+    --light-theme-popover-bg-clolor: var(--light-theme-bg-color);
+    --light-theme-popover-text-clolor: var(--light-theme-text-color);
+    --light-theme-popover-border-clolor: #0077b6;
+    --light-theme-popover-shadow-clolor: #333;
+
+    --dark-theme-bg-color: #282c34;
+    --dark-theme-header-text-color: #fff;
+    --dark-theme-h2-color: #79ffe1;
+    --dark-theme-text-color: #D0D0D0;
+    --dark-theme-button-bg-color: #035388;
+    --dark-theme-button-text-color: #79ffe1;
+    --dark-theme-button-hover-bg-color: #79ffe1;
+    --dark-theme-button-hover-text-color: #035388;
+    --dark-theme-skill-bg-color: #032233;
+    --dark-theme-skill-text-color: #fff;
+    --dark-theme-list-icon-cloolr: #79ffe1;
+    --dark-theme-popover-bg-clolor: var(--dark-theme-bg-color);
+    --dark-theme-popover-text-clolor: var(--dark-theme-text-color);
+    --dark-theme-popover-border-clolor: #D0D0D0;
+    --dark-theme-popover-shadow-clolor: #D0D0D0;
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #e0f2f1;
-    color: #333;
+    background-color: var(--light-theme-bg-color);
+    color: var(--light-theme-text-color);
 }
 
 body.dark_theme {
-    background-color: #282c34;
-    color: #D0D0D0;
+    background-color: var(--dark-theme-bg-color);
+    color: var(--dark-theme-header-text-color);
 }
 
 element.style {
@@ -28,10 +63,9 @@ header {
     background-image: url('https://s3.dzarlax.dev/header.jpg');
     background-size: cover;
     background-position: center;
-    color: #fff;
+    color: var(--light-theme-header-text-color);
     text-align: center;
     padding: 80px 0;
-    /* Увеличьте вертикальный отступ для центрирования содержимого */
     position: relative;
 }
 
@@ -41,9 +75,7 @@ h1 {
     text-transform: uppercase;
     margin-bottom: 20px;
     letter-spacing: 2px;
-    /* Разрешение между символами */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* Тень текста */
 }
 
 nav {
@@ -53,51 +85,45 @@ nav {
     align-items: center;
     gap: 20px;
     padding: 10px 0;
-    /* Уменьшаем верхний и нижний отступ */
 }
 
 nav a,
 #contact .contact-button {
     padding: 10px 20px;
     text-decoration: none;
-    color: #333;
-    border: 1px solid #ddd;
+    color: var(--light-theme-button-text-color);
     border-radius: 5px;
     font-weight: 600;
-    /* Увеличиваем жирность шрифта */
     font-size: 18px;
-    /* Увеличиваем размер шрифта */
-    background-color: white;
+    background-color: var(--light-theme-button-bg-color);
+    border: none;
 }
 
 body.dark_theme nav a,
 body.dark_theme #contact .contact-button {
-    background-color: #008858; /* Темный оттенок синего для темной темы */
-    color: #79ffe1; /* Светлый оттенок синего для текста */
-    box-shadow: 0px 4px 4px 0px rgba(3, 83, 136, 0.5);
-    border: 1px solid #a6e3ff; /* Светлый оттенок синего для границы */
+    background-color: var(--dark-theme-button-bg-color); 
+    color: var(--dark-theme-button-text-color); 
+    border: 1px solid #a6e3ff; 
 }
 
 nav a:hover,
 #contact .contact-button:hover {
-    background-color: #0077b6;
-    color: #fff;
-    box-shadow: 0px 4px 4px 0px #0077b6;
-    border: 1px solid #0077b6;
+    background-color: var(--light-theme-button-hover-bg-color);
+    color: var(--dark-theme-button-text-color);
+    box-shadow: 0px 4px 4px 0px var(--light-theme-button-hover-bg-color);
 }
 
 body.dark_theme nav a:hover,
 body.dark_theme #contact .contact-button:hover {
-    background-color: #035388; /* Темный оттенок синего для темной темы */
-    color: #79ffe1; /* Светлый оттенок синего для текста */
+    background-color: var(--dark-theme-button-hover-bg-color); 
+    color: var(--dark-theme-button-hover-text-color); 
     box-shadow: 0px 4px 4px 0px rgba(3, 83, 136, 0.5);
-    border: 1px solid #a6e3ff; /* Светлый оттенок синего для границы */
 }
 
 h2 {
     font-weight: 700;
     font-size: 28px;
-    color: #0077b6;
+    color: var(--light-theme-h2-color);
     border-bottom: 3px solid #e1e1e1;
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -106,8 +132,8 @@ h2 {
 }
 
 body.dark_theme h2 {
-    color: #79ffe1;
-    border-bottom: 3px solid #D0D0D0;
+    color: var(--dark-theme-h2-color);
+    border-bottom: 3px solid var(--dark-theme-h2-color);
 }
 
 
@@ -121,7 +147,6 @@ li:before {
 h2:before {
     width: 20px;
     height: 2px;
-    background-color: #0077b6;
 }
 
 ul {
@@ -141,12 +166,12 @@ li {
 
 li:before {
     content: '•  ';
-    color: #0077b6;
+    color: var(--light-theme-list-icon-clolor);
     font-size: 24px;
 }
 
 body.dark_theme li:before {
-    color: #79ffe1;
+    color: var(--dark-theme-list-icon-cloolr);
 }
 
 li:not(:last-child) {
@@ -171,7 +196,6 @@ li:not(:last-child) {
 
 .active-lang {
     text-decoration: underline;
-    /* или другой стиль для выделения активной кнопки */
 }
 
 /* Оформление переключателя */
@@ -247,8 +271,8 @@ input:checked+.slider:before {
 .skill-tag {
     display: inline-block;
     padding: 5px 10px;
-    background-color: #0077b6;
-    color: white;
+    background-color: var(--light-theme-skill-bg-color);
+    color: var(--light-theme-skill-text-color);
     border-radius: 5px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -256,35 +280,36 @@ input:checked+.slider:before {
 }
 
 .skill-tag:hover{
-    background-color: #0077b6;
-    color: white;
-    box-shadow: 0px 4px 4px 0px #0077b6;
+    background-color: var(--light-theme-skill-bg-color);
+    color: var(--light-theme-skill-text-color);
+    box-shadow: 0px 4px 4px 0px var(--light-theme-skill-bg-color);
 }
 
 body.dark_theme .skill-tag {
-    background-color: #032233;
+    background-color: var(--dark-theme-skill-bg-color);
 }
 
 body.dark_theme .skill-tag:hover {
-    background-color: #032233;
-    box-shadow: 0px 4px 4px 0px #032233;
+    background-color: var(--dark-theme-skill-bg-color);
+    box-shadow: 0px 4px 4px 0px var(--dark-theme-skill-bg-color);
 }
 
 .popover {
     position: absolute;
-    border: 1px solid #0077b6;
-    background-color: #e0f2f1;
-    color: #333;
+    border: 1px solid var(--light-theme-popover-border-clolor);
+    background-color: var(--light-theme-popover-bg-clolor);
+    color: var(--light-theme-popover-text-clolor);
     padding: 10px;
     z-index: 100;
     border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px var(--light-theme-popover-shadow-clolor);
   }
 
 body.dark_theme .popover {
-    border: 1px solid #D0D0D0;
-    background-color: #282c34;
-    color: #D0D0D0;
+    border: 1px solid var(--dark-theme-popover-border-clolor);
+    background-color: var(--dark-theme-popover-bg-clolor);
+    color: var(--dark-theme-popover-text-clolor);
+    box-shadow: 0 5px 10px var(--dark-theme-popover-shadow-clolor);
 }
   
 /* Стили для экранов шириной менее 768px (мобильные устройства) */
