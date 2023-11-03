@@ -279,7 +279,6 @@ body.dark_theme .skill-tag:hover {
     z-index: 100;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    /* Добавьте дополнительные стили по вашему усмотрению */
   }
 
 body.dark_theme .popover {
