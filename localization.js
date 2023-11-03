@@ -57,17 +57,38 @@ async function switchLang(lang) {
         const span = document.createElement('span');
         span.textContent = item.title; 
         span.classList.add('skill-tag');
-
-        // Измените обработчик событий на клик
-        span.addEventListener('click', function(event) {
-            // Предотвратите распространение события, чтобы не вызвать скрытие всплывающего окна
-            event.stopPropagation();
-            // Если есть описание, покажите всплывающее окно
-            if (item.description && item.description.trim() !== "") {
-                showPopover(item.description, event);
-            }
+        if (window.innerWidth <= 768) {
+            // Для мобильных устройств добавляем контейнер для разворачиваемого текста
+            const content = document.createElement('div');
+            content.classList.add('collapsible-content');
+            content.textContent = item.description;
+            console.log( content.textContent);
+            content.style.display = 'none'; // Скрываем текст по умолчанию
+            span.addEventListener('click', function() {
+                // При нажатии на span показываем или скрываем текст
+                if (content.style.display === 'none') {
+                    content.style.display = 'block';
+                    this.classList.add("active"); // Можно добавить стиль для активного состояния
+                } else {
+                    content.style.display = 'none';
+                    this.classList.remove("active");
+                }
+            console.log(content)// Добавляем разворачиваемый текст в DOM сразу после span
+            span.insertAdjacentElement('afterend', content);
         });
 
+        }
+        else {
+            // Измените обработчик событий на клик
+            span.addEventListener('click', function(event) {
+                // Предотвратите распространение события, чтобы не вызвать скрытие всплывающего окна
+                event.stopPropagation();
+                // Если есть описание, покажите всплывающее окно
+                if (item.description && item.description.trim() !== "") {
+                    showPopover(item.description, event);
+                }
+            });
+        }
         // Добавляем класс dark_theme если включена темная тема
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             span.classList.add('dark_theme');

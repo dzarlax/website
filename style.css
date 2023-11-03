@@ -311,6 +311,18 @@ body.dark_theme .popover {
     color: var(--dark-theme-popover-text-clolor);
     box-shadow: 0 5px 10px var(--dark-theme-popover-shadow-clolor);
 }
+.collapsible-content {
+    transition: max-height 0.2s ease-out;
+    overflow: hidden;
+    max-height: 0; /* Начальное состояние будет без высоты, так что текст скрыт */
+    /* Добавьте необходимые стили для отображения */
+}
+.skill-tag.active + .collapsible-content {
+    max-height: 100px; /* Примерная максимальная высота, достаточная для вашего содержимого */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* Другие стили для активного состояния если нужно */
+}
   
 /* Стили для экранов шириной менее 768px (мобильные устройства) */
 @media (max-width: 768px) {
@@ -362,4 +374,5 @@ body.dark_theme .popover {
         right: 20px;
         /* Уменьшаем правый отступ для переключателя языков на мобильных экранах */
     }
+ 
 }
