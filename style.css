@@ -252,12 +252,42 @@ input:checked+.slider:before {
     border-radius: 5px;
     margin-right: 10px;
     margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.skill-tag:hover{
+    background-color: #0077b6;
+    color: white;
+    box-shadow: 0px 4px 4px 0px #0077b6;
 }
 
 body.dark_theme .skill-tag {
     background-color: #032233;
 }
 
+body.dark_theme .skill-tag:hover {
+    background-color: #032233;
+    box-shadow: 0px 4px 4px 0px #032233;
+}
+
+.popover {
+    position: absolute;
+    border: 1px solid #0077b6;
+    background-color: #e0f2f1;
+    color: #333;
+    padding: 10px;
+    z-index: 100;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    /* Добавьте дополнительные стили по вашему усмотрению */
+  }
+
+body.dark_theme .popover {
+    border: 1px solid #D0D0D0;
+    background-color: #282c34;
+    color: #D0D0D0;
+}
+  
 /* Стили для экранов шириной менее 768px (мобильные устройства) */
 @media (max-width: 768px) {
 

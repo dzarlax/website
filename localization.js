@@ -14,6 +14,24 @@ async function loadLocalizationData(lang) {
     }
 }
 
+function showPopover(text, event) {
+    const popover = document.getElementById('popover');
+    if (!popover) {
+        console.error('Popover element not found');
+        return;
+    }
+    popover.textContent = text;
+    popover.style.display = 'block';
+    popover.style.left = `${event.pageX}px`;
+    popover.style.top = `${event.pageY + 20}px`; // 20 пикселей ниже курсора
+}
+
+function hidePopover() {
+    const popover = document.getElementById('popover');
+    if (popover) {
+        popover.style.display = 'none';
+    }
+}
 
 async function switchLang(lang) {
     const localizationData = await loadLocalizationData(lang);
@@ -37,8 +55,19 @@ async function switchLang(lang) {
     skillsDiv.innerHTML = "";
     localizationData.skills.items.forEach(item => {
         const span = document.createElement('span');
-        span.textContent = item;
-        span.classList.add('skill-tag'); // Добавляем класс skill-tag всегда
+        span.textContent = item.title; 
+        span.classList.add('skill-tag');
+
+        // Измените обработчик событий на клик
+        span.addEventListener('click', function(event) {
+            // Предотвратите распространение события, чтобы не вызвать скрытие всплывающего окна
+            event.stopPropagation();
+            // Если есть описание, покажите всплывающее окно
+            if (item.description && item.description.trim() !== "") {
+                showPopover(item.description, event);
+            }
+        });
+
         // Добавляем класс dark_theme если включена темная тема
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             span.classList.add('dark_theme');
@@ -68,5 +97,7 @@ async function switchLang(lang) {
 
     // Добавляем класс .active-lang к кнопке, соответствующей выбранному языку
     document.getElementById('lang-' + lang).classList.add('active-lang');
+     // Добавьте этот обработчик событий, чтобы закрыть всплывающее окно при клике вне его
+     document.addEventListener('click', hidePopover);
 }
 
