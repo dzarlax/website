@@ -1,35 +1,37 @@
 :root{
-    --light-theme-bg-color: #e0f2f1;
-    --light-theme-header-text-color: #fff;
-    --light-theme-h2-color: #0077b6;
-    --light-theme-text-color: #333;
-    --light-theme-button-bg-color: #fff;
-    --light-theme-button-text-color: #333;
-    --light-theme-button-hover-bg-color: #0077b6;
-    --light-theme-button-hover-text-color: #fff;
-    --light-theme-skill-bg-color: #0077b6;
-    --light-theme-skill-text-color: #fff;
-    --light-theme-list-icon-clolor: #0077b6;
-    --light-theme-popover-bg-clolor: var(--light-theme-bg-color);
-    --light-theme-popover-text-clolor: var(--light-theme-text-color);
-    --light-theme-popover-border-clolor: #0077b6;
-    --light-theme-popover-shadow-clolor: #333;
+    --bg-color: #e0f2f1;
+    --header-text-color: #fff;
+    --h2-color: #0077b6;
+    --text-color: #333;
+    --button-bg-color: #fff;
+    --button-text-color: #333;
+    --button-hover-bg-color: #0077b6;
+    --button-hover-text-color: #fff;
+    --skill-bg-color: #0077b6;
+    --skill-text-color: #fff;
+    --list-icon-clolor: #0077b6;
+    --popover-bg-clolor: var(--bg-color);
+    --popover-text-clolor: var(--text-color);
+    --popover-border-clolor: #0077b6;
+    --popover-shadow-clolor: #333;
+}
 
-    --dark-theme-bg-color: #282c34;
-    --dark-theme-header-text-color: #fff;
-    --dark-theme-h2-color: #79ffe1;
-    --dark-theme-text-color: #D0D0D0;
-    --dark-theme-button-bg-color: #035388;
-    --dark-theme-button-text-color: #79ffe1;
-    --dark-theme-button-hover-bg-color: #79ffe1;
-    --dark-theme-button-hover-text-color: #035388;
-    --dark-theme-skill-bg-color: #032233;
-    --dark-theme-skill-text-color: #fff;
-    --dark-theme-list-icon-cloolr: #79ffe1;
-    --dark-theme-popover-bg-clolor: var(--dark-theme-bg-color);
-    --dark-theme-popover-text-clolor: var(--dark-theme-text-color);
-    --dark-theme-popover-border-clolor: #D0D0D0;
-    --dark-theme-popover-shadow-clolor: #D0D0D0;
+[dark-mode]{
+    --bg-color: #282c34;
+    --header-text-color: #fff;
+    --h2-color: #79ffe1;
+    --text-color: #D0D0D0;
+    --button-bg-color: #035388;
+    --button-text-color: #79ffe1;
+    --button-hover-bg-color: #79ffe1;
+    --button-hover-text-color: #035388;
+    --skill-bg-color: #032233;
+    --skill-text-color: #fff;
+    --list-icon-cloolr: #79ffe1;
+    --popover-bg-clolor: var(--dark-theme-bg-color);
+    --popover-text-clolor: var(--dark-theme-text-color);
+    --popover-border-clolor: #D0D0D0;
+    --popover-shadow-clolor: #D0D0D0;
 }
 
 
@@ -38,8 +40,8 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: var(--light-theme-bg-color);
-    color: var(--light-theme-text-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 body.dark_theme {
@@ -63,7 +65,7 @@ header {
     background-image: url('https://s3.dzarlax.dev/header.jpg');
     background-size: cover;
     background-position: center;
-    color: var(--light-theme-header-text-color);
+    color: var(--header-text-color);
     text-align: center;
     padding: 80px 0;
     position: relative;
@@ -91,11 +93,11 @@ nav a,
 #contact .contact-button {
     padding: 10px 20px;
     text-decoration: none;
-    color: var(--light-theme-button-text-color);
+    color: var(--button-text-color);
     border-radius: 5px;
     font-weight: 600;
     font-size: 18px;
-    background-color: var(--light-theme-button-bg-color);
+    background-color: var(--button-bg-color);
     border: none;
 }
 
@@ -108,9 +110,9 @@ body.dark_theme #contact .contact-button {
 
 nav a:hover,
 #contact .contact-button:hover {
-    background-color: var(--light-theme-button-hover-bg-color);
+    background-color: var(--button-hover-bg-color);
     color: var(--dark-theme-button-text-color);
-    box-shadow: 0px 4px 4px 0px var(--light-theme-button-hover-bg-color);
+    box-shadow: 0px 4px 4px 0px var(--button-hover-bg-color);
 }
 
 body.dark_theme nav a:hover,
@@ -123,7 +125,7 @@ body.dark_theme #contact .contact-button:hover {
 h2 {
     font-weight: 700;
     font-size: 28px;
-    color: var(--light-theme-h2-color);
+    color: var(--h2-color);
     border-bottom: 3px solid #e1e1e1;
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -166,7 +168,7 @@ li {
 
 li:before {
     content: '•  ';
-    color: var(--light-theme-list-icon-clolor);
+    color: var(--list-icon-clolor);
     font-size: 24px;
 }
 
@@ -271,8 +273,8 @@ input:checked+.slider:before {
 .skill-tag {
     display: inline-block;
     padding: 5px 10px;
-    background-color: var(--light-theme-skill-bg-color);
-    color: var(--light-theme-skill-text-color);
+    background-color: var(--skill-bg-color);
+    color: var(--skill-text-color);
     border-radius: 5px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -280,9 +282,9 @@ input:checked+.slider:before {
 }
 
 .skill-tag:hover{
-    background-color: var(--light-theme-skill-bg-color);
-    color: var(--light-theme-skill-text-color);
-    box-shadow: 0px 4px 4px 0px var(--light-theme-skill-bg-color);
+    background-color: var(--skill-bg-color);
+    color: var(--skill-text-color);
+    box-shadow: 0px 4px 4px 0px var(--skill-bg-color);
 }
 
 body.dark_theme .skill-tag {
@@ -296,13 +298,13 @@ body.dark_theme .skill-tag:hover {
 
 .popover {
     position: absolute;
-    border: 1px solid var(--light-theme-popover-border-clolor);
-    background-color: var(--light-theme-popover-bg-clolor);
-    color: var(--light-theme-popover-text-clolor);
+    border: 1px solid var(--popover-border-clolor);
+    background-color: var(--popover-bg-clolor);
+    color: var(--popover-text-clolor);
     padding: 10px;
     z-index: 100;
     border-radius: 5px;
-    box-shadow: 0 5px 10px var(--light-theme-popover-shadow-clolor);
+    box-shadow: 0 5px 10px var(--popover-shadow-clolor);
   }
 
 body.dark_theme .popover {
