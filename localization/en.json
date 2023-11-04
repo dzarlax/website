@@ -44,7 +44,8 @@
     "email": "Mail me",
     "linkedin": "Check my LinkedIn",
     "github": "My projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "rss": "My news feed"
   },
   "experience": {
     "title": "Professional Experience",

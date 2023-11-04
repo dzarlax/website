@@ -1,37 +1,37 @@
 :root{
-    --bg-color: #e0f2f1;
+    --bg-color: #ffffff;
     --header-text-color: #fff;
-    --h2-color: #0077b6;
-    --text-color: #333;
-    --button-bg-color: #fff;
-    --button-text-color: #333;
-    --button-hover-bg-color: #0077b6;
-    --button-hover-text-color: #fff;
-    --skill-bg-color: #0077b6;
+    --h2-color: #262626;
+    --text-color: #7f7f7f;
+    --button-bg-color: #d9d9d9;
+    --button-text-color: #4c4c4c;
+    --button-hover-bg-color: #d9d9d9;
+    --button-hover-text-color: #4c4c4c;
+    --skill-bg-color: #348bdc;
     --skill-text-color: #fff;
-    --list-icon-clolor: #0077b6;
-    --popover-bg-clolor: var(--bg-color);
-    --popover-text-clolor: var(--text-color);
-    --popover-border-clolor: #0077b6;
-    --popover-shadow-clolor: #333;
+    --list-icon-color: #262626;
+    --popover-bg-color: var(--bg-color);
+    --popover-text-color: var(--text-color);
+    --popover-border-color: #0077b6;
+    --popover-shadow-color: #333;
 }
 
 [dark-mode]{
-    --bg-color: #282c34;
+    --bg-color: #221d22;
     --header-text-color: #fff;
-    --h2-color: #79ffe1;
-    --text-color: #D0D0D0;
-    --button-bg-color: #035388;
-    --button-text-color: #79ffe1;
-    --button-hover-bg-color: #79ffe1;
-    --button-hover-text-color: #035388;
-    --skill-bg-color: #032233;
+    --h2-color: #deddde;
+    --text-color: #bdbcbd;
+    --button-bg-color: #210721;
+    --button-text-color: #bdbcbd;
+    --button-hover-bg-color: #656165;
+    --button-hover-text-color: #deddde;
+    --skill-bg-color: #4aa1f2;
     --skill-text-color: #fff;
-    --list-icon-cloolr: #79ffe1;
-    --popover-bg-clolor: var(--bg-color);
-    --popover-text-clolor: var(--text-color);
-    --popover-border-clolor: #D0D0D0;
-    --popover-shadow-clolor: #D0D0D0;
+    --list-icon-cloolr: #deddde;
+    --popover-bg-color: var(--bg-color);
+    --popover-text-color: var(--text-color);
+    --popover-border-color: #D0D0D0;
+    --popover-shadow-color: #D0D0D0;
 }
 
 
@@ -144,7 +144,7 @@ li {
 
 li:before {
     content: '•  ';
-    color: var(--list-icon-clolor);
+    color: var(--list-icon-color);
     font-size: 24px;
 }
 
@@ -261,13 +261,13 @@ input:checked+.slider:before {
 
 .popover {
     position: absolute;
-    border: 1px solid var(--popover-border-clolor);
-    background-color: var(--popover-bg-clolor);
-    color: var(--popover-text-clolor);
+    border: 1px solid var(--popover-border-color);
+    background-color: var(--popover-bg-color);
+    color: var(--popover-text-color);
     padding: 10px;
     z-index: 100;
     border-radius: 5px;
-    box-shadow: 0 5px 10px var(--popover-shadow-clolor);
+    box-shadow: 0 5px 10px var(--popover-shadow-color);
   }
   
 /* Стили для экранов шириной менее 768px (мобильные устройства) */

@@ -40,12 +40,13 @@
       }
     ]
   },
-  
+
   "contacts": {
     "email": "Напишите мне",
     "linkedin": "Посмотрите мой LinkedIn",
     "github": "Мои проекты",
-    "contact": "Контакты"
+    "contact": "Контакты",
+    "rss": "Новостной фид"
   },
   "experience": {
     "title": "Опыт работы",

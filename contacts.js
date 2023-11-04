@@ -10,4 +10,7 @@ function openGithub() {
     window.open("https://github.com/dzarlax", "_blank");
 }
 
+function openRSS() {
+    window.open("https://s3.dzarlax.dev/feed.xml", "_blank");
+}
 

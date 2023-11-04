@@ -44,12 +44,13 @@ async function switchLang(lang) {
     const emailButton = document.getElementById('emailButton');
     const linkedinButton = document.getElementById('linkedinButton');
     const githubButton = document.getElementById('githubButton');
+    const rssButton = document.getElementById('rssButton');
 
     // Устанавливаем текст с использованием локализационных данных
     emailButton.textContent = localizationData.contacts.email;
     linkedinButton.textContent = localizationData.contacts.linkedin;
     githubButton.textContent = localizationData.contacts.github;
-
+    rssButton.textContent = localizationData.contacts.rss;
 
     const skillsDiv = document.querySelector('#skills div');
     skillsDiv.innerHTML = "";
