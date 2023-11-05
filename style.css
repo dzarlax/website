@@ -12,8 +12,8 @@
     --list-icon-color: #262626;
     --popover-bg-color: var(--bg-color);
     --popover-text-color: var(--text-color);
-    --popover-border-color: #0077b6;
-    --popover-shadow-color: #333;
+    --popover-border-color: #b2b2b2;
+    --popover-shadow-color: #b2b2b2;
 }
 
 [dark-mode]{
@@ -30,8 +30,8 @@
     --list-icon-cloolr: #deddde;
     --popover-bg-color: var(--bg-color);
     --popover-text-color: var(--text-color);
-    --popover-border-color: #D0D0D0;
-    --popover-shadow-color: #D0D0D0;
+    --popover-border-color: #656165;
+    --popover-shadow-color: #656165;
 }
 
 
