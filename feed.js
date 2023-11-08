@@ -31,9 +31,9 @@ class RSSFeed {
   goToPage(pageNumber) {
     this.currentPage = pageNumber;
     this.fetchRSSFeed().then(() => {
-      // После обновления содержимого, возвращаем пользователя к началу страницы
-      window.scrollTo(0, 0);
-    });
+    // После обновления содержимого, возвращаем пользователя к началу страницы
+    window.scrollTo(0, 0);
+  });
   }
 
   createPagination() {

@@ -2,10 +2,10 @@
   /* Светлая тема по умолчанию */
   --main-bg-color: #f4f4f4;
   --text-color: #333;
-  --link-color: #0078D7;
+  --link-color: #0078d7;
   --border-color: #eee;
   --hover-bg-color: #e4e4e4;
-  --box-shadow-color: rgba(0, 0, 0, .1);
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
   --background-color: #fff;
 }
 
@@ -17,13 +17,13 @@
     --link-color: #bb86fc;
     --border-color: #333;
     --hover-bg-color: #333;
-    --box-shadow-color: rgba(255, 255, 255, .1);
+    --box-shadow-color: rgba(255, 255, 255, 0.1);
     --background-color: #1e1e1e;
   }
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -103,8 +103,9 @@ img.rss-image {
   background-color: var(--hover-bg-color);
 }
 
-a:link, a:visited {
-  color: #0078D7; /* Здесь вы можете использовать ваш предпочтительный цвет */
+a:link,
+a:visited {
+  color: #0078d7; /* Здесь вы можете использовать ваш предпочтительный цвет */
   cursor: pointer;
   text-decoration: underline;
 }
@@ -113,12 +114,16 @@ a:link, a:visited {
 @media (max-width: 768px) {
   #rss-feed {
     width: 99%;
-    font-size: 16;
+  }
+
+  p {
+    font-size: 20px;
   }
 
   .pagination button {
     padding: 10px 15px; /* Увеличиваем padding */
     margin-right: 10px; /* Увеличиваем правый отступ */
+    margin-bottom: 5px;
     font-size: 16px; /* Увеличиваем размер шрифта, если необходимо */
     min-width: 40px; /* Устанавливаем минимальную ширину, чтобы кнопки были больше */
   }
