@@ -112,7 +112,15 @@ a:link, a:visited {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   #rss-feed {
-    width: 95%;
+    width: 99%;
+    font-size: 16;
+  }
+
+  .pagination button {
+    padding: 10px 15px; /* Увеличиваем padding */
+    margin-right: 10px; /* Увеличиваем правый отступ */
+    font-size: 16px; /* Увеличиваем размер шрифта, если необходимо */
+    min-width: 40px; /* Устанавливаем минимальную ширину, чтобы кнопки были больше */
   }
 
   img.rss-image {
