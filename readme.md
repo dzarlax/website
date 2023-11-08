@@ -43,7 +43,8 @@
 
 После загрузки DOM, скрипт создает экземпляр RSSFeed и запускает процесс загрузки ленты:
 
-```document.addEventListener('DOMContentLoaded', () => {
+```
+document.addEventListener('DOMContentLoaded', () => {
   const rssFeed = new RSSFeed('URL_вашей_RSS_ленты', 'ID_контейнера_для_ленты');
   rssFeed.fetchRSSFeed();
 });
