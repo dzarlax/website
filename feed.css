@@ -1,9 +1,25 @@
 :root {
+  /* Светлая тема по умолчанию */
   --main-bg-color: #f4f4f4;
   --text-color: #333;
   --link-color: #0078D7;
   --border-color: #eee;
   --hover-bg-color: #e4e4e4;
+  --box-shadow-color: rgba(0, 0, 0, .1);
+  --background-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Переменные для темной темы */
+    --main-bg-color: #121212;
+    --text-color: #fff;
+    --link-color: #bb86fc;
+    --border-color: #333;
+    --hover-bg-color: #333;
+    --box-shadow-color: rgba(255, 255, 255, .1);
+    --background-color: #1e1e1e;
+  }
 }
 
 body {
@@ -19,9 +35,9 @@ body {
   width: 80%;
   margin: 20px auto;
   padding: 20px;
-  background: #fff;
+  background: var(--background-color);
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+  box-shadow: 0 2px 4px var(--box-shadow-color);
 }
 
 hr {
@@ -68,6 +84,7 @@ img.rss-image {
 }
 
 .pagination button {
+  color: var(--text-color);
   padding: 5px 10px;
   margin-right: 5px;
   background-color: var(--main-bg-color);
@@ -84,6 +101,12 @@ img.rss-image {
 .pagination button:hover,
 .pagination button:focus {
   background-color: var(--hover-bg-color);
+}
+
+a:link, a:visited {
+  color: #0078D7; /* Здесь вы можете использовать ваш предпочтительный цвет */
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 /* Responsive adjustments */
