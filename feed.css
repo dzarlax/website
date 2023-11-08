@@ -1,0 +1,98 @@
+:root {
+  --main-bg-color: #f4f4f4;
+  --text-color: #333;
+  --link-color: #0078D7;
+  --border-color: #eee;
+  --hover-bg-color: #e4e4e4;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: var(--main-bg-color);
+  color: var(--text-color);
+}
+
+#rss-feed {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin: 10px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  word-wrap: break-word;
+}
+
+h2 {
+  color: var(--link-color);
+}
+
+p {
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+img.rss-image {
+  width: 100%;
+  max-width: 300px; /* Makes image responsive */
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 10px;
+  border-radius: 5px;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: var(--main-bg-color);
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.pagination button.active {
+  background-color: var(--link-color);
+  color: white;
+}
+
+.pagination button:hover,
+.pagination button:focus {
+  background-color: var(--hover-bg-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #rss-feed {
+    width: 95%;
+  }
+
+  img.rss-image {
+    width: 100%;
+  }
+}

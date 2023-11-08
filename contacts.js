@@ -11,6 +11,6 @@ function openGithub() {
 }
 
 function openRSS() {
-    window.open("https://s3.dzarlax.dev/feed.xml", "_blank");
+    window.open("/feed.html", "_blank");
 }
 
