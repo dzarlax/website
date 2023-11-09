@@ -1,4 +1,14 @@
 export function displayItems(items) {
+  // Преобразуйте NodeList в массив для удобства сортировки
+  items = Array.from(items);
+
+  // Отсортируйте элементы по дате публикации
+  items.sort((a, b) => {
+    // Получите даты публикации для каждого элемента
+    let dateA = new Date(a.querySelector("pubDate").textContent);
+    let dateB = new Date(b.querySelector("pubDate").textContent);
+    return dateB - dateA; // Сортировка по убыванию. Для сортировки по возрастанию поменяйте местами dateA и dateB
+  });
   let html = '<ul>';
   items.forEach(el => {
     // Extract the title, description, and publication date from the RSS item
