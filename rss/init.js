@@ -1,8 +1,9 @@
 import RSSFeed from './RSSFeed.js';
 
-let rssFeed;
+// Attach the rssFeed to the window object to make it globally accessible
+window.rssFeed = new RSSFeed('https://s3.dzarlax.dev/feed_300.xml', 'rss-feed');
 
+// Wait for the DOM content to be fully loaded before fetching the RSS feed
 document.addEventListener('DOMContentLoaded', () => {
-  rssFeed = new RSSFeed('https://s3.dzarlax.dev/feed_300.xml', 'rss-feed');
-  rssFeed.fetchRSSFeed();
+  window.rssFeed.fetchRSSFeed();
 });

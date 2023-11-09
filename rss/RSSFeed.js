@@ -9,7 +9,6 @@ class RSSFeed {
     this.currentPage = 1;
     this.itemsPerPage = 10;
     this.totalItems = 0;
-
     this.fetchRSSFeed = fetchRSSFeed.bind(this);
     this.paginateItems = paginateItems.bind(this);
     this.goToPage = goToPage.bind(this);
