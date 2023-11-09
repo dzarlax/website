@@ -7,6 +7,10 @@
   --hover-bg-color: #e4e4e4;
   --box-shadow-color: rgba(0, 0, 0, 0.1);
   --background-color: #fff;
+  --button-bg-color: #d9d9d9;
+  --button-text-color: #4c4c4c;
+  --button-hover-bg-color: #d9d9d9;
+  --button-hover-text-color: #4c4c4c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +23,10 @@
     --hover-bg-color: #333;
     --box-shadow-color: rgba(255, 255, 255, 0.1);
     --background-color: #1e1e1e;
+    --button-bg-color: #210721;
+    --button-text-color: #bdbcbd;
+    --button-hover-bg-color: #656165;
+    --button-hover-text-color: #deddde;
   }
 }
 
@@ -109,6 +117,35 @@ a:visited {
   cursor: pointer;
   text-decoration: underline;
 }
+
+/* Стили для кнопки */
+button {
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--button-bg-color); 
+  color: var(--button-text-color); 
+  transition: background-color 0.3s, color 0.3s; /* Плавный переход для фона и текста */
+}
+
+button:hover {
+  background-color: var(--button-hover-bg-color); /* Темнее зеленый фон при наведении */
+  color: var(--button-hover-text-color); /* Светло-серый текст при наведении */
+}
+
+/* Стили для контейнера */
+#button-container {
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  min-height: 10px; /* Минимальная высота контейнера равна высоте видимой части экрана */
+  margin-top: 10px;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

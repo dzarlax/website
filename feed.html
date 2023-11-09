@@ -21,9 +21,16 @@
   </script>
 </head>
 <body>
-
+    <div id="button-container">
+ <button id="back-to-home" onclick="goToHomePage()">Вернуться на главную</button>
+</div>
 <div id="rss-feed" class="loading">Загрузка ленты...</div>
-
+<script>
+    // Функция для перехода на главную страницу
+    function goToHomePage() {
+      window.location.href = '/'; // Установите корректный URL для вашей главной страницы
+    }
+    </script>
 <script type="module" src="rss/init.js"></script>
 
 </body>
