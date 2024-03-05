@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Вечерние новости</title>
+    <meta charset="UTF-8">
+    <title>Просмотр файла</title>
 </head>
 <body>
     <div id="file-content">Загрузка...</div>
@@ -23,7 +24,8 @@
                     return response.text();
                 })
                 .then(data => {
-                    document.getElementById('file-content').innerText = data;
+                    // Обеспечиваем безопасное отображение HTML-содержимого
+                    document.getElementById('file-content').innerHTML = data;
                 })
                 .catch(error => {
                     console.error('Ошибка:', error);
