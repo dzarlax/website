@@ -1,0 +1,172 @@
+:root {
+  /* Светлая тема по умолчанию */
+  --main-bg-color: #f4f4f4;
+  --text-color: #333;
+  --link-color: #0078d7;
+  --border-color: #eee;
+  --hover-bg-color: #e4e4e4;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --background-color: #fff;
+  --button-bg-color: #d9d9d9;
+  --button-text-color: #4c4c4c;
+  --button-hover-bg-color: #d9d9d9;
+  --button-hover-text-color: #4c4c4c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Переменные для темной темы */
+    --main-bg-color: #121212;
+    --text-color: #fff;
+    --link-color: #bb86fc;
+    --border-color: #333;
+    --hover-bg-color: #333;
+    --box-shadow-color: rgba(255, 255, 255, 0.1);
+    --background-color: #1e1e1e;
+    --button-bg-color: #210721;
+    --button-text-color: #bdbcbd;
+    --button-hover-bg-color: #656165;
+    --button-hover-text-color: #deddde;
+  }
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: var(--main-bg-color);
+  color: var(--text-color);
+}
+
+#rss-feed {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px var(--box-shadow-color);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin: 10px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  word-wrap: break-word;
+}
+
+h2 {
+  color: var(--link-color);
+}
+
+p {
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+img.rss-image {
+  width: 100%;
+  max-width: 300px; /* Makes image responsive */
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 10px;
+  border-radius: 5px;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  color: var(--text-color);
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: var(--main-bg-color);
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.pagination button.active {
+  background-color: var(--link-color);
+  color: white;
+}
+
+.pagination button:hover,
+.pagination button:focus {
+  background-color: var(--hover-bg-color);
+}
+
+a:link,
+a:visited {
+  color: #0078d7; /* Здесь вы можете использовать ваш предпочтительный цвет */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Стили для кнопки */
+button {
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--button-bg-color); 
+  color: var(--button-text-color); 
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+button:hover {
+  background-color: var(--button-hover-bg-color); 
+  color: var(--button-hover-text-color); 
+  box-shadow: 0px 4px 4px 0px var(--button-hover-bg-color);
+}
+
+/* Стили для контейнера */
+#button-container {
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  min-height: 10px; /* Минимальная высота контейнера равна высоте видимой части экрана */
+  margin-top: 10px;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #rss-feed {
+    width: 99%;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .pagination button {
+    padding: 10px 15px; /* Увеличиваем padding */
+    margin-right: 10px; /* Увеличиваем правый отступ */
+    margin-bottom: 5px;
+    font-size: 16px; /* Увеличиваем размер шрифта, если необходимо */
+    min-width: 40px; /* Устанавливаем минимальную ширину, чтобы кнопки были больше */
+  }
+
+  img.rss-image {
+    width: 100%;
+  }
+}
