@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchNews(link) {
-    const rssUrl = 'https://s3.dzarlax.dev/feed_300.xml'; // Замените на URL вашей RSS ленты
+    const rssUrl = 'https://s333.dzarlax.dev/articles/feed_300.xml'; // Замените на URL вашей RSS ленты
     const fullUrl = rssUrl;
 
     fetch(fullUrl)
