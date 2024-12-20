@@ -1,336 +1,418 @@
-:root{
-    --bg-color: #ffffff;
+:root {
+    --bg-color: #f8f9fa;
     --header-text-color: #fff;
-    --h2-color: #262626;
-    --text-color: #7f7f7f;
-    --button-bg-color: #d9d9d9;
-    --button-text-color: #4c4c4c;
-    --button-hover-bg-color: #d9d9d9;
-    --button-hover-text-color: #4c4c4c;
-    --skill-bg-color: #348bdc;
+    --h2-color: #2d3436;
+    --text-color: #636e72;
+    --button-bg-color: #ffffff;
+    --button-text-color: #2d3436;
+    --button-hover-bg-color: #e9ecef;
+    --button-hover-text-color: #2d3436;
+    --skill-bg-color: #0984e3;
     --skill-text-color: #fff;
-    --list-icon-color: #262626;
-    --popover-bg-color: var(--bg-color);
+    --list-icon-color: #0984e3;
+    --popover-bg-color: var(--button-bg-color);
     --popover-text-color: var(--text-color);
-    --popover-border-color: #b2b2b2;
-    --popover-shadow-color: #b2b2b2;
+    --popover-border-color: #e9ecef;
+    --popover-shadow-color: rgba(45, 52, 54, 0.1);
+    --border-color: #e9ecef;
 }
 
-[dark-mode]{
-    --bg-color: #221d22;
+[dark-mode] {
+    --bg-color: #2d3436;
     --header-text-color: #fff;
-    --h2-color: #deddde;
-    --text-color: #bdbcbd;
-    --button-bg-color: #210721;
-    --button-text-color: #bdbcbd;
-    --button-hover-bg-color: #656165;
-    --button-hover-text-color: #deddde;
-    --skill-bg-color: #4aa1f2;
+    --h2-color: #dfe6e9;
+    --text-color: #b2bec3;
+    --button-bg-color: #353b48;
+    --button-text-color: #dfe6e9;
+    --button-hover-bg-color: #3d4756;
+    --button-hover-text-color: #fff;
+    --skill-bg-color: #0984e3;
     --skill-text-color: #fff;
-    --list-icon-cloolr: #deddde;
-    --popover-bg-color: var(--bg-color);
-    --popover-text-color: var(--text-color);
-    --popover-border-color: #656165;
-    --popover-shadow-color: #656165;
+    --list-icon-color: #0984e3;
+    --popover-bg-color: #353b48;
+    --border-color: #4a5568;
 }
 
-
+/* Base styles */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-element.style {
-    scroll-behavior: smooth;
-}
-
-
-header,
-nav,
-main,
-section {
-    padding: 20px 40px;
-}
-
+/* Header styles */
 header {
-    background-image: url('https://s3.dzarlax.dev/header.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                      url('https://s3.dzarlax.dev/header.jpg');
     background-size: cover;
     background-position: center;
     color: var(--header-text-color);
     text-align: center;
-    padding: 80px 0;
+    padding: 120px 0 80px;
     position: relative;
 }
 
 h1 {
-    font-size: 48px;
-    font-weight: 900;
+    font-size: 3.5rem;
+    font-weight: 800;
     text-transform: uppercase;
     margin-bottom: 20px;
     letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Language switcher and theme toggle */
+.header-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px;
+    background: rgba(45, 52, 54, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.header-controls:hover {
+    background: rgba(45, 52, 54, 0.3);
+}
+
+.lang-switcher {
+    display: flex;
+    gap: 8px;
+}
+
+.lang-btn {
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.lang-btn span {
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.lang-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.theme-toggle {
+    position: relative;
+    width: 40px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    left: 2px;
+    top: 2px;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle.dark::before {
+    transform: translateX(16px);
+}
+
+/* Hide default icons from Lucide as we'll use our custom switch */
+.theme-toggle i {
+    display: none;
+}
+/* Navigation */
 nav {
-    background-color: transparent;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 10px 0;
+    gap: 16px;
+    padding: 20px 0;
+    flex-wrap: wrap;
 }
 
-nav a,
-#contact .contact-button {
-    padding: 10px 20px;
+.nav-link {
+    padding: 12px 24px;
     text-decoration: none;
     color: var(--button-text-color);
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 18px;
     background-color: var(--button-bg-color);
-    border: none;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-nav a:hover,
-#contact .contact-button:hover {
-    background-color: var(--button-hover-bg-color);
-    color: var(--button-hover-text-color);
-    box-shadow: 0px 4px 4px 0px var(--button-hover-bg-color);
+.nav-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Main content sections */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 60px 0;
 }
 
 h2 {
     font-weight: 700;
-    font-size: 28px;
+    font-size: 2rem;
     color: var(--h2-color);
-    border-bottom: 3px solid #e1e1e1;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     position: relative;
-    padding-left: 30px;
-}
-
-
-h2:before,
-li:before {
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-h2:before {
-    width: 20px;
-    height: 2px;
-}
-
-ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 25px;
-}
-
-li {
-    position: relative;
-    padding-left: 30px;
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 15px;
     padding-bottom: 15px;
 }
 
-li:before {
-    content: '•  ';
-    color: var(--list-icon-color);
-    font-size: 24px;
-}
-
-li:not(:last-child) {
-    margin-bottom: 15px;
-}
-
-#lang-switch {
+h2::after {
+    content: '';
     position: absolute;
-    top: 20px;
-    right: 40px;
-}
-
-#lang-switch button {
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    margin-left: 10px;
-    cursor: pointer;
-    outline: none;
-    color: #0077b6;
-}
-
-.active-lang {
-    text-decoration: underline;
-}
-
-/* Оформление переключателя */
-.switch {
-    left: 10px;
-    position: relative;
-    display: inline-block;
-    width: 30px;
-    height: 20px;
-}
-
-/* Скрыть стандартный checkbox */
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* Стили для слайдера */
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--skill-bg-color);
+    border-radius: 2px;
 }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 13px;
-    width: 13px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
+/* Skills section */
+#skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    margin-top: 30px;
 }
-
-input:checked+.slider {
-    background-color: #2196F3;
-}
-
-input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked+.slider:before {
-    transform: translateX(10px);
-}
-
-/* Добавить "выключенное" и "включенное" положение */
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
-#contact .contact-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    justify-content: center;
-}
-
 
 .skill-tag {
-    display: inline-block;
-    padding: 5px 10px;
+    padding: 16px 24px;
     background-color: var(--skill-bg-color);
     color: var(--skill-text-color);
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    border-radius: 12px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(9, 132, 227, 0.2);
 }
 
-.skill-tag:hover{
-    background-color: var(--skill-bg-color);
-    color: var(--skill-text-color);
-    box-shadow: 0px 4px 4px 0px var(--skill-bg-color);
+.skill-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(9, 132, 227, 0.3);
 }
 
-.popover {
+/* Skills popover */
+#popover {
     position: absolute;
-    border: 1px solid var(--popover-border-color);
     background-color: var(--popover-bg-color);
     color: var(--popover-text-color);
-    padding: 10px;
-    z-index: 100;
-    border-radius: 5px;
-    box-shadow: 0 5px 10px var(--popover-shadow-color);
-  }
-  
-/* Стили для экранов шириной менее 768px (мобильные устройства) */
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    z-index: 1000;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+/* Experience section */
+#experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#experience-list li {
+    position: relative;
+    padding: 20px 0 20px 30px;
+    border-left: 2px solid var(--border-color);
+    margin-left: 15px;
+}
+
+#experience-list li::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 24px;
+    width: 14px;
+    height: 14px;
+    background: var(--list-icon-color);
+    border-radius: 50%;
+    border: 2px solid var(--bg-color);
+}
+
+/* Contact section */
+.contact-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 100%;
+}
+
+.contact-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 25px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--skill-bg-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--skill-bg-color);
+}
+
+.contact-btn:hover::before {
+    opacity: 1;
+}
+
+.contact-btn i {
+    color: var(--skill-bg-color);
+    transition: transform 0.3s ease;
+}
+
+.contact-btn:hover i {
+    transform: scale(1.1);
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
-
-    header,
-    nav,
-    main,
-    section {
-        padding: 10px 20px;
-        /* Уменьшаем отступы для мобильных экранов */
-    }
-
     header {
-        padding: 60px 0;
-        /* Увеличиваем вертикальный отступ для хедера на мобильных экранах */
+        padding: 80px 0 60px;
     }
 
     h1 {
-        font-size: 36px;
-        /* Уменьшаем размер шрифта для h1 на мобильных экранах */
+        font-size: 2.5rem;
     }
 
-    h2 {
-        font-size: 24px;
-        /* Уменьшаем размер шрифта для h2 на мобильных экранах */
+    .header-controls {
+        top: 10px;
+        right: 10px;
+        padding: 4px;
+        gap: 8px;
     }
 
-    nav,
-    #contact .contact-buttons {
+    .lang-btn span {
+        display: none;
+    }
+
+    nav {
         flex-direction: column;
-        align-items: center;
-        /* Центрируем элементы по горизонтали */
-        text-align: center;
-        /* Центрируем текст по горизонтали */
+        padding: 10px 20px;
     }
 
-    nav a,
-    #contact .contact-button,
-    .skill-tag {
-        padding: 10px 0;
+    .nav-link {
         width: 100%;
         text-align: center;
     }
 
+    #skills-container {
+        grid-template-columns: 1fr;
+    }
 
-    #lang-switch {
-        top: 10px;
-        /* Уменьшаем верхний отступ для переключателя языков на мобильных экранах */
-        right: 20px;
-        /* Уменьшаем правый отступ для переключателя языков на мобильных экранах */
+    .contact-buttons {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
-    .collapsible-content {
-        transition: max-height 0.2s ease-out;
-        overflow: hidden;
-        max-height: 0; /* Начальное состояние будет без высоты, так что текст скрыт */
-        /* Добавьте необходимые стили для отображения */
+
+    section {
+        padding: 40px 0;
     }
-    .skill-tag.active + .collapsible-content {
-        max-height: 100px; /* Примерная максимальная высота, достаточная для вашего содержимого */
-        margin-top: 5px;
-        margin-bottom: 5px;
-        /* Другие стили для активного состояния если нужно */
+
+    h2 {
+        font-size: 1.75rem;
     }
- 
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Mobile collapsible content */
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    background-color: var(--button-bg-color);
+    border-radius: 8px;
+    margin-top: 8px;
+    opacity: 0;
+}
+
+.skill-tag.active + .collapsible-content {
+    max-height: 500px;
+    opacity: 1;
+    padding: 16px;
+    margin-bottom: 16px;
 }

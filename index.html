@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" style="scroll-behavior: smooth;">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Dzarlax">
+    <meta property="og:title" content="Alexey Panfilov">
     <meta property="og:description" content="Personal page">
     <meta property="og:image" content="https://s3.dzarlax.dev/logo.png">
     <title>Alexey Panfilov</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    <script src="web/localization.js"></script>
-    <script src="web/contacts.js"></script>
-    <script src="web/optimization.js"></script>
-    <script src="web/theme.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -26,79 +31,112 @@
       accurateTrackBounce:true,
       webvisor:true
     });
-  </script>
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/84564265" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
-  </head>
-  <body>
+</head>
+<body>
     <header>
-      <h1>Alexey Panfilov</h1>
-      <nav>
-        <a href="#" data-lang="home">Home</a>
-        <a href="#skills" data-lang="skills">Skills</a>
-        <a href="#experience" data-lang="experience">Experience</a>
-        <a href="#contact" data-lang="contact">Contact</a>
-        <div id="lang-switch">
-          <button id="lang-ru" onclick="switchLang('ru')">🇷🇺</button>
-          <button id="lang-en" onclick="switchLang('en')">🇬🇧</button>
-          <button id="lang-rs" onclick="switchLang('rs')">🇷🇸</button>
-          <label class="switch">
-            <input type="checkbox" id="theme-toggler">
-            <span class="slider round"></span>
-          </label>
+        <!-- Language and Theme Controls -->
+        <div class="header-controls">
+            <div class="lang-switcher">
+                <button id="lang-en" onclick="switchLang('en')" class="lang-btn">
+                    🇬🇧 <span>EN</span>
+                </button>
+                <button id="lang-ru" onclick="switchLang('ru')" class="lang-btn">
+                    🇷🇺 <span>RU</span>
+                </button>
+                <button id="lang-rs" onclick="switchLang('rs')" class="lang-btn">
+                    🇷🇸 <span>RS</span>
+                </button>
+            </div>
+            <div class="divider"></div>
+            <button class="theme-toggle" aria-label="Toggle theme"></button>
         </div>
-      </nav>
+
+        <h1>Alexey Panfilov</h1>
+        <nav>
+            <a href="#" data-lang="home" class="nav-link">Home</a>
+            <a href="#skills" data-lang="skills" class="nav-link">Skills</a>
+            <a href="#experience" data-lang="experience" class="nav-link">Experience</a>
+            <a href="#contact" data-lang="contact" class="nav-link">Contact</a>
+        </nav>
     </header>
-    <div id="popover" class="popover" style="display:none;"></div>
-    <section id="intro">
-      <h2></h2>
-      <p></p>
-    </section>
-    <section id="skills">
-      <h2></h2>
-      <div></div>
-    </section>
-    <section id="experience">
-      <h2></h2>
-      <ul></ul>
-    </section>
-    <section id="contact">
-      <h2></h2>
-      <div class="contact-buttons">
-        <button id="emailButton" class="contact-button" onclick="sendEmail()"></button>
-        <button id="linkedinButton" class="contact-button" onclick="openLinkedIn()"></button>
-        <button id="githubButton" class="contact-button" onclick="openGithub()"></button>
-        <button id="rssButton" class="contact-button" onclick="openRSS()"></button>
-      </div>
-    </section>
+
+    <main>
+        <section id="intro">
+            <h2></h2>
+            <p></p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div id="skills-container"></div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <ul id="experience-list"></ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-buttons">
+                <button onclick="sendEmail()" class="contact-btn">
+                    <i data-lucide="mail"></i>
+                    <span id="emailButton">Mail me</span>
+                </button>
+                <button onclick="openLinkedIn()" class="contact-btn">
+                    <i data-lucide="linkedin"></i>
+                    <span id="linkedinButton">Check my LinkedIn</span>
+                </button>
+                <button onclick="openGithub()" class="contact-btn">
+                    <i data-lucide="github"></i>
+                    <span id="githubButton">My projects</span>
+                </button>
+                <button onclick="openRSS()" class="contact-btn">
+                    <i data-lucide="rss"></i>
+                    <span id="rssButton">My news feed</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Popover for skill descriptions -->
+    <div id="popover" class="hidden"></div>
+
+    <!-- Scripts -->
+    <script src="web/theme.js"></script>
+    <script src="web/localization.js"></script>
+    <script src="web/contacts.js"></script>
 
     <script>
-  const userLanguage = (navigator.language || 'en').toLowerCase().slice(0, 2);
-  switchLang(userLanguage);
-  src="localization.js"
+        // Initialize everything on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide icons
+            lucide.createIcons();
+            
+            // Initialize language based on preference or browser setting
+            const savedLang = localStorage.getItem('preferredLanguage');
+            const browserLang = (navigator.language || navigator.userLanguage).split('-')[0];
+            const defaultLang = savedLang || (translations[browserLang] ? browserLang : 'en');
+            switchLang(defaultLang);
 
-  // Вызовите функцию для асинхронной загрузки шрифтов
-  loadGoogleFonts();
+            // Initialize theme based on system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('dark-mode', '');
+            }
 
+            // Theme toggle handler
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                document.documentElement.toggleAttribute('dark-mode');
+            });
 
-// Проверяем, активирована ли темная тема на уровне системы
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    // Устанавливаем чекбокс в положение "checked"
-    document.getElementById('theme-toggler').checked = true;
-    applyDarkTheme(); // Применяем темную тему
-} else {
-    removeDarkTheme(); // Удаляем темную тему
-}
-
-// Обработчик изменения состояния чекбокса
-document.getElementById('theme-toggler').addEventListener('change', function() {
-    if (this.checked) {
-        applyDarkTheme(); // Применяем темную тему
-    } else {
-        removeDarkTheme(); // Удаляем темную тему
-    }
-});
-
-
-</script>
-  </body>
+            // Hide popover on scroll
+            window.addEventListener('scroll', () => {
+                document.getElementById('popover').style.display = 'none';
+            });
+        });
+    </script>
+</body>
 </html>
