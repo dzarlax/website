@@ -18,8 +18,24 @@ body {
 #news-content h2 {
     color: #333;
     margin-bottom: 10px;
+    font-size: 24px;
 }
 
 #news-content p {
     text-align: justify;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+#news-content {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.loading {
+    opacity: 0.5;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
 }

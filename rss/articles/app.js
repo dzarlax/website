@@ -5,12 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (link) {
         fetchNews(link);
     } else {
-        document.getElementById('news-content').innerText = 'Ссылка на новость не найдена.';
+        const newsContent = document.getElementById('news-content');
+        newsContent.innerText = 'Ссылка на новость не найдена.';
+        newsContent.classList.remove('loading');
     }
 });
 
 function fetchNews(link) {
-    const rssUrl = 'https://s333.dzarlax.dev/articles/feed_300.xml'; // Замените на URL вашей RSS ленты
+    const rssUrl = 'https://s3.dzarlax.dev/articles/feed_300.xml'; // Замените на URL вашей RSS ленты
     const fullUrl = rssUrl;
 
     fetch(fullUrl)
@@ -27,17 +29,24 @@ function fetchNews(link) {
                     const title = item.querySelector("title").textContent;
                     const description = item.querySelector("description").textContent;
 
-                    document.getElementById('news-content').innerHTML = `<h2>${title}</h2><p>${description}</p>`;
+                    const newsContent = document.getElementById('news-content');
+                    newsContent.innerHTML = `<h2>${title}</h2><p>${description}</p>`;
+                    newsContent.classList.remove('loading');
                     found = true;
                 }
             });
 
             if (!found) {
-                document.getElementById('news-content').innerText = 'Новость не найдена в ленте.';
+                const newsContent = document.getElementById('news-content');
+                newsContent.innerText = 'Новость не найдена в ленте.';
+                newsContent.classList.remove('loading');
             }
         })
         .catch(err => {
             console.error(err);
-            document.getElementById('news-content').innerText = 'Ошибка при загрузке новостей.';
+            const newsContent = document.getElementById('news-content');
+            newsContent.innerText = 'Ошибка при загрузке новостей.';
+            newsContent.classList.add('error');
+            newsContent.classList.remove('loading');
         });
 }
