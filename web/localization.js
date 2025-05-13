@@ -1,3 +1,31 @@
+// Map skill titles to Font Awesome icons
+const skillIcons = {
+    'Product Management': 'fas fa-briefcase',
+    'UI/UX Prototyping': 'fas fa-layer-group',
+    'Audience/User Analysis': 'fas fa-users',
+    'Agile Project Management': 'fas fa-code-branch',
+    'Mobile Development': 'fas fa-mobile-alt',
+    'Data Analysis': 'fas fa-chart-bar',
+    'Process Optimization': 'fas fa-cogs',
+    'Product Strategy': 'fas fa-bullseye',
+    'Управление продуктом': 'fas fa-briefcase',
+    'UI/UX прототипирование': 'fas fa-layer-group',
+    'Анализ пользователей': 'fas fa-users',
+    'Гибкое управление проектами': 'fas fa-code-branch',
+    'Мобильная разработка': 'fas fa-mobile-alt',
+    'Анализ данных': 'fas fa-chart-bar',
+    'Оптимизация процессов': 'fas fa-cogs',
+    'Стратегия продукта': 'fas fa-bullseye',
+    'Менаџмент производа': 'fas fa-briefcase',
+    'UI/UX прототипирање': 'fas fa-layer-group',
+    'Анализа корисника': 'fas fa-users',
+    'Флексибилно управљање пројектима': 'fas fa-code-branch',
+    'Мобилни развој': 'fas fa-mobile-alt',
+    'Анализа података': 'fas fa-chart-bar',
+    'Оптимизација процеса': 'fas fa-cogs',
+    'Стратегија производа': 'fas fa-bullseye'
+};
+
 // Built-in translations
 const translations = {
     en: {
@@ -244,14 +272,24 @@ function setupSkills(lang) {
     skillsContainer.innerHTML = '';
     
     data.skills.items.forEach((item, index) => {
-        const span = document.createElement('span');
-        span.textContent = item.title;
-        span.classList.add('skill-tag');
-        span.style.setProperty('--i', index + 1);
+        const skillTag = document.createElement('div');
+        skillTag.classList.add('skill-tag');
+        skillTag.style.setProperty('--i', index + 1);
+        
+        // Add icon
+        const iconClass = skillIcons[item.title] || 'fas fa-award';
+        const icon = document.createElement('i');
+        icon.className = iconClass + ' skill-icon';
+        skillTag.appendChild(icon);
+        
+        // Add title
+        const title = document.createElement('span');
+        title.textContent = item.title;
+        skillTag.appendChild(title);
 
         if (window.innerWidth <= 768) {
             // Mobile: Expandable content
-            span.addEventListener('click', function() {
+            skillTag.addEventListener('click', function() {
                 const existing = this.nextElementSibling;
                 if (existing?.classList.contains('collapsible-content')) {
                     existing.remove();
@@ -270,11 +308,11 @@ function setupSkills(lang) {
             });
         } else {
             // Desktop: Popover
-            span.addEventListener('mouseenter', (e) => showPopover(item.description, e));
-            span.addEventListener('mouseleave', hidePopover);
+            skillTag.addEventListener('mouseenter', (e) => showPopover(item.description, e));
+            skillTag.addEventListener('mouseleave', hidePopover);
         }
 
-        skillsContainer.appendChild(span);
+        skillsContainer.appendChild(skillTag);
     });
 }
 
@@ -303,10 +341,50 @@ function updateContent(lang) {
     document.querySelector('#experience h2').textContent = data.experience.title;
     const experienceList = document.querySelector('#experience ul');
     experienceList.innerHTML = '';
+    
     data.experience.items.forEach((item, index) => {
         const li = document.createElement('li');
-        li.textContent = item;
         li.style.setProperty('--i', index + 1);
+        
+        // Parse the experience item to extract components
+        const parts = item.split(', ');
+        let title = '';
+        let company = '';
+        let dateRange = '';
+        
+        // Extract date range (usually at the end in parentheses)
+        const dateMatch = item.match(/\(([^)]+)\)$/);
+        if (dateMatch && dateMatch[1]) {
+            dateRange = dateMatch[1];
+        }
+        
+        // Extract title and company
+        if (parts.length >= 2) {
+            title = parts[0];
+            // Remove the date part from the company
+            company = parts[1].replace(/\s*\([^)]*\)$/, '');
+        } else {
+            title = item.replace(/\s*\([^)]*\)$/, '');
+        }
+        
+        // Create structured experience item
+        const dateElem = document.createElement('span');
+        dateElem.classList.add('experience-date');
+        dateElem.textContent = dateRange;
+        li.appendChild(dateElem);
+        
+        const titleElem = document.createElement('div');
+        titleElem.classList.add('experience-title');
+        titleElem.textContent = title;
+        li.appendChild(titleElem);
+        
+        if (company) {
+            const companyElem = document.createElement('div');
+            companyElem.classList.add('experience-company');
+            companyElem.textContent = company;
+            li.appendChild(companyElem);
+        }
+        
         experienceList.appendChild(li);
     });
 
