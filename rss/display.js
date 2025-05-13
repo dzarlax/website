@@ -46,7 +46,7 @@ export function displayItems(items) {
       <li class="news-item ${hasImages ? 'has-image' : ''}">
         <div class="news-content">
           <h2 class="news-title">
-            <a href="rss/articles/article.html?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}" class="news-link">
+            <a href="./rss/articles/article.html?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}" class="news-link">
               ${title}
             </a>
           </h2>
@@ -55,7 +55,7 @@ export function displayItems(items) {
           </div>
           ${firstImage ? `<div class="news-image-container"><img src="${firstImage}" alt="${title}" class="rss-image" loading="lazy"></div>` : ''}
           <div class="news-excerpt">${excerpt}</div>
-          <a href="rss/articles/article.html?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}" class="read-more">
+          <a href="./rss/articles/article.html?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}" class="read-more">
             Читать полностью <i class="fas fa-arrow-right"></i>
           </a>
         </div>
