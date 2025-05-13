@@ -2,19 +2,98 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Dzarlax news</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dzarlax News</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Dzarlax News</h1>
+    <header class="site-header">
+        <div class="header-container">
+            <h1>Dzarlax News</h1>
+            <div class="header-actions">
+                <button id="back-to-feed" onclick="goToFeed()">
+                    <i class="fas fa-arrow-left"></i> Назад к ленте
+                </button>
+                <button id="back-to-home" onclick="goToHome()">
+                    <i class="fas fa-home"></i> Главная
+                </button>
+            </div>
+        </div>
     </header>
-    <div class="news-container">
-        <div id="news-content" class="loading">Загрузка новостей...</div>
-    </div>
+    
+    <main>
+        <article class="article-container">
+            <div id="news-content" class="loading">
+                <div class="loader"></div>
+                <p>Загрузка новостей...</p>
+            </div>
+        </article>
+        
+        <div class="share-container">
+            <h3>Поделиться</h3>
+            <div class="share-buttons">
+                <button class="share-button" onclick="shareArticle('telegram')">
+                    <i class="fab fa-telegram"></i>
+                </button>
+                <button class="share-button" onclick="shareArticle('twitter')">
+                    <i class="fab fa-twitter"></i>
+                </button>
+                <button class="share-button" onclick="shareArticle('facebook')">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button class="share-button" onclick="shareArticle('copy')">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+    
     <footer>
-        <p>&copy; 2025 Dzarlax News</p>
+        <div class="footer-content">
+            <p>&copy; 2025 Dzarlax News</p>
+            <div class="footer-links">
+                <a href="/">Главная</a>
+                <a href="/feed.html">Лента новостей</a>
+            </div>
+        </div>
     </footer>
+    
+    <script>
+        function goToFeed() {
+            window.location.href = '/feed.html';
+        }
+        
+        function goToHome() {
+            window.location.href = '/';
+        }
+        
+        function shareArticle(platform) {
+            const url = window.location.href;
+            const title = document.querySelector('h2')?.textContent || 'Dzarlax News';
+            
+            switch(platform) {
+                case 'telegram':
+                    window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+                    break;
+                case 'twitter':
+                    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+                    break;
+                case 'facebook':
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(url)
+                        .then(() => {
+                            alert('Ссылка скопирована в буфер обмена!');
+                        })
+                        .catch(err => {
+                            console.error('Не удалось скопировать ссылку: ', err);
+                        });
+                    break;
+            }
+        }
+    </script>
     <script src="app.js"></script>
 </body>
 </html>

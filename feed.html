@@ -1,37 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSS Feed Display with Pagination</title>
-<link rel="stylesheet" href="feed.css">
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-      m[i].l=1*new Date();
-      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dzarlax News Feed</title>
+    <link rel="stylesheet" href="feed.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-    ym(84564265, "init", {
-      clickmap:true,
-      trackLinks:true,
-      accurateTrackBounce:true,
-      webvisor:true
-    });
-  </script>
+        ym(84564265, "init", {
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          webvisor:true
+        });
+    </script>
 </head>
 <body>
-    <div id="button-container">
- <button id="back-to-home" onclick="goToHomePage()">Вернуться на главную</button>
-</div>
-<div id="rss-feed" class="loading">Загрузка ленты...</div>
-<script>
-    // Функция для перехода на главную страницу
-    function goToHomePage() {
-      window.location.href = '/'; // Установите корректный URL для вашей главной страницы
-    }
-    </script>
-<script type="module" src="rss/init.js"></script>
+    <header class="site-header">
+        <div class="header-container">
+            <h1>Dzarlax News</h1>
+            <button id="back-to-home" onclick="goToHomePage()">
+                <i class="fas fa-home"></i> Главная
+            </button>
+        </div>
+    </header>
 
+    <main>
+        <div class="feed-controls">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Поиск по новостям...">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        
+        <div id="rss-feed" class="loading">
+            <div class="loader"></div>
+            <p>Загрузка ленты...</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Dzarlax News</p>
+    </footer>
+
+    <script>
+        // Функция для перехода на главную страницу
+        function goToHomePage() {
+            window.location.href = '/';
+        }
+        
+        // Функция для поиска по новостям
+        document.getElementById('search-button').addEventListener('click', function() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const newsItems = document.querySelectorAll('#rss-feed li');
+            
+            newsItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Сброс поиска при пустом поле
+        document.getElementById('search-input').addEventListener('input', function() {
+            if (this.value === '') {
+                const newsItems = document.querySelectorAll('#rss-feed li');
+                newsItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+            }
+        });
+    </script>
+    <script type="module" src="rss/init.js"></script>
 </body>
 </html>
