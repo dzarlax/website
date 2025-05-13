@@ -1,18 +1,25 @@
 // Theme handling
 function initTheme() {
+    console.log("Initializing theme...");
     const themeToggle = document.querySelector('.theme-toggle');
+    console.log("Theme toggle element:", themeToggle);
+    
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const storedTheme = localStorage.getItem('theme');
+    console.log("Stored theme:", storedTheme, "Prefers dark:", prefersDark);
     
     // Set initial theme based on stored preference or system preference
     if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
         document.documentElement.setAttribute('dark-mode', '');
         themeToggle.classList.add('dark');
+        console.log("Set initial theme to dark");
     }
 
     // Theme toggle handler with animation
-    themeToggle.addEventListener('click', () => {
+    themeToggle.addEventListener('click', function() {
+        console.log("Theme toggle clicked");
         const isDark = document.documentElement.hasAttribute('dark-mode');
+        console.log("Current dark mode:", isDark);
         
         // Add transition class for smooth color changes
         document.body.classList.add('theme-transition');
@@ -21,10 +28,12 @@ function initTheme() {
             document.documentElement.removeAttribute('dark-mode');
             localStorage.setItem('theme', 'light');
             themeToggle.classList.remove('dark');
+            console.log("Switched to light mode");
         } else {
             document.documentElement.setAttribute('dark-mode', '');
             localStorage.setItem('theme', 'dark');
             themeToggle.classList.add('dark');
+            console.log("Switched to dark mode");
         }
         
         // Remove transition class after animation completes

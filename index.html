@@ -121,15 +121,7 @@
             const defaultLang = savedLang || (translations[browserLang] ? browserLang : 'en');
             switchLang(defaultLang);
 
-            // Initialize theme based on system preference
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.setAttribute('dark-mode', '');
-            }
-
-            // Theme toggle handler
-            document.querySelector('.theme-toggle').addEventListener('click', () => {
-                document.documentElement.toggleAttribute('dark-mode');
-            });
+            // Initialize theme based on system preference is handled in theme.js
 
             // Hide popover on scroll
             window.addEventListener('scroll', () => {

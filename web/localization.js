@@ -340,8 +340,12 @@ function updateContent(lang) {
 
 // Language switcher function
 function switchLang(lang) {
+    console.log("Switching language to:", lang);
     if (translations[lang]) {
         updateContent(lang);
+        console.log("Language switched successfully");
+    } else {
+        console.error("Translation not found for language:", lang);
     }
 }
 
