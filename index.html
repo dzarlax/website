@@ -63,22 +63,22 @@
 </header>
 
     <main>
-        <section id="intro">
+        <section id="intro" class="reveal">
             <h2></h2>
             <p></p>
         </section>
 
-        <section id="skills">
+        <section id="skills" class="reveal">
             <h2>Skills</h2>
             <div id="skills-container"></div>
         </section>
 
-        <section id="experience">
+        <section id="experience" class="reveal">
             <h2>Experience</h2>
             <ul id="experience-list"></ul>
         </section>
 
-        <section id="contact">
+        <section id="contact" class="reveal">
             <h2>Contact</h2>
             <div class="contact-buttons">
                 <button onclick="sendEmail()" class="contact-btn">
@@ -127,7 +127,7 @@
             }
 
             // Theme toggle handler
-            document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.querySelector('.theme-toggle').addEventListener('click', () => {
                 document.documentElement.toggleAttribute('dark-mode');
             });
 
@@ -135,6 +135,24 @@
             window.addEventListener('scroll', () => {
                 document.getElementById('popover').style.display = 'none';
             });
+            
+            // Scroll animations
+            function revealOnScroll() {
+                const reveals = document.querySelectorAll('.reveal');
+                
+                reveals.forEach(element => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < windowHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Initial check on page load
         });
     </script>
 </body>

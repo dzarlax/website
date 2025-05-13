@@ -243,10 +243,11 @@ function setupSkills(lang) {
     const skillsContainer = document.querySelector('#skills div');
     skillsContainer.innerHTML = '';
     
-    data.skills.items.forEach(item => {
+    data.skills.items.forEach((item, index) => {
         const span = document.createElement('span');
         span.textContent = item.title;
         span.classList.add('skill-tag');
+        span.style.setProperty('--i', index + 1);
 
         if (window.innerWidth <= 768) {
             // Mobile: Expandable content
@@ -302,9 +303,10 @@ function updateContent(lang) {
     document.querySelector('#experience h2').textContent = data.experience.title;
     const experienceList = document.querySelector('#experience ul');
     experienceList.innerHTML = '';
-    data.experience.items.forEach(item => {
+    data.experience.items.forEach((item, index) => {
         const li = document.createElement('li');
         li.textContent = item;
+        li.style.setProperty('--i', index + 1);
         experienceList.appendChild(li);
     });
 
@@ -318,13 +320,22 @@ function updateContent(lang) {
     document.getElementById('rssButton').textContent = data.contacts.rss;
 
     // Update language buttons state
-    document.querySelectorAll('#lang-switch button').forEach(button => {
-        button.classList.remove('active-lang');
+    document.querySelectorAll('.lang-btn').forEach(button => {
+        button.classList.remove('active');
     });
-    document.getElementById('lang-' + lang).classList.add('active-lang');
+    document.getElementById('lang-' + lang).classList.add('active');
 
     // Save language preference
     localStorage.setItem('preferredLanguage', lang);
+    
+    // Trigger reveal animations
+    setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight) {
+                el.classList.add('active');
+            }
+        });
+    }, 300);
 }
 
 // Language switcher function
