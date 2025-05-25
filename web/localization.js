@@ -254,23 +254,25 @@ function updateLocalizedContent() {
 
     document.querySelectorAll('[data-lang]').forEach(element => {
         const key = element.getAttribute('data-lang');
-        let textContent = '';
+        let translationValue; // Renamed from textContent for clarity
 
-        // Handle nested keys for menu items
         if (key.startsWith('menu.')) {
             const menuKey = key.split('.')[1];
-            textContent = data.menu?.[menuKey];
+            translationValue = data.menu?.[menuKey];
         } else {
-            // Handle top-level keys like 'projects_title', 'view_project'
-            textContent = data[key];
+            translationValue = data[key];
         }
         
-        if (textContent) {
-            element.textContent = textContent;
+        if (translationValue !== undefined) {
+            if (typeof translationValue === 'string') {
+                element.textContent = translationValue;
+            } else {
+                console.warn(`Translation for key "${key}" in language "${currentLang}" is an object, not a string. Element:`, element);
+                // Optionally, to avoid breaking the UI with "[object Object]", 
+                // you could set a fallback text or leave the content unchanged.
+                // For now, just logging is fine, as the main fix will be in HTML data-lang attributes.
+            }
         } else {
-            // Fallback for keys not directly in menu or at top level (e.g. dynamic content)
-            // This part might need adjustment based on how dynamic keys are structured
-            // For now, we assume direct keys or menu keys.
             // console.warn(`Translation key "${key}" not found for language "${currentLang}"`);
         }
     });
