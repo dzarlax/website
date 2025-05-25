@@ -82,7 +82,7 @@ const translations = {
         experience: {
             title: 'Professional Experience',
             items: [
-                'Seniour Product Manager, Constructor.tech (10/2024 - Present)',
+                'Senior Product Manager, Constructor.tech (10/2024 - Present)',
                 'Technical Project Manager, Yandex Cloud (8/2022 - 9/2024)',
                 'Product Manager, Yandex.Market (4/2021 - 8/2022)',
                 'Product Owner, Russian Post (6/2020 - 4/2021)',
@@ -305,14 +305,7 @@ function updateLocalizedContent() {
     if (data.contacts) {
         const contactTitle = document.querySelector('#contact h2');
         if (contactTitle) contactTitle.textContent = data.contacts.contact;
-        const emailButton = document.getElementById('emailButton');
-        if (emailButton) emailButton.textContent = data.contacts.email;
-        const linkedinButton = document.getElementById('linkedinButton');
-        if (linkedinButton) linkedinButton.textContent = data.contacts.linkedin;
-        const githubButton = document.getElementById('githubButton');
-        if (githubButton) githubButton.textContent = data.contacts.github;
-        const rssButton = document.getElementById('rssButton');
-        if (rssButton) rssButton.textContent = data.contacts.rss;
+        // Removed direct id-based updates for contact buttons, now handled by data-lang
     }
 }
 
@@ -484,7 +477,10 @@ function updateContent(lang) {
     document.querySelectorAll('.lang-btn').forEach(button => {
         button.classList.remove('active');
     });
-    document.getElementById('lang-' + lang).classList.add('active');
+    const langBtn = document.getElementById('lang-' + lang);
+    if (langBtn) {
+        langBtn.classList.add('active');
+    }
 
     // Save language preference
     localStorage.setItem('preferredLanguage', lang);
