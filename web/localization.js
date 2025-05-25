@@ -501,8 +501,14 @@ function updateContent(lang) {
 function switchLang(lang) {
     console.log("Switching language to:", lang);
     if (translations[lang]) {
-        updateContent(lang);
+        updateContent(lang); // This already updates localStorage and button states
         console.log("Language switched successfully");
+
+        // Dispatch the languageChanged event so other modules can update
+        const event = new CustomEvent('languageChanged', { detail: { language: lang } });
+        document.dispatchEvent(event);
+        console.log("Dispatched languageChanged event for:", lang);
+
     } else {
         console.error("Translation not found for language:", lang);
     }
