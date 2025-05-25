@@ -23,7 +23,6 @@ function createProjectCard(project) {
     const tags = project[`tags_${currentLang}`] || project.tags_en || [];
 
     card.innerHTML = `
-        <img src="${project.image}" alt="${title}" class="project-image">
         <h3 class="project-title">${title}</h3>
         <p class="project-description">${description}</p>
         <div class="project-tags">
