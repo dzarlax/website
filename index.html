@@ -134,10 +134,6 @@
         // Initialize everything on page load
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize language based on preference or browser setting
-            const savedLang = localStorage.getItem('preferredLanguage');
-            const browserLang = (navigator.language || navigator.userLanguage).split('-')[0];
-            const defaultLang = savedLang || (translations[browserLang] ? browserLang : 'en');
-            switchLang(defaultLang);
 
             // Initialize theme based on system preference is handled in theme.js
 
