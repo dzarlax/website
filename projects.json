@@ -1,0 +1,44 @@
+[
+  {
+    "id": "project-1",
+    "title_en": "E-commerce Platform",
+    "title_ru": "Платформа электронной коммерции",
+    "title_rs": "Платформа за е-трговину",
+    "description_en": "A full-featured e-commerce platform with product listings, shopping cart, and payment integration.",
+    "description_ru": "Полнофункциональная платформа электронной коммерции со списками товаров, корзиной покупок и интеграцией платежей.",
+    "description_rs": "Комплетна платформа за е-трговину са листама производа, корпом за куповину и интеграцијом плаћања.",
+    "image": "https://via.placeholder.com/300x200.png?text=E-commerce+Platform",
+    "link": "https://github.com/example/ecommerce-platform",
+    "tags_en": ["React", "Node.js", "MongoDB", "Stripe"],
+    "tags_ru": ["React", "Node.js", "MongoDB", "Stripe"],
+    "tags_rs": ["React", "Node.js", "MongoDB", "Stripe"]
+  },
+  {
+    "id": "project-2",
+    "title_en": "Task Management App",
+    "title_ru": "Приложение для управления задачами",
+    "title_rs": "Апликација за управљање задацима",
+    "description_en": "A collaborative task management application to help teams organize and track their work.",
+    "description_ru": "Совместное приложение для управления задачами, помогающее командам организовывать и отслеживать свою работу.",
+    "description_rs": "Апликација за колаборативно управљање задацима која помаже тимовима да организују и прате свој рад.",
+    "image": "https://via.placeholder.com/300x200.png?text=Task+Management+App",
+    "link": "https://github.com/example/task-management-app",
+    "tags_en": ["Vue.js", "Firebase", "Vuetify"],
+    "tags_ru": ["Vue.js", "Firebase", "Vuetify"],
+    "tags_rs": ["Vue.js", "Firebase", "Vuetify"]
+  },
+  {
+    "id": "project-3",
+    "title_en": "Personal Portfolio Website",
+    "title_ru": "Веб-сайт личного портфолио",
+    "title_rs": "Веб локација личног портфолија",
+    "description_en": "A personal portfolio website to showcase projects, skills, and experience.",
+    "description_ru": "Персональный веб-сайт-портфолио для демонстрации проектов, навыков и опыта.",
+    "description_rs": "Лична веб локација портфолија за представљање пројеката, вештина и искуства.",
+    "image": "https://via.placeholder.com/300x200.png?text=Portfolio+Website",
+    "link": "https://github.com/example/portfolio-website",
+    "tags_en": ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    "tags_ru": ["HTML", "CSS", "JavaScript", "Адаптивный дизайн"],
+    "tags_rs": ["HTML", "CSS", "JavaScript", "Респонзивни дизајн"]
+  }
+]

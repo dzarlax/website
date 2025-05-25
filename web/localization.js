@@ -33,8 +33,11 @@ const translations = {
             home: 'Home',
             skills: 'Skills',
             experience: 'Experience',
-            contact: 'Contact'
+            contact: 'Contact',
+            projects_nav: 'Projects'
         },
+        projects_title: 'Projects',
+        view_project: 'View Project',
         intro: {
             title: 'Product Manager',
             description: 'Data-driven  product and project manager with 8+ years\' experience driving technology innovation. Integrate analytics tools with UI/UX knowledge to develop feature-rich apps that are simple to use. Track record of thriving in constantly evolving environments and leveraging process optimization skills. Adept at communicating goals, analyses, and value propositions. Fluent in Russian and English, basic knowledge of Serbian.'
@@ -102,8 +105,11 @@ const translations = {
             home: 'Главная',
             skills: 'Навыки',
             experience: 'Опыт',
-            contact: 'Контакты'
+            contact: 'Контакты',
+            projects_nav: 'Проекты'
         },
+        projects_title: 'Проекты',
+        view_project: 'Посмотреть проект',
         intro: {
             title: 'Менеджер продукта',
             description: 'Управление продуктами и проектами, основанными на данных, с более чем 8-летним опытом стимулирования технологических инноваций. Интегрирую инструменты аналитики с знаниями UI/UX для создания функциональных приложений, которые просты в использовании. Имею опыт успешной работы в постоянно меняющихся условиях и применяю навыки оптимизации процессов. Умею четко ставить задачи, проводить анализ и формулировать предложения по ценности. Свободно владею русским и английским, имею базовые знания сербского.'
@@ -171,8 +177,11 @@ const translations = {
             home: 'Почетна',
             skills: 'Вештине',
             experience: 'Искуство',
-            contact: 'Контакт'
+            contact: 'Контакт',
+            projects_nav: 'Пројекти'
         },
+        projects_title: 'Пројекти',
+        view_project: 'Погледај пројекат',
         intro: {
             title: 'Продукт Менаџер',
             description: 'Управљање производима и пројектима засновано на подацима са више од 8 година искуства у погону технолошке иновације. Интегришем алатке за аналитику са знањем о UI/UX да би развио апликације богате функцијама које су једноставне за коришћење. Имам доказану способност рада у стално мењајућим срединама и коришћења вештина оптимизације процеса. Способан за комуницирање циљева, анализа и предлога вредности. Течно говорим руски и енглески, основно знање српског.'
@@ -236,6 +245,74 @@ const translations = {
         }
     }
 };
+
+// Function to update all localizable content
+function updateLocalizedContent() {
+    const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+    const data = translations[currentLang];
+    if (!data) return;
+
+    document.querySelectorAll('[data-lang]').forEach(element => {
+        const key = element.getAttribute('data-lang');
+        let textContent = '';
+
+        // Handle nested keys for menu items
+        if (key.startsWith('menu.')) {
+            const menuKey = key.split('.')[1];
+            textContent = data.menu?.[menuKey];
+        } else {
+            // Handle top-level keys like 'projects_title', 'view_project'
+            textContent = data[key];
+        }
+        
+        if (textContent) {
+            element.textContent = textContent;
+        } else {
+            // Fallback for keys not directly in menu or at top level (e.g. dynamic content)
+            // This part might need adjustment based on how dynamic keys are structured
+            // For now, we assume direct keys or menu keys.
+            // console.warn(`Translation key "${key}" not found for language "${currentLang}"`);
+        }
+    });
+
+    // Specific updates for sections not solely relying on data-lang attributes for all text
+    if (data.intro) {
+        const introTitle = document.querySelector('#intro h2.typing-effect'); // Target specifically
+        if (introTitle) introTitle.textContent = data.intro.title; // Typing effect will re-trigger
+        const introDesc = document.querySelector('#intro p');
+        if (introDesc) introDesc.textContent = data.intro.description;
+    }
+
+    if (data.skills) {
+        const skillsTitle = document.querySelector('#skills h2');
+        if (skillsTitle) skillsTitle.textContent = data.skills.title;
+        // Skills items are handled by setupSkills
+    }
+    
+    if (data.experience) {
+        const experienceTitle = document.querySelector('#experience h2');
+        if (experienceTitle) experienceTitle.textContent = data.experience.title;
+        // Experience items are handled by updateContent
+    }
+
+    if (data.projects_title) { // Ensure this is updated
+        const projectsTitleEl = document.querySelector('#projects h2[data-lang="projects_title"]');
+        if (projectsTitleEl) projectsTitleEl.textContent = data.projects_title;
+    }
+    
+    if (data.contacts) {
+        const contactTitle = document.querySelector('#contact h2');
+        if (contactTitle) contactTitle.textContent = data.contacts.contact;
+        const emailButton = document.getElementById('emailButton');
+        if (emailButton) emailButton.textContent = data.contacts.email;
+        const linkedinButton = document.getElementById('linkedinButton');
+        if (linkedinButton) linkedinButton.textContent = data.contacts.linkedin;
+        const githubButton = document.getElementById('githubButton');
+        if (githubButton) githubButton.textContent = data.contacts.github;
+        const rssButton = document.getElementById('rssButton');
+        if (rssButton) rssButton.textContent = data.contacts.rss;
+    }
+}
 
 // Popover functionality
 function showPopover(text, event) {
@@ -321,24 +398,28 @@ function updateContent(lang) {
     const data = translations[lang];
     if (!data) return;
 
-    // Update menu items
-    document.querySelectorAll('[data-lang]').forEach(item => {
-        const key = item.getAttribute('data-lang');
-        if (data.menu[key]) {
-            item.textContent = data.menu[key];
-        }
-    });
+    // Update menu items (now handled by updateLocalizedContent)
+    // document.querySelectorAll('[data-lang]').forEach(item => {
+    //     const key = item.getAttribute('data-lang');
+    //     if (data.menu[key]) { // This was specific to menu, adjust for broader use
+    //         item.textContent = data.menu[key];
+    //     }
+    // });
+    
+    // Call the new comprehensive update function
+    updateLocalizedContent(); // This will handle all data-lang elements
 
-    // Update intro section
-    document.querySelector('#intro h2').textContent = data.intro.title;
-    document.querySelector('#intro p').textContent = data.intro.description;
+    // Specific updates not covered by data-lang or needing complex logic remain here or in setupSkills
+    // Update intro section (now handled by updateLocalizedContent)
+    // document.querySelector('#intro h2').textContent = data.intro.title;
+    // document.querySelector('#intro p').textContent = data.intro.description;
 
-    // Update skills section
-    document.querySelector('#skills h2').textContent = data.skills.title;
-    setupSkills(lang);
+    // Update skills section (title handled by updateLocalizedContent, items by setupSkills)
+    // document.querySelector('#skills h2').textContent = data.skills.title;
+    setupSkills(lang); // This rebuilds skills which might be necessary
 
-    // Update experience section
-    document.querySelector('#experience h2').textContent = data.experience.title;
+    // Update experience section (title handled by updateLocalizedContent)
+    // document.querySelector('#experience h2').textContent = data.experience.title;
     const experienceList = document.querySelector('#experience ul');
     experienceList.innerHTML = '';
     
@@ -388,14 +469,14 @@ function updateContent(lang) {
         experienceList.appendChild(li);
     });
 
-    // Update contact section
-    document.querySelector('#contact h2').textContent = data.contacts.contact;
+    // Update contact section (handled by updateLocalizedContent)
+    // document.querySelector('#contact h2').textContent = data.contacts.contact;
 
-    // Update contact buttons
-    document.getElementById('emailButton').textContent = data.contacts.email;
-    document.getElementById('linkedinButton').textContent = data.contacts.linkedin;
-    document.getElementById('githubButton').textContent = data.contacts.github;
-    document.getElementById('rssButton').textContent = data.contacts.rss;
+    // Update contact buttons (handled by updateLocalizedContent)
+    // document.getElementById('emailButton').textContent = data.contacts.email;
+    // document.getElementById('linkedinButton').textContent = data.contacts.linkedin;
+    // document.getElementById('githubButton').textContent = data.contacts.github;
+    // document.getElementById('rssButton').textContent = data.contacts.rss;
 
     // Update language buttons state
     document.querySelectorAll('.lang-btn').forEach(button => {
@@ -445,8 +526,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const defaultLang = savedLang || (translations[browserLang] ? browserLang : 'en');
     
     // Initial content update
-    updateContent(defaultLang);
+    updateContent(defaultLang); // This will also call updateLocalizedContent
     
     // Hide popover on scroll
     window.addEventListener('scroll', hidePopover);
+
+    // Dispatch languageChanged event for other modules that might need to update
+    // This is important if displayProjects relies on it for initial load localization
+    const event = new CustomEvent('languageChanged', { detail: { language: defaultLang } });
+    document.dispatchEvent(event);
 });
+
+// Expose for other scripts if needed (e.g. projects.js calling it)
+window.updateLocalizedContent = updateLocalizedContent;
