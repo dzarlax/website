@@ -1,3 +1,11 @@
+// Utility function to escape HTML content and prevent XSS
+function escapeHtml(text) {
+    if (typeof text !== 'string') return text;
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 async function fetchProjects() {
     try {
         const response = await fetch('../projects.json');
@@ -18,23 +26,53 @@ function createProjectCard(project) {
     const card = document.createElement('div');
     card.classList.add('project-card');
 
-    const title = project[`title_${currentLang}`] || project.title_en;
-    const description = project[`description_${currentLang}`] || project.description_en;
+    // Safely escape HTML content to prevent XSS
+    const title = escapeHtml(project[`title_${currentLang}`] || project.title_en);
+    const description = escapeHtml(project[`description_${currentLang}`] || project.description_en);
     const tags = project[`tags_${currentLang}`] || project.tags_en || [];
+    const link = escapeHtml(project.link);
 
-    card.innerHTML = `
-        <h3 class="project-title">${title}</h3>
-        <p class="project-description">${description}</p>
-        <div class="project-tags">
-            ${tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-        </div>
-        <a href="${project.link}" target="_blank" class="project-link">
-            <i class="fas fa-external-link-alt"></i>
-            <span data-lang="view_project">View Project</span> 
-        </a>
-    `;
-    // The text for "View Project" will be updated by the global updateLocalizedContent function
-    // when switchLang is called, which also triggers displayProjects.
+    // Create title element
+    const titleElement = document.createElement('h3');
+    titleElement.className = 'project-title';
+    titleElement.textContent = title;
+    card.appendChild(titleElement);
+
+    // Create description element
+    const descElement = document.createElement('p');
+    descElement.className = 'project-description';
+    descElement.textContent = description;
+    card.appendChild(descElement);
+
+    // Create tags container
+    const tagsContainer = document.createElement('div');
+    tagsContainer.className = 'project-tags';
+    tags.forEach(tag => {
+        const tagElement = document.createElement('span');
+        tagElement.className = 'project-tag';
+        tagElement.textContent = escapeHtml(tag);
+        tagsContainer.appendChild(tagElement);
+    });
+    card.appendChild(tagsContainer);
+
+    // Create link element
+    const linkElement = document.createElement('a');
+    linkElement.href = link;
+    linkElement.target = '_blank';
+    linkElement.rel = 'noopener noreferrer'; // Security improvement
+    linkElement.className = 'project-link';
+    
+    const iconElement = document.createElement('i');
+    iconElement.className = 'fas fa-external-link-alt';
+    linkElement.appendChild(iconElement);
+    
+    const spanElement = document.createElement('span');
+    spanElement.setAttribute('data-lang', 'view_project');
+    spanElement.textContent = 'View Project';
+    linkElement.appendChild(spanElement);
+    
+    card.appendChild(linkElement);
+
     return card;
 }
 

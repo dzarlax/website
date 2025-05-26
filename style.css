@@ -1150,3 +1150,81 @@ h1 {
         0 5px 10px rgba(0,0,0,.25),
         0 10px 10px rgba(0,0,0,.2);
 }
+
+/* Accessibility improvements */
+/* Skip navigation link for screen readers */
+.skip-nav {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--accent-color);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 9999;
+    font-weight: 600;
+    transition: top 0.3s;
+}
+
+.skip-nav:focus {
+    top: 6px;
+}
+
+/* Enhanced focus indicators */
+.nav-link:focus,
+.lang-btn:focus,
+.theme-toggle:focus,
+.contact-btn:focus,
+.project-link:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 5px var(--accent-color);
+}
+
+.skill-tag:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    transform: translateY(-2px);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --text-color: #000;
+        --h2-color: #000;
+        --button-text-color: #000;
+        --border-color: #000;
+    }
+    
+    [dark-mode] {
+        --text-color: #fff;
+        --h2-color: #fff;
+        --button-text-color: #fff;
+        --border-color: #fff;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .typing-effect {
+        animation: none;
+        border-right: none;
+    }
+    
+    .floating {
+        animation: none;
+    }
+    
+    .particle {
+        animation: none;
+    }
+}

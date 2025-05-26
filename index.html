@@ -3,19 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Alexey Panfilov">
-    <meta property="og:description" content="Personal page">
-    <meta property="og:image" content="https://s3.dzarlax.dev/logo.png">
-    <title>Alexey Panfilov</title>
     
-    <!-- Fonts -->
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Alexey Panfilov - Data-driven Product Manager & Tech Enthusiast with 8+ years experience in technology innovation, UI/UX prototyping, and agile project management.">
+    <meta name="keywords" content="product manager, tech enthusiast, UI/UX, project management, agile, mobile development, data analysis, process optimization">
+    <meta name="author" content="Alexey Panfilov">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="en,ru,rs">
+    <link rel="canonical" href="https://dzarlax.dev/">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://s3.dzarlax.dev https://mc.yandex.ru https://via.placeholder.com data:; connect-src 'self' https://s3.dzarlax.dev; frame-ancestors 'none'">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Alexey Panfilov - Product Manager & Tech Enthusiast">
+    <meta property="og:description" content="Data-driven product and project manager with 8+ years experience driving technology innovation. Expert in UI/UX prototyping, agile methodologies, and mobile development.">
+    <meta property="og:image" content="https://s3.dzarlax.dev/logo.png">
+    <meta property="og:url" content="https://dzarlax.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Alexey Panfilov Portfolio">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:locale:alternate" content="sr_RS">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alexey Panfilov - Product Manager & Tech Enthusiast">
+    <meta name="twitter:description" content="Data-driven product and project manager with 8+ years experience driving technology innovation.">
+    <meta name="twitter:image" content="https://s3.dzarlax.dev/logo.png">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#0984e3">
+    <meta name="msapplication-TileColor" content="#0984e3">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="A. Panfilov">
+    <link rel="apple-touch-icon" href="https://s3.dzarlax.dev/logo.png">
+    
+    <title>Alexey Panfilov - Product Manager & Tech Enthusiast</title>
+    
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://s3.dzarlax.dev">
+    
+    <!-- Fonts with optimized loading -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://s3.dzarlax.dev/sharing/photo_2023-01-19_13-56-01/photo_2023-01-19_13-56-01.jpg" as="image">
+    <link rel="preload" href="https://s3.dzarlax.dev/header.jpg" as="image">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -34,8 +82,52 @@
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/84564265" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Alexey Panfilov",
+        "url": "https://dzarlax.dev",
+        "image": "https://s3.dzarlax.dev/sharing/photo_2023-01-19_13-56-01/photo_2023-01-19_13-56-01.jpg",
+        "jobTitle": "Senior Product Manager",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Constructor.tech"
+        },
+        "alumniOf": [
+            {
+                "@type": "Organization",
+                "name": "Yandex Cloud"
+            },
+            {
+                "@type": "Organization", 
+                "name": "Yandex.Market"
+            }
+        ],
+        "knowsAbout": [
+            "Product Management",
+            "UI/UX Design",
+            "Project Management",
+            "Mobile Development",
+            "Data Analysis",
+            "Process Optimization"
+        ],
+        "sameAs": [
+            "https://github.com/dzarlax",
+            "https://linkedin.com/in/alexey-panfilov"
+        ],
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://dzarlax.dev"
+        }
+    }
+    </script>
 </head>
 <body>
+  <!-- Skip navigation for accessibility -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
   <header>
     <div class="particles">
         <!-- Animated particles will be added via JavaScript -->
@@ -43,35 +135,35 @@
     
     <div class="header-controls">
         <div class="lang-switcher">
-            <button id="lang-en" onclick="switchLang('en')" class="lang-btn">
+            <button id="lang-en" onclick="switchLang('en')" class="lang-btn" aria-label="Switch to English" title="English">
                 🇬🇧 <span>EN</span>
             </button>
-            <button id="lang-ru" onclick="switchLang('ru')" class="lang-btn">
+            <button id="lang-ru" onclick="switchLang('ru')" class="lang-btn" aria-label="Переключить на русский" title="Русский">
                 🇷🇺 <span>RU</span>
             </button>
-            <button id="lang-rs" onclick="switchLang('rs')" class="lang-btn">
+            <button id="lang-rs" onclick="switchLang('rs')" class="lang-btn" aria-label="Пребаци на српски" title="Српски">
                 🇷🇸 <span>RS</span>
             </button>
         </div>
         <div class="divider"></div>
-        <button class="theme-toggle" aria-label="Toggle theme"></button>
+        <button class="theme-toggle" aria-label="Toggle between light and dark theme" title="Switch theme"></button>
     </div>
 
     <h1>Alexey Panfilov</h1>
     <div class="header-subtitle" id="header-subtitle">Product Manager & Tech Enthusiast</div>
-    <nav>
-        <a href="#" data-lang="menu.home" class="nav-link">Home</a>
-        <a href="#skills" data-lang="menu.skills" class="nav-link">Skills</a>
-        <a href="#experience" data-lang="menu.experience" class="nav-link">Experience</a>
-        <a href="#projects" data-lang="menu.projects_nav" class="nav-link">Projects</a>
-        <a href="#contact" data-lang="menu.contact" class="nav-link">Contact</a>
+    <nav role="navigation" aria-label="Main navigation">
+        <a href="#intro" data-lang="menu.home" class="nav-link" aria-describedby="nav-home-desc">Home</a>
+        <a href="#skills" data-lang="menu.skills" class="nav-link" aria-describedby="nav-skills-desc">Skills</a>
+        <a href="#experience" data-lang="menu.experience" class="nav-link" aria-describedby="nav-experience-desc">Experience</a>
+        <a href="#projects" data-lang="menu.projects_nav" class="nav-link" aria-describedby="nav-projects-desc">Projects</a>
+        <a href="#contact" data-lang="menu.contact" class="nav-link" aria-describedby="nav-contact-desc">Contact</a>
     </nav>
 </header>
 
-    <main>
+    <main id="main-content">
         <section id="intro" class="reveal">
             <div class="profile-container">
-                <img src="https://s3.dzarlax.dev/sharing/photo_2023-01-19_13-56-01/photo_2023-01-19_13-56-01.jpg" alt="Alexey Panfilov" class="profile-image">
+                <img src="https://s3.dzarlax.dev/sharing/photo_2023-01-19_13-56-01/photo_2023-01-19_13-56-01.jpg" alt="Professional headshot of Alexey Panfilov, Product Manager and Tech Enthusiast" class="profile-image">
                 <div class="profile-badge floating">
                     <i class="fas fa-briefcase"></i>
                 </div>
@@ -80,9 +172,9 @@
             <p></p>
         </section>
 
-        <section id="skills" class="reveal">
-            <h2>Skills</h2>
-            <div id="skills-container"></div>
+        <section id="skills" class="reveal" aria-labelledby="skills-heading">
+            <h2 id="skills-heading">Skills</h2>
+            <div id="skills-container" role="list" aria-label="Technical skills and competencies"></div>
         </section>
 
         <section id="experience" class="reveal">
@@ -129,8 +221,22 @@
     <script src="web/contacts.js"></script>
     <script src="web/animation.js"></script>
     <script src="web/projects.js"></script>
+    <script src="web/vitals.js"></script>
 
     <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        // Service worker registered successfully
+                    })
+                    .catch(error => {
+                        console.error('Service worker registration failed:', error);
+                    });
+            });
+        }
+
         // Initialize everything on page load
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize language based on preference or browser setting

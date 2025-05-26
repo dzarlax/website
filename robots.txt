@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://dzarlax.dev/sitemap.xml
+
+# Block crawling of certain file types
+Disallow: /*.json$
+Disallow: /web/
+Disallow: /rss/
+
+# Allow specific RSS feed
+Allow: /rss/init.js
