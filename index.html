@@ -251,6 +251,16 @@
             // Create animated particles
             createParticles();
             
+            // Start initial typing animation after localization loads
+            setTimeout(() => {
+                const introTitle = document.querySelector('#intro h2.typing-effect');
+                if (introTitle && window.startTypingAnimation) {
+                    const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                    const text = window.translations?.[currentLang]?.intro?.title || 'Product Manager';
+                    window.startTypingAnimation(introTitle, text);
+                }
+            }, 100);
+            
             // Scroll animations
             function revealOnScroll() {
                 const reveals = document.querySelectorAll('.reveal');

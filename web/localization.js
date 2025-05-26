@@ -184,7 +184,7 @@ const translations = {
         view_project: 'Погледај пројекат',
         intro: {
             title: 'Продукт Менаџер',
-            description: 'Управљање производима и пројектима засновано на подацима са више од 8 година искуства у погону технолошке иновације. Интегришем алатке за аналитику са знањем о UI/UX да би развио апликације богате функцијама које су једноставне за коришћење. Имам доказану способност рада у стално мењајућим срединама и коришћења вештина оптимизације процеса. Способан за комуницирање циљева, анализа и предлога вредности. Течно говорим руски и енглески, основно знање српског.'
+            description: 'Менаџер производа и пројеката заснован на подацима са више од 8 година искуства у погону технолошких иновација. Комбинујем аналитичке алатке са знањем UI/UX дизајна за развој функционалних апликација које су једноставне за коришћење. Успешно радим у брзо променљивим срединама користећи вештине оптимизације процеса. Способан сам за јасно комуницирање циљева, анализа и предлога вредности. Течно говорим руски и енглески, основно знање српског.'
         },
         skills: {
             title: 'Техничке способности',
@@ -238,8 +238,8 @@ const translations = {
         },
         contacts: {
             contact: 'Контакт',
-            email: 'Пошаљи ми е-пошту',
-            linkedin: 'Проверите мој LinkedIn',
+            email: 'Пошаљите ми имејл',
+            linkedin: 'Погледајте мој LinkedIn',
             github: 'Моји пројекти',
             rss: 'Мој новостни фид'
         }
@@ -280,7 +280,10 @@ function updateLocalizedContent() {
     // Specific updates for sections not solely relying on data-lang attributes for all text
     if (data.intro) {
         const introTitle = document.querySelector('#intro h2.typing-effect'); // Target specifically
-        if (introTitle) introTitle.textContent = data.intro.title; // Typing effect will re-trigger
+        if (introTitle) {
+            // Reset and restart typing animation with proper text length
+            startTypingAnimation(introTitle, data.intro.title);
+        }
         const introDesc = document.querySelector('#intro p');
         if (introDesc) introDesc.textContent = data.intro.description;
     }
@@ -515,6 +518,13 @@ window.addEventListener('resize', () => {
     resizeTimeout = setTimeout(() => {
         const currentLang = localStorage.getItem('preferredLanguage') || 'en';
         setupSkills(currentLang);
+        
+        // Re-trigger typing animation on resize if needed
+        const introTitle = document.querySelector('#intro h2.typing-effect');
+        if (introTitle && window.translations) {
+            const text = window.translations[currentLang]?.intro?.title || 'Product Manager';
+            startTypingAnimation(introTitle, text);
+        }
     }, 250);
 });
 
@@ -537,5 +547,59 @@ document.addEventListener('DOMContentLoaded', () => {
     document.dispatchEvent(event);
 });
 
+// Typing animation function
+function startTypingAnimation(element, text) {
+    if (!element || !text) return;
+    
+    // Check if we're on mobile - if so, just show the text
+    if (window.innerWidth <= 768) {
+        element.textContent = text;
+        element.classList.remove('typing-effect');
+        return;
+    }
+    
+    // Reset element and set text to measure width
+    element.classList.add('typing-effect');
+    element.textContent = text;
+    
+    // Get the actual width of the text
+    const textWidth = element.scrollWidth;
+    
+    // Calculate animation parameters
+    const textLength = text.length;
+    const duration = Math.max(2, Math.min(4, textLength * 0.1)); // 2-4 seconds based on length
+    const steps = textLength;
+    
+    // Create dynamic animation with actual pixel width
+    const animationName = `typing-${Date.now()}`;
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ${animationName} {
+            from { width: 0; }
+            to { width: ${textWidth}px; }
+        }
+        .${animationName} {
+            animation: ${animationName} ${duration}s steps(${steps}, end), blink-caret 0.75s step-end infinite;
+            width: 0;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Start with width 0 and apply animation
+    element.style.width = '0';
+    element.classList.add(animationName);
+    
+    // Clean up animation after it completes
+    setTimeout(() => {
+        element.classList.remove(animationName);
+        element.style.width = 'auto';
+        if (style.parentNode) {
+            style.parentNode.removeChild(style);
+        }
+    }, (duration + 1) * 1000);
+}
+
 // Expose for other scripts if needed (e.g. projects.js calling it)
 window.updateLocalizedContent = updateLocalizedContent;
+window.startTypingAnimation = startTypingAnimation;
+window.translations = translations;

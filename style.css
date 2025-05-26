@@ -447,7 +447,8 @@ section {
     border-right: 3px solid var(--accent-color);
     white-space: nowrap;
     overflow: hidden;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    display: inline-block;
+    max-width: fit-content;
 }
 
 @keyframes typing {
@@ -1029,6 +1030,33 @@ section:hover h2::after {
 
     h2 {
         font-size: 1.75rem;
+    }
+
+    /* Fix typing effect on mobile */
+    #intro h2 {
+        font-size: 1.6rem;
+        text-align: center;
+        max-width: 100%;
+        word-break: break-word;
+        line-height: 1.3;
+        padding: 0 15px;
+    }
+
+    .typing-effect {
+        white-space: normal;
+        overflow: visible;
+        animation: none;
+        border-right: none;
+        display: block;
+        max-width: 100%;
+        text-align: center;
+        width: auto !important;
+    }
+
+    /* Ensure intro section has proper spacing on mobile */
+    #intro {
+        padding: 80px 15px;
+        text-align: center;
     }
 
     #skills-container {
