@@ -253,7 +253,7 @@
             
             // Start initial typing animation after localization loads
             setTimeout(() => {
-                const introTitle = document.querySelector('#intro h2.typing-effect');
+                const introTitle = document.querySelector('#intro h2');
                 if (introTitle && window.startTypingAnimation) {
                     const currentLang = localStorage.getItem('preferredLanguage') || 'en';
                     const text = window.translations?.[currentLang]?.intro?.title || 'Product Manager';

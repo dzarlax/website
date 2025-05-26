@@ -279,7 +279,7 @@ function updateLocalizedContent() {
 
     // Specific updates for sections not solely relying on data-lang attributes for all text
     if (data.intro) {
-        const introTitle = document.querySelector('#intro h2.typing-effect'); // Target specifically
+        const introTitle = document.querySelector('#intro h2'); // Target specifically
         if (introTitle) {
             // Reset and restart typing animation with proper text length
             startTypingAnimation(introTitle, data.intro.title);
@@ -520,7 +520,7 @@ window.addEventListener('resize', () => {
         setupSkills(currentLang);
         
         // Re-trigger typing animation on resize if needed
-        const introTitle = document.querySelector('#intro h2.typing-effect');
+        const introTitle = document.querySelector('#intro h2');
         if (introTitle && window.translations) {
             const text = window.translations[currentLang]?.intro?.title || 'Product Manager';
             startTypingAnimation(introTitle, text);
@@ -547,56 +547,47 @@ document.addEventListener('DOMContentLoaded', () => {
     document.dispatchEvent(event);
 });
 
-// Typing animation function
+// Simple typing animation function
 function startTypingAnimation(element, text) {
     if (!element || !text) return;
     
-    // Check if we're on mobile - if so, just show the text
+    // Always disable animation on mobile or when screen is narrow
     if (window.innerWidth <= 768) {
         element.textContent = text;
         element.classList.remove('typing-effect');
+        element.style.removeProperty('width');
+        element.style.removeProperty('white-space');
+        element.style.removeProperty('overflow');
+        element.style.removeProperty('border-right');
         return;
     }
     
-    // Reset element and set text to measure width
+    // Clean up any existing animations
+    element.classList.remove('typing-effect');
+    element.style.removeProperty('width');
+    
+    // For desktop, use simple typewriter effect
+    element.textContent = '';
     element.classList.add('typing-effect');
-    element.textContent = text;
     
-    // Get the actual width of the text
-    const textWidth = element.scrollWidth;
+    let index = 0;
+    const typingSpeed = 100; // milliseconds per character
     
-    // Calculate animation parameters
-    const textLength = text.length;
-    const duration = Math.max(2, Math.min(4, textLength * 0.1)); // 2-4 seconds based on length
-    const steps = textLength;
-    
-    // Create dynamic animation with actual pixel width
-    const animationName = `typing-${Date.now()}`;
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes ${animationName} {
-            from { width: 0; }
-            to { width: ${textWidth}px; }
+    const typeChar = () => {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeChar, typingSpeed);
+        } else {
+            // Animation complete, keep the cursor blinking
+            setTimeout(() => {
+                element.style.borderRight = '3px solid var(--accent-color)';
+            }, 500);
         }
-        .${animationName} {
-            animation: ${animationName} ${duration}s steps(${steps}, end), blink-caret 0.75s step-end infinite;
-            width: 0;
-        }
-    `;
-    document.head.appendChild(style);
+    };
     
-    // Start with width 0 and apply animation
-    element.style.width = '0';
-    element.classList.add(animationName);
-    
-    // Clean up animation after it completes
-    setTimeout(() => {
-        element.classList.remove(animationName);
-        element.style.width = 'auto';
-        if (style.parentNode) {
-            style.parentNode.removeChild(style);
-        }
-    }, (duration + 1) * 1000);
+    // Start typing after a small delay
+    setTimeout(typeChar, 500);
 }
 
 // Expose for other scripts if needed (e.g. projects.js calling it)
