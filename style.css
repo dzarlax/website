@@ -1040,8 +1040,8 @@ section:hover h2::after {
         max-width: 100%;
         word-break: break-word;
         line-height: 1.4;
-        padding: 0 20px;
-        margin: 0 auto;
+        padding: 0 30px;
+        margin: 0 auto 20px auto;
         white-space: normal !important;
         overflow: visible !important;
         width: auto !important;
@@ -1062,7 +1062,7 @@ section:hover h2::after {
 
     /* Ensure intro section has proper spacing on mobile */
     #intro {
-        padding: 60px 20px;
+        padding: 60px 25px;
         text-align: center;
     }
 
@@ -1276,21 +1276,22 @@ h1 {
 @media (max-width: 480px) {
     #intro h2 {
         font-size: 1.2rem;
-        padding: 0 15px;
+        padding: 0 25px;
         line-height: 1.3;
+        margin: 0 auto 20px auto;
     }
 
     .header-subtitle {
         font-size: 1rem;
-        padding: 0 15px;
+        padding: 0 25px;
     }
 
     h1 {
         font-size: 2rem;
-        padding: 0 15px;
+        padding: 0 25px;
     }
 
     #intro {
-        padding: 40px 15px;
+        padding: 40px 25px;
     }
 }

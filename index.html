@@ -254,12 +254,17 @@
             // Start initial typing animation after localization loads
             setTimeout(() => {
                 const introTitle = document.querySelector('#intro h2');
-                if (introTitle && window.startTypingAnimation) {
+                if (introTitle && window.startTypingAnimation && window.translations) {
+                    // Clear any existing animation first
+                    if (introTitle.typingTimeout) {
+                        clearTimeout(introTitle.typingTimeout);
+                        introTitle.typingTimeout = null;
+                    }
                     const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-                    const text = window.translations?.[currentLang]?.intro?.title || 'Product Manager';
+                    const text = window.translations[currentLang]?.intro?.title || 'Product Manager';
                     window.startTypingAnimation(introTitle, text);
                 }
-            }, 100);
+            }, 500);
             
             // Scroll animations
             function revealOnScroll() {

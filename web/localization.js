@@ -281,6 +281,11 @@ function updateLocalizedContent() {
     if (data.intro) {
         const introTitle = document.querySelector('#intro h2'); // Target specifically
         if (introTitle) {
+            // Clear any existing animation first
+            if (introTitle.typingTimeout) {
+                clearTimeout(introTitle.typingTimeout);
+                introTitle.typingTimeout = null;
+            }
             // Reset and restart typing animation with proper text length
             startTypingAnimation(introTitle, data.intro.title);
         }
@@ -522,6 +527,11 @@ window.addEventListener('resize', () => {
         // Re-trigger typing animation on resize if needed
         const introTitle = document.querySelector('#intro h2');
         if (introTitle && window.translations) {
+            // Clear any existing animation first
+            if (introTitle.typingTimeout) {
+                clearTimeout(introTitle.typingTimeout);
+                introTitle.typingTimeout = null;
+            }
             const text = window.translations[currentLang]?.intro?.title || 'Product Manager';
             startTypingAnimation(introTitle, text);
         }
@@ -551,6 +561,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function startTypingAnimation(element, text) {
     if (!element || !text) return;
     
+    // Clear any existing timeouts or animations
+    if (element.typingTimeout) {
+        clearTimeout(element.typingTimeout);
+        element.typingTimeout = null;
+    }
+    
     // Always disable animation on mobile or when screen is narrow
     if (window.innerWidth <= 768) {
         element.textContent = text;
@@ -565,29 +581,25 @@ function startTypingAnimation(element, text) {
     // Clean up any existing animations
     element.classList.remove('typing-effect');
     element.style.removeProperty('width');
+    element.textContent = '';
     
     // For desktop, use simple typewriter effect
-    element.textContent = '';
     element.classList.add('typing-effect');
     
     let index = 0;
-    const typingSpeed = 100; // milliseconds per character
+    const typingSpeed = 80; // milliseconds per character
     
     const typeChar = () => {
         if (index < text.length) {
-            element.textContent += text.charAt(index);
+            element.textContent = text.substring(0, index + 1);
             index++;
-            setTimeout(typeChar, typingSpeed);
-        } else {
-            // Animation complete, keep the cursor blinking
-            setTimeout(() => {
-                element.style.borderRight = '3px solid var(--accent-color)';
-            }, 500);
+            element.typingTimeout = setTimeout(typeChar, typingSpeed);
         }
+        // Cursor blinking is handled by CSS
     };
     
     // Start typing after a small delay
-    setTimeout(typeChar, 500);
+    element.typingTimeout = setTimeout(typeChar, 300);
 }
 
 // Expose for other scripts if needed (e.g. projects.js calling it)
