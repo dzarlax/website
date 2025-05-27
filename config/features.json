@@ -13,7 +13,7 @@
         "description": "Work experience timeline"
       },
       "achievements": {
-        "enabled": false,
+        "enabled": true,
         "description": "Achievements and accomplishments"
       },
       "projects": {
