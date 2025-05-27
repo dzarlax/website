@@ -1,0 +1,36 @@
+{
+    "features": {
+      "intro": {
+        "enabled": true,
+        "description": "Introduction section with profile"
+      },
+      "skills": {
+        "enabled": true,
+        "description": "Skills and technologies section"
+      },
+      "experience": {
+        "enabled": true,
+        "description": "Work experience timeline"
+      },
+      "achievements": {
+        "enabled": false,
+        "description": "Achievements and accomplishments"
+      },
+      "projects": {
+        "enabled": true,
+        "description": "Portfolio projects showcase"
+      },
+      "contact": {
+        "enabled": true,
+        "description": "Contact information and links"
+      }
+    },
+    "navigation": {
+      "showDisabledSections": false,
+      "animateToggle": true
+    },
+    "debug": {
+      "showFeatureStatus": false,
+      "logToggleActions": false
+    }
+  } 

@@ -33,6 +33,7 @@ const translations = {
             home: 'Home',
             skills: 'Skills',
             experience: 'Experience',
+            achievements: 'Achievements',
             contact: 'Contact',
             projects_nav: 'Projects'
         },
@@ -92,6 +93,15 @@ const translations = {
                 'QA engineer | Program manager, Parallels (08/2012-12/2017)'
             ]
         },
+        achievements_title: 'Achievements',
+        achievement_1_title: 'Product Innovation',
+        achievement_1_desc: 'Led development of 5+ innovative products resulting in 40% user engagement increase',
+        achievement_2_title: 'Data-Driven Results', 
+        achievement_2_desc: 'Improved KPIs by 35% through advanced analytics and A/B testing methodologies',
+        achievement_3_title: 'Process Optimization',
+        achievement_3_desc: 'Streamlined workflows reducing project delivery time by 25% across multiple teams',
+        achievement_4_title: 'Team Leadership',
+        achievement_4_desc: 'Successfully managed cross-functional teams of 15+ members in agile environments',
         contacts: {
             contact: 'Contact',
             email: 'Mail me',
@@ -105,6 +115,7 @@ const translations = {
             home: 'Главная',
             skills: 'Навыки',
             experience: 'Опыт',
+            achievements: 'Достижения',
             contact: 'Контакты',
             projects_nav: 'Проекты'
         },
@@ -164,6 +175,15 @@ const translations = {
                 'QA инженер | Program manager, Parallels (08/2012-12/2017)'
             ]
         },
+        achievements_title: 'Достижения',
+        achievement_1_title: 'Инновации в продуктах',
+        achievement_1_desc: 'Руководил разработкой 5+ инновационных продуктов, увеличив вовлеченность пользователей на 40%',
+        achievement_2_title: 'Результаты на основе данных',
+        achievement_2_desc: 'Улучшил KPI на 35% благодаря продвинутой аналитике и методологиям A/B тестирования',
+        achievement_3_title: 'Оптимизация процессов',
+        achievement_3_desc: 'Оптимизировал рабочие процессы, сократив время выполнения проектов на 25% в нескольких командах',
+        achievement_4_title: 'Лидерство команды',
+        achievement_4_desc: 'Успешно управлял кросс-функциональными командами из 15+ участников в agile-среде',
         contacts: {
             contact: 'Контакты',
             email: 'Напишите мне',
@@ -177,6 +197,7 @@ const translations = {
             home: 'Почетна',
             skills: 'Вештине',
             experience: 'Искуство',
+            achievements: 'Достигнућа',
             contact: 'Контакт',
             projects_nav: 'Пројекти'
         },
@@ -236,6 +257,15 @@ const translations = {
                 'QA инжењер | Менаџер програма, Parallels (08/2012-12/2017)'
             ]
         },
+        achievements_title: 'Достигнућа',
+        achievement_1_title: 'Иновације у производима',
+        achievement_1_desc: 'Водио развој 5+ иновативних производа што је резултовало повећањем ангажовања корисника за 40%',
+        achievement_2_title: 'Резултати на основу података',
+        achievement_2_desc: 'Побољшао KPI за 35% кроз напредну аналитику и методологије A/B тестирања',
+        achievement_3_title: 'Оптимизација процеса',
+        achievement_3_desc: 'Упростио радне токове смањујући време испоруке пројеката за 25% у више тимова',
+        achievement_4_title: 'Лидерство тима',
+        achievement_4_desc: 'Успешно управљао интерфункционалним тимовима од 15+ чланова у agile окружењима',
         contacts: {
             contact: 'Контакт',
             email: 'Пошаљите ми имејл',

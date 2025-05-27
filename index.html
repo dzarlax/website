@@ -56,7 +56,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20241202&safari=1">
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://s3.dzarlax.dev/sharing/photo_2023-01-19_13-56-01/photo_2023-01-19_13-56-01.jpg" as="image">
@@ -155,6 +155,7 @@
         <a href="#intro" data-lang="menu.home" class="nav-link" aria-describedby="nav-home-desc">Home</a>
         <a href="#skills" data-lang="menu.skills" class="nav-link" aria-describedby="nav-skills-desc">Skills</a>
         <a href="#experience" data-lang="menu.experience" class="nav-link" aria-describedby="nav-experience-desc">Experience</a>
+        <a href="#achievements" data-lang="menu.achievements" class="nav-link" aria-describedby="nav-achievements-desc">Achievements</a>
         <a href="#projects" data-lang="menu.projects_nav" class="nav-link" aria-describedby="nav-projects-desc">Projects</a>
         <a href="#contact" data-lang="menu.contact" class="nav-link" aria-describedby="nav-contact-desc">Contact</a>
     </nav>
@@ -180,6 +181,32 @@
         <section id="experience" class="reveal">
             <h2>Experience</h2>
             <ul id="experience-list"></ul>
+        </section>
+
+        <section id="achievements" class="reveal">
+            <h2 data-lang="achievements_title">Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card stagger-animation">
+                    <div class="achievement-icon">🚀</div>
+                    <h3 data-lang="achievement_1_title">Product Innovation</h3>
+                    <p data-lang="achievement_1_desc">Led development of 5+ innovative products resulting in 40% user engagement increase</p>
+                </div>
+                <div class="achievement-card stagger-animation">
+                    <div class="achievement-icon">📊</div>
+                    <h3 data-lang="achievement_2_title">Data-Driven Results</h3>
+                    <p data-lang="achievement_2_desc">Improved KPIs by 35% through advanced analytics and A/B testing methodologies</p>
+                </div>
+                <div class="achievement-card stagger-animation">
+                    <div class="achievement-icon">🎯</div>
+                    <h3 data-lang="achievement_3_title">Process Optimization</h3>
+                    <p data-lang="achievement_3_desc">Streamlined workflows reducing project delivery time by 25% across multiple teams</p>
+                </div>
+                <div class="achievement-card stagger-animation">
+                    <div class="achievement-icon">🏆</div>
+                    <h3 data-lang="achievement_4_title">Team Leadership</h3>
+                    <p data-lang="achievement_4_desc">Successfully managed cross-functional teams of 15+ members in agile environments</p>
+                </div>
+            </div>
         </section>
 
         <section id="projects" class="reveal">
@@ -216,6 +243,7 @@
     <div id="popover" class="hidden"></div>
 
     <!-- Scripts -->
+    <script src="web/features.js"></script>
     <script src="web/theme.js"></script>
     <script src="web/localization.js"></script>
     <script src="web/contacts.js"></script>
