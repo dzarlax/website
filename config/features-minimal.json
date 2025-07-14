@@ -12,6 +12,10 @@
       "enabled": false,
       "description": "Work experience timeline"
     },
+    "education": {
+      "enabled": false,
+      "description": "Education and certifications"
+    },
     "achievements": {
       "enabled": false,
       "description": "Achievements and accomplishments"

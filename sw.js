@@ -14,6 +14,7 @@ const STATIC_FILES = [
     '/web/contacts.js',
     '/web/animation.js',
     '/web/optimization.js',
+    '/web/jspdf.min.js',
     '/projects.json',
     '/manifest.json'
 ];
@@ -72,7 +73,10 @@ self.addEventListener('fetch', event => {
                 .then(response => {
                     return response || fetch(request).then(fetchResponse => {
                         return caches.open(STATIC_CACHE).then(cache => {
-                            cache.put(request, fetchResponse.clone());
+                            // Only cache GET requests
+                            if (request.method === 'GET') {
+                                cache.put(request, fetchResponse.clone());
+                            }
                             return fetchResponse;
                         });
                     });
@@ -87,7 +91,10 @@ self.addEventListener('fetch', event => {
             caches.open(DYNAMIC_CACHE).then(cache => {
                 return cache.match(request).then(response => {
                     const fetchPromise = fetch(request).then(fetchResponse => {
-                        cache.put(request, fetchResponse.clone());
+                        // Only cache GET requests
+                        if (request.method === 'GET') {
+                            cache.put(request, fetchResponse.clone());
+                        }
                         return fetchResponse;
                     });
                     return response || fetchPromise;

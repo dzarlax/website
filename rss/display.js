@@ -41,21 +41,32 @@ export function displayItems(items) {
     // Create excerpt (first 150 characters)
     const excerpt = createExcerpt(cleanDescription, 150);
     
+    // Check if item is in favorites
+    const isFavorite = window.rssFeed && window.rssFeed.favorites && 
+                       window.rssFeed.favorites.some(fav => fav.link === link);
+    
     // Build the HTML for this item
     html += `
       <li class="news-item ${hasImages ? 'has-image' : ''}">
         <div class="news-content">
-          <h2 class="news-title">
-            <a href="./rss/articles/article.html?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}" class="news-link">
-              ${title}
-            </a>
-          </h2>
+          <div class="news-header">
+            <h2 class="news-title">
+              <a href="./rss/articles/article.html?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}" class="news-link">
+                ${title}
+              </a>
+            </h2>
+            <button class="favorite-button ${isFavorite ? 'favorited' : ''}" 
+                    data-link="${link}" 
+                    onclick="window.rssFeed.toggleFavorite('${link.replace(/'/g, "\\'")}', '${title.replace(/'/g, "\\'")}')">
+              <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
+            </button>
+          </div>
           <div class="news-meta">
             <span class="news-date">${formattedDate}</span>
           </div>
           ${firstImage ? `<div class="news-image-container"><img src="${firstImage}" alt="${title}" class="rss-image" loading="lazy"></div>` : ''}
           <div class="news-excerpt">${excerpt}</div>
-          <a href="./rss/articles/article.html?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}" class="read-more">
+          <a href="./rss/articles/article.html?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}" class="read-more" data-lang="rss.read_more">
             Читать полностью <i class="fas fa-arrow-right"></i>
           </a>
         </div>

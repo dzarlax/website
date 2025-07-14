@@ -1,53 +1,148 @@
-# Репозиторий сайта
+# Personal Website Repository
 
-## Обзор
-Этот репозиторий содержит исходный код веб-сайта, управляемого Алексеем Панфиловым (dzarlax). Кодовая база включает файлы HTML, CSS и JavaScript.
+## Overview
+This repository contains the source code for a personal portfolio website managed by Alexey Panfilov (dzarlax). The codebase includes HTML, CSS, and JavaScript files for a modern, responsive personal website with multilingual support.
 
-## Последние обновления
-Последнее обновление с названием "Оптимизация под мобильные" включает улучшения для более корректной мобильной адаптивности.
+## 🌟 Key Features
+- **Multi-language Support**: Full localization for English, Russian, and Serbian
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Dark/Light Theme**: Automatic theme switching based on user preference
+- **Dynamic Projects**: JSON-based project showcase with localized content
+- **RSS News Feed**: Real-time news feed integration
+- **Performance Optimized**: Service Worker, lazy loading, and optimized assets
+- **Accessibility**: WCAG compliant with proper ARIA labels and keyboard navigation
 
-## Особенности
-- Поддержка локализации для возможности многоязычности.
-- Функция изменения цвета и кнопка новостной ленты для динамического взаимодействия с пользователем.
-- RSS-ридер для обновления ленты новостей в реальном времени.
-- Оптимизация тёмной темы в соответствии с предпочтениями пользователя.
+## 🚀 Recent Updates
+- ✅ **Localized Footer**: Added fully localized footer with navigation links
+- ✅ **Fixed Projects Section**: Resolved project loading issues with proper JSON handling
+- ✅ **Enhanced Localization**: Improved translation system for nested content
+- ✅ **Mobile Optimization**: Better responsive design for mobile devices
 
-## Структура файлов
-- `index.html`: Основной HTML-файл сайта.
-- `style.css`: Таблица стилей, содержащая элементы визуального дизайна.
-В папке `web` содержатся следующие файлы:
-- `theme.js`: Управление темной/светлой темами сайта
-- `localization.js`: Динамические тексты и локализация.
-- `contacts.js`: Описание кнопок внизу старницы
-- `щзешьшяфешщт.js`: Оптимизации скорости
-- `feed.css`: Дополнительные CSS-стили для оформления новостной ленты.
-- `header.jpg`: Изображение заголовка, используемое на сайте.
+## 📁 Project Structure
 
-# RSS reader
-## Структура файлов
-В папке `rss` содержатся следующие файлы:
-- `RSSFeed.js`: Основной класс, управляющий функциональностью RSS-ленты.
-- `fetchRSSFeed.js`: Функция для загрузки и обработки данных RSS-ленты.
-- `pagination.js`: Функции для пагинации ленты.
-- `display.js`: Функции для отображения элементов ленты.
-- `init.js`: Инициализационный скрипт, который запускает функционал ленты.
+### Root Files
+- `index.html` - Main HTML file with semantic structure
+- `style.css` - Primary stylesheet with CSS custom properties
+- `projects.json` - Project data with multilingual content
+- `manifest.json` - PWA manifest file
+- `sw.js` - Service Worker for offline functionality
+- `feed.html` - RSS feed reader page
+- `news.html` - News aggregation page
 
-## Использование
-Чтобы использовать функционал RSS-ленты на вашем сайте, вам необходимо включить следующий тег скрипта в ваш HTML-файл:
+### `/web` Directory
+- `localization.js` - Multilingual translation system
+- `theme.js` - Dark/light theme management
+- `contacts.js` - Contact form and social links handler
+- `projects.js` - Dynamic project loading and display
+- `animation.js` - Scroll animations and visual effects
+- `optimization.js` - Performance optimizations
+- `features.js` - Feature toggle system
+- `vitals.js` - Web vitals monitoring
+
+### `/rss` Directory
+- `RSSFeed.js` - Main RSS feed class
+- `fetchRSSFeed.js` - RSS data fetching logic
+- `pagination.js` - Feed pagination functionality
+- `display.js` - Feed item rendering
+- `init.js` - RSS system initialization
+- `/articles` - Article detail pages and styles
+
+### `/config` Directory
+- `features.json` - Production feature configuration
+- `features-dev.json` - Development feature configuration
+- `features-minimal.json` - Minimal feature set
+
+## 🛠️ Setup & Development
+
+### Prerequisites
+- Modern web browser with ES6+ support
+- HTTP server (for AJAX requests)
+
+### Local Development
+1. Clone the repository
+2. Start a local HTTP server:
+   ```bash
+   python3 -m http.server 8000
+   # or
+   npx serve .
+   ```
+3. Navigate to `http://localhost:8000`
+
+### RSS Feed Integration
+To use the RSS functionality:
+
 ```html
 <script type="module" src="rss/init.js"></script>
 ```
-Это подключит и инициализирует класс RSSFeed, который автоматически загрузит и отобразит RSS-ленту в элементе с ID rss-feed.
 
-## Инициализация
+The RSS system automatically loads and displays feeds in elements with ID `rss-feed`.
 
-После загрузки DOM, скрипт создает экземпляр RSSFeed и запускает процесс загрузки ленты:
+### Project Configuration
+Projects are managed through `projects.json` with the following structure:
 
+```json
+{
+  "id": "unique-project-id",
+  "title_en": "English Title",
+  "title_ru": "Русский заголовок",
+  "title_rs": "Српски наслов",
+  "description_en": "English description",
+  "description_ru": "Русское описание",
+  "description_rs": "Српски опис",
+  "link": "https://github.com/user/repo",
+  "tags_en": ["Tag1", "Tag2"],
+  "tags_ru": ["Тег1", "Тег2"],
+  "tags_rs": ["Таг1", "Таг2"]
+}
 ```
-document.addEventListener('DOMContentLoaded', () => {
-  const rssFeed = new RSSFeed('URL_вашей_RSS_ленты', 'ID_контейнера_для_ленты');
-  rssFeed.fetchRSSFeed();
-});
-```
-Замените URL_вашей_RSS_ленты на URL вашей RSS-ленты и ID_контейнера_для_ленты на ID элемента, где должна отображаться лента.
+
+## 🌐 Localization
+The website supports three languages:
+- **English (en)** - Default language
+- **Russian (ru)** - Full translation
+- **Serbian (rs)** - Full translation
+
+### Adding New Translations
+1. Update `web/localization.js` with new translation keys
+2. Add corresponding HTML `data-lang` attributes
+3. The system automatically updates content on language switch
+
+## 🎨 Theming
+The website uses CSS custom properties for theming:
+- Automatic dark/light mode detection
+- Manual theme toggle available
+- Consistent color scheme across all components
+
+## 📱 Progressive Web App
+The website includes PWA features:
+- Service Worker for offline functionality
+- Web App Manifest for installation
+- Responsive design for all screen sizes
+
+## 🔧 Feature Toggles
+Features can be controlled through configuration files:
+- Enable/disable sections dynamically
+- A/B testing capabilities
+- Performance optimization options
+
+## 📊 Performance
+- Lazy loading for images and content
+- Minified and optimized assets
+- Service Worker caching
+- Web vitals monitoring
+
+## 🤝 Contributing
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test across different browsers and devices
+5. Submit a pull request
+
+## 📄 License
+This project is for personal use. All rights reserved.
+
+## 📞 Contact
+- **GitHub**: [dzarlax](https://github.com/dzarlax)
+- **LinkedIn**: [Alexey Panfilov](https://linkedin.com/in/alexey-panfilov)
+- **Website**: [dzarlax.dev](https://dzarlax.dev)
 

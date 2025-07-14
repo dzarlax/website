@@ -13,7 +13,7 @@
     <link rel="canonical" href="https://dzarlax.dev/">
     
     <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://s3.dzarlax.dev https://mc.yandex.ru https://via.placeholder.com data:; connect-src 'self' https://s3.dzarlax.dev; frame-ancestors 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://s3.dzarlax.dev https://via.placeholder.com data:; connect-src 'self' https://s3.dzarlax.dev; frame-ancestors 'none'">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Alexey Panfilov - Product Manager & Tech Enthusiast">
@@ -65,23 +65,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-      m[i].l=1*new Date();
-      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-    ym(84564265, "init", {
-      clickmap:true,
-      trackLinks:true,
-      accurateTrackBounce:true,
-      webvisor:true
-    });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/84564265" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -155,6 +139,7 @@
         <a href="#intro" data-lang="menu.home" class="nav-link" aria-describedby="nav-home-desc">Home</a>
         <a href="#skills" data-lang="menu.skills" class="nav-link" aria-describedby="nav-skills-desc">Skills</a>
         <a href="#experience" data-lang="menu.experience" class="nav-link" aria-describedby="nav-experience-desc">Experience</a>
+        <a href="#education" data-lang="menu.education" class="nav-link" aria-describedby="nav-education-desc">Education</a>
         <a href="#achievements" data-lang="menu.achievements" class="nav-link" aria-describedby="nav-achievements-desc">Achievements</a>
         <a href="#projects" data-lang="menu.projects_nav" class="nav-link" aria-describedby="nav-projects-desc">Projects</a>
         <a href="#contact" data-lang="menu.contact" class="nav-link" aria-describedby="nav-contact-desc">Contact</a>
@@ -181,6 +166,11 @@
         <section id="experience" class="reveal">
             <h2>Experience</h2>
             <ul id="experience-list"></ul>
+        </section>
+
+        <section id="education" class="reveal">
+            <h2 data-lang="education_title">Education</h2>
+            <div id="education-list"></div>
         </section>
 
         <section id="achievements" class="reveal">
@@ -235,14 +225,33 @@
                     <i class="fas fa-rss"></i>
                     <span data-lang="contacts.rss">My news feed</span>
                 </button>
+                <button onclick="downloadResume()" class="contact-btn">
+                    <i class="fas fa-download"></i>
+                    <span data-lang="contacts.download_resume">Download Resume</span>
+                </button>
             </div>
         </section>
     </main>
+
+    <footer class="reveal">
+        <div class="footer-content">
+            <div class="footer-main">
+                <p data-lang="footer.copyright">© 2025 Alexey Panfilov</p>
+                <p data-lang="footer.rights">All rights reserved</p>
+            </div>
+            <div class="footer-links">
+                <a href="#intro" data-lang="footer.home">Home</a>
+                <a href="#projects" data-lang="footer.projects">Projects</a>
+                <a href="./feed.html" data-lang="footer.news">News</a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Popover for skill descriptions -->
     <div id="popover" class="hidden"></div>
 
     <!-- Scripts -->
+    <script src="web/jspdf.min.js"></script>
     <script src="web/features.js"></script>
     <script src="web/theme.js"></script>
     <script src="web/localization.js"></script>

@@ -8,7 +8,7 @@ function escapeHtml(text) {
 
 async function fetchProjects() {
     try {
-        const response = await fetch('../projects.json');
+        const response = await fetch('./projects.json');
         if (!response.ok) {
             console.error(`Error fetching projects: ${response.status} ${response.statusText}`);
             return null;
