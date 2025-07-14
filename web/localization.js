@@ -42,7 +42,7 @@ const translations = {
         view_project: 'View Project',
         intro: {
             title: 'Product Manager',
-            description: 'Data-driven product leader with 8+ years guiding mobile & web innovation. Fuse deep analytics with UX intuition and AI-powered development to ship intuitive, high-impact features. Thrive in fast-evolving environments, turning customer insights and OKRs into clear roadmaps and measurable outcomes. Adept storyteller for execs, engineers, and clients alike. Native Russian, fluent English; conversational Serbian.'
+            description: 'Data-driven product leader with 8+ years guiding mobile & web innovation. Fusing deep analytics with UX intuition and AI-powered development to ship intuitive, high-impact features. Thrive in fast-evolving environments, turning customer insights and OKRs into clear roadmaps and measurable outcomes. Adept storyteller for execs, engineers, and clients alike. Native Russian, fluent English; conversational Serbian.'
         },
         skills: {
             title: 'Technical Proficiencies',
@@ -89,14 +89,14 @@ const translations = {
                     company: 'Constructor.tech',
                     location: 'Belgrade',
                     period: '10/2024 - Present',
-                    description: 'Product portfolio: Groups (video conferencing), Research (VS Code-based web IDE + Kubernetes app hosting), University Chatbots (Campus Assistant & Career Advisor) and the company-wide AI/ML Engine. Drove continuous development of the in-house video-conferencing tool and managed integration of an acquired competitor solution to enrich the feature set for education use-cases.'
+                    description: 'Product portfolio: Groups (video conferencing), Research (VS Code-based web IDE + Kubernetes app hosting), University Chatbots (Campus Assistant & Career Advisor) and the company-wide AI/ML Engine. Drove continuous development of the in-house video-conferencing tool and managed integration of an acquired competitor solution to enrich the feature set for educational use cases.'
                 },
                 {
                     title: 'Technical Project Manager',
                     company: 'Yandex Cloud',
                     location: 'Moscow-Belgrade',
                     period: '8/2022 - 9/2024',
-                    description: 'Managed development team and processes for Yandex\'s data visualization product, Datalens. Coordinated cross-functional teams to ensure timely delivery of features and improvements. Performed Product Manager tasks, including feature design, mockup preparation, and active collaboration with team leads for planning and tracking development stages.'
+                    description: 'Managed development team and processes for Yandex\'s data visualization product, Datalens. Coordinated cross-functional teams to ensure timely delivery of features and improvements. Performed product manager tasks, including feature design, mockup preparation, and active collaboration with team leads for planning and tracking development stages.'
                 },
                 {
                     title: 'Product Manager',
@@ -110,14 +110,14 @@ const translations = {
                     company: 'Russian Post',
                     location: 'Moscow',
                     period: '6/2020 - 4/2021',
-                    description: 'Managed multi-disciplinary internal distributed team, that was developing an international service for preparing and validating product information from Russian Post clients for sending it overseas. Hired a full development team and led development of high-load backend for client data validation.'
+                    description: 'Managed a multi-disciplinary internal distributed team that was developing an international service for preparing and validating product information from Russian Post clients for sending it overseas. Hired a full development team and led development of a high-load backend for client data validation.'
                 },
                 {
                     title: 'Product Owner',
                     company: 'Anywayanyday',
                     location: 'Moscow',
                     period: '2/2019 - 6/2020',
-                    description: 'Optimized product development by refining mobile development management, contractor selection, and UI/UX prototyping processes. Created analytics system to organize and act on findings from audience studies, product usage patterns, and competitive analyses. Refactored mobile app into Swift and latest Android framework.'
+                    description: 'Optimized product development by refining mobile development management, contractor selection, and UI/UX prototyping processes. Created analytics system to organize and act on findings from audience studies, product usage patterns, and competitive analyses. Refactored the mobile app using Swift and the latest Android framework.'
                 },
                 {
                     title: 'Senior Analyst | Product Manager',
@@ -268,14 +268,14 @@ const translations = {
                     company: 'Constructor.tech',
                     location: 'Белград',
                     period: '10/2024 - настоящее время',
-                    description: 'Управление портфелем продуктов: Groups (видеоконференции), Research (веб-IDE на основе VS Code + хостинг приложений Kubernetes), University Chatbots (Campus Assistant & Career Advisor) и общая AI/ML платформа компании. Вёл непрерывную разработку внутреннего инструмента видеоконференций и управлял интеграцией приобретённого конкурентного решения для расширения функций для образовательных случаев.'
+                    description: 'Управление портфелем продуктов: Groups (видеоконференции), Research (веб-IDE на основе VS Code + хостинг приложений Kubernetes), University Chatbots (Campus Assistant & Career Advisor) и общая AI/ML платформа компании. Вёл непрерывную разработку внутреннего инструмента видеоконференций и управлял интеграцией приобретённого конкурентного решения для расширения функций для образовательных задач.'
                 },
                 {
                     title: 'Технический менеджер проекта',
                     company: 'Яндекс.Облако',
                     location: 'Москва-Белград',
                     period: '8/2022 - 9/2024',
-                    description: 'Управлял командой разработки и процессами для продукта визуализации данных Яндекса, Datalens. Координировал кросс-функциональные команды для обеспечения своевременной поставки функций и улучшений. Выполнял задачи Product Manager, включая дизайн функций, подготовку макетов и активное сотрудничество с тимлидами для планирования и отслеживания этапов разработки.'
+                    description: 'Управлял командой разработки и процессами для продукта визуализации данных Яндекса, Datalens. Координировал кросс-функциональные команды для обеспечения своевременной поставки функций и улучшений. Выполнял задачи продукт-менеджера, включая дизайн функций, подготовку макетов и активное сотрудничество с тимлидами для планирования и отслеживания этапов разработки.'
                 },
                 {
                     title: 'Менеджер продукта',
@@ -313,12 +313,12 @@ const translations = {
                     description: 'Управлял многопрофильной внутренней командой и фрилансерами для создания приложений социальных сетей и веб-порталов. Руководил бета-тестированием, улучшениями UX/UI и релизом приложений. Анализировал обратную связь и конкурентный ландшафт для правильного позиционирования продукта.'
                 },
                 {
-                    title: 'Program Manager | QA Engineer',
-                    company: 'Parallels',
-                    location: 'Москва',
-                    period: '8/2012 - 12/2015',
-                    description: 'Повышен с QA Engineer до Program Manager в 2014 году за создание планов тестирования и хорошее выполнение QA обязанностей. Руководил релизами обновлений продукта, курировал документацию функций и включал результаты внутриприложной аналитики, отзывов пользователей и оценок бизнес-потребностей.'
-                }
+                    "title": "Program Manager / QA Engineer",
+                    "company": "Parallels",
+                    "location": "Москва",
+                    "period": "08/2012 – 12/2015",
+                    "description": "Повышен с QA Engineer до Program Manager в 2014 году за разработку комплексных тест-планов и высокие показатели качества. Руководил релизами обновлений Parallels, координировал межфункциональные команды, вел документацию функций и внедрял выводы продуктовой аналитики, пользовательских отзывов и бизнес-метрик в дорожную карту."
+                  }
             ]
         },
         education: {
@@ -447,14 +447,14 @@ const translations = {
                     company: 'Constructor.tech',
                     location: 'Београд',
                     period: '10/2024 - сада',
-                    description: 'Управљање портфељом производа: Groups (видео конференције), Research (веб-IDE на основу VS Code + Kubernetes хостинг апликација), University Chatbots (Campus Assistant & Career Advisor) и компанијска AI/ML платформа. Водио континуиран развој интерног алата за видео конференције и управљао интеграцијом купљеног конкурентног решења за проширење функција за образовне случајеве.'
+                    description: 'Управљање портфељом производа: Groups (видео конференције), Research (веб-IDE на основу VS Code + Kubernetes хостинг апликација), University Chatbots (Campus Assistant & Career Advisor) и компанијска AI/ML платформа. Водио континуиран развој интерног алата за видео конференције и управљао интеграцијом купљеног конкурентног решења за проширење функција за образовне сценарије.'
                 },
                 {
                     title: 'Технички менаџер пројекта',
                     company: 'Yandex Cloud',
                     location: 'Москва-Београд',
                     period: '8/2022 - 9/2024',
-                    description: 'Управљао тимом за развој и процесима за Yandex производ за визуализацију података, Datalens. Координисао кросс-функционалне тимове за обезбеђивање благовремене испоруке функција и побољшања. Обављао задатке Product Manager-а, укључујући дизајн функција, припрему макета и активну сарадњу са тим лидерима за планирање и праћење фаза развоја.'
+                    description: 'Управљао тимом за развој и процесима за Yandex производ за визуализацију података, Datalens. Координисао кросс-функционалне тимове за обезбеђивање благовремене испоруке функција и побољшања. Обављао задатке продукт-менаџера, укључујући дизајн функција, припрему макета и активну сарадњу са тим лидерима за планирање и праћење фаза развоја.'
                 },
                 {
                     title: 'Менаџер производа',
