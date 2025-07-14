@@ -27,7 +27,6 @@ class EnhancedRSSFeed {
         this.displayPagination = displayPagination.bind(this);
         
         // Initialize
-        this.initializeUI();
         this.initializeEventListeners();
         this.startAutoUpdate();
     }
@@ -168,24 +167,24 @@ class EnhancedRSSFeed {
         if (controlsContainer) {
             controlsContainer.innerHTML = `
                 <div class="search-container">
-                    <input type="text" id="search-input" data-lang="rss.search_placeholder" placeholder="Search news...">
+                    <input type="text" id="search-input" placeholder="Поиск по новостям...">
                     <button id="search-button"><i class="fas fa-search"></i></button>
                 </div>
                 <div class="filter-container">
-                    <label for="date-filter">Filter by date:</label>
+                    <label for="date-filter">Фильтр по дате:</label>
                     <select id="date-filter">
-                        <option value="all" data-lang="rss.filters.all">All</option>
-                        <option value="today" data-lang="rss.filters.today">Today</option>
-                        <option value="week" data-lang="rss.filters.week">This week</option>
-                        <option value="month" data-lang="rss.filters.month">This month</option>
+                        <option value="all">Все</option>
+                        <option value="today">Сегодня</option>
+                        <option value="week">За неделю</option>
+                        <option value="month">За месяц</option>
                     </select>
                 </div>
                 <div class="view-controls">
                     <button id="show-favorites" class="view-button">
-                        <i class="fas fa-heart"></i> Favorites
+                        <i class="fas fa-heart"></i> Избранное
                     </button>
                     <button id="auto-update-toggle" class="view-button active">
-                        <i class="fas fa-sync"></i> Auto-update
+                        <i class="fas fa-sync"></i> Авто-обновление
                     </button>
                 </div>
             `;
@@ -263,18 +262,50 @@ class EnhancedRSSFeed {
         if (this.autoUpdateInterval) {
             this.stopAutoUpdate();
             button.classList.remove('active');
-            button.innerHTML = '<i class="fas fa-sync"></i> Auto-update: OFF';
+            button.innerHTML = '<i class="fas fa-sync"></i> Авто-обновление: ВЫКЛ';
         } else {
             this.startAutoUpdate();
             button.classList.add('active');
-            button.innerHTML = '<i class="fas fa-sync"></i> Auto-update: ON';
+            button.innerHTML = '<i class="fas fa-sync"></i> Авто-обновление: ВКЛ';
+        }
+    }
+
+    // Set date filter
+    setDateFilter(filter) {
+        this.dateFilter = filter;
+        this.currentPage = 1;
+        this.applyFilters();
+        this.totalItems = this.filteredItems.length;
+        const paginatedItems = this.paginateItems(this.filteredItems);
+        this.displayItems(paginatedItems);
+    }
+
+    // Set show favorites only
+    setShowFavoritesOnly(showOnly) {
+        if (showOnly) {
+            this.showFavorites();
+        } else {
+            this.currentPage = 1;
+            this.applyFilters();
+            this.totalItems = this.filteredItems.length;
+            const paginatedItems = this.paginateItems(this.filteredItems);
+            this.displayItems(paginatedItems);
+        }
+    }
+
+    // Set auto update
+    setAutoUpdate(enabled) {
+        if (enabled) {
+            this.startAutoUpdate();
+        } else {
+            this.stopAutoUpdate();
         }
     }
 
     // Show favorites
     showFavorites() {
         if (this.favorites.length === 0) {
-            this.container.innerHTML = '<p>No favorites yet. Add some articles to your favorites!</p>';
+            this.container.innerHTML = '<p>Пока нет избранных статей. Добавьте новости в избранное!</p>';
             return;
         }
 
@@ -289,7 +320,7 @@ class EnhancedRSSFeed {
                             </a>
                         </h2>
                         <div class="news-meta">
-                            <span class="favorite-date">Added: ${new Date(fav.timestamp).toLocaleDateString()}</span>
+                            <span class="favorite-date">Добавлено: ${new Date(fav.timestamp).toLocaleDateString()}</span>
                             <button class="remove-favorite" onclick="rssFeed.toggleFavorite('${fav.link}', '${fav.title}')">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -299,26 +330,26 @@ class EnhancedRSSFeed {
             `;
         });
         html += '</ul>';
-        html += '<button onclick="rssFeed.fetchRSSFeed()" class="back-to-all">Back to all news</button>';
+        html += '<button onclick="rssFeed.fetchRSSFeed()" class="back-to-all">Вернуться ко всем новостям</button>';
         
         this.container.innerHTML = html;
     }
 
     // Update localized content
-    updateLocalizedContent() {
-        const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-        // This would integrate with the existing localization system
-        // Implementation would depend on how localization is handled
-    }
-
     // Error handling
-    showError(errorKey) {
-        const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-        // Get localized error message
+    showError(message) {
+        const errorMessages = {
+            'error_loading': 'Не удалось загрузить ленту новостей',
+            'error_article': 'Новость не найдена',
+            'no_items': 'Нет доступных новостей'
+        };
+        
+        const errorText = errorMessages[message] || 'Произошла ошибка при загрузке';
+        
         this.container.innerHTML = `
             <div class="error">
                 <i class="fas fa-exclamation-circle"></i>
-                <p data-lang="rss.${errorKey}">Error loading content</p>
+                <p>${errorText}</p>
             </div>
         `;
     }

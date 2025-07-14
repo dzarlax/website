@@ -8,119 +8,71 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize the RSS feed
   window.rssFeed.fetchRSSFeed();
   
-  // Apply current localization
-  const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-  updateRSSLocalization(currentLang);
+  // Set up filter controls
+  setupFilterControls();
+  
+  // Set up favorites button
+  setupFavoritesButton();
+  
+  // Set up auto-update toggle
+  setupAutoUpdateToggle();
 });
 
-// Listen for language changes
-document.addEventListener('languageChanged', (event) => {
-  const newLang = event.detail.language;
-  updateRSSLocalization(newLang);
-});
-
-// Function to update RSS localization
-function updateRSSLocalization(lang) {
-  // Load translations
-  fetch('./web/localization.js')
-    .then(response => response.text())
-    .then(text => {
-      // Extract translations from the localization file
-      const translations = extractTranslations(text, lang);
-      
-      // Update UI elements
-      updateUITranslations(translations);
-    })
-    .catch(error => {
-      console.error('Error loading translations:', error);
+// Set up filter controls
+function setupFilterControls() {
+  const dateFilter = document.getElementById('date-filter');
+  if (dateFilter) {
+    dateFilter.addEventListener('change', function() {
+      window.rssFeed.setDateFilter(this.value);
     });
-}
-
-// Extract translations from localization file
-function extractTranslations(jsContent, lang) {
-  try {
-    // This is a simplified approach - in production, you'd want a more robust parser
-    const langStart = jsContent.indexOf(`${lang}: {`);
-    if (langStart === -1) return {};
-    
-    const langEnd = jsContent.indexOf('},', langStart);
-    const langContent = jsContent.substring(langStart, langEnd);
-    
-    // Extract RSS translations
-    const rssStart = langContent.indexOf('rss: {');
-    if (rssStart === -1) return {};
-    
-    const rssEnd = langContent.indexOf('}', rssStart);
-    const rssContent = langContent.substring(rssStart + 6, rssEnd);
-    
-    // Parse the RSS translations (simplified parsing)
-    const translations = {};
-    const lines = rssContent.split('\n');
-    
-    lines.forEach(line => {
-      const match = line.match(/(\w+):\s*['"]([^'"]+)['"]/);
-      if (match) {
-        translations[match[1]] = match[2];
-      }
-    });
-    
-    return translations;
-  } catch (error) {
-    console.error('Error parsing translations:', error);
-    return {};
   }
 }
 
-// Update UI translations
-function updateUITranslations(translations) {
-  // Update page title
-  if (translations.title) {
-    document.title = translations.title;
-    const headerTitle = document.querySelector('.site-header h1');
-    if (headerTitle) {
-      headerTitle.textContent = translations.title;
-    }
-  }
-  
-  // Update placeholder text
-  if (translations.search_placeholder) {
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-      searchInput.placeholder = translations.search_placeholder;
-    }
-  }
-  
-  // Update buttons
-  const backToHome = document.getElementById('back-to-home');
-  if (backToHome && translations.back_to_home) {
-    backToHome.innerHTML = `<i class="fas fa-home"></i> ${translations.back_to_home}`;
-  }
-  
-  // Update filter options
-  const filterSelect = document.getElementById('date-filter');
-  if (filterSelect && translations.filters) {
-    const options = filterSelect.querySelectorAll('option');
-    options.forEach(option => {
-      const key = option.value;
-      if (translations.filters && translations.filters[key]) {
-        option.textContent = translations.filters[key];
-      }
-    });
-  }
-  
-  // Update view buttons
+// Set up favorites button
+function setupFavoritesButton() {
   const favoritesBtn = document.getElementById('show-favorites');
   if (favoritesBtn) {
-    favoritesBtn.innerHTML = `<i class="fas fa-heart"></i> ${translations.favorites || 'Favorites'}`;
+    favoritesBtn.addEventListener('click', function() {
+      this.classList.toggle('active');
+      const showFavoritesOnly = this.classList.contains('active');
+      window.rssFeed.setShowFavoritesOnly(showFavoritesOnly);
+      
+      // Update button text
+      const icon = this.querySelector('i');
+      const textSpan = this.querySelector('span') || this.childNodes[this.childNodes.length - 1];
+      if (showFavoritesOnly) {
+        if (textSpan.nodeType === Node.TEXT_NODE) {
+          textSpan.textContent = ' Показать все';
+        }
+      } else {
+        if (textSpan.nodeType === Node.TEXT_NODE) {
+          textSpan.textContent = ' Избранное';
+        }
+      }
+    });
   }
-  
-  // Update all elements with data-lang attributes
-  document.querySelectorAll('[data-lang^="rss."]').forEach(element => {
-    const key = element.getAttribute('data-lang').replace('rss.', '');
-    if (translations[key]) {
-      element.textContent = translations[key];
-    }
-  });
+}
+
+// Set up auto-update toggle
+function setupAutoUpdateToggle() {
+  const autoUpdateBtn = document.getElementById('auto-update-toggle');
+  if (autoUpdateBtn) {
+    autoUpdateBtn.addEventListener('click', function() {
+      this.classList.toggle('active');
+      const isActive = this.classList.contains('active');
+      window.rssFeed.setAutoUpdate(isActive);
+      
+      // Update button appearance
+      const icon = this.querySelector('i');
+      if (isActive) {
+        icon.classList.remove('fa-sync');
+        icon.classList.add('fa-sync');
+      } else {
+        icon.classList.remove('fa-sync');
+        icon.classList.add('fa-pause');
+      }
+    });
+  }
 }
 
 // Service Worker registration for offline support

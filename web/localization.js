@@ -194,7 +194,6 @@ const translations = {
             email: 'Mail me',
             linkedin: 'Check my LinkedIn',
             github: 'My projects',
-            rss: 'My news feed',
             download_resume: 'Download Resume'
         },
         footer: {
@@ -206,25 +205,7 @@ const translations = {
             privacy: 'Privacy Policy',
             terms: 'Terms of Use'
         },
-        rss: {
-            title: 'Dzarlax News',
-            loading: 'Loading feed...',
-            search_placeholder: 'Search news...',
-            no_items: 'No news available',
-            read_more: 'Read more',
-            back_to_home: 'Home',
-            back_to_feed: 'Back to feed',
-            share: 'Share',
-            page_info: 'Page {current} of {total} ({count} articles)',
-            error_loading: 'Failed to load feed',
-            error_article: 'Article not found',
-            filters: {
-                all: 'All',
-                today: 'Today',
-                week: 'This week',
-                month: 'This month'
-            }
-        }
+
     },
     ru: {
         menu: {
@@ -392,7 +373,6 @@ const translations = {
             email: 'Напишите мне',
             linkedin: 'Посмотрите мой LinkedIn',
             github: 'Мои проекты',
-            rss: 'Новостной фид',
             download_resume: 'Скачать резюме'
         },
         footer: {
@@ -404,25 +384,7 @@ const translations = {
             privacy: 'Политика конфиденциальности',
             terms: 'Условия использования'
         },
-        rss: {
-            title: 'Новости Dzarlax',
-            loading: 'Загрузка ленты...',
-            search_placeholder: 'Поиск по новостям...',
-            no_items: 'Нет доступных новостей',
-            read_more: 'Читать полностью',
-            back_to_home: 'Главная',
-            back_to_feed: 'Назад к ленте',
-            share: 'Поделиться',
-            page_info: 'Страница {current} из {total} ({count} новостей)',
-            error_loading: 'Не удалось загрузить ленту',
-            error_article: 'Новость не найдена',
-            filters: {
-                all: 'Все',
-                today: 'Сегодня',
-                week: 'За неделю',
-                month: 'За месяц'
-            }
-        }
+
     },
     rs: {
         menu: {
@@ -590,7 +552,6 @@ const translations = {
             email: 'Пошаљите ми имејл',
             linkedin: 'Погледајте мој LinkedIn',
             github: 'Моји пројекти',
-            rss: 'Мој новостни фид',
             download_resume: 'Преузми CV'
         },
         footer: {
@@ -602,25 +563,7 @@ const translations = {
             privacy: 'Политика приватности',
             terms: 'Услови коришћења'
         },
-        rss: {
-            title: 'Dzarlax Вести',
-            loading: 'Учитавање...',
-            search_placeholder: 'Претражи вести...',
-            no_items: 'Нема доступних вести',
-            read_more: 'Прочитај више',
-            back_to_home: 'Почетна',
-            back_to_feed: 'Назад на ленту',
-            share: 'Подели',
-            page_info: 'Страница {current} од {total} ({count} вести)',
-            error_loading: 'Неуспешно учитавање ленте',
-            error_article: 'Вест није пронађена',
-            filters: {
-                all: 'Све',
-                today: 'Данас',
-                week: 'Ове недеље',
-                month: 'Овог месеца'
-            }
-        }
+
     }
 };
 
@@ -813,9 +756,10 @@ function updateContent(lang) {
 
     // Update experience section (title handled by updateLocalizedContent)
     const experienceList = document.querySelector('#experience ul');
-    experienceList.innerHTML = '';
-    
-    data.experience.items.forEach((item, index) => {
+    if (experienceList && data.experience) {
+        experienceList.innerHTML = '';
+        
+        data.experience.items.forEach((item, index) => {
         const li = document.createElement('li');
         li.style.setProperty('--i', index + 1);
         
@@ -844,6 +788,7 @@ function updateContent(lang) {
         
         experienceList.appendChild(li);
     });
+    }
 
     // Update education section
     const educationList = document.querySelector('#education-list');
@@ -891,7 +836,7 @@ function updateContent(lang) {
     // document.getElementById('emailButton').textContent = data.contacts.email;
     // document.getElementById('linkedinButton').textContent = data.contacts.linkedin;
     // document.getElementById('githubButton').textContent = data.contacts.github;
-    // document.getElementById('rssButton').textContent = data.contacts.rss;
+    
 
     // Update language buttons state
     document.querySelectorAll('.lang-btn').forEach(button => {

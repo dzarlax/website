@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang="rss.title">Dzarlax News Feed</title>
+    <title>Новости Dzarlax</title>
     <link rel="stylesheet" href="feed.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script type="module" src="./web/localization.js"></script>
 
 </head>
 <body>
     <header class="site-header">
         <div class="header-container">
-            <h1 data-lang="rss.title">Dzarlax News</h1>
+            <h1>Новости Dzarlax</h1>
             <div class="header-actions">
-                <div class="language-selector">
-                    <button id="lang-en" class="lang-btn" onclick="changeLanguage('en')">EN</button>
-                    <button id="lang-ru" class="lang-btn" onclick="changeLanguage('ru')">RU</button>
-                    <button id="lang-rs" class="lang-btn" onclick="changeLanguage('rs')">RS</button>
-                </div>
                 <button id="back-to-home" onclick="goToHomePage()">
-                    <i class="fas fa-home"></i> <span data-lang="rss.back_to_home">Главная</span>
+                    <i class="fas fa-home"></i> <span>Главная</span>
                 </button>
             </div>
         </div>
@@ -29,31 +23,31 @@
     <main>
         <div class="feed-controls">
             <div class="search-container">
-                <input type="text" id="search-input" data-lang="rss.search_placeholder" placeholder="Search news...">
+                <input type="text" id="search-input" placeholder="Поиск по новостям...">
                 <button id="search-button"><i class="fas fa-search"></i></button>
             </div>
             <div class="filter-container">
-                <label for="date-filter">Filter by date:</label>
+                <label for="date-filter">Фильтр по дате:</label>
                 <select id="date-filter">
-                    <option value="all" data-lang="rss.filters.all">All</option>
-                    <option value="today" data-lang="rss.filters.today">Today</option>
-                    <option value="week" data-lang="rss.filters.week">This week</option>
-                    <option value="month" data-lang="rss.filters.month">This month</option>
+                    <option value="all">Все</option>
+                    <option value="today">Сегодня</option>
+                    <option value="week">За неделю</option>
+                    <option value="month">За месяц</option>
                 </select>
             </div>
             <div class="view-controls">
                 <button id="show-favorites" class="view-button">
-                    <i class="fas fa-heart"></i> Favorites
+                    <i class="fas fa-heart"></i> Избранное
                 </button>
                 <button id="auto-update-toggle" class="view-button active">
-                    <i class="fas fa-sync"></i> Auto-update
+                    <i class="fas fa-sync"></i> Авто-обновление
                 </button>
             </div>
         </div>
         
         <div id="rss-feed" class="loading">
             <div class="loader"></div>
-            <p data-lang="rss.loading">Loading feed...</p>
+            <p>Загрузка ленты...</p>
         </div>
     </main>
 
@@ -66,33 +60,6 @@
         function goToHomePage() {
             window.location.href = './index.html';
         }
-        
-        // Function to change language
-        function changeLanguage(lang) {
-            localStorage.setItem('preferredLanguage', lang);
-            
-            // Update active language button
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.getElementById(`lang-${lang}`).classList.add('active');
-            
-            // Trigger language change event
-            document.dispatchEvent(new CustomEvent('languageChanged', { 
-                detail: { language: lang } 
-            }));
-            
-            // Update RSS localization if function exists
-            if (window.updateRSSLocalization) {
-                window.updateRSSLocalization(lang);
-            }
-        }
-        
-        // Initialize language on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-            changeLanguage(currentLang);
-        });
         
         // Legacy search functionality (now handled by enhanced RSS)
         document.getElementById('search-button').addEventListener('click', function() {
