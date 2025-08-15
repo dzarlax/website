@@ -1,12 +1,12 @@
 function sendEmail() {
     const subject = "Contact from dzarlax.dev";
     const body = "Hello Alexey,\n\nI found your website and would like to get in touch.\n\nBest regards,";
-    window.location.href = `mailto:i@dzarlax.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:me@dzarlax.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function openLinkedIn() {
     window.open(
-        "https://www.linkedin.com/in/alexey-panfilov-7b7a99105/",
+        "https://www.linkedin.com/in/dzarlax/",
         "_blank",
         "noopener,noreferrer"
     );
