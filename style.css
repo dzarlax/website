@@ -299,11 +299,6 @@ nav {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.nav-link.active,
-.nav-link.active:hover {
-    background-color: var(--accent-color);
-    color: var(--header-text-color);
-}
 
 /* Mobile menu toggle */
 .menu-toggle {
@@ -324,6 +319,12 @@ nav {
 
 .menu-toggle:hover {
     background: rgba(45, 52, 54, 0.5);
+}
+
+.nav-link.active,
+.nav-link.active:hover {
+    background-color: var(--accent-color);
+    color: var(--header-text-color);
 }
 
 /* Language switcher and theme toggle */
