@@ -5,15 +5,23 @@ function sendEmail() {
 }
 
 function openLinkedIn() {
-    window.open("https://www.linkedin.com/in/alexey-panfilov-7b7a99105/", "_blank");
+    window.open(
+        "https://www.linkedin.com/in/alexey-panfilov-7b7a99105/",
+        "_blank",
+        "noopener,noreferrer"
+    );
 }
 
 function openGithub() {
-    window.open("https://github.com/dzarlax", "_blank");
+    window.open(
+        "https://github.com/dzarlax",
+        "_blank",
+        "noopener,noreferrer"
+    );
 }
 
 function openRSS() {
-    window.open("feed.html", "_blank");
+    window.open("feed.html", "_blank", "noopener");
 }
 
 function downloadResume() {
