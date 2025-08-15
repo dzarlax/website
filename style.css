@@ -321,6 +321,7 @@ nav {
     background: rgba(45, 52, 54, 0.5);
 }
 
+
 .nav-link.active,
 .nav-link.active:hover {
     background-color: var(--accent-color);
@@ -2097,3 +2098,4 @@ footer::before {
         grid-template-columns: 1fr !important;
     }
 }
+
