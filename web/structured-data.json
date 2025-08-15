@@ -1,0 +1,38 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alexey Panfilov",
+    "url": "https://dzarlax.dev",
+    "image": "https://s3.dzarlax.dev/sharing/photo_2023-01-19_13-56-01/photo_2023-01-19_13-56-01.jpg",
+    "jobTitle": "Senior Product Manager",
+    "worksFor": {
+        "@type": "Organization",
+        "name": "Constructor.tech"
+    },
+    "alumniOf": [
+        {
+            "@type": "Organization",
+            "name": "Yandex Cloud"
+        },
+        {
+            "@type": "Organization",
+            "name": "Yandex.Market"
+        }
+    ],
+    "knowsAbout": [
+        "Product Management",
+        "UI/UX Design",
+        "Project Management",
+        "Mobile Development",
+        "Data Analysis",
+        "Process Optimization"
+    ],
+    "sameAs": [
+        "https://github.com/dzarlax",
+        "https://linkedin.com/in/alexey-panfilov"
+    ],
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://dzarlax.dev"
+    }
+}
