@@ -257,7 +257,7 @@ nav {
     border-radius: 25px;
     font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: background-color var(--transition-normal), color var(--transition-normal), transform var(--transition-normal);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     text-align: center;
@@ -297,6 +297,12 @@ nav {
     background-color: rgba(255, 255, 255, 0.25);
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-link.active,
+.nav-link.active:hover {
+    background-color: var(--accent-color);
+    color: var(--header-text-color);
 }
 
 /* Language switcher and theme toggle */
