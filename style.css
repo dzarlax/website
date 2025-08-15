@@ -257,7 +257,7 @@ nav {
     border-radius: 25px;
     font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: background-color var(--transition-normal), color var(--transition-normal), transform var(--transition-normal);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     text-align: center;
@@ -321,6 +321,7 @@ nav {
     background: rgba(45, 52, 54, 0.5);
 }
 
+=======
 .nav-link.active,
 .nav-link.active:hover {
     background-color: var(--accent-color);
