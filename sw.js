@@ -14,7 +14,6 @@ const STATIC_FILES = [
     '/web/contacts.js',
     '/web/animation.js',
     '/web/optimization.js',
-    '/web/jspdf.min.js',
     '/projects.json',
     '/manifest.json'
 ];

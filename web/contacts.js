@@ -16,44 +16,38 @@ function openRSS() {
     window.open("feed.html", "_blank");
 }
 
-function downloadResume() {
+async function downloadResume() {
     console.log('Starting PDF generation...');
-    
+
+    let jsPDF;
+    try {
+        ({ jsPDF } = await import('./jspdf.min.js'));
+        console.log('jsPDF library loaded');
+    } catch (error) {
+        console.error('jsPDF library not loaded', error);
+        alert('PDF library not loaded. Please refresh the page.');
+        return;
+    }
+
     // Get current language
     const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-    
+
     // Get translations - ALWAYS use English for PDF to avoid encoding issues
     const translations = window.translations || {};
     const data = translations['en'] || {}; // Force English to avoid UTF-8 issues
-    
+
     if (!data) {
         console.error('No translation data available');
         alert('Translation data not available. Please refresh the page.');
         return;
     }
-    
-    // Check if jsPDF is loaded
-    if (!window.jspdf) {
-        console.error('jsPDF library not loaded');
-        alert('PDF library not loaded. Please refresh the page.');
-        return;
-    }
-    
+
     console.log('jsPDF library available and translation data loaded');
-    
+
     try {
-        // Create new PDF instance (local jsPDF library)
-        const { jsPDF } = window.jspdf;
-        
-        if (!jsPDF) {
-            console.error('jsPDF constructor not available');
-            alert('PDF constructor not available');
-            return;
-        }
-        
         console.log('Creating PDF instance...');
         const doc = new jsPDF();
-        
+
         // Set font to support better text rendering
         doc.setFont('helvetica');
         
