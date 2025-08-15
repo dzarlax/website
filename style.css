@@ -321,7 +321,7 @@ nav {
     background: rgba(45, 52, 54, 0.5);
 }
 
-=======
+
 .nav-link.active,
 .nav-link.active:hover {
     background-color: var(--accent-color);
@@ -2068,3 +2068,34 @@ footer::before {
 .scroll-top.show {
     display: flex;
 }
+
+/* Print styles */
+@media print {
+    /* Ensure high contrast text and background */
+    body {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    /* Remove navigation and non-essential elements */
+    nav, footer, .profile-badge, .contact-buttons, .contact-btn, .project-link {
+        display: none !important;
+    }
+
+    /* Simplify layout and remove visual effects */
+    * {
+        box-shadow: none !important;
+        animation: none !important;
+        transition: none !important;
+    }
+
+    a {
+        color: #000 !important;
+        text-decoration: underline;
+    }
+
+    #projects-container {
+        grid-template-columns: 1fr !important;
+    }
+}
+
