@@ -166,6 +166,29 @@ function setupScrollSpy() {
     });
 }
 
+// Toggle mobile navigation menu
+function setupMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    const navLinks = document.querySelectorAll('nav a');
+
+    if (!menuToggle || !nav) return;
+
+    menuToggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+}
+
 // Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
     // Setup all animations
@@ -176,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupAnimatedBackground();
     setupSmoothScrolling();
     setupScrollSpy();
+    setupMobileMenu();
     
     // Add nav-link active class for current section
     const navLinks = document.querySelectorAll('nav a');
