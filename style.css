@@ -299,6 +299,12 @@ nav {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+.nav-link.active,
+.nav-link.active:hover {
+    background-color: var(--accent-color);
+    color: var(--header-text-color);
+}
+
 /* Mobile menu toggle */
 .menu-toggle {
     display: none;
