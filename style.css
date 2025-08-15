@@ -1993,3 +1993,31 @@ footer::before {
         font-size: 13px;
     }
 }
+
+/* Scroll to top button */
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent-color);
+    color: #fff;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--card-shadow);
+    z-index: 1000;
+    transition: background var(--transition-normal);
+}
+
+.scroll-top:hover {
+    background: var(--accent-color-dark);
+}
+
+.scroll-top.show {
+    display: flex;
+}

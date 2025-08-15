@@ -139,6 +139,24 @@ function setupSmoothScrolling() {
     });
 }
 
+// Scroll-to-top button
+function setupScrollTopButton() {
+    const btn = document.getElementById('scroll-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
 // Highlight active navigation link based on scroll position
 function setupScrollSpy() {
     const sections = document.querySelectorAll('section');
@@ -175,6 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCounters();
     setupAnimatedBackground();
     setupSmoothScrolling();
+    setupScrollTopButton();
     setupScrollSpy();
     
     // Add nav-link active class for current section
