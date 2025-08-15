@@ -139,6 +139,24 @@ function setupSmoothScrolling() {
     });
 }
 
+// Scroll-to-top button
+function setupScrollTopButton() {
+    const btn = document.getElementById('scroll-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
 // Highlight active navigation link based on scroll position
 function setupScrollSpy() {
     const sections = document.querySelectorAll('section');
@@ -166,6 +184,29 @@ function setupScrollSpy() {
     });
 }
 
+// Toggle mobile navigation menu
+function setupMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    const navLinks = document.querySelectorAll('nav a');
+
+    if (!menuToggle || !nav) return;
+
+    menuToggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+}
+
 // Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
     // Setup all animations
@@ -175,7 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCounters();
     setupAnimatedBackground();
     setupSmoothScrolling();
+    setupScrollTopButton();
     setupScrollSpy();
+    setupMobileMenu();
     
     // Add nav-link active class for current section
     const navLinks = document.querySelectorAll('nav a');
