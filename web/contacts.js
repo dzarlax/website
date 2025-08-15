@@ -29,7 +29,8 @@ async function downloadResume() {
 
     let jsPDF;
     try {
-        ({ jsPDF } = await import('./jspdf.min.js'));
+        await import('./jspdf.min.js');
+        ({ jsPDF } = window.jspdf);
         console.log('jsPDF library loaded');
     } catch (error) {
         console.error('jsPDF library not loaded', error);
