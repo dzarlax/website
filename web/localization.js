@@ -40,6 +40,9 @@ const translations = {
         },
         projects_title: 'Projects',
         view_project: 'View Project',
+        news_title: 'Latest News',
+        view_all_news: 'View All News',
+        read_more: 'Read More',
         intro: {
             title: 'Product Manager',
             description: 'Data-driven product leader with 8+ years guiding mobile & web innovation. Fusing deep analytics with UX intuition and AI-powered development to ship intuitive, high-impact features. Thrive in fast-evolving environments, turning customer insights and OKRs into clear roadmaps and measurable outcomes. Adept storyteller for execs, engineers, and clients alike. Native Russian, fluent English; conversational Serbian.'
@@ -219,9 +222,12 @@ const translations = {
         },
         projects_title: 'Проекты',
         view_project: 'Посмотреть проект',
+        news_title: 'Последние новости',
+        view_all_news: 'Все новости',
+        read_more: 'Читать далее',
         intro: {
-            title: 'Продукт-менеджер',
-            description: 'Продуктовый лидер, управляемый данными, с 8+ летним опытом руководства мобильными и веб-инновациями. Сочетаю глубокую аналитику с UX-интуицией и AI-разработкой для создания интуитивных, высокоэффективных функций. Процветаю в быстро развивающихся средах, превращая пользовательские инсайты и OKR в четкие дорожные карты и измеримые результаты. Умелый рассказчик для руководителей, инженеров и клиентов. Родной русский, свободный английский; разговорный сербский.'
+            title: 'Продакт-менеджер',
+            description: 'Продакт-менеджер с 8+ летним опытом в мобильных и веб-продуктах. Принимаю решения на основе данных, сочетая глубокую аналитику, понимание UX и AI-инструменты для создания удобных и эффективных функций. Работаю в быстро меняющейся среде: превращаю данные исследований и OKR в понятные roadmap и измеримые результаты. Умею объяснять сложное простыми словами — руководителям, разработчикам и клиентам. Русский родной, английский свободно, сербский — базовый уровень.'
         },
         skills: {
             title: 'Технические навыки',
@@ -318,7 +324,7 @@ const translations = {
                     "location": "Москва",
                     "period": "08/2012 – 12/2015",
                     "description": "Повышен с QA Engineer до Program Manager в 2014 году за разработку комплексных тест-планов и высокие показатели качества. Руководил релизами обновлений Parallels, координировал межфункциональные команды, вел документацию функций и внедрял выводы продуктовой аналитики, пользовательских отзывов и бизнес-метрик в дорожную карту."
-                  }
+                }
             ]
         },
         education: {
@@ -398,6 +404,9 @@ const translations = {
         },
         projects_title: 'Пројекти',
         view_project: 'Погледај пројекат',
+        news_title: 'Најновије вести',
+        view_all_news: 'Све вести',
+        read_more: 'Прочитај више',
         intro: {
             title: 'Продукт менаџер',
             description: 'Лидер производа вођен подацима са 8+ година искуства у руковођењу мобилним и веб иновацијама. Спајам дубоку аналитику са UX интуицијом и AI-развојем за испоруку интуитивних, високоефикасних функција. Процветам у брзо-развијајућим срединама, претварајући корисничке увиде и OKR-ове у јасне путне карте и мерљиве резултате. Вешт приповедач за руководиоце, инжењере и клијенте. Матерњи руски, течан енглески; конверзацијски српски.'
@@ -582,14 +591,14 @@ function updateLocalizedContent() {
             const parts = key.split('.');
             const section = parts[0];
             const subKey = parts[1];
-            
+
             if (data[section] && data[section][subKey] !== undefined) {
                 translationValue = data[section][subKey];
             }
         } else {
             translationValue = data[key];
         }
-        
+
         if (translationValue !== undefined) {
             if (typeof translationValue === 'string') {
                 element.textContent = translationValue;
@@ -625,7 +634,7 @@ function updateLocalizedContent() {
         if (skillsTitle) skillsTitle.textContent = data.skills.title;
         // Skills items are handled by setupSkills
     }
-    
+
     if (data.experience) {
         const experienceTitle = document.querySelector('#experience h2');
         if (experienceTitle) experienceTitle.textContent = data.experience.title;
@@ -636,7 +645,7 @@ function updateLocalizedContent() {
         const projectsTitleEl = document.querySelector('#projects h2[data-lang="projects_title"]');
         if (projectsTitleEl) projectsTitleEl.textContent = data.projects_title;
     }
-    
+
     if (data.contacts) {
         const contactTitle = document.querySelector('#contact h2');
         if (contactTitle) contactTitle.textContent = data.contacts.contact;
@@ -648,10 +657,10 @@ function updateLocalizedContent() {
 function showPopover(text, event) {
     const popover = document.getElementById('popover');
     if (!popover) return;
-    
+
     popover.textContent = text;
     popover.style.display = 'block';
-    
+
     // Position the popover
     const rect = event.target.getBoundingClientRect();
     popover.style.left = `${event.clientX}px`;
@@ -676,25 +685,25 @@ document.addEventListener('click', (e) => {
 function setupSkills(lang) {
     const data = translations[lang];
     const skillsContainer = document.querySelector('#skills div');
-    
+
     // Check if skills container exists (not present on all pages)
     if (!skillsContainer) {
         return;
     }
-    
+
     skillsContainer.innerHTML = '';
-    
+
     data.skills.items.forEach((item, index) => {
         const skillTag = document.createElement('div');
         skillTag.classList.add('skill-tag');
         skillTag.style.setProperty('--i', index + 1);
-        
+
         // Add icon
         const iconClass = skillIcons[item.title] || 'fas fa-award';
         const icon = document.createElement('i');
         icon.className = iconClass + ' skill-icon';
         skillTag.appendChild(icon);
-        
+
         // Add title
         const title = document.createElement('span');
         title.textContent = item.title;
@@ -702,7 +711,7 @@ function setupSkills(lang) {
 
         if (window.innerWidth <= 768) {
             // Mobile: Expandable content
-            skillTag.addEventListener('click', function() {
+            skillTag.addEventListener('click', function () {
                 const existing = this.nextElementSibling;
                 if (existing?.classList.contains('collapsible-content')) {
                     existing.remove();
@@ -711,7 +720,7 @@ function setupSkills(lang) {
                     // Remove any other open descriptions
                     document.querySelectorAll('.collapsible-content').forEach(el => el.remove());
                     document.querySelectorAll('.skill-tag').forEach(tag => tag.classList.remove('active'));
-                    
+
                     const content = document.createElement('div');
                     content.classList.add('collapsible-content');
                     content.textContent = item.description;
@@ -741,7 +750,7 @@ function updateContent(lang) {
     //         item.textContent = data.menu[key];
     //     }
     // });
-    
+
     // Call the new comprehensive update function
     updateLocalizedContent(); // This will handle all data-lang elements
 
@@ -755,75 +764,63 @@ function updateContent(lang) {
     setupSkills(lang); // This rebuilds skills which might be necessary
 
     // Update experience section (title handled by updateLocalizedContent)
-    const experienceList = document.querySelector('#experience ul');
+    const experienceList = document.querySelector('#experience-list');
+
     if (experienceList && data.experience) {
         experienceList.innerHTML = '';
-        
+
         data.experience.items.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.style.setProperty('--i', index + 1);
-        
-        // Create structured experience item from object
-        const dateElem = document.createElement('span');
-        dateElem.classList.add('experience-date');
-        dateElem.textContent = item.period;
-        li.appendChild(dateElem);
-        
-        const titleElem = document.createElement('div');
-        titleElem.classList.add('experience-title');
-        titleElem.textContent = item.title;
-        li.appendChild(titleElem);
-        
-        const companyElem = document.createElement('div');
-        companyElem.classList.add('experience-company');
-        companyElem.textContent = `${item.company}${item.location ? ', ' + item.location : ''}`;
-        li.appendChild(companyElem);
-        
-        if (item.description) {
-            const descriptionElem = document.createElement('div');
-            descriptionElem.classList.add('experience-description');
-            descriptionElem.textContent = item.description;
-            li.appendChild(descriptionElem);
-        }
-        
-        experienceList.appendChild(li);
-    });
+            const li = document.createElement('li');
+            li.style.setProperty('--i', index + 1);
+
+            // Create structured experience item with card wrapper
+            li.innerHTML = `
+                <div class="experience-card">
+                    <span class="experience-date">${item.period}</span>
+                    <h3 class="experience-title">${item.title}</h3>
+                    <div class="experience-company">${item.company} | ${item.location}</div>
+                    <p class="experience-description">${item.description}</p>
+                </div>
+            `;
+
+            experienceList.appendChild(li);
+        });
     }
 
     // Update education section
     const educationList = document.querySelector('#education-list');
     if (educationList && data.education) {
         educationList.innerHTML = '';
-        
+
         data.education.items.forEach((item, index) => {
             const div = document.createElement('div');
             div.classList.add('education-item');
             div.style.setProperty('--i', index + 1);
-            
+
             const typeIcon = {
                 'degree': 'fas fa-graduation-cap',
                 'certification': 'fas fa-certificate',
                 'course': 'fas fa-book'
             };
-            
+
             const iconElem = document.createElement('div');
             iconElem.classList.add('education-icon');
             iconElem.innerHTML = `<i class="${typeIcon[item.type] || 'fas fa-book'}"></i>`;
             div.appendChild(iconElem);
-            
+
             const contentElem = document.createElement('div');
             contentElem.classList.add('education-content');
-            
+
             const degreeElem = document.createElement('div');
             degreeElem.classList.add('education-degree');
             degreeElem.textContent = item.degree;
             contentElem.appendChild(degreeElem);
-            
+
             const institutionElem = document.createElement('div');
             institutionElem.classList.add('education-institution');
             institutionElem.textContent = `${item.institution}${item.location ? ', ' + item.location : ''}`;
             contentElem.appendChild(institutionElem);
-            
+
             div.appendChild(contentElem);
             educationList.appendChild(div);
         });
@@ -836,7 +833,7 @@ function updateContent(lang) {
     // document.getElementById('emailButton').textContent = data.contacts.email;
     // document.getElementById('linkedinButton').textContent = data.contacts.linkedin;
     // document.getElementById('githubButton').textContent = data.contacts.github;
-    
+
 
     // Update language buttons state
     document.querySelectorAll('.lang-btn').forEach(button => {
@@ -849,7 +846,7 @@ function updateContent(lang) {
 
     // Save language preference
     localStorage.setItem('preferredLanguage', lang);
-    
+
     // Trigger reveal animations
     setTimeout(() => {
         document.querySelectorAll('.reveal').forEach(el => {
@@ -880,7 +877,7 @@ window.addEventListener('resize', () => {
     resizeTimeout = setTimeout(() => {
         const currentLang = localStorage.getItem('preferredLanguage') || 'en';
         setupSkills(currentLang);
-        
+
         // Re-trigger typing animation on resize if needed
         const introTitle = document.querySelector('#intro h2');
         if (introTitle && window.translations) {
@@ -901,10 +898,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('preferredLanguage');
     const browserLang = (navigator.language || navigator.userLanguage).split('-')[0];
     const defaultLang = savedLang || (translations[browserLang] ? browserLang : 'en');
-    
+
     // Initial content update
     updateContent(defaultLang); // This will also call updateLocalizedContent
-    
+
     // Hide popover on scroll
     window.addEventListener('scroll', hidePopover);
 
@@ -917,13 +914,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // Simple typing animation function
 function startTypingAnimation(element, text) {
     if (!element || !text) return;
-    
+
     // Clear any existing timeouts or animations
     if (element.typingTimeout) {
         clearTimeout(element.typingTimeout);
         element.typingTimeout = null;
     }
-    
+
     // Always disable animation on mobile or when screen is narrow
     if (window.innerWidth <= 768) {
         element.textContent = text;
@@ -934,18 +931,18 @@ function startTypingAnimation(element, text) {
         element.style.removeProperty('border-right');
         return;
     }
-    
+
     // Clean up any existing animations
     element.classList.remove('typing-effect');
     element.style.removeProperty('width');
     element.textContent = '';
-    
+
     // For desktop, use simple typewriter effect
     element.classList.add('typing-effect');
-    
+
     let index = 0;
     const typingSpeed = 80; // milliseconds per character
-    
+
     const typeChar = () => {
         if (index < text.length) {
             element.textContent = text.substring(0, index + 1);
@@ -954,7 +951,7 @@ function startTypingAnimation(element, text) {
         }
         // Cursor blinking is handled by CSS
     };
-    
+
     // Start typing after a small delay
     element.typingTimeout = setTimeout(typeChar, 300);
 }
