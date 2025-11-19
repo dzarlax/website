@@ -1,59 +1,62 @@
 function sendEmail() {
     const subject = "Contact from dzarlax.dev";
     const body = "Hello Alexey,\n\nI found your website and would like to get in touch.\n\nBest regards,";
-    window.location.href = `mailto:i@dzarlax.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:me@dzarlax.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function openLinkedIn() {
-    window.open("https://www.linkedin.com/in/alexey-panfilov-7b7a99105/", "_blank");
+    window.open(
+        "https://www.linkedin.com/in/dzarlax/",
+        "_blank",
+        "noopener,noreferrer"
+    );
 }
 
 function openGithub() {
-    window.open("https://github.com/dzarlax", "_blank");
+    window.open(
+        "https://github.com/dzarlax",
+        "_blank",
+        "noopener,noreferrer"
+    );
 }
 
 function openRSS() {
-    window.open("feed.html", "_blank");
+    window.open("feed.html", "_blank", "noopener");
 }
 
-function downloadResume() {
+async function downloadResume() {
     console.log('Starting PDF generation...');
-    
+
+    let jsPDF;
+    try {
+        await import('./jspdf.min.js');
+        ({ jsPDF } = window.jspdf);
+        console.log('jsPDF library loaded');
+    } catch (error) {
+        console.error('jsPDF library not loaded', error);
+        alert('PDF library not loaded. Please refresh the page.');
+        return;
+    }
+
     // Get current language
     const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-    
+
     // Get translations - ALWAYS use English for PDF to avoid encoding issues
     const translations = window.translations || {};
     const data = translations['en'] || {}; // Force English to avoid UTF-8 issues
-    
+
     if (!data) {
         console.error('No translation data available');
         alert('Translation data not available. Please refresh the page.');
         return;
     }
-    
-    // Check if jsPDF is loaded
-    if (!window.jspdf) {
-        console.error('jsPDF library not loaded');
-        alert('PDF library not loaded. Please refresh the page.');
-        return;
-    }
-    
+
     console.log('jsPDF library available and translation data loaded');
-    
+
     try {
-        // Create new PDF instance (local jsPDF library)
-        const { jsPDF } = window.jspdf;
-        
-        if (!jsPDF) {
-            console.error('jsPDF constructor not available');
-            alert('PDF constructor not available');
-            return;
-        }
-        
         console.log('Creating PDF instance...');
         const doc = new jsPDF();
-        
+
         // Set font to support better text rendering
         doc.setFont('helvetica');
         
