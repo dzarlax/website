@@ -141,8 +141,8 @@ class PerformanceMonitor {
                 });
             }
 
-            // Log for development
-            if (process?.env?.NODE_ENV === 'development') {
+            // Log for development (localhost only)
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
                 console.log(`Performance: ${name} = ${value}ms`);
             }
         }
