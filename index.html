@@ -7,9 +7,9 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="Alexey Panfilov - Data-driven Product Manager & Tech Enthusiast with 8+ years experience in technology innovation, UI/UX prototyping, and agile project management.">
+        content="Dzarlax (Alexey Panfilov) - Data-driven Product Manager & Tech Enthusiast with 8+ years experience in technology innovation, UI/UX prototyping, and agile project management.">
     <meta name="keywords"
-        content="product manager, tech enthusiast, UI/UX, project management, agile, mobile development, data analysis, process optimization">
+        content="Dzarlax, Alexey Panfilov, product manager, tech enthusiast, UI/UX, project management, agile, mobile development, data analysis, process optimization">
     <meta name="author" content="Alexey Panfilov">
     <meta name="robots" content="index, follow">
     <meta name="language" content="en,ru,rs">
@@ -20,22 +20,22 @@
         content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://s3.dzarlax.dev https://via.placeholder.com data:; connect-src 'self' https://s3.dzarlax.dev;">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Alexey Panfilov - Product Manager & Tech Enthusiast">
+    <meta property="og:title" content="Dzarlax - Alexey Panfilov | Product Manager & Tech Enthusiast">
     <meta property="og:description"
-        content="Data-driven product and project manager with 8+ years experience driving technology innovation. Expert in UI/UX prototyping, agile methodologies, and mobile development.">
+        content="Dzarlax (Alexey Panfilov) - Data-driven product and project manager with 8+ years experience driving technology innovation. Expert in UI/UX prototyping, agile methodologies, and mobile development.">
     <meta property="og:image" content="https://s3.dzarlax.dev/logo.png">
     <meta property="og:url" content="https://dzarlax.dev/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Alexey Panfilov Portfolio">
+    <meta property="og:site_name" content="Dzarlax - Alexey Panfilov Portfolio">
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="ru_RU">
     <meta property="og:locale:alternate" content="sr_RS">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Alexey Panfilov - Product Manager & Tech Enthusiast">
+    <meta name="twitter:title" content="Dzarlax - Alexey Panfilov | Product Manager & Tech Enthusiast">
     <meta name="twitter:description"
-        content="Data-driven product and project manager with 8+ years experience driving technology innovation.">
+        content="Dzarlax (Alexey Panfilov) - Data-driven product and project manager with 8+ years experience driving technology innovation.">
     <meta name="twitter:image" content="https://s3.dzarlax.dev/logo.png">
 
     <!-- Additional SEO -->
@@ -50,7 +50,7 @@
     <meta name="apple-mobile-web-app-title" content="A. Panfilov">
     <link rel="apple-touch-icon" href="https://s3.dzarlax.dev/logo.png">
 
-    <title>Alexey Panfilov - Product Manager & Tech Enthusiast</title>
+    <title>Dzarlax - Alexey Panfilov | Product Manager & Tech Enthusiast</title>
 
     <!-- Performance optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,7 +62,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=20241119b&safari=1">
+    <link rel="stylesheet" href="style.css?v=20250115y&safari=1">
 
     <!-- Preload critical resources -->
     <link rel="preload" href="https://s3.dzarlax.dev/sharing/photo_2023-01-19_13-56-01/photo_2023-01-19_13-56-01.jpg"
@@ -81,6 +81,7 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Alexey Panfilov",
+        "additionalName": "Dzarlax",
         "url": "https://dzarlax.dev",
         "image": "https://s3.dzarlax.dev/sharing/photo_2023-01-19_13-56-01/photo_2023-01-19_13-56-01.jpg",
         "jobTitle": "Senior Product Manager",
@@ -94,7 +95,7 @@
                 "name": "Yandex Cloud"
             },
             {
-                "@type": "Organization", 
+                "@type": "Organization",
                 "name": "Yandex.Market"
             }
         ],
@@ -121,6 +122,10 @@
 <body>
     <!-- Skip navigation for accessibility -->
     <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Floating Navigation -->
     <header>
         <button class="hamburger" aria-label="Toggle menu">
@@ -158,9 +163,17 @@
 
     <main id="main-content">
         <section id="intro" class="reveal">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+
+            <!-- SEO H1 (visually hidden but accessible to search engines) -->
+            <h1 style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;">
+                Dzarlax - Alexey Panfilov, Product Manager and Tech Enthusiast
+            </h1>
+
             <div class="profile-container">
                 <img src="https://s3.dzarlax.dev/sharing/photo_2023-01-19_13-56-01/photo_2023-01-19_13-56-01.jpg"
-                    alt="Professional headshot of Alexey Panfilov, Product Manager and Tech Enthusiast"
+                    alt="Professional headshot of Alexey Panfilov (Dzarlax), Product Manager and Tech Enthusiast"
                     class="profile-image">
                 <div class="profile-badge floating">
                     <i class="fas fa-briefcase"></i>
@@ -251,10 +264,23 @@
                 <p data-lang="footer.copyright">© 2025 Alexey Panfilov</p>
                 <p data-lang="footer.rights">All rights reserved</p>
             </div>
-            <div class="footer-links">
-                <a href="#intro" data-lang="footer.home">Home</a>
-                <a href="#projects" data-lang="footer.projects">Projects</a>
+            <div class="footer-social">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="https://github.com/dzarlax" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/dzarlax" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:me@dzarlax.dev" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
             </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Made with ❤️ and lots of ☕</p>
         </div>
     </footer>
 
@@ -266,7 +292,7 @@
     <div id="popover" class="hidden"></div>
 
     <!-- Scripts -->
-    <script src="web/jspdf.min.js"></script>
+    <!-- jspdf.min.js loaded dynamically only when needed -->
     <script src="web/features.js"></script>
     <script src="web/theme.js"></script>
     <script src="web/localization.js"></script>

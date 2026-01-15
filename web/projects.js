@@ -76,8 +76,30 @@ function createProjectCard(project) {
     return card;
 }
 
+function createSkeletonCard() {
+    const card = document.createElement('div');
+    card.className = 'project-card skeleton';
+
+    card.innerHTML = `
+        <div class="skeleton-title"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-tags"></div>
+        <div class="skeleton-link"></div>
+    `;
+
+    return card;
+}
+
+function showSkeletons(container, count = 3) {
+    container.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+        const skeleton = createSkeletonCard();
+        container.appendChild(skeleton);
+    }
+}
+
 async function displayProjects() {
-    const projectsData = await fetchProjects();
     const container = document.getElementById('projects-container');
 
     if (!container) {
@@ -85,7 +107,12 @@ async function displayProjects() {
         return;
     }
 
-    // Clear existing content
+    // Show skeletons while loading
+    showSkeletons(container, 3);
+
+    const projectsData = await fetchProjects();
+
+    // Clear skeletons
     container.innerHTML = '';
 
     if (projectsData && projectsData.length > 0) {

@@ -1,0 +1,12 @@
+{
+  "contact": {
+    "email": "me@dzarlax.dev",
+    "linkedin": "https://www.linkedin.com/in/dzarlax/",
+    "github": "https://github.com/dzarlax",
+    "location": "Belgrade, Serbia"
+  },
+  "rss": {
+    "enabled": true,
+    "url": "/feed.html"
+  }
+}

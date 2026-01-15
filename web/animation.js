@@ -48,31 +48,10 @@ function setupParallax() {
     });
 }
 
-// Tilt effect for skill cards
+// Tilt effect for skill cards - DISABLED (causes jumping on mobile)
 function setupTiltEffect() {
-    const skillTags = document.querySelectorAll('.skill-tag');
-
-    skillTags.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            if (window.innerWidth <= 768) return; // Disable on mobile
-
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const tiltX = (y - centerY) / 10;
-            const tiltY = (centerX - x) / 10;
-
-            card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-5px)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-        });
-    });
+    // Disabled to prevent jumping issues on mobile and desktop
+    return;
 }
 
 // Animated counter for experience years
@@ -235,6 +214,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuOverlay.classList.remove('active');
             });
         });
+
+        // Swipe-to-close functionality for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const minSwipeDistance = 50;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeDistance = touchEndX - touchStartX;
+
+            // Swipe left to close menu
+            if (swipeDistance < -minSwipeDistance) {
+                if (hamburger.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                }
+            }
+        }
     }
 
     // Add nav-link active class for current section
@@ -259,5 +265,14 @@ document.addEventListener('DOMContentLoaded', () => {
     contactButtons.forEach((btn, index) => {
         btn.style.setProperty('--i', index + 1);
     });
-});
 
+    // Scroll Progress Indicator
+    const scrollProgress = document.getElementById('scrollProgress');
+    if (scrollProgress) {
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+    }
+});

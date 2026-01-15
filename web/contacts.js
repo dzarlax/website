@@ -1,12 +1,45 @@
+// Site configuration
+let siteConfig = {
+    contact: {
+        email: "me@dzarlax.dev",
+        linkedin: "https://www.linkedin.com/in/dzarlax/",
+        github: "https://github.com/dzarlax",
+        location: "Belgrade, Serbia"
+    }
+};
+
+// Load site configuration
+async function loadSiteConfig() {
+    try {
+        const response = await fetch('./config/site.json');
+        if (response.ok) {
+            siteConfig = await response.json();
+        }
+    } catch (error) {
+        console.warn('Failed to load site config, using defaults');
+    }
+}
+
+// Helper function to dynamically load scripts
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
+
 function sendEmail() {
     const subject = "Contact from dzarlax.dev";
     const body = "Hello Alexey,\n\nI found your website and would like to get in touch.\n\nBest regards,";
-    window.location.href = `mailto:me@dzarlax.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function openLinkedIn() {
     window.open(
-        "https://www.linkedin.com/in/dzarlax/",
+        siteConfig.contact.linkedin,
         "_blank",
         "noopener,noreferrer"
     );
@@ -14,7 +47,7 @@ function openLinkedIn() {
 
 function openGithub() {
     window.open(
-        "https://github.com/dzarlax",
+        siteConfig.contact.github,
         "_blank",
         "noopener,noreferrer"
     );
@@ -27,16 +60,19 @@ function openRSS() {
 async function downloadResume() {
     console.log('Starting PDF generation...');
 
-    let jsPDF;
-    try {
-        await import('./jspdf.min.js');
-        ({ jsPDF } = window.jspdf);
-        console.log('jsPDF library loaded');
-    } catch (error) {
-        console.error('jsPDF library not loaded', error);
-        alert('PDF library not loaded. Please refresh the page.');
-        return;
+    // Load jspdf.min.js dynamically only when needed
+    if (!window.jspdf) {
+        try {
+            await loadScript('./web/jspdf.min.js');
+            console.log('jsPDF library loaded');
+        } catch (error) {
+            console.error('jsPDF library not loaded', error);
+            alert('PDF library not loaded. Please refresh the page.');
+            return;
+        }
     }
+
+    const { jsPDF } = window.jspdf;
 
     // Get current language
     const currentLang = localStorage.getItem('preferredLanguage') || 'en';
@@ -72,8 +108,8 @@ async function downloadResume() {
         // Contact info in a more professional layout
         doc.setFontSize(10);
         doc.setTextColor(80, 80, 80);
-        doc.text('Location: Belgrade, Serbia', 20, 45);
-        doc.text('Email: me@dzarlax.dev', 20, 50);
+        doc.text(`Location: ${siteConfig.contact.location}`, 20, 45);
+        doc.text(`Email: ${siteConfig.contact.email}`, 20, 50);
         doc.text('LinkedIn: linkedin.com/in/dzarlax', 20, 55);
         
         // Add horizontal line after header
@@ -289,5 +325,6 @@ async function downloadResume() {
     }
 }
 
-
+// Initialize site configuration on load
+loadSiteConfig();
 
