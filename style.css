@@ -843,6 +843,8 @@ section:hover h2::after {
     gap: 12px;
     z-index: 1;
     opacity: 1;
+    min-height: 48px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Ripple effect */
@@ -857,6 +859,7 @@ section:hover h2::after {
     background: rgba(255, 255, 255, 0.3);
     transform: translate(-50%, -50%);
     transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
 }
 
 .skill-tag:active::before {
@@ -1984,6 +1987,7 @@ h1 {
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.4s ease;
+    pointer-events: none;
 }
 
 .skill-tag:hover::after {
@@ -2603,6 +2607,7 @@ footer::after {
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
+    pointer-events: none;
 }
 
 .skill-tag:hover::after {
