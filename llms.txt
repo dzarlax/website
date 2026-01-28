@@ -1,0 +1,22 @@
+# Alexey Panfilov (Dzarlax) - Product Manager Portfolio
+
+> Data-driven product leader with 8+ years guiding mobile & web innovation. Fusing deep analytics with UX intuition and AI-powered development to ship intuitive, high-impact features. Thrive in fast-evolving environments, turning customer insights and OKRs into clear roadmaps and measurable outcomes.
+
+This portfolio website showcases professional experience, technical skills, and achievements in product management, UI/UX design, and technology innovation. Currently serving as Senior Product Manager at Constructor.tech, with previous experience at Yandex Cloud and Yandex.Market.
+
+## Professional Profile
+
+- [Professional Experience](https://dzarlax.dev/experience.md): Detailed work history including roles at Constructor.tech, Yandex Cloud, Yandex.Market, and other technology companies
+- [Technical Skills](https://dzarlax.dev/skills.md): Comprehensive list of technical proficiencies including Product Management, UI/UX, AI & Development, and Data Analysis
+- [Education & Certifications](https://dzarlax.dev/education.md): Academic background and professional certifications
+
+## Contact & Social
+
+- [LinkedIn Profile](https://linkedin.com/in/alexey-panfilov): Professional network and connections
+- [GitHub Profile](https://github.com/dzarlax): Open source projects and code repositories
+- Email: Available through contact form on website
+
+## Optional
+
+- [Projects](https://dzarlax.dev/projects.md): Portfolio of completed projects and initiatives
+- [Achievements](https://dzarlax.dev/achievements.md): Key accomplishments and impact metrics

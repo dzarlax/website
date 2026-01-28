@@ -1,0 +1,48 @@
+User-agent: *
+Allow: /
+
+# AI Crawlers - Training and Indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Sitemaps
+Sitemap: https://dzarlax.dev/sitemap.xml
+
+# Block crawling of certain file types (keep existing rules)
+Disallow: /*.json$
+
+# Allow markdown files for AI crawlers
+Allow: /*.md$
+
+# Allow llms.txt
+Allow: /llms.txt
