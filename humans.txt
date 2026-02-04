@@ -1,0 +1,73 @@
+/* TEAM */
+  Founder: Alexey Panfilov (Dzarlax)
+  Role: Senior Product Manager & Tech Enthusiast
+  Contact: me@dzarlax.dev
+  Location: Belgrade, Serbia
+  From: Moscow, Russia
+
+  Social:
+    GitHub: https://github.com/dzarlax
+    LinkedIn: https://linkedin.com/in/alexey-panfilov
+    Twitter: https://twitter.com/dzarlax
+
+/* SITE */
+  Last update: 2025/02/04
+  Language: English (primary), Russian, Serbian
+  Stack: Vanilla JavaScript (no frameworks), HTML5, CSS3
+  Technologies:
+    - Multi-language localization
+    - Dark/Light theme system
+    - Feature toggle system
+    - Dynamic project loading from JSON
+    - Scroll animations with Intersection Observer
+    - Web Vitals monitoring
+
+  Components:
+    - Feature management system with runtime toggling
+    - Localization system (en/ru/rs)
+    - Theme system with system preference detection
+    - Contact form handlers
+    - Scroll animations
+    - Dynamic project portfolio
+    - Performance monitoring
+
+  External services:
+    - Hosting: GitHub Pages
+    - Fonts: Google Fonts (Inter)
+    - Icons: Font Awesome 6.4.0 (CDN)
+    - Analytics: Google Analytics 4, Web Vitals
+
+/* PROJECTS */
+  Portfolio projects include:
+    - Product Management tools
+    - UI/UX prototypes
+    - Mobile applications (iOS, Android)
+    - Data analysis dashboards
+    - Process optimization systems
+    - AI/ML integrations
+    - DevOps infrastructure
+    - IoT solutions
+
+  Specializations:
+    - Product Management (OKR, Scrum, Kanban, A/B Testing)
+    - UI/UX Design (Figma, Miro, User-centered design)
+    - Development (Python, Go, JavaScript, Swift, SwiftUI)
+    - Data Analysis (SQL, Tableau, Google Analytics)
+    - DevOps (Git, CI/CD, Docker, Kubernetes)
+    - AI Tooling (OpenAI API, Prompt Engineering, NLP)
+
+/* THANKS TO */
+  - Open source community
+  - Google Fonts
+  - Font Awesome
+  - GitHub
+
+/* NETWORK */
+  This site is indexed by:
+  - Google
+  - Bing
+  - DuckDuckGo
+  - Yandex
+
+  Sitemap: https://dzarlax.dev/sitemap.xml
+  Robots: https://dzarlax.dev/robots.txt

@@ -1,24 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <!-- Main pages -->
     <url>
         <loc>https://dzarlax.dev/</loc>
-        <lastmod>2025-01-15</lastmod>
+        <lastmod>2025-02-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://dzarlax.dev/?lang=en"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://dzarlax.dev/?lang=ru"/>
-        <xhtml:link rel="alternate" hreflang="rs" href="https://dzarlax.dev/?lang=rs"/>
+        <xhtml:link rel="alternate" hreflang="sr" href="https://dzarlax.dev/?lang=rs"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://dzarlax.dev/"/>
     </url>
+
+    <!-- Project anchors for better SEO -->
+    <url>
+        <loc>https://dzarlax.dev/#projects</loc>
+        <lastmod>2025-02-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- RSS Summarizer Project -->
+    <url>
+        <loc>https://dzarlax.dev/#rss-summarizer</loc>
+        <lastmod>2025-02-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Todoist Telegram Bot Project -->
+    <url>
+        <loc>https://dzarlax.dev/#todoist-telegram-bot</loc>
+        <lastmod>2025-02-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- JerkyVault Project -->
+    <url>
+        <loc>https://dzarlax.dev/#jerkyvault</loc>
+        <lastmod>2025-02-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Skills Section -->
+    <url>
+        <loc>https://dzarlax.dev/#skills</loc>
+        <lastmod>2025-02-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Experience Section -->
+    <url>
+        <loc>https://dzarlax.dev/#experience</loc>
+        <lastmod>2025-02-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Education Section -->
+    <url>
+        <loc>https://dzarlax.dev/#education</loc>
+        <lastmod>2025-02-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Achievements Section -->
+    <url>
+        <loc>https://dzarlax.dev/#achievements</loc>
+        <lastmod>2025-02-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Contact Section -->
+    <url>
+        <loc>https://dzarlax.dev/#contact</loc>
+        <lastmod>2025-02-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Secondary pages -->
     <url>
         <loc>https://dzarlax.dev/news.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <lastmod>2025-02-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
     <url>
         <loc>https://dzarlax.dev/feed.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <lastmod>2025-02-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
     </url>

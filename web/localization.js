@@ -43,13 +43,95 @@ const translations = {
         news_title: 'Latest News',
         view_all_news: 'View All News',
         read_more: 'Read More',
+        ai_philosophy_title: 'AI Philosophy',
+        ai_philosophy_pragmatic_title: 'Pragmatic AI',
+        ai_philosophy_pragmatic_desc: 'Focus on fine-tuned small language models over generic LLMs. Cost-effective, privacy-preserving solutions for business-critical tasks.',
+        ai_philosophy_privacy_title: 'Data Privacy First',
+        ai_philosophy_privacy_desc: 'On-premise deployments. No data leaves your infrastructure. GDPR-compliant by design. Essential for enterprise adoption.',
+        ai_philosophy_augmented_title: 'AI-Augmented Development',
+        ai_philosophy_augmented_desc: 'Leveraging Cursor, Claude Code, and LLM agents to bridge ideation and implementation. 10x faster prototyping while maintaining quality.',
+        menu_home: 'Back to Home',
+        ai_workflow_title: 'AI-Native Workflow',
+        ai_workflow_subtitle: 'Bridging the Gap Between Ideation and Implementation',
+        ai_workflow_tools: 'Powered by Cursor, Claude Code, LLM Agents',
+        ai_workflow_speed: '10x Faster Prototyping',
+        philosophy_title: 'My AI Philosophy',
+        philosophy_intro: "As a Product Manager who codes, I've developed a unique AI-augmented workflow that allows me to move from idea to working prototype in hours, not days. This isn't about replacing developers—it's about breaking down the friction between product thinking and technical implementation.",
+        principle_1_title: 'Think in Systems',
+        principle_1_desc: 'AI helps me think through architecture, dependencies, and edge cases before writing a single line of code.',
+        principle_2_title: 'Ship Fast, Iterate',
+        principle_2_desc: 'Rapid prototyping means I can validate ideas with real users and code, not just slides and specs.',
+        principle_3_title: 'Deep Developer Empathy',
+        principle_3_desc: 'Building things myself gives me first-hand understanding of technical constraints and developer pain points.',
+        tools_title: 'My Toolkit',
+        cursor_desc: 'My primary development environment. AI pair programming that understands context, suggests entire functions, and helps me write production-ready code faster.',
+        cursor_f1: 'Context-aware code suggestions',
+        cursor_f2: 'Natural language to SQL queries',
+        cursor_f3: 'Multi-file refactoring with AI',
+        cursor_f4: 'Bug detection and fixing assistance',
+        claude_desc: 'AI CLI tool for code analysis, architecture discussions, and deep codebase understanding. Essential for rapid prototyping and code review.',
+        claude_f1: 'Analyze entire codebases in seconds',
+        claude_f2: 'Discuss architecture trade-offs',
+        claude_f3: 'Generate boilerplate code instantly',
+        claude_f4: 'Explain complex logic simply',
+        agents_title: 'Custom LLM Agents',
+        agents_desc: "Purpose-built AI agents for specific tasks: code review, test generation, documentation, and data analysis workflows.",
+        agents_f1: 'Automated code review agents',
+        agents_f2: 'Test generation from specs',
+        agents_f3: 'Documentation writers',
+        agents_f4: 'Data analytics assistants',
+        process_title: 'My Process',
+        step_1_title: 'Ideation & Requirements',
+        step_1_desc: 'Use LLMs to think through requirements, edge cases, and user stories. Get instant feedback on product decisions from an AI perspective.',
+        step_2_title: 'Architecture Design',
+        step_2_desc: 'Discuss system architecture with AI. Evaluate trade-offs between different approaches. Generate database schemas and API designs in minutes.',
+        step_3_title: 'Rapid Prototyping',
+        step_3_desc: 'Use Cursor to generate boilerplate, implement features, and handle edge cases. Ship a working MVP in hours, not weeks.',
+        step_4_title: 'Validation & Iteration',
+        step_4_desc: 'Get real feedback from users. Use AI to analyze usage patterns, identify improvements, and iterate rapidly.',
+        benefits_title: 'Why This Works',
+        benefit_1_title: '10x Faster',
+        benefit_1_desc: 'From idea to working prototype in hours instead of days or weeks.',
+        benefit_2_title: 'Higher Quality',
+        benefit_2_desc: 'AI catches edge cases I miss, suggests better patterns, and acts as a senior code reviewer.',
+        benefit_3_title: 'Better Products',
+        benefit_3_desc: 'Hands-on experience means I understand technical constraints before promising features.',
+        benefit_4_title: 'Developer Empathy',
+        benefit_4_desc: 'I feel the pain of technical debt, poor specs, and changing requirements firsthand.',
+        cta_title: 'Interested in Collaboration?',
+        cta_desc: "I'm always looking for opportunities to leverage AI-augmented development to build innovative products.",
+        cta_button: 'Get in Touch',
+        footer_text: '© 2024 Alexey Panfilov. Built with AI-augmented development.',
         intro: {
-            title: 'Product Manager',
-            description: 'Data-driven product leader with 8+ years guiding mobile & web innovation. Fusing deep analytics with UX intuition and AI-powered development to ship intuitive, high-impact features. Thrive in fast-evolving environments, turning customer insights and OKRs into clear roadmaps and measurable outcomes. Adept storyteller for execs, engineers, and clients alike. Native Russian, fluent English; conversational Serbian.'
+            title: 'Head of Product',
+            description: "<strong>AI-Native Product Executive</strong> with 15 years building high-load systems and product portfolios from 0 to 1. Don't treat AI as magic - understand the difference between prompt engineering and agent-based systems, knowing when to use generic LLMs vs. fine-tuned small models for business-critical tasks. Don't limit myself to major LLM vendors - constantly testing and evaluating new models and approaches.<br><br>" +
+                "Leveraging <strong>Cursor, Claude Code, and LLM agents</strong> to bridge ideation and technical execution - enabling rapid MVP prototyping with deep developer empathy. Successfully delivered systems at <strong>Yandex & Russian Post</strong> serving millions of users. Thrive in fast-evolving R&D environments, turning customer insights and OKRs into clear roadmaps and measurable outcomes. Adept storyteller for execs, engineers, and clients alike.<br><br>" +
+                "<strong>Languages:</strong> Native Russian, fluent English, conversational Serbian."
         },
         skills: {
-            title: 'Technical Proficiencies',
+            title: 'Core Competencies',
             items: [
+                {
+                    title: 'AI-Augmented Product Leadership',
+                    description: 'AI-native workflows using Cursor, Claude Code, and LLM agents for rapid prototyping and deep developer empathy. Bridge gap between ideation and technical execution, enabling 10x faster MVP development while maintaining strategic oversight.'
+                },
+                {
+                    title: 'Portfolio & Strategy Management',
+                    description: 'Orchestrating strategy across multiple concurrent products while managing several cross-functional teams with limited resources. Prioritizing based on business impact and technical feasibility while maintaining roadmap clarity and stakeholder alignment.'
+                },
+                {
+                    title: 'Analytics-Driven Decision Making',
+                    description: 'Building comprehensive analytics infrastructure from scratch across organizations. Transforming data chaos into actionable insights. SQL-first approach with deep expertise in ClickHouse, PostgreSQL, and BI tools for executive-level reporting.'
+                },
+                {
+                    title: 'Enterprise-Grade AI Implementation',
+                    description: 'Pragmatic AI focusing on fine-tuned small language models over generic LLMs. Data privacy-first approach with on-premise solutions. Successfully deploying AI systems serving millions of users in regulated environments.'
+                }
+            ],
+            subsections: [
+                {
+                    title: 'Technical Proficiencies',
+                    items: [
                 {
                     title: 'Product Management',
                     description: 'OKR, Scrum, Kanban, A/B Testing, Customer Development, Product Roadmapping, comprehensive lifecycle management from ideation to launch.'
@@ -83,6 +165,8 @@ const translations = {
                     description: 'MQTT, Zigbee2MQTT, Home Assistant, system integration, connected devices, and automation platforms.'
                 }
             ]
+        }
+    ]
         },
         experience: {
             title: 'Professional Experience',
@@ -92,56 +176,56 @@ const translations = {
                     company: 'Constructor.tech',
                     location: 'Belgrade',
                     period: '10/2024 - Present',
-                    description: 'Product portfolio: Groups (video conferencing), Research (VS Code-based web IDE + Kubernetes app hosting), University Chatbots (Campus Assistant & Career Advisor) and the company-wide AI/ML Engine. Drove continuous development of the in-house video-conferencing tool and managed integration of an acquired competitor solution to enrich the feature set for educational use cases.'
+                    description: "<strong>Product Portfolio:</strong> Orchestrate strategy for multiple AI/ML products including ResearchPelt (computational platform for scientists), VS Code-based web IDE, University Chatbots, Groups with LLM integration, Model Engine, and Insights analytics platform.<br><br><strong>Team Leadership:</strong> Lead cross-functional teams while balancing resource allocation across high-stakes projects. Prioritize based on immediate business impact and technical feasibility.<br><br><strong>AI Advocacy:</strong> Serve as internal AI Advocate training product managers on AI agent development. Deliver enterprise-grade fine-tuned models for specialized business tasks."
                 },
                 {
                     title: 'Technical Project Manager',
                     company: 'Yandex Cloud',
                     location: 'Moscow-Belgrade',
                     period: '8/2022 - 9/2024',
-                    description: 'Managed development team and processes for Yandex\'s data visualization product, Datalens. Coordinated cross-functional teams to ensure timely delivery of features and improvements. Performed product manager tasks, including feature design, mockup preparation, and active collaboration with team leads for planning and tracking development stages.'
+                    description: "<strong>Product Management:</strong> Managed development team and processes for Yandex's data visualization product Datalens. Performed feature design, mockup preparation, and collaboration with team leads for planning and tracking development stages.<br><br><strong>Team Coordination:</strong> Coordinated cross-functional teams to ensure timely delivery of features and improvements in fast-paced environment."
                 },
                 {
                     title: 'Product Manager',
                     company: 'Yandex.Market',
                     location: 'Moscow',
                     period: '4/2021 - 8/2022',
-                    description: 'Developed and managed the product roadmap for courier platform, gathered and prioritized feature requests, led a team of 10 people, including frontend and backend developers. Successfully implemented all client innovations on time, introduced an analytics system, and automated several processes, reducing the workload on client staff.'
+                    description: "<strong>Product Strategy:</strong> Led product roadmap for hyper-growth courier platform. Contributed to development of automated courier assignment system implementing algorithmic routing.<br><br><strong>Analytics Infrastructure:</strong> Built comprehensive analytics infrastructure enabling data-driven operational decisions.<br><br><strong>Team Leadership:</strong> Led 10-person cross-functional team delivering 100% of client innovations on schedule."
                 },
                 {
                     title: 'Product Owner',
                     company: 'Russian Post',
                     location: 'Moscow',
                     period: '6/2020 - 4/2021',
-                    description: 'Managed a multi-disciplinary internal distributed team that was developing an international service for preparing and validating product information from Russian Post clients for sending it overseas. Hired a full development team and led development of a high-load backend for client data validation.'
+                    description: "<strong>Product Development:</strong> Built and led distributed team creating high-load validation engine processing data for international giants including iHerb and AliExpress.<br><br><strong>Compliance:</strong> Ensured 100% GDPR compliance and significantly reduced data entry errors through automated validation workflows.<br><br><strong>Team Building:</strong> Hired and managed full-stack development team from scratch."
                 },
                 {
                     title: 'Product Owner',
                     company: 'Anywayanyday',
                     location: 'Moscow',
                     period: '2/2019 - 6/2020',
-                    description: 'Optimized product development by refining mobile development management, contractor selection, and UI/UX prototyping processes. Created analytics system to organize and act on findings from audience studies, product usage patterns, and competitive analyses. Refactored the mobile app using Swift and the latest Android framework.'
+                    description: "<strong>Process Optimization:</strong> Refined mobile development management, contractor selection, and UI/UX prototyping processes.<br><br><strong>Analytics:</strong> Created analytics system to organize and act on findings from audience studies, product usage patterns, and competitive analyses.<br><br><strong>Technical:</strong> Refactored mobile app using Swift and latest Android framework."
                 },
                 {
                     title: 'Senior Analyst | Product Manager',
                     company: 'Biglion | Western Union | NAU | Phillip Morris International | Mango Telecom',
                     location: 'Moscow',
                     period: '7/2017 - 2/2019',
-                    description: 'Consulted on architecture and data format design for analytics projects. Prepared mobile app launches and website upgrades. Project managed technical development of apps in multiple industries and monitored performance.'
+                    description: "<strong>Consulting:</strong> Advised on architecture and data format design for analytics projects across multiple industries.<br><br><strong>Product Management:</strong> Prepared mobile app launches and website upgrades. Project managed technical development of apps and monitored performance."
                 },
                 {
                     title: 'Chief Executive Officer',
                     company: 'Social Technologies',
                     location: 'Moscow',
                     period: '7/2016 - 8/2017',
-                    description: 'Managed multi-disciplinary internal team and freelancers to create social media applications and web portals. Directed beta testing, UX/UI improvements and application release. Analysed feedback and competitive landscape to position product appropriately.'
+                    description: "<strong>Team Management:</strong> Managed multi-disciplinary internal team and freelancers to create social media applications and web portals.<br><br><strong>Product Direction:</strong> Directed beta testing, UX/UI improvements and application release. Analyzed feedback and competitive landscape to position product appropriately."
                 },
                 {
                     title: 'Program Manager | QA Engineer',
                     company: 'Parallels',
                     location: 'Moscow',
                     period: '8/2012 - 12/2015',
-                    description: 'Promoted from QA Engineer to Program Manager in 2014 for establishing testing plans and executing QA responsibilities well. Led product update releases, oversaw feature documentation, and incorporated findings from in-app analytics, user feedback, and business needs assessments.'
+                    description: "<strong>Career Growth:</strong> Promoted from QA Engineer to Program Manager in 2014 for establishing testing plans and executing QA responsibilities.<br><br><strong>Product Management:</strong> Led product update releases, oversaw feature documentation, and incorporated findings from in-app analytics, user feedback, and business needs assessments."
                 }
             ]
         },
@@ -225,44 +309,128 @@ const translations = {
         news_title: 'Последние новости',
         view_all_news: 'Все новости',
         read_more: 'Читать далее',
+        ai_philosophy_title: 'Философия AI',
+        ai_philosophy_pragmatic_title: 'Прагматичный AI',
+        ai_philosophy_pragmatic_desc: 'Фокус на дообученных небольших моделях вместо универсальных LLM. Эффективные по стоимости, приватные решения для бизнес-критичных задач.',
+        ai_philosophy_privacy_title: 'Приватность Данных — Приоритет',
+        ai_philosophy_privacy_desc: 'On-premise развертывания. Данные не покидают вашу инфраструктуру. GDPR-совместимость по дизайну. Критически важно для enterprise.',
+        ai_philosophy_augmented_title: 'AI-Augmented Разработка',
+        ai_philosophy_augmented_desc: 'Использование Cursor, Claude Code и LLM агентов для соединения идей и реализации. 10x более быстрое прототипирование при сохранении качества.',
+        menu_home: 'На главную',
+        ai_workflow_title: 'AI-Native Подход',
+        ai_workflow_subtitle: 'Соединение идей и технической реализации',
+        ai_workflow_tools: 'На базе Cursor, Claude Code, LLM агентов',
+        ai_workflow_speed: '10x быстрое прототипирование',
+        philosophy_title: 'Моя AI философия',
+        philosophy_intro: 'Как Product Manager, который кодит, я разработал уникальный AI-augmented подход, который позволяет мне двигаться от идеи к рабочему прототипу за часы, а не дни. Это не про замену разработчиков — это про устрение трения между продуктовым мышлением и технической реализацией.',
+        principle_1_title: 'Думать системно',
+        principle_1_desc: 'AI помогает мне продумать архитектуру, зависимости и edge cases до написания единой строчки кода.',
+        principle_2_title: 'Быстрый запуск, итерации',
+        principle_2_desc: 'Быстрое прототипирование означает, что я могу проверять идеи с реальными пользователями и кодом, а не слайдами и спецификациями.',
+        principle_3_title: 'Глубокая эмпатия к разработчикам',
+        principle_3_desc: 'Создание продуктов своими руками дает мне firsthand понимание технических ограничений и проблем разработчиков.',
+        tools_title: 'Мой инструментарий',
+        cursor_desc: 'Моя основная среда разработки. AI pair programming, который понимает контекст, предлагает целые функции и помогает мне писать production-ready код быстрее.',
+        cursor_f1: 'Контекстные предложения кода',
+        cursor_f2: 'Естественный язык в SQL запросы',
+        cursor_f3: 'Мультифайловый рефакторинг с AI',
+        cursor_f4: 'Обнаружение багов и помощь в исправлении',
+        claude_desc: 'AI CLI инструмент для анализа кода, обсуждения архитектуры и глубокого понимания кодовой базы. Необходим для быстрого прототипирования и code review.',
+        claude_f1: 'Анализ целых кодовых баз за секунды',
+        claude_f2: 'Обсуждение архитектурных trade-offs',
+        claude_f3: 'Мгновенная генерация boilerplate кода',
+        claude_f4: 'Простое объяснение сложной логики',
+        agents_title: 'Custom LLM агенты',
+        agents_desc: 'Специальные AI агенты для специфических задач: code review, генерация тестов, документация и data аналитические workflows.',
+        agents_f1: 'Автоматизированные агенты code review',
+        agents_f2: 'Генерация тестов из спецификаций',
+        agents_f3: 'Генераторы документации',
+        agents_f4: 'Ассистенты data аналитики',
+        process_title: 'Мой процесс',
+        step_1_title: 'Идеация и требования',
+        step_1_desc: 'Использую LLM для проработки требований, edge cases и user stories. Получаю мгновенную обратную связь по продуктовым решениям с AI точки зрения.',
+        step_2_title: 'Дизайн архитектуры',
+        step_2_desc: 'Обсуждаю системную архитектуру с AI. Оцениваю trade-offs между разными подходами. Генерирую database схемы и API дизайны за минуты.',
+        step_3_title: 'Быстрое прототипирование',
+        step_3_desc: 'Использую Cursor для генерации boilerplate, внедрения features и обработки edge cases. Запускаю рабочий MVP за часы, а не недели.',
+        step_4_title: 'Валидация и итерации',
+        step_4_desc: 'Получаю реальную обратную связь от пользователей. Использую AI для анализа паттернов использования, выявления улучшений и быстрых итераций.',
+        benefits_title: 'Почему это работает',
+        benefit_1_title: '10x быстрее',
+        benefit_1_desc: 'От идеи до рабочего прототипа за часы вместо дней или недель.',
+        benefit_2_title: 'Выше качество',
+        benefit_2_desc: 'AI ловит edge cases, которые я пропускаю, предлагает лучшие паттерны и выступает как сениор code reviewer.',
+        benefit_3_title: 'Лучше продукты',
+        benefit_3_desc: 'Руки-on опыт означает, что я понимаю технические ограничения до обещания features.',
+        benefit_4_title: 'Developer эмпатия',
+        benefit_4_desc: 'Я чувствую боль технического долга, плохих спецификаций и меняющихся требований firsthand.',
+        cta_title: 'Заинтересован в сотрудничестве?',
+        cta_desc: 'Я всегда ищу возможности использовать AI-augmented разработку для создания инновационных продуктов.',
+        cta_button: 'Свяжитесь',
+        footer_text: '© 2024 Алексей Панфилов. Создано с AI-augmented разработкой.',
         intro: {
-            title: 'Продакт-менеджер',
-            description: 'Продакт-менеджер с 8+ летним опытом в мобильных и веб-продуктах. Принимаю решения на основе данных, сочетая глубокую аналитику, понимание UX и AI-инструменты для создания удобных и эффективных функций. Работаю в быстро меняющейся среде: превращаю данные исследований и OKR в понятные roadmap и измеримые результаты. Умею объяснять сложное простыми словами — руководителям, разработчикам и клиентам. Русский родной, английский свободно, сербский — базовый уровень.'
+            title: 'Head of Product',
+            description: '<strong>AI-Native продуктовый лидер</strong> с 15-летним опытом создания нагруженных систем и управления продуктовыми портфелями с нуля. Не рассматриваю AI как магию - понимаю разницу между промптингом и агентскими системами, знаю когда использовать универсальные LLM, а когда дообучать небольшие модели для бизнес-задач. Не ограничиваюсь основными LLM вендорами - постоянно тестирую и оцениваю новые модели и подходы.<br><br>' +
+                'Использую <strong>Cursor, Claude Code и LLM агентов</strong> для соединения идей и технической реализации, быстрого прототипирования MVP и глубокого понимания разработчиков. Построил системы в <strong>Яндексе и Почте России</strong>, обслуживающие миллионы пользователей. Работаю в быстроменяющихся R&D окружениях, превращая customer insights и OKRs в четкие roadmaps и измеримые результаты. Умею говорить с execs, инженерами и клиентами на одном языке.<br><br>' +
+                '<strong>Языки:</strong> Русский родной, английский свободно, сербский - базовый уровень.'
         },
         skills: {
-            title: 'Технические навыки',
+            title: 'Ключевые компетенции',
             items: [
                 {
-                    title: 'Управление продуктом',
-                    description: 'OKR, Scrum, Kanban, A/B тестирование, Customer Development, дорожные карты продукта, полный жизненный цикл от идеи до запуска.'
+                    title: 'AI-Augmented Продуктовое Лидерство',
+                    description: 'AI-native рабочие процессы с использованием Cursor, Claude Code и LLM агентов для быстрого прототипирования и глубокого понимания разработчиков. Соединяю идеи и техническую реализацию, обеспечивая 10x более быструю разработку MVP при сохранении стратегического контроля.'
                 },
                 {
-                    title: 'UI/UX прототипирование',
-                    description: 'Figma, Miro, пользовательский дизайн, создание интуитивных интерфейсов, wireframing, карты пользовательских путей, тестирование юзабилити.'
+                    title: 'Управление Портфелем и Стратегией',
+                    description: 'Оркестрация стратегии для нескольких одновременных продуктов с ограниченными ресурсами. Приоритизация на основе бизнес-воздействия и технической выполнимости. Управление несколькими кросс-функциональными командами при сохранении прозрачности roadmap и alignment стейкхолдеров.'
                 },
                 {
-                    title: 'ИИ и разработка',
-                    description: 'AI-инструменты, Python, Go, JavaScript, Swift, SwiftUI, React, Next.js, Node.js, vibe-coding, OpenAI API, Prompt Engineering, NLP.'
+                    title: 'Аналитически-Обоснованные Решения',
+                    description: 'Построение комплексной аналитической инфраструктуры с нуля в разных организациях. Превращение хаоса данных в действенные инсайты. SQL-first подход с глубокой экспертизой в ClickHouse, PostgreSQL и BI инструментах для отчетности на уровне исполнительного директоров.'
                 },
                 {
-                    title: 'Гибкое управление проектами',
-                    description: 'JIRA, Confluence, Scrum, Kanban, планирование спринтов, координация кросс-функциональных команд, методологии непрерывного улучшения.'
-                },
+                    title: 'Enterprise-Grade Внедрение AI',
+                    description: 'Прагматичный AI с фокусом на fine-tuned небольшие модели вместо универсальных LLM. Подход data privacy-first с on-premise решениями. Успешное развертывание AI систем для миллионов пользователей в регламентированных средах.'
+                }
+            ],
+            subsections: [
                 {
-                    title: 'Мобильная разработка',
-                    description: 'Swift, SwiftUI, Xcode, iOS, Android, адаптивные мобильные приложения, кроссплатформенная разработка, оптимизация для App Store.'
-                },
-                {
-                    title: 'Анализ данных',
-                    description: 'SQL, MySQL, PostgreSQL, ClickHouse, Metabase, Tableau, Google Analytics, DataGrip, Grafana, решения на основе аналитики и метрик.'
-                },
-                {
-                    title: 'DevOps и инфраструктура',
-                    description: 'Git, GitHub Actions, CI/CD, Docker, Kubernetes, Traefik, Linux, macOS, Windows, управление облачной инфраструктурой.'
-                },
-                {
-                    title: 'IoT и системы',
-                    description: 'MQTT, Zigbee2MQTT, Home Assistant, интеграция систем, подключенные устройства, платформы автоматизации.'
+                    title: 'Технические навыки',
+                    items: [
+                        {
+                            title: 'Управление продуктом',
+                            description: 'OKR, Scrum, Kanban, A/B тестирование, Customer Development, дорожные карты продукта, полный жизненный цикл от идеи до запуска.'
+                        },
+                        {
+                            title: 'UI/UX прототипирование',
+                            description: 'Figma, Miro, пользовательский дизайн, создание интуитивных интерфейсов, wireframing, карты пользовательских путей, тестирование юзабилити.'
+                        },
+                        {
+                            title: 'ИИ и разработка',
+                            description: 'AI-инструменты, Python, Go, JavaScript, Swift, SwiftUI, React, Next.js, Node.js, vibe-coding, OpenAI API, Prompt Engineering, NLP.'
+                        },
+                        {
+                            title: 'Гибкое управление проектами',
+                            description: 'JIRA, Confluence, Scrum, Kanban, планирование спринтов, координация кросс-функциональных команд, методологии непрерывного улучшения.'
+                        },
+                        {
+                            title: 'Мобильная разработка',
+                            description: 'Swift, SwiftUI, Xcode, iOS, Android, адаптивные мобильные приложения, кроссплатформенная разработка, оптимизация для App Store.'
+                        },
+                        {
+                            title: 'Анализ данных',
+                            description: 'SQL, MySQL, PostgreSQL, ClickHouse, Metabase, Tableau, Google Analytics, DataGrip, Grafana, решения на основе аналитики и метрик.'
+                        },
+                        {
+                            title: 'DevOps и инфраструктура',
+                            description: 'Git, GitHub Actions, CI/CD, Docker, Kubernetes, Traefik, Linux, macOS, Windows, управление облачной инфраструктурой.'
+                        },
+                        {
+                            title: 'IoT и системы',
+                            description: 'MQTT, Zigbee2MQTT, Home Assistant, интеграция систем, подключенные устройства, платформы автоматизации.'
+                        }
+                    ]
                 }
             ]
         },
@@ -274,56 +442,56 @@ const translations = {
                     company: 'Constructor.tech',
                     location: 'Белград',
                     period: '10/2024 - настоящее время',
-                    description: 'Управление портфелем продуктов: Groups (видеоконференции), Research (веб-IDE на основе VS Code + хостинг приложений Kubernetes), University Chatbots (Campus Assistant & Career Advisor) и общая AI/ML платформа компании. Вёл непрерывную разработку внутреннего инструмента видеоконференций и управлял интеграцией приобретённого конкурентного решения для расширения функций для образовательных задач.'
+                    description: "<strong>Продуктовый портфель:</strong> Управляю стратегией множества AI/ML продуктов включая ResearchPelt (платформа для ученых), веб-IDE на базе VS Code, University Chatbots, Groups с интеграцией LLM, Model Engine и Insights.<br><br><strong>Лидерство:</strong> Руковожу кросс-функциональными командами, балансируя распределение ресурсов между высокоприоритетными проектами. Приоритизирую на основе бизнес-воздействия и технической выполнимости.<br><br><strong>AI Advocacy:</strong> Выступаю как внутренний AI Advocate, обучаю продакт-менеджеров разработке AI агентов. Доставляю enterprise-grade fine-tuned модели для бизнес-задач."
                 },
                 {
                     title: 'Технический менеджер проекта',
                     company: 'Яндекс.Облако',
                     location: 'Москва-Белград',
                     period: '8/2022 - 9/2024',
-                    description: 'Управлял командой разработки и процессами для продукта визуализации данных Яндекса, Datalens. Координировал кросс-функциональные команды для обеспечения своевременной поставки функций и улучшений. Выполнял задачи продукт-менеджера, включая дизайн функций, подготовку макетов и активное сотрудничество с тимлидами для планирования и отслеживания этапов разработки.'
+                    description: "<strong>Продукт-менеджмент:</strong> Управлял командой разработки и процессами для продукта визуализации данных Datalens. Выполнял дизайн функций, подготовку макетов и сотрудничество с тимлидами.<br><br><strong>Координация:</strong> Координировал кросс-функциональные команды для обеспечения своевременной поставки функций и улучшений в быстром окружении."
                 },
                 {
                     title: 'Менеджер продукта',
                     company: 'Яндекс.Маркет',
                     location: 'Москва',
                     period: '4/2021 - 8/2022',
-                    description: 'Разработал и управлял дорожной картой продукта для курьерской платформы, собирал и приоритизировал запросы функций, руководил командой из 10 человек, включая frontend и backend разработчиков. Успешно внедрил все клиентские инновации в срок, внедрил систему аналитики и автоматизировал несколько процессов, снизив нагрузку на клиентский персонал.'
+                    description: "<strong>Стратегия:</strong> Управлял roadmap для быстрорастущей курьерской платформы. Участвовал в развитии системы автоматического назначения курьеров с алгоритмической маршрутизацией.<br><br><strong>Аналитика:</strong> Построил комплексную аналитику для data-driven операционных решений.<br><br><strong>Лидерство:</strong> Руководил командой из 10 человек, обеспечив 100% своевременную доставку клиентских инноваций."
                 },
                 {
                     title: 'Product Owner',
                     company: 'Почта России',
                     location: 'Москва',
                     period: '6/2020 - 4/2021',
-                    description: 'Управлял многопрофильной внутренней распределённой командой, которая разрабатывала международный сервис для подготовки и валидации информации о продукции от клиентов Почты России для отправки за границу. Нанял полную команду разработки и руководил разработкой высоконагруженного бэкенда для валидации клиентских данных.'
+                    description: "<strong>Разработка:</strong> Построил и возглавил распределенную команду, создавшую high-load валидационный движок для обработки данных международных гигантов включая iHerb и AliExpress.<br><br><strong>Compliance:</strong> Обеспечил 100% GDPR compliance и существенно снизил ошибки ввода данных через автоматическую валидацию.<br><br><strong>Команда:</strong> Нанял и управлял full-stack командой разработки с нуля."
                 },
                 {
                     title: 'Product Owner',
                     company: 'Anywayanyday',
                     location: 'Москва',
                     period: '2/2019 - 6/2020',
-                    description: 'Оптимизировал разработку продукта, улучшив управление мобильной разработкой, выбор подрядчиков и процессы UI/UX прототипирования. Создал систему аналитики для организации и действий на основе результатов исследований аудитории, паттернов использования продукта и конкурентного анализа. Перевёл мобильное приложение на Swift и последний Android framework.'
+                    description: "<strong>Оптимизация:</strong> Улучшил управление мобильной разработкой, выбор подрядчиков и процессы UI/UX прототипирования.<br><br><strong>Аналитика:</strong> Создал систему аналитики для организации и действий на основе исследований аудитории и конкурентного анализа.<br><br><strong>Технологии:</strong> Перевёл мобильное приложение на Swift и последний Android framework."
                 },
                 {
                     title: 'Старший аналитик | Менеджер продукта',
                     company: 'Biglion | Western Union | NAU | Phillip Morris International | Mango Telecom',
                     location: 'Москва',
                     period: '7/2017 - 2/2019',
-                    description: 'Консультировал по архитектуре и дизайну форматов данных для аналитических проектов. Подготавливал запуски мобильных приложений и обновления веб-сайтов. Управлял техническим развитием приложений в различных отраслях и мониторил производительность.'
+                    description: "<strong>Консалтинг:</strong> Консультировал по архитектуре и дизайну форматов данных для аналитических проектов в различных отраслях.<br><br><strong>Продукт-менеджмент:</strong> Подготавливал запуски мобильных приложений и обновления веб-сайтов. Управлял техническим развитием приложений и мониторил производительность."
                 },
                 {
                     title: 'Генеральный директор',
                     company: 'Social Technologies',
                     location: 'Москва',
                     period: '7/2016 - 8/2017',
-                    description: 'Управлял многопрофильной внутренней командой и фрилансерами для создания приложений социальных сетей и веб-порталов. Руководил бета-тестированием, улучшениями UX/UI и релизом приложений. Анализировал обратную связь и конкурентный ландшафт для правильного позиционирования продукта.'
+                    description: "<strong>Управление командой:</strong> Управлял многопрофильной внутренней командой и фрилансерами для создания приложений социальных сетей и веб-порталов.<br><br><strong>Продуктовая стратегия:</strong> Руководил бета-тестированием, улучшениями UX/UI и релизом приложений. Анализировал обратную связь и конкурентный ландшафт."
                 },
                 {
-                    "title": "Program Manager / QA Engineer",
-                    "company": "Parallels",
-                    "location": "Москва",
-                    "period": "08/2012 – 12/2015",
-                    "description": "Повышен с QA Engineer до Program Manager в 2014 году за разработку комплексных тест-планов и высокие показатели качества. Руководил релизами обновлений Parallels, координировал межфункциональные команды, вел документацию функций и внедрял выводы продуктовой аналитики, пользовательских отзывов и бизнес-метрик в дорожную карту."
+                    title: 'Program Manager | QA Engineer',
+                    company: 'Parallels',
+                    location: 'Москва',
+                    period: '8/2012 - 12/2015',
+                    description: "<strong>Карьерный рост:</strong> Повышен с QA Engineer до Program Manager в 2014 году за разработку тест-планов и успешное выполнение QA обязанностей.<br><br><strong>Продукт-менеджмент:</strong> Руководил релизами обновлений, вел документацию функций и внедрял выводы аналитики, отзывов пользователей и бизнес-метрик в roadmap."
                 }
             ]
         },
@@ -407,44 +575,128 @@ const translations = {
         news_title: 'Најновије вести',
         view_all_news: 'Све вести',
         read_more: 'Прочитај више',
+        ai_philosophy_title: 'AI Филозофија',
+        ai_philosophy_pragmatic_title: 'Прагматични AI',
+        ai_philosophy_pragmatic_desc: 'Фокус на fine-tuned малим моделима уместо генеричких LLM. Ефикасна цена, приватна решења за бизнис-критичне задатке.',
+        ai_philosophy_privacy_title: 'Приватност Података — Приоритет',
+        ai_philosophy_privacy_desc: 'On-premise деплојмент. Подаци не напуштају вашу инфраструктуру. GDPR-сагласност по дизајну. Критично за enterprise.',
+        ai_philosophy_augmented_title: 'AI-Augmented Развој',
+        ai_philosophy_augmented_desc: 'Коришћење Cursor, Claude Code и LLM агената за повезивање идеја и имплементације. 10x бжи прототипирање задржавајући квалитет.',
+        menu_home: 'Назад на почетну',
+        ai_workflow_title: 'AI-Native Приступ',
+        ai_workflow_subtitle: 'Повезивање идеја и техничке реализације',
+        ai_workflow_tools: 'На бази Cursor, Claude Code, LLM агената',
+        ai_workflow_speed: '10x бже прототипирање',
+        philosophy_title: 'Моја AI филозофија',
+        philosophy_intro: 'Као Product Manager који кодира, развио сам јединствен AI-augmented приступ који ми омогућава да се крећем од идеје до радног прототипа за сати, не дане. Ово није о замени развоја — ово укидање трења између продукт размишљања и техничке имплементације.',
+        principle_1_title: 'Мисли системски',
+        principle_1_desc: 'AI ми помаже да размислим о архитектури, зависностима и edge cases пре писанја једне линије кода.',
+        principle_2_title: 'Брзо лансирање, итерације',
+        principle_2_desc: 'Бзро прототипирање значи да могу да валидирам идеје са реалним корисницима и кодом, не слайдовима и спецификацијама.',
+        principle_3_title: 'Дубока емпатија према развоју',
+        principle_3_desc: 'Стварање производа сопственим рукама даје ми firsthand разумевање техничких ограничења и проблема програмера.',
+        tools_title: 'Мој алатник',
+        cursor_desc: 'Моја примарна оквина за развој. AI pair programming који разуме контекст, предлаже целе функције и помаже ми да пишем production-ready код бже.',
+        cursor_f1: 'Контекстне предлозе кода',
+        cursor_f2: 'Природни језик у SQL упите',
+        cursor_f3: 'Мулти-файлови рефакторинг са AI',
+        cursor_f4: 'Откривање багова и помоћ у поправци',
+        claude_desc: 'AI CLI алат за анализу кода, дискусије архитектуре и дубоко разумевање кодне базе. Есенцијалан за бзро прототипирање и code review.',
+        claude_f1: 'Анализира целе кодне базе за секунде',
+        claude_f2: 'Дискутује архитектонске trade-offs',
+        claude_f3: 'Генерише boilerplate код инстантно',
+        claude_f4: 'Объясни сложу логику једноставно',
+        agents_title: 'Custom LLM агенти',
+        agents_desc: 'Наменски AI агенти за специфичне задатке: code review, генерација тестова, документација и data analytics workflows.',
+        agents_f1: 'Аутоматизовани агенти code review',
+        agents_f2: 'Генерација тестова из спецификација',
+        agents_f3: 'Писци документације',
+        agents_f4: 'Асистенти data аналитике',
+        process_title: 'Мој процес',
+        step_1_title: 'Идеација и захтеви',
+        step_1_desc: 'Користим LLM за размишљање о захтевима, edge cases и user stories. Добијам инстантну повратну информацију о продукт одлукама из AI перспективе.',
+        step_2_title: 'Дизајн архитектуре',
+        step_2_desc: 'Дискутујем системску архитектуру са AI. Оцењујем trade-offs између различитих приступа. Генеришем database schema и API дизајне за минуте.',
+        step_3_title: 'Бзро прототипирање',
+        step_3_desc: 'Користим Cursor за генерацију boilerplate, имплементацију features и handloване edge cases. Лансирам радни MVP за сати, не недеље.',
+        step_4_title: 'Валидација и итерације',
+        step_4_desc: 'Добијам реалну повратну информацију од корисника. Користим AI за анализу паттерна коришћења, идентификовање побољшања и бзре итерације.',
+        benefits_title: 'Зашто ово ради',
+        benefit_1_title: '10x бже',
+        benefit_1_desc: 'Од идеје до радног прототипа за сати уместо дана или недеља.',
+        benefit_2_title: 'Виши квалитет',
+        benefit_2_desc: 'АИ хвата edge cases које ја пропустам, предлаже боље паттерне и делује као сениор code reviewer.',
+        benefit_3_title: 'Бољи производи',
+        benefit_3_desc: 'Рукама-on искуство значи да разумем техничка ограничења пре обећавања features.',
+        benefit_4_title: 'Developer емпатија',
+        benefit_4_desc: 'Осјећам бол техничког дуга, лоших спецификација и мењајућих захтева firsthand.',
+        cta_title: 'Заинтересован за сарадњу?',
+        cta_desc: 'Увек тражим прилике да користим AI-augmented развој за стварање иновативних производа.',
+        cta_button: 'Контакт',
+        footer_text: '© 2024 Алексеј Панфилов. Направљено са AI-augmented развојем.',
         intro: {
-            title: 'Продукт менаџер',
-            description: 'Лидер производа вођен подацима са 8+ година искуства у руковођењу мобилним и веб иновацијама. Спајам дубоку аналитику са UX интуицијом и AI-развојем за испоруку интуитивних, високоефикасних функција. Процветам у брзо-развијајућим срединама, претварајући корисничке увиде и OKR-ове у јасне путне карте и мерљиве резултате. Вешт приповедач за руководиоце, инжењере и клијенте. Матерњи руски, течан енглески; конверзацијски српски.'
+            title: 'Head of Product',
+            description: '<strong>AI-Native извршни директор производа</strong> са 15 година искуства у изградњи високо-оптеретћених система и продуктових портфеolia од 0 до 1. Не разматрам AI као магију - разумем разлику између prompt engineering-а и agent-based система, знам када користити генеричке LLM-ове, а када fine-tуновати мале моделе за бизнис-критичне задатке. Не ограничавам се главним LLM добављивачима - константно тестирам и оцењујем нове моделе и приступе.<br><br>' +
+                'Користим <strong>Cursor, Claude Code и LLM агенте</strong> за повезивање идеја и техничке реализације, омогућавајући брзо прототипирање MVP и дубоко разумевање програмера. Изградио системе у <strong>Yandex-у и Руској пошти</strong> за милионе корисника. Радим у брзо-мењајућим R&D окружењима, претварајући customer insights и OKR-е у јасне roadmap-е и мерљиве резултате. Умеем да communикујем са execs, инжењерима и клијентима на истом језику.<br><br>' +
+                '<strong>Језици:</strong> Матерњи руски, течан енглески, конверзацијски српски.'
         },
         skills: {
-            title: 'Техничке способности',
+            title: 'Кључне компетенције',
             items: [
                 {
-                    title: 'Менаџмент производа',
-                    description: 'OKR, Scrum, Kanban, A/B тестирање, Customer Development, путне карте производа, комплетан животни циклус од идеје до лансирања.'
+                    title: 'AI-Augmented Продукт Лидерство',
+                    description: 'AI-native токови рада користећи Cursor, Claude Code и LLM агенте за бзро прототипирање и дубоко разумевање програмера. Повезујем идеје и техничку реализацију, омогућавајући 10x бжи развој MVP док заджим стратешки надзор.'
                 },
                 {
-                    title: 'UI/UX прототипирање',
-                    description: 'Figma, Miro, кориснички дизајн, стварање интуитивних интерфејса, wireframing, мапе корисничких путања, тестирање употребљивости.'
+                    title: 'Портфолио и Стратешки Менаџмент',
+                    description: 'Оркестрирам стратегију за више истовремених производа са ограниченим ресурсима. Приоритизација на основу бизнис-воздействия и техничке изводљивости. Вођство више кросс-функционалних тимова са очувањем јасноће roadmap и alignment стейкхолдера.'
                 },
                 {
-                    title: 'АИ и развој',
-                    description: 'AI алати, Python, Go, JavaScript, Swift, SwiftUI, React, Next.js, Node.js, vibe-coding, OpenAI API, Prompt Engineering, NLP.'
+                    title: 'Аналитика-Вођена Одлучивања',
+                    description: 'Градња свеобухватне аналитичке инфраструктуре од нуле преко организација. Трансформација хаоса података у акционе инсајте. SQL-first приступ са дубоком експертизом у ClickHouse, PostgreSQL и BI алатима за executive ниво извештавања.'
                 },
                 {
-                    title: 'Флексибилно управљање пројектима',
-                    description: 'JIRA, Confluence, Scrum, Kanban, планирање спринтова, координација кросс-функционалних тимова, методологије континуираног побољшања.'
-                },
+                    title: 'Enterprise-Grade AI Имплементација',
+                    description: 'Прагматичан AI са фокусом на fine-tuned мале моделе уместо генеричких LLM. Приступ data privacy-first са on-premise решењима. Успешна деплојментација AI система за милионе корисника урегулисаним окружењима.'
+                }
+            ],
+            subsections: [
                 {
-                    title: 'Мобилни развој',
-                    description: 'Swift, SwiftUI, Xcode, iOS, Android, адаптивне мобилне апликације, кросс-платформски развој, оптимизација за App Store.'
-                },
-                {
-                    title: 'Анализа података',
-                    description: 'SQL, MySQL, PostgreSQL, ClickHouse, Metabase, Tableau, Google Analytics, DataGrip, Grafana, решења заснована на аналитици и метрикама.'
-                },
-                {
-                    title: 'DevOps и инфраструктура',
-                    description: 'Git, GitHub Actions, CI/CD, Docker, Kubernetes, Traefik, Linux, macOS, Windows, управљање облачном инфраструктуром.'
-                },
-                {
-                    title: 'IoT и системи',
-                    description: 'MQTT, Zigbee2MQTT, Home Assistant, интеграција система, повезани уређаји, платформе аутоматизације.'
+                    title: 'Техничке способности',
+                    items: [
+                        {
+                            title: 'Менаџмент производа',
+                            description: 'OKR, Scrum, Kanban, A/B тестирање, Customer Development, путне карте производа, комплетан животни циклус од идеје до лансирања.'
+                        },
+                        {
+                            title: 'UI/UX прототипирање',
+                            description: 'Figma, Miro, кориснички дизајн, стварање интуитивних интерфејса, wireframing, мапе корисничких путања, тестирање употребљивости.'
+                        },
+                        {
+                            title: 'АИ и развој',
+                            description: 'AI алати, Python, Go, JavaScript, Swift, SwiftUI, React, Next.js, Node.js, vibe-coding, OpenAI API, Prompt Engineering, NLP.'
+                        },
+                        {
+                            title: 'Флексибилно управљање пројектима',
+                            description: 'JIRA, Confluence, Scrum, Kanban, планирање спринтова, координација кросс-функционалних тимова, методологије континуираног побољшања.'
+                        },
+                        {
+                            title: 'Мобилни развој',
+                            description: 'Swift, SwiftUI, Xcode, iOS, Android, адаптивне мобилне апликације, кросс-платформски развој, оптимизација за App Store.'
+                        },
+                        {
+                            title: 'Анализа података',
+                            description: 'SQL, MySQL, PostgreSQL, ClickHouse, Metabase, Tableau, Google Analytics, DataGrip, Grafana, решења заснована на аналитици и метрикама.'
+                        },
+                        {
+                            title: 'DevOps и инфраструктура',
+                            description: 'Git, GitHub Actions, CI/CD, Docker, Kubernetes, Traefik, Linux, macOS, Windows, управљање облачном инфраструктуром.'
+                        },
+                        {
+                            title: 'IoT и системи',
+                            description: 'MQTT, Zigbee2MQTT, Home Assistant, интеграција система, повезани уређаји, платформе аутоматизације.'
+                        }
+                    ]
                 }
             ]
         },
@@ -456,56 +708,56 @@ const translations = {
                     company: 'Constructor.tech',
                     location: 'Београд',
                     period: '10/2024 - сада',
-                    description: 'Управљање портфељом производа: Groups (видео конференције), Research (веб-IDE на основу VS Code + Kubernetes хостинг апликација), University Chatbots (Campus Assistant & Career Advisor) и компанијска AI/ML платформа. Водио континуиран развој интерног алата за видео конференције и управљао интеграцијом купљеног конкурентног решења за проширење функција за образовне сценарије.'
+                    description: "<strong>Продукт портфолио:</strong> Оркестрирам стратегију за више AI/ML производа укључујући ResearchPelt (рачунска платформа за научнике), веб-IDE на бази VS Code, University Chatbots, Groups са LLM интеграцијом, Model Engine и Insights.<br><br><strong>Лидерство:</strong> Водим кросс-функционалне тимове балансирајући расподелу ресурса између високо-приоритетних пројеката. Приоритизујем на основу бизнис-утцаја и техничке изводљивости.<br><br><strong>AI Advocacy:</strong> Служим као интерни AI Advocate обучавајући product менаџере на AI агент развој. Испоручујем enterprise-grade fine-tuned моделе за бизнис задатке."
                 },
                 {
                     title: 'Технички менаџер пројекта',
                     company: 'Yandex Cloud',
                     location: 'Москва-Београд',
                     period: '8/2022 - 9/2024',
-                    description: 'Управљао тимом за развој и процесима за Yandex производ за визуализацију података, Datalens. Координисао кросс-функционалне тимове за обезбеђивање благовремене испоруке функција и побољшања. Обављао задатке продукт-менаџера, укључујући дизајн функција, припрему макета и активну сарадњу са тим лидерима за планирање и праћење фаза развоја.'
+                    description: "<strong>Продукт менаџмент:</strong> Управљао тимом за развој и процесима за Datalens производ за визуализацију података. Обављао дизајн функција, припрему макета и сарадњу са тим лидерима.<br><br><strong>Координација:</strong> Координисао кросс-функционалне тимове за благовремену испоруку функција и побољшања у брзом окружењу."
                 },
                 {
                     title: 'Менаџер производа',
                     company: 'Yandex.Market',
                     location: 'Москва',
                     period: '4/2021 - 8/2022',
-                    description: 'Развио и управљао путном картом производа за курирску платформу, сакупљао и приоритизовао захтеве за функцијама, водио тим од 10 људи, укључујући frontend и backend програмере. Успешно је имплементирао све клијентске иновације на време, увео систем аналитике и аутоматизовао неколико процеса, смањивши оптерећење клијентског особља.'
+                    description: "<strong>Стратегија:</strong> Водио roadmap за брзо-растућу курирску платформу. Учествовао у развоју система аутоматског додељивања курира са алгоритамском маршрутизацијом.<br><br><strong>Аналитика:</strong> Изградио свеобухватну аналитику за data-driven оперативне одлуке.<br><br><strong>Лидерство:</strong> Водио тим од 10 особа, обезбеђујући 100% благовремено испоручавање клијентских иновација."
                 },
                 {
                     title: 'Product Owner',
                     company: 'Руска пошта',
                     location: 'Москва',
                     period: '6/2020 - 4/2021',
-                    description: 'Управљао мултидисциплинарним интерним дистрибуираним тимом који је развијао међународни сервис за припремање и валидацију информација о производима од клијената Руске поште за слање у иностранство. Запослио је пуни развојни тим и водио развој високо-оптерећеног backend-а за валидацију клијентских података.'
+                    description: "<strong>Развој:</strong> Изградио и водио дистрибуирани тим креирајући високо-оптерећени валидациони енџин за обраду података међународних гиганата укључујући iHerb и AliExpress.<br><br><strong>Compliance:</strong> Осигурао 100% GDPR усаглашеност и значајно смањио грешке уноса података кроз аутоматску валидацију.<br><br><strong>Тим:</strong> Запослио и водио full-stack развојни тим од нуле."
                 },
                 {
                     title: 'Product Owner',
                     company: 'Anywayanyday',
                     location: 'Москва',
                     period: '2/2019 - 6/2020',
-                    description: 'Оптимизовао развој производа побољшавањем управљања мобилним развојем, избором извођача и процесима UI/UX прототипирања. Створио систем аналитике за организовање и деловање на основу резултата студија публике, образаца коришћења производа и конкурентних анализа. Преправио мобилну апликацију у Swift и најновији Android framework.'
+                    description: "<strong>Оптимизација:</strong> Побољшао управљање мобилним развојем, избор извођача и процесе UI/UX прототипирања.<br><br><strong>Аналитика:</strong> Створио систем аналитике за организовање и деловање на основу студија публике и конкурентних анализа.<br><br><strong>Технологије:</strong> Преписио мобилну апликацију у Swift и најновији Android framework."
                 },
                 {
                     title: 'Старији аналитичар | Менаџер производа',
                     company: 'Biglion | Western Union | NAU | Phillip Morris International | Mango Telecom',
                     location: 'Москва',
                     period: '7/2017 - 2/2019',
-                    description: 'Консултовао о архитектури и дизајну формата података за аналитичке пројекте. Припремао лансирање мобилних апликација и надоградње веб-сајтова. Управљао техничким развојем апликација у више индустрија и пратио перформансе.'
+                    description: "<strong>Консалтинг:</strong> Консултовао о архитектури и дизајну формата података за аналитичке пројекте у више индустрија.<br><br><strong>Продукт менаџмент:</strong> Припремао лансирање мобилних апликација и надоградње веб-сајтова. Управљао техничким развојем апликација и пратио перформансе."
                 },
                 {
                     title: 'Генерални директор',
                     company: 'Social Technologies',
                     location: 'Москва',
                     period: '7/2016 - 8/2017',
-                    description: 'Управљао мултидисциплинарним интерним тимом и фрилансерима за стварање апликација друштвених мрежа и веб портала. Руководио бета тестирањем, побољшањима UX/UI и издавањем апликација. Анализирао повратне информације и конкурентски пејзаж за правилно позиционирање производа.'
+                    description: "<strong>Управљање тимом:</strong> Управљао мултидисциплинарним интерним тимом и фрилансерима за стварање апликација друштвених мрежа и веб портала.<br><br><strong>Продукт стратегија:</strong> Руководио бета тестирањем, побољшањима UX/UI и издавањем апликација. Анализирао повратне информације и конкурентски пејзаж."
                 },
                 {
                     title: 'Program Manager | QA Engineer',
                     company: 'Parallels',
                     location: 'Москва',
                     period: '8/2012 - 12/2015',
-                    description: 'Унапређен са QA Engineer-а на Program Manager-а 2014. године за успостављање планова тестирања и добро извршавање QA одговорности. Водио издања ажурирања производа, надгледао документацију функција и укључивао резултате из in-app аналитике, повратних информација корисника и процена пословних потреба.'
+                    description: "<strong>Кариерни раст:</strong> Унапређен са QA Engineer-а на Program Manager-а 2014. за успостављање тест планова и успешно извршавање QA одговорности.<br><br><strong>Продукт менаџмент:</strong> Водио издања ажурирања производа, надгледао документацију функција и укључивао резултате аналитике и повратних информација корисника у roadmap."
                 }
             ]
         },
@@ -626,7 +878,7 @@ function updateLocalizedContent() {
             startTypingAnimation(introTitle, data.intro.title);
         }
         const introDesc = document.querySelector('#intro p');
-        if (introDesc) introDesc.textContent = data.intro.description;
+        if (introDesc) introDesc.innerHTML = data.intro.description;
     }
 
     if (data.skills) {
@@ -693,7 +945,18 @@ function setupSkills(lang) {
 
     skillsContainer.innerHTML = '';
 
-    data.skills.items.forEach((item, index) => {
+    // Render main skills title
+    if (data.skills.title) {
+        const titleElement = document.createElement('h3');
+        titleElement.textContent = data.skills.title;
+        titleElement.className = 'skills-section-title';
+        skillsContainer.appendChild(titleElement);
+    }
+
+    let globalIndex = 0;
+
+    // Helper function to create skill tags
+    const createSkillTag = (item, index) => {
         const skillTag = document.createElement('div');
         skillTag.classList.add('skill-tag');
         skillTag.style.setProperty('--i', index + 1);
@@ -734,8 +997,39 @@ function setupSkills(lang) {
             skillTag.addEventListener('mouseleave', hidePopover);
         }
 
-        skillsContainer.appendChild(skillTag);
-    });
+        return skillTag;
+    };
+
+    // Render main skills items (Core Competencies)
+    if (data.skills.items && data.skills.items.length > 0) {
+        data.skills.items.forEach((item, index) => {
+            globalIndex++;
+            const skillTag = createSkillTag(item, globalIndex);
+            skillTag.classList.add('core-competency'); // Add special class for core competencies
+            skillsContainer.appendChild(skillTag);
+        });
+    }
+
+    // Render subsections (Technical Proficiencies, etc.)
+    if (data.skills.subsections && data.skills.subsections.length > 0) {
+        data.skills.subsections.forEach(subsection => {
+            // Add subsection title
+            const subsectionTitle = document.createElement('h3');
+            subsectionTitle.textContent = subsection.title;
+            subsectionTitle.className = 'skills-subsection-title';
+            subsectionTitle.style.marginTop = '2rem';
+            skillsContainer.appendChild(subsectionTitle);
+
+            // Add subsection items
+            if (subsection.items && subsection.items.length > 0) {
+                subsection.items.forEach((item) => {
+                    globalIndex++;
+                    const skillTag = createSkillTag(item, globalIndex);
+                    skillsContainer.appendChild(skillTag);
+                });
+            }
+        });
+    }
 }
 
 // Content update function

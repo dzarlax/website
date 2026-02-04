@@ -60,6 +60,154 @@ function openRSS() {
 async function downloadResume() {
     console.log('Starting PDF generation...');
 
+    // Helper function to render HTML formatted text to PDF
+    function renderHtmlText(doc, html, x, y, maxWidth, fontSize) {
+        if (!html) return y;
+
+        // Replace <br><br> with paragraph separator
+        let paragraphs = html.replace(/<br\s*\/?><br\s*\/?>/gi, '|||');
+
+        // Replace single <br> with space
+        paragraphs = paragraphs.replace(/<br\s*\/?>/gi, ' ');
+
+        // Split into paragraphs
+        const paragraphList = paragraphs.split('|||');
+
+        let currentY = y;
+        doc.setFontSize(fontSize);
+
+        paragraphList.forEach((paragraph) => {
+            if (!paragraph.trim()) {
+                return;
+            }
+
+            // Parse paragraph into segments (text and bold parts)
+            const segments = parseHtmlSegments(paragraph);
+
+            // Render segments with proper text wrapping
+            currentY = renderTextWithFormatting(doc, segments, x, currentY, maxWidth, fontSize);
+
+            // Add extra space between paragraphs
+            currentY += fontSize * 0.3;
+        });
+
+        return currentY;
+    }
+
+    // Parse HTML into segments with formatting info
+    function parseHtmlSegments(html) {
+        const segments = [];
+        const regex = /<strong>(.*?)<\/strong>/gi;
+        let lastIndex = 0;
+        let match;
+
+        while ((match = regex.exec(html)) !== null) {
+            // Add text before strong tag
+            if (match.index > lastIndex) {
+                const text = html.substring(lastIndex, match.index);
+                if (text.trim()) {
+                    segments.push({ text: text.trim(), bold: false });
+                }
+            }
+
+            // Add bold text
+            if (match[1].trim()) {
+                segments.push({ text: match[1].trim(), bold: true });
+            }
+
+            lastIndex = regex.lastIndex;
+        }
+
+        // Add remaining text
+        if (lastIndex < html.length) {
+            const text = html.substring(lastIndex);
+            if (text.trim()) {
+                segments.push({ text: text.trim(), bold: false });
+            }
+        }
+
+        // If no strong tags found, treat entire paragraph as plain text
+        if (segments.length === 0 && html.trim()) {
+            segments.push({ text: html.trim(), bold: false });
+        }
+
+        return segments;
+    }
+
+    // Render text segments with formatting and proper wrapping
+    function renderTextWithFormatting(doc, segments, startX, startY, maxWidth, fontSize) {
+        let currentX = startX;
+        let currentY = startY;
+        const lineHeight = fontSize * 0.5;
+
+        // Process segments and build words with formatting
+        let words = [];
+        segments.forEach(seg => {
+            const segWords = seg.text.split(/\s+/);
+            segWords.forEach((word, idx) => {
+                if (word) {
+                    words.push({ text: word, bold: seg.bold, space: idx < segWords.length - 1 });
+                }
+            });
+        });
+
+        // Render words with line wrapping
+        let lineWords = [];
+        let lineWidth = 0;
+
+        words.forEach(word => {
+            doc.setFont('helvetica', word.bold ? 'bold' : 'normal');
+            const wordWidth = doc.getTextWidth(word.text + (word.space ? ' ' : ''));
+
+            if (lineWidth + wordWidth <= maxWidth || lineWords.length === 0) {
+                lineWords.push(word);
+                lineWidth += wordWidth;
+            } else {
+                // Render current line
+                currentY = renderLine(doc, lineWords, startX, currentY, fontSize);
+
+                if (currentY > 270) {
+                    doc.addPage();
+                    currentY = 20;
+                }
+
+                // Start new line
+                lineWords = [word];
+                lineWidth = wordWidth;
+            }
+        });
+
+        // Render last line
+        if (lineWords.length > 0) {
+            currentY = renderLine(doc, lineWords, startX, currentY, fontSize);
+        }
+
+        return currentY;
+    }
+
+    // Render a single line of words
+    function renderLine(doc, words, startX, startY, fontSize) {
+        let currentX = startX;
+        const lineHeight = fontSize * 0.5;
+
+        words.forEach((word, index) => {
+            const isLastWord = index === words.length - 1;
+
+            if (word.bold) {
+                doc.setFont('helvetica', 'bold');
+            } else {
+                doc.setFont('helvetica', 'normal');
+            }
+
+            // Render word
+            const textToRender = isLastWord ? word.text : word.text + ' ';
+            doc.text(textToRender, currentX, startY);
+            currentX += doc.getTextWidth(textToRender);
+        });
+
+        return startY + lineHeight;
+    }
+
     // Load jspdf.min.js dynamically only when needed
     if (!window.jspdf) {
         try {
@@ -110,25 +258,25 @@ async function downloadResume() {
         doc.setTextColor(80, 80, 80);
         doc.text(`Location: ${siteConfig.contact.location}`, 20, 45);
         doc.text(`Email: ${siteConfig.contact.email}`, 20, 50);
-        doc.text('LinkedIn: linkedin.com/in/dzarlax', 20, 55);
+        doc.text('Website: dzarlax.dev', 20, 55);
+        doc.text('LinkedIn: linkedin.com/in/dzarlax', 20, 60);
+        doc.text('GitHub: github.com/dzarlax', 20, 65);
         
         // Add horizontal line after header
         doc.setLineWidth(0.5);
         doc.setDrawColor(9, 132, 227);
-        doc.line(20, 60, 190, 60);
+        doc.line(20, 70, 190, 70);
         
         // Professional Summary with better formatting
         doc.setFontSize(14);
         doc.setTextColor(9, 132, 227);
-        doc.text('PROFESSIONAL SUMMARY', 20, 70);
-        
-        doc.setFontSize(10);
+        doc.text('PROFESSIONAL SUMMARY', 20, 80);
+
         doc.setTextColor(0, 0, 0);
-        const summaryLines = doc.splitTextToSize(data.intro.description, 170);
-        doc.text(summaryLines, 20, 78);
-        
+        const summaryEndY = renderHtmlText(doc, data.intro.description, 20, 88, 170, 10);
+
         // Experience Section with better formatting
-        let yPos = 85 + (summaryLines.length * 4);
+        let yPos = summaryEndY + 8;
         
         // Section divider line
         doc.setLineWidth(0.3);
@@ -166,12 +314,10 @@ async function downloadResume() {
             doc.setTextColor(100, 100, 100);
             doc.text(`${exp.period} | ${exp.location}`, 20, yPos + 12);
             
-            // Description with bullet points
+            // Description with HTML formatting
             doc.setTextColor(0, 0, 0);
-            const descLines = doc.splitTextToSize(`• ${exp.description}`, 168);
-            doc.text(descLines, 22, yPos + 18);
-            
-            yPos += 24 + (descLines.length * 4);
+            const descEndY = renderHtmlText(doc, exp.description, 22, yPos + 18, 168, 9);
+            yPos = descEndY + 6;
             
             // Add small separator between jobs
             if (index < data.experience.items.length - 1) {
@@ -220,13 +366,11 @@ async function downloadResume() {
             
             doc.setFont('helvetica', 'bold');
             doc.text(skill.title, xPos, currentY);
-            
-            doc.setFont('helvetica', 'normal');
+
             doc.setFontSize(9);
-            const skillLines = doc.splitTextToSize(skill.description, 80);
-            doc.text(skillLines, xPos, currentY + 5);
-            
-            const lineHeight = 10 + (skillLines.length * 3);
+            const skillEndY = renderHtmlText(doc, skill.description, xPos, currentY + 5, 80, 9);
+
+            const lineHeight = skillEndY - currentY;
             
             if (isLeftColumn) {
                 leftColumnY = currentY + lineHeight;

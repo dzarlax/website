@@ -16,7 +16,7 @@ function setupTypingEffect() {
 
     // Get title from translations
     const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-    const title = translations[currentLang]?.intro?.title || 'Product Manager';
+    const title = window.translations?.[currentLang]?.intro?.title || 'Product Manager';
 
     titleElement.textContent = '';
     titleElement.classList.add('typing-effect');

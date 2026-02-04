@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Native Workflow - Alexey Panfilov</title>
+    <meta name="description" content="How I leverage Cursor, Claude Code, and LLM agents to bridge the gap between ideation and technical implementation. AI-augmented development approach for rapid prototyping.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="ai-workflow.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-text">dzarlax</span>
+            </a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span data-lang="menu_home">Back to Home</span>
+                </a>
+                <div class="language-switcher">
+                    <button id="lang-en" onclick="switchLang('en')" class="lang-btn active" data-lang="en" aria-label="Switch to English">EN</button>
+                    <button id="lang-ru" onclick="switchLang('ru')" class="lang-btn" data-lang="ru" aria-label="Переключить на русский">RU</button>
+                    <button id="lang-rs" onclick="switchLang('rs')" class="lang-btn" data-lang="rs" aria-label="Пребаци на српски">SR</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Header Section -->
+        <section id="ai-workflow-header" class="page-header">
+            <div class="header-content">
+                <div class="workflow-badge">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h1 data-lang="ai_workflow_title">AI-Native Workflow</h1>
+                <p data-lang="ai_workflow_subtitle" class="subtitle">Bridging the Gap Between Ideation and Implementation</p>
+                <div class="header-meta">
+                    <span class="meta-item">
+                        <i class="fas fa-code"></i>
+                        <span data-lang="ai_workflow_tools">Powered by Cursor, Claude Code, LLM Agents</span>
+                    </span>
+                    <span class="meta-item">
+                        <i class="fas fa-bolt"></i>
+                        <span data-lang="ai_workflow_speed">10x Faster Prototyping</span>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="workflow-philosophy" class="content-section">
+            <h2 data-lang="philosophy_title">My AI Philosophy</h2>
+            <div class="philosophy-content">
+                <p data-lang="philosophy_intro">
+                    As a Product Manager who codes, I've developed a unique AI-augmented workflow that allows me to move from idea to working prototype in hours, not days. This isn't about replacing developers—it's about breaking down the friction between product thinking and technical implementation.
+                </p>
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 data-lang="principle_1_title">Think in Systems</h3>
+                        <p data-lang="principle_1_desc">AI helps me think through architecture, dependencies, and edge cases before writing a single line of code.</p>
+                    </div>
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3 data-lang="principle_2_title">Ship Fast, Iterate</h3>
+                        <p data-lang="principle_2_desc">Rapid prototyping means I can validate ideas with real users and code, not just slides and specs.</p>
+                    </div>
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 data-lang="principle_3_title">Deep Developer Empathy</h3>
+                        <p data-lang="principle_3_desc">Building things myself gives me first-hand understanding of technical constraints and developer pain points.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="workflow-tools" class="content-section">
+            <h2 data-lang="tools_title">My Toolkit</h2>
+            <div class="tools-showcase">
+                <div class="tool-card featured">
+                    <div class="tool-header">
+                        <div class="tool-icon cursor-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Cursor AI IDE</h3>
+                    </div>
+                    <p data-lang="cursor_desc">My primary development environment. AI pair programming that understands context, suggests entire functions, and helps me write production-ready code faster.</p>
+                    <ul class="feature-list">
+                        <li data-lang="cursor_f1">Context-aware code suggestions</li>
+                        <li data-lang="cursor_f2">Natural language to SQL queries</li>
+                        <li data-lang="cursor_f3">Multi-file refactoring with AI</li>
+                        <li data-lang="cursor_f4">Bug detection and fixing assistance</li>
+                    </ul>
+                </div>
+
+                <div class="tool-card featured">
+                    <div class="tool-header">
+                        <div class="tool-icon claude-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3>Claude Code</h3>
+                    </div>
+                    <p data-lang="claude_desc">AI CLI tool for code analysis, architecture discussions, and deep codebase understanding. Essential for rapid prototyping and code review.</p>
+                    <ul class="feature-list">
+                        <li data-lang="claude_f1">Analyze entire codebases in seconds</li>
+                        <li data-lang="claude_f2">Discuss architecture trade-offs</li>
+                        <li data-lang="claude_f3">Generate boilerplate code instantly</li>
+                        <li data-lang="claude_f4">Explain complex logic simply</li>
+                    </ul>
+                </div>
+
+                <div class="tool-card featured">
+                    <div class="tool-header">
+                        <div class="tool-icon agents-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 data-lang="agents_title">Custom LLM Agents</h3>
+                    </div>
+                    <p data-lang="agents_desc">Purpose-built AI agents for specific tasks: code review, test generation, documentation, and data analysis workflows.</p>
+                    <ul class="feature-list">
+                        <li data-lang="agents_f1">Automated code review agents</li>
+                        <li data-lang="agents_f2">Test generation from specs</li>
+                        <li data-lang="agents_f3">Documentation writers</li>
+                        <li data-lang="agents_f4">Data analytics assistants</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Process -->
+        <section id="workflow-process" class="content-section">
+            <h2 data-lang="process_title">My Process</h2>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 data-lang="step_1_title">Ideation & Requirements</h3>
+                        <p data-lang="step_1_desc">Use LLMs to think through requirements, edge cases, and user stories. Get instant feedback on product decisions from an AI perspective.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 data-lang="step_2_title">Architecture Design</h3>
+                        <p data-lang="step_2_desc">Discuss system architecture with AI. Evaluate trade-offs between different approaches. Generate database schemas and API designs in minutes.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 data-lang="step_3_title">Rapid Prototyping</h3>
+                        <p data-lang="step_3_desc">Use Cursor to generate boilerplate, implement features, and handle edge cases. Ship a working MVP in hours, not weeks.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 data-lang="step_4_title">Validation & Iteration</h3>
+                        <p data-lang="step_4_desc">Get real feedback from users. Use AI to analyze usage patterns, identify improvements, and iterate rapidly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="workflow-benefits" class="content-section">
+            <h2 data-lang="benefits_title">Why This Works</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-clock benefit-icon"></i>
+                    <h3 data-lang="benefit_1_title">10x Faster</h3>
+                    <p data-lang="benefit_1_desc">From idea to working prototype in hours instead of days or weeks.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle benefit-icon"></i>
+                    <h3 data-lang="benefit_2_title">Higher Quality</h3>
+                    <p data-lang="benefit_2_desc">AI catches edge cases I miss, suggests better patterns, and acts as a senior code reviewer.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-lightbulb benefit-icon"></i>
+                    <h3 data-lang="benefit_3_title">Better Products</h3>
+                    <p data-lang="benefit_3_desc">Hands-on experience means I understand technical constraints before promising features.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-users benefit-icon"></i>
+                    <h3 data-lang="benefit_4_title">Developer Empathy</h3>
+                    <p data-lang="benefit_4_desc">I feel the pain of technical debt, poor specs, and changing requirements firsthand.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="workflow-cta" class="cta-section">
+            <h2 data-lang="cta_title">Interested in Collaboration?</h2>
+            <p data-lang="cta_desc">I'm always looking for opportunities to leverage AI-augmented development to build innovative products.</p>
+            <a href="index.html#contact" class="cta-button">
+                <i class="fas fa-envelope"></i>
+                <span data-lang="cta_button">Get in Touch</span>
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p data-lang="footer_text">© 2024 Alexey Panfilov. Built with AI-augmented development.</p>
+        <div class="social-links">
+            <a href="https://github.com/dzarlax" target="_blank" rel="noopener" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/alexeypanfilov" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/dzarlax" target="_blank" rel="noopener" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="web/localization.js"></script>
+    <script src="web/theme.js"></script>
+    <script src="web/animation.js"></script>
+</body>
+</html>

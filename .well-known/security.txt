@@ -1,0 +1,71 @@
+Contact: mailto:me@dzarlax.dev
+Expires: 2026-12-31T23:59:59.000Z
+Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/YOUR_FINGERPRINT
+Acknowledgments: https://dzarlax.dev/security-acknowledgments
+Preferred-Languages: en, ru, sr
+Canonical: https://dzarlax.dev/.well-known/security.txt
+Policy: https://dzarlax.dev/security-policy
+Hiring: https://dzarlax.dev/#contact
+
+# Security Policy
+
+## Scope
+This security policy covers:
+- Main website: https://dzarlax.dev
+- Subdomains: *.dzarlax.dev
+- API endpoints (if any)
+
+## What to Report
+Please report:
+- Cross-site scripting (XSS)
+- Cross-site request forgery (CSRF)
+- SQL injection
+- Authentication/authorization bypass
+- Sensitive data exposure
+- Server-side request forgery (SSRF)
+- Misconfigurations
+- Vulnerabilities in third-party dependencies
+
+## What NOT to Report
+Please do NOT report:
+- Missing SPF/DKIM/DMARC records (already configured)
+- Clickjacking on non-sensitive pages
+- SSL/TLS configuration best practices that don't pose a security risk
+- CSRF on static content
+- Lack of HTTP security headers that don't pose a security risk
+- Known vulnerabilities in third-party services without proof of exploitability
+
+## Safe Harbor
+We commit to:
+- Not pursue legal action against security researchers who follow this policy
+- Work with researchers to understand and resolve vulnerabilities
+- Credit researchers for their valuable contributions
+
+## How to Report
+Send your report to: me@dzarlax.dev
+
+Please include:
+- Description of the vulnerability
+- Steps to reproduce
+- Proof of concept (if applicable)
+- Impact assessment
+- Suggested fix (if any)
+
+## Response Times
+- Initial response: Within 48 hours
+- Triaging: Within 7 days
+- Resolution: As appropriate, based on severity
+
+## Rewards
+Currently, this is a voluntary disclosure program. We offer:
+- Hall of fame acknowledgment (if desired)
+- Letter of recommendation (if requested)
+- Swag/merchandise (when available)
+
+## Language
+We accept security reports in:
+- English (preferred)
+- Russian
+- Serbian
+
+Thank you for helping keep dzarlax.dev secure! 🔒

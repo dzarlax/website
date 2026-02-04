@@ -25,6 +25,7 @@ function createProjectCard(project) {
     const currentLang = localStorage.getItem('preferredLanguage') || 'en';
     const card = document.createElement('div');
     card.classList.add('project-card');
+    card.id = project.id; // Add ID for SEO and sitemap anchoring
 
     // Safely escape HTML content to prevent XSS
     const title = escapeHtml(project[`title_${currentLang}`] || project.title_en);
