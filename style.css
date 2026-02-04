@@ -905,11 +905,22 @@ section:hover h2::after {
     background: var(--gradient-secondary);
 }
 
+/* Dark mode skill hover with better contrast */
+[dark-mode] .skill-tag:hover {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    box-shadow: 0 12px 32px rgba(37, 99, 235, 0.5);
+}
+
 @media (min-width: 769px) {
     .skill-tag:hover {
         transform: translateY(-4px) scale(1.02);
         box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
         background: var(--gradient-secondary);
+    }
+
+    [dark-mode] .skill-tag:hover {
+        background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        box-shadow: 0 12px 32px rgba(37, 99, 235, 0.5);
     }
 
     .skill-tag:active {
@@ -1362,7 +1373,7 @@ section:hover h2::after {
 }
 
 [dark-mode] .project-card:hover::before {
-    background: linear-gradient(135deg, var(--accent-color), var(--accent-color-light), var(--accent-color-dark));
+    background: linear-gradient(135deg, #2563EB, #1D4ED8, #1E40AF);
 }
 
 .project-image {
@@ -1431,9 +1442,9 @@ section:hover h2::after {
 }
 
 [dark-mode] .project-tag:hover {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(99, 102, 241, 0.3));
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.4), rgba(29, 78, 216, 0.4));
     color: #FFFFFF;
-    border-color: var(--accent-color);
+    border-color: #2563EB;
 }
 
 .project-link {
@@ -1467,6 +1478,12 @@ section:hover h2::after {
     /* Keep gradient, but could adjust opacity or scale */
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode project link hover with better contrast */
+[dark-mode] .project-link:hover {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
 }
 
 .project-link:hover i {
@@ -1529,6 +1546,12 @@ section:hover h2::after {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
     background: var(--gradient-secondary);
+}
+
+/* Dark mode contact button hover with better contrast */
+[dark-mode] .contact-btn:hover {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    box-shadow: 0 12px 32px rgba(37, 99, 235, 0.5);
 }
 
 .contact-btn:active {
