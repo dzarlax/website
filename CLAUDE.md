@@ -33,36 +33,15 @@ open http://localhost:8000
 This is a vanilla JavaScript personal portfolio website with no build system or framework. The architecture is modular with clear separation of concerns.
 
 ### Module Loading Pattern
-Scripts are loaded in `index.html` in a specific order:
-1. `web/features.js` - Feature toggle system (must load first)
-2. `web/theme.js` - Dark/light theme management
-3. `web/localization.js` - Multi-language support (en/ru/rs)
-4. `web/contacts.js` - Contact form handlers
-5. `web/animation.js` - Scroll animations
-6. `web/projects.js` - Dynamic project loading from JSON
-7. `web/vitals.js` - Performance monitoring
+Scripts are loaded in `index.html` in the following order:
+1. `web/theme.js` - Dark/light theme management
+2. `web/localization.js` - Multi-language support (en/ru/rs)
+3. `web/contacts.js` - Contact form handlers
+4. `web/animation.js` - Scroll animations
+5. `web/projects.js` - Dynamic project loading from JSON
+6. `web/vitals.js` - Performance monitoring
 
-**Critical**: `features.js` must load first as other modules may depend on `window.featureManager`. The loading order ensures proper initialization and prevents race conditions.
-
-### Feature Toggle System
-The `web/features.js` module implements a comprehensive feature management system:
-
-**Core Architecture**:
-- `FeatureManager` class with observer pattern for feature changes
-- Loads configuration from `config/features.json` (production) or `features-dev.json` (development)
-- Global instance at `window.featureManager`
-
-**Key Features**:
-- Controls visibility of page sections (intro, skills, experience, education, achievements, projects, contact)
-- Automatically shows/hides navigation links based on enabled features
-- Supports runtime feature toggling: `window.featureManager.toggleFeature('projects')`
-- Observer pattern: `window.featureManager.onFeatureChange('projects', callback)`
-- Debug mode with admin panel: Set `debug.showFeatureStatus: true` in config
-
-**Feature States**:
-- `isFeatureEnabled(name)` - Check if feature is enabled
-- `enableFeature(name)` / `disableFeature(name)` - Explicitly set state
-- `getEnabledFeatures()` / `getDisabledFeatures()` - List features by state
+All modules are independent and can be loaded in any order.
 
 ### Localization Architecture
 The `web/localization.js` module handles multilingual content:
@@ -170,27 +149,6 @@ Edit `web/localization.js`:
 3. For dynamic content, add logic in `updateContent()` function
 4. The system automatically updates content on language change via `languageChanged` event
 
-### Feature Configuration
-Edit `config/features.json`:
-```json
-{
-  "features": {
-    "intro": { "enabled": true },
-    "projects": { "enabled": true }
-  },
-  "navigation": {
-    "showDisabledSections": false,
-    "animateToggle": true
-  },
-  "debug": {
-    "showFeatureStatus": false,
-    "logToggleActions": false
-  }
-}
-```
-
-**Note**: Feature names must match section IDs in HTML (e.g., `#intro`, `#projects`).
-
 ## Key Technical Details
 
 ### Theme System
@@ -236,11 +194,6 @@ Core JavaScript modules loaded by main page. All use vanilla JS with no dependen
 ### `/rss` Directory
 RSS feed system modules loaded as ES6 modules by `feed.html`. Modular architecture allows for easy extension.
 
-### `/config` Directory
-- `features.json` - Production feature config
-- `features-dev.json` - Development feature config
-- `features-minimal.json` - Minimal feature set
-
 ### External Resources
 - Fonts: Google Fonts (Inter)
 - Icons: Font Awesome 6.4.0 (CDN) with SRI
@@ -252,7 +205,6 @@ RSS feed system modules loaded as ES6 modules by `feed.html`. Modular architectu
 - **All scripts use vanilla JavaScript** (no frameworks, no build process)
 - **CSS uses BEM-like naming** for components
 - **Localization keys use dot notation** (e.g., `menu.home`, `footer.copyright`)
-- **Feature names match section IDs** in HTML (e.g., `intro`, `projects`)
 - **Event-driven architecture** - Use custom events for cross-module communication
 - **Security first** - Always escape user-generated content with `escapeHtml()`
 - **Mobile-first responsive design** - Test on mobile viewport (768px breakpoint)
