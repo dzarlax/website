@@ -2,7 +2,15 @@
 <html lang="en" style="scroll-behavior: smooth;">
 
 <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- DNS prefetch and preconnect for performance -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Google tag (gtag.js) - async for non-blocking -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RT3L9MP58G"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -77,11 +85,6 @@
     <link rel="icon" type="image/webp" sizes="128x128" href="assets/images/avatar-128x128.webp">
     <link rel="apple-touch-icon" sizes="512x512" href="assets/images/avatar-512x512.webp">
 
-    <!-- Performance optimizations -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
     <!-- Fonts with optimized loading -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -89,15 +92,10 @@
     <link rel="stylesheet" href="style.css?v=20250115y&safari=1">
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="assets/images/avatar-circle.webp"
-        as="image">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-
-
+    <link rel="preload" href="assets/images/avatar-circle.webp" as="image">
+    <!-- Font Awesome - async loading with preload -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -458,13 +456,14 @@
     <div id="popover" class="hidden"></div>
 
     <!-- Scripts -->
-    <!-- jspdf.min.js loaded dynamically only when needed -->
+    <!-- Critical scripts loaded synchronously -->
     <script src="web/theme.js"></script>
-    <script src="web/localization.js"></script>
-    <script src="web/contacts.js"></script>
-    <script src="web/animation.js"></script>
-    <script src="web/projects.js"></script>
-    <script src="web/vitals.js"></script>
+    <script src="web/localization.js" defer></script>
+    <script src="web/contacts.js" defer></script>
+    <script src="web/animation.js" defer></script>
+    <script src="web/projects.js" defer></script>
+    <script src="web/vitals.js" defer></script>
+    <!-- jspdf.min.js loaded dynamically only when needed for resume download -->
 
     <script>
         // Initialize everything on page load

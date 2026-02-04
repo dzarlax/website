@@ -1,24 +1,12 @@
 // Site configuration
-let siteConfig = {
+const siteConfig = {
     contact: {
         email: "me@dzarlax.dev",
-        linkedin: "https://www.linkedin.com/in/dzarlax/",
+        linkedin: "https://www.linkedin.com/in/alexey-panfilov",
         github: "https://github.com/dzarlax",
         location: "Belgrade, Serbia"
     }
 };
-
-// Load site configuration
-async function loadSiteConfig() {
-    try {
-        const response = await fetch('./config/site.json');
-        if (response.ok) {
-            siteConfig = await response.json();
-        }
-    } catch (error) {
-        console.warn('Failed to load site config, using defaults');
-    }
-}
 
 // Helper function to dynamically load scripts
 function loadScript(src) {
@@ -468,7 +456,4 @@ async function downloadResume() {
         alert('Error generating PDF: ' + error.message);
     }
 }
-
-// Initialize site configuration on load
-loadSiteConfig();
 
