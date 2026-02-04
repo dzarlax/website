@@ -14,6 +14,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Inline theme script to prevent flash of wrong theme -->
+    <script>
+        (function() {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const storedTheme = localStorage.getItem('theme');
+
+            if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+                document.documentElement.setAttribute('dark-mode', '');
+            }
+        })();
+    </script>
+
     <!-- SEO Meta Tags -->
     <meta name="description"
         content="Dzarlax (Alexey Panfilov) - Data-driven Product Manager & Tech Enthusiast with 8+ years experience in technology innovation, UI/UX prototyping, and agile project management.">
