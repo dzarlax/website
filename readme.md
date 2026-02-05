@@ -5,29 +5,28 @@ This repository contains the source code for a personal portfolio website manage
 
 ## 🌟 Key Features
 - **Multi-language Support**: Full localization for English, Russian, and Serbian
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Dark/Light Theme**: Automatic theme switching based on user preference
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices (768px breakpoint)
+- **Dark/Light Theme**: Automatic theme switching based on user preference with HSL-based color system
 - **Dynamic Projects**: JSON-based project showcase with localized content
-- **RSS News Feed**: Real-time news feed integration
-- **Performance Optimized**: Service Worker, lazy loading, and optimized assets
+- **Performance Optimized**: Lazy loading, optimized assets, Web Vitals monitoring
 - **Accessibility**: WCAG compliant with proper ARIA labels and keyboard navigation
+- **Modern CSS**: Design tokens, systematic spacing, logical properties, CSS nesting
 
 ## 🚀 Recent Updates
-- ✅ **Localized Footer**: Added fully localized footer with navigation links
-- ✅ **Fixed Projects Section**: Resolved project loading issues with proper JSON handling
-- ✅ **Enhanced Localization**: Improved translation system for nested content
-- ✅ **Mobile Optimization**: Better responsive design for mobile devices
+- ✅ **Removed RSS/News Pages**: Deprecated feed.html and news.html for simplification
+- ✅ **Enhanced CSS Architecture**: Implemented design tokens and systematic spacing
+- ✅ **Improved Dark Mode**: High contrast colors for better readability
+- ✅ **Feature Toggle Removal**: Simplified configuration system
 
 ## 📁 Project Structure
 
 ### Root Files
 - `index.html` - Main HTML file with semantic structure
-- `style.css` - Primary stylesheet with CSS custom properties
+- `ai-workflow.html` - AI workflow documentation page
+- `style.css` - Primary stylesheet with CSS custom properties (47 design tokens)
 - `projects.json` - Project data with multilingual content
 - `manifest.json` - PWA manifest file
 - `sw.js` - Service Worker for offline functionality
-- `feed.html` - RSS feed reader page
-- `news.html` - News aggregation page
 
 ### `/web` Directory
 - `localization.js` - Multilingual translation system
@@ -35,22 +34,15 @@ This repository contains the source code for a personal portfolio website manage
 - `contacts.js` - Contact form and social links handler
 - `projects.js` - Dynamic project loading and display
 - `animation.js` - Scroll animations and visual effects
-- `optimization.js` - Performance optimizations
-- `features.js` - Feature toggle system
 - `vitals.js` - Web vitals monitoring
+- `optimization.js` - Performance optimizations
+- `main.js` - Main application entry point
+- `jspdf.min.js` - PDF generation library
 
-### `/rss` Directory
-- `RSSFeed.js` - Main RSS feed class
-- `fetchRSSFeed.js` - RSS data fetching logic
-- `pagination.js` - Feed pagination functionality
-- `display.js` - Feed item rendering
-- `init.js` - RSS system initialization
-- `/articles` - Article detail pages and styles
-
-### `/config` Directory
-- `features.json` - Production feature configuration
-- `features-dev.json` - Development feature configuration
-- `features-minimal.json` - Minimal feature set
+### Documentation Files
+- `CSS_ARCHITECTURE.md` - Detailed CSS design system documentation
+- `EXPERIENCE_REFACTOR.md` - Before/after CSS refactoring example
+- `CLAUDE.md` - Developer guide for Claude Code AI assistant
 
 ## 🛠️ Setup & Development
 
@@ -67,15 +59,6 @@ This repository contains the source code for a personal portfolio website manage
    npx serve .
    ```
 3. Navigate to `http://localhost:8000`
-
-### RSS Feed Integration
-To use the RSS functionality:
-
-```html
-<script type="module" src="rss/init.js"></script>
-```
-
-The RSS system automatically loads and displays feeds in elements with ID `rss-feed`.
 
 ### Project Configuration
 Projects are managed through `projects.json` with the following structure:
@@ -96,6 +79,30 @@ Projects are managed through `projects.json` with the following structure:
 }
 ```
 
+## 🎨 CSS Architecture
+
+### Design Token System
+The project uses a comprehensive design token system with:
+- **HSL Color System**: `--brand-hue: 217` for easy theming
+- **4px Spacing Grid**: `--s-1: 4px`, `--s-2: 8px`, `--s-6: 24px`
+- **Typography Scale**: Modular scale with `--f-base: 1rem`
+- **47 total CSS variables** as single source of truth
+
+### Modern CSS Features
+- **CSS Nesting** (~40% coverage)
+- **Logical Properties** (~15% coverage) for RTL support
+- **Component-based architecture** with BEM naming
+- **Systematic spacing** - no magic numbers
+
+### Layout Utilities
+```css
+.l-container { /* Max-width container */ }
+.l-grid { /* CSS Grid layouts */ }
+.l-section { /* Section spacing */ }
+```
+
+For detailed CSS architecture information, see `CSS_ARCHITECTURE.md`.
+
 ## 🌐 Localization
 The website supports three languages:
 - **English (en)** - Default language
@@ -105,13 +112,20 @@ The website supports three languages:
 ### Adding New Translations
 1. Update `web/localization.js` with new translation keys
 2. Add corresponding HTML `data-lang` attributes
-3. The system automatically updates content on language switch
+3. The system automatically updates content on language switch via `languageChanged` event
+
+### Translation Key Format
+- Simple keys: `data-lang="projects_title"`
+- Nested keys: `data-lang="menu.home"`, `data-lang="footer.copyright"`
+- Array access: Handled programmatically for dynamic content
 
 ## 🎨 Theming
 The website uses CSS custom properties for theming:
-- Automatic dark/light mode detection
+- HSL-based color system for easy theme customization
+- Automatic dark/light mode detection via `prefers-color-scheme`
 - Manual theme toggle available
 - Consistent color scheme across all components
+- High contrast in dark mode for accessibility
 
 ## 📱 Progressive Web App
 The website includes PWA features:
@@ -119,17 +133,27 @@ The website includes PWA features:
 - Web App Manifest for installation
 - Responsive design for all screen sizes
 
-## 🔧 Feature Toggles
-Features can be controlled through configuration files:
-- Enable/disable sections dynamically
-- A/B testing capabilities
-- Performance optimization options
-
 ## 📊 Performance
 - Lazy loading for images and content
 - Minified and optimized assets
 - Service Worker caching
-- Web vitals monitoring
+- Web vitals monitoring via `web/vitals.js`
+- Intersection Observer for performant scroll animations
+
+## 🔧 Development Guidelines
+
+### CSS Best Practices
+1. **Always use design tokens** - No hardcoded values
+2. **Prefer logical properties** - Use `inline-size` instead of `width` for RTL support
+3. **Use CSS nesting** - Keep component styles together
+4. **Follow BEM naming** - `.component__element--modifier`
+5. **Test on mobile** - 768px breakpoint is critical
+
+### JavaScript Conventions
+- All vanilla JavaScript - no frameworks
+- Event-driven architecture with custom events
+- Security first - always escape user-generated content
+- Modular design - independent modules
 
 ## 🤝 Contributing
 1. Fork the repository
@@ -145,4 +169,3 @@ This project is for personal use. All rights reserved.
 - **GitHub**: [dzarlax](https://github.com/dzarlax)
 - **LinkedIn**: [Alexey Panfilov](https://linkedin.com/in/alexey-panfilov)
 - **Website**: [dzarlax.dev](https://dzarlax.dev)
-

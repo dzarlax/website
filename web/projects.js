@@ -101,10 +101,10 @@ function showSkeletons(container, count = 3) {
 }
 
 async function displayProjects() {
-    const container = document.getElementById('projects-container');
+    const container = document.querySelector('.projects__container');
 
     if (!container) {
-        console.error('Projects container #projects-container not found.');
+        console.error('Projects container .projects__container not found.');
         return;
     }
 

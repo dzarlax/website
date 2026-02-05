@@ -1058,31 +1058,44 @@ function updateContent(lang) {
     setupSkills(lang); // This rebuilds skills which might be necessary
 
     // Update experience section (title handled by updateLocalizedContent)
-    const experienceList = document.querySelector('#experience-list');
+    const experienceList = document.querySelector('.experience__list');
 
     if (experienceList && data.experience) {
         experienceList.innerHTML = '';
 
         data.experience.items.forEach((item, index) => {
             const li = document.createElement('li');
+            li.classList.add('experience__item');
             li.style.setProperty('--i', index + 1);
 
-            // Create structured experience item with card wrapper
-            li.innerHTML = `
-                <div class="experience-card">
-                    <span class="experience-date">${item.period}</span>
-                    <h3 class="experience-title">${item.title}</h3>
-                    <div class="experience-company">${item.company} | ${item.location}</div>
-                    <p class="experience-description">${item.description}</p>
-                </div>
-            `;
+            // Pure BEM structure without extra wrapper
+            const dateSpan = document.createElement('span');
+            dateSpan.className = 'experience__item-date';
+            dateSpan.textContent = item.period;
+
+            const titleH3 = document.createElement('h3');
+            titleH3.className = 'experience__item-title';
+            titleH3.textContent = item.title;
+
+            const companyDiv = document.createElement('div');
+            companyDiv.className = 'experience__item-company';
+            companyDiv.textContent = `${item.company} | ${item.location}`;
+
+            const descP = document.createElement('p');
+            descP.className = 'experience__item-description';
+            descP.innerHTML = item.description;
+
+            li.appendChild(dateSpan);
+            li.appendChild(titleH3);
+            li.appendChild(companyDiv);
+            li.appendChild(descP);
 
             experienceList.appendChild(li);
         });
     }
 
     // Update education section
-    const educationList = document.querySelector('#education-list');
+    const educationList = document.querySelector('.education__list');
     if (educationList && data.education) {
         educationList.innerHTML = '';
 

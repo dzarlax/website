@@ -326,7 +326,7 @@
     <div class="menu-overlay"></div>
 
     <main id="main-content">
-        <section id="intro" class="reveal">
+        <section id="intro" class="intro reveal">
             <div class="shape-1"></div>
             <div class="shape-2"></div>
 
@@ -344,22 +344,22 @@
                 </div>
             </div>
             <h2 class="typing-effect"></h2>
-            <p></p>
+            <p class="intro__description"></p>
         </section>
 
-        <section id="skills" class="reveal" aria-labelledby="skills-heading">
-            <h2 id="skills-heading" data-lang="skills_title">Skills</h2>
-            <div id="skills-container" role="list" aria-label="Technical skills and competencies"></div>
+        <section id="skills" class="skills reveal" aria-labelledby="skills-heading">
+            <h2 id="skills-heading" class="skills__title" data-lang="skills_title">Skills</h2>
+            <div class="skills__container" role="list" aria-label="Technical skills and competencies"></div>
         </section>
 
-        <section id="experience" class="reveal">
-            <h2>Experience</h2>
-            <ul id="experience-list"></ul>
+        <section id="experience" class="experience reveal">
+            <h2 class="experience__title">Experience</h2>
+            <ul class="experience__list"></ul>
         </section>
 
-        <section id="education" class="reveal">
-            <h2 data-lang="education_title">Education</h2>
-            <div id="education-list"></div>
+        <section id="education" class="education reveal">
+            <h2 class="education__title" data-lang="education_title">Education</h2>
+            <div class="education__list"></div>
         </section>
 
         <section id="achievements" class="reveal">
@@ -392,16 +392,16 @@
             </div>
         </section>
 
-        <section id="projects" class="reveal">
-            <h2 data-lang="projects_title">Projects</h2> <!-- The h2 content will be updated by localization later -->
-            <div id="projects-container">
+        <section id="projects" class="projects reveal">
+            <h2 class="projects__title" data-lang="projects_title">Projects</h2>
+            <div class="projects__container">
                 <!-- Project cards will be dynamically inserted here by JavaScript -->
             </div>
         </section>
 
-        <section id="contact" class="reveal">
-            <h2>Contact</h2>
-            <div class="contact-buttons">
+        <section id="contact" class="contact reveal">
+            <h2 class="contact__title">Contact</h2>
+            <div class="contact__buttons">
                 <button onclick="sendEmail()" class="contact-btn">
                     <i class="fas fa-envelope"></i>
                     <span data-lang="contacts.email">Mail me</span>

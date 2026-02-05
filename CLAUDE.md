@@ -19,9 +19,9 @@ open http://localhost:8000
 ```
 
 ### Testing
-- Test RSS functionality: Access `/feed.html` after starting the local server
-- Test responsiveness: Use browser DevTools device emulation
+- Test responsiveness: Use browser DevTools device emulation (768px breakpoint)
 - Test SEO: Check meta tags and structured data with browser DevTools
+- Test theme switching: Toggle dark/light mode and verify localStorage persistence
 
 ### Deployment
 - Push to `main` branch triggers automatic GitHub Pages deployment
@@ -30,7 +30,40 @@ open http://localhost:8000
 
 ## Architecture Overview
 
-This is a vanilla JavaScript personal portfolio website with no build system or framework. The architecture is modular with clear separation of concerns.
+This is a vanilla JavaScript personal portfolio website with no build system or framework. The architecture is modular with clear separation of concerns and follows modern CSS best practices.
+
+### CSS Architecture Principles
+
+The project uses a **token-based design system** with systematic spacing and modern CSS features:
+
+**Design Tokens** (defined in `:root`):
+- **HSL Color System**: `--brand-hue: 217`, `--brand-sat: 91%` for easy theming
+- **Spacing Scale**: 4px grid system - `--s-1: 4px`, `--s-2: 8px`, `--s-6: 24px`, etc.
+- **Typography Scale**: Modular scale with `--f-base: 1rem`, `--f-ratio: 1.2`
+- **47 total CSS variables** as single source of truth
+
+**Layout Utilities** (`.l-*` prefix):
+- `.l-container` - Max-width container with logical properties
+- `.l-grid` - CSS Grid layouts
+- `.l-section` - Section-level spacing
+
+**Modern CSS Features**:
+- **CSS Nesting** (~40% coverage, target: 90%)
+- **Logical Properties** (~15% coverage, target: 85%)
+  - Use `inline-size/block-size` instead of `width/height`
+  - Use `margin-inline` instead of `margin-left/right`
+  - Use `inset-inline-start` instead of `left`
+  - Enables RTL support for Arabic/Hebrew
+
+**Component Patterns**:
+- BEM-like naming: `.component__element--modifier`
+- Partial nesting: `footer { &::before { } .footer-content { } }`
+- Systematic spacing: All values use `var(--s-*)` tokens, no magic numbers
+
+**Migration Notes**:
+- Target state: 60% smaller CSS file size through consolidation
+- See `CSS_ARCHITECTURE.md` for detailed optimization roadmap
+- See `EXPERIENCE_REFACTOR.md` for before/after refactoring example
 
 ### Module Loading Pattern
 Scripts are loaded in `index.html` in the following order:
@@ -96,31 +129,6 @@ Projects are stored in `projects.json` with a specific structure:
 
 **Security Note**: All user-facing content is escaped via `escapeHtml()` to prevent XSS attacks.
 
-### RSS Feed System
-Located in `/rss/` directory with modular ES6 architecture:
-
-**Module Structure**:
-- `RSSFeed.js` - Core RSS feed class (basic implementation)
-- `enhanced-rss.js` - Enhanced RSS with filtering, search, pagination (extends base)
-- `fetchRSSFeed.js` - Network layer for fetching RSS data
-- `display.js` - Rendering logic for feed items
-- `pagination.js` - Pagination controls
-- `enhanced-init.js` - Initializes the enhanced RSS system
-
-**Enhanced Features**:
-- Caching with 5-minute expiry: Uses `localStorage` with base64-encoded key
-- Search functionality: Filters by title and description
-- Date filtering: Filter items by date range
-- Favorites system: Persist favorite articles in localStorage
-- Auto-update: Configurable auto-refresh interval
-- Pagination: Configurable items per page
-
-**Initialization**:
-```html
-<script type="module" src="rss/enhanced-init.js"></script>
-```
-Creates global `window.rssFeed` instance for debugging.
-
 ## Content Management
 
 ### Adding a New Project
@@ -149,10 +157,66 @@ Edit `web/localization.js`:
 3. For dynamic content, add logic in `updateContent()` function
 4. The system automatically updates content on language change via `languageChanged` event
 
+### CSS Development Guidelines
+When adding or modifying styles:
+
+1. **Always use design tokens** - No hardcoded values:
+   ```css
+   /* ✅ Good */
+   padding: var(--s-6);
+   margin-block-end: var(--s-4);
+
+   /* ❌ Bad */
+   padding: 24px;
+   margin-bottom: 16px;
+   ```
+
+2. **Prefer logical properties** for RTL support:
+   ```css
+   /* ✅ Good */
+   inline-size: 100%;
+   margin-inline: auto;
+   inset-inline-start: 0;
+
+   /* ❌ Avoid */
+   width: 100%;
+   margin-left: auto;
+   left: 0;
+   ```
+
+3. **Use CSS nesting** for component organization:
+   ```css
+   /* ✅ Good - Nested */
+   .project-card {
+       background: var(--bg-secondary);
+
+       &:hover {
+           transform: translateY(-4px);
+       }
+
+       &__title {
+           font-size: var(--f-h3);
+       }
+   }
+
+   /* ❌ Avoid - Fragmented */
+   .project-card { }
+   .project-card:hover { }
+   .project-card__title { }
+   ```
+
+4. **Follow BEM naming** for components:
+   - Block: `.component`
+   - Element: `.component__element`
+   - Modifier: `.component__element--modifier`
+   - Layout utilities: `.l-container`, `.l-grid`
+   - Utilities: `.u-stagger`, `.u-hidden`
+
 ## Key Technical Details
 
 ### Theme System
 - CSS custom properties for colors (defined in `style.css`)
+- HSL-based color system with `--brand-hue` for easy theme changes
 - `prefers-color-scheme` media query for automatic dark/light mode detection
 - Manual toggle via `.theme-toggle` button
 - Preference saved to `localStorage`
@@ -183,28 +247,35 @@ The codebase uses custom events for module communication:
 
 ### Root Directory
 - `index.html` - Main page (single-page application)
-- `feed.html` - RSS feed reader (standalone page)
-- `news.html` - News article viewer (standalone page)
+- `ai-workflow.html` - AI workflow documentation page
 - `style.css` - Global stylesheet with CSS custom properties
 - `projects.json` - Project data source
 
 ### `/web` Directory
 Core JavaScript modules loaded by main page. All use vanilla JS with no dependencies.
 
-### `/rss` Directory
-RSS feed system modules loaded as ES6 modules by `feed.html`. Modular architecture allows for easy extension.
-
 ### External Resources
 - Fonts: Google Fonts (Inter)
 - Icons: Font Awesome 6.4.0 (CDN) with SRI
 - Images: Stored in `assets/images/` directory
+
+### Removed Files (Deprecated)
+The following files have been removed from the codebase:
+- `feed.html` - RSS feed reader (deprecated)
+- `news.html` - News article viewer (deprecated)
+- `web/features.js` - Feature toggle system (simplified)
+- `/config` directory - Feature configuration files (simplified)
 
 ## Important Conventions
 
 - **Language codes**: `en`, `ru`, `rs` (not `sr` for Serbian)
 - **All scripts use vanilla JavaScript** (no frameworks, no build process)
 - **CSS uses BEM-like naming** for components
+- **CSS uses systematic spacing** based on 4px grid
 - **Localization keys use dot notation** (e.g., `menu.home`, `footer.copyright`)
 - **Event-driven architecture** - Use custom events for cross-module communication
 - **Security first** - Always escape user-generated content with `escapeHtml()`
 - **Mobile-first responsive design** - Test on mobile viewport (768px breakpoint)
+- **Design tokens first** - Always use CSS variables, never hardcode values
+- **Logical properties preferred** - Use `inline-size` instead of `width` for RTL support
+- **CSS nesting preferred** - Nest component styles for better organization
