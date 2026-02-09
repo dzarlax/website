@@ -157,10 +157,10 @@
 
 ## 12. Deployment
 
-- [ ] 12.1 Commit all changes with descriptive message
-- [ ] 12.2 Merge `feature/css-optimization` to main branch
-- [ ] 12.3 Push to GitHub
-- [ ] 12.4 Verify GitHub Pages deployment
+- [x] 12.1 Commit all changes with descriptive message - Commit 90173e3
+- [x] 12.2 Merge `feature/css-optimization` to main branch - Fast-forward merge complete
+- [x] 12.3 Push to GitHub - Pushed to origin/main
+- [ ] 12.4 Verify GitHub Pages deployment - Automatic via GitHub Actions
 - [ ] 12.5 Test production environment:
   - [ ] 12.5.1 Check LCP in Chrome DevTools
   - [ ] 12.5.2 Run Lighthouse on production URL
