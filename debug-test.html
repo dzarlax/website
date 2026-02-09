@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Test</title>
+</head>
+<body>
+    <h1>Debug Test</h1>
+    <div id="output"></div>
+
+    <section id="skills" class="skills reveal">
+        <h2 class="skills__title">Skills</h2>
+        <div class="skills__container"></div>
+    </section>
+
+    <section id="experience" class="experience reveal">
+        <h2 class="experience__title">Experience</h2>
+        <ul class="experience__list"></ul>
+    </section>
+
+    <section id="education" class="education reveal">
+        <h2 class="education__title">Education</h2>
+        <div class="education__list"></div>
+    </section>
+
+    <script type="module">
+        import { initLocalization } from './web/localization-core.js';
+
+        const output = document.getElementById('output');
+
+        function log(msg) {
+            output.innerHTML += `<div>${msg}</div>`;
+            console.log(msg);
+        }
+
+        log('1. Script started');
+
+        // Check if translations are available
+        setTimeout(() => {
+            log(`2. window.translations exists: ${!!window.translations}`);
+            if (window.translations) {
+                log(`3. Languages available: ${Object.keys(window.translations).join(', ')}`);
+                const lang = localStorage.getItem('preferredLanguage') || 'en';
+                log(`4. Current language: ${lang}`);
+                log(`5. English data keys: ${Object.keys(window.translations.en || {}).join(', ')}`);
+                log(`6. Has skills data: ${!!window.translations.en?.skills}`);
+                log(`7. Has experience data: ${!!window.translations.en?.experience}`);
+                log(`8. Has education data: ${!!window.translations.en?.education}`);
+
+                // Try to render skills
+                if (window.translations.en?.skills) {
+                    const skillsContainer = document.querySelector('.skills__container');
+                    log(`9. Skills container found: ${!!skillsContainer}`);
+                    if (skillsContainer) {
+                        skillsContainer.innerHTML = '<p>TEST: Skills container is working!</p>';
+                        log('10. TEST: Added content to skills container');
+                    }
+                }
+            }
+        }, 1000);
+    </script>
+
+    <script type="module" src="./web/skills.js"></script>
+    <script type="module" src="./web/experience.js"></script>
+    <script type="module" src="./web/education.js"></script>
+</body>
+</html>

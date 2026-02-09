@@ -86,16 +86,14 @@
     <link rel="apple-touch-icon" sizes="512x512" href="assets/images/avatar-512x512.webp">
 
     <!-- Fonts with optimized loading -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Load Inter font with display=optional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=optional" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css?v=20250115y&safari=1">
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="assets/images/avatar-circle.webp" as="image">
-    <!-- Font Awesome - async loading with preload -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
+    <link rel="preload" href="assets/images/avatar-circle.webp" as="image" imagesizes="(max-width: 1200px) 100vw, 1200px">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -336,9 +334,15 @@
             </h1>
 
             <div class="profile-container">
-                <img src="assets/images/avatar-circle.webp"
-                    alt="Professional headshot of Alexey Panfilov (Dzarlax), Product Manager and Tech Enthusiast"
-                    class="profile-image">
+                <picture>
+                    <source srcset="assets/images/avatar-circle.webp" type="image/webp">
+                    <source srcset="assets/images/avatar-circle.jpg" type="image/jpeg">
+                    <img src="assets/images/avatar-circle.jpg"
+                         alt="Professional headshot of Alexey Panfilov (Dzarlax), Product Manager and Tech Enthusiast"
+                         class="profile-image"
+                         width="800"
+                         height="800">
+                </picture>
                 <div class="profile-badge floating">
                     <i class="fas fa-briefcase"></i>
                 </div>
@@ -456,13 +460,6 @@
     <div id="popover" class="hidden"></div>
 
     <!-- Scripts -->
-    <!-- Critical scripts loaded synchronously -->
-    <script src="web/theme.js"></script>
-    <script src="web/localization.js" defer></script>
-    <script src="web/contacts.js" defer></script>
-    <script src="web/animation.js" defer></script>
-    <script src="web/projects.js" defer></script>
-    <script src="web/vitals.js" defer></script>
     <!-- jspdf.min.js loaded dynamically only when needed for resume download -->
 
     <script>
@@ -634,6 +631,24 @@
     </section>
 </div>
 <!-- End SEO Content -->
+
+<!-- Font Awesome - deferred loading -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<!-- Scripts - loaded after page render for faster initial paint -->
+<script src="web/theme.js" defer></script>
+<script src="web/contacts.js" defer></script>
+<script src="web/animation.js" defer></script>
+<script src="web/projects.js" defer></script>
+<script src="web/vitals.js" defer></script>
+
+<!-- Localization module - auto-initializes on load -->
+<script type="module" src="./web/localization-core.js"></script>
+
+<!-- Section modules -->
+<script type="module" src="./web/skills.js"></script>
+<script type="module" src="./web/experience.js"></script>
+<script type="module" src="./web/education.js"></script>
 
 </body>
 
