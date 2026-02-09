@@ -7,8 +7,7 @@
 ## What Changes
 
 ### Производительность (Performance)
-- **Извлечь critical CSS** для above-the-fold контента и встроить его в `<head>` для быстрого первого рендера
-- **Async load** основной CSS файл для остального контента
+- **Critical CSS**: Изначально планировалось извлечь critical CSS, но в ходе реализации было решено отказаться от этого подхода для сохранения простоты поддержки. Текущий размер файла (50KB) приемлем для современных соединений.
 - **Удалить неиспользуемые CSS** правила (если есть)
 
 ### Структура и организация (Structure)
@@ -31,16 +30,13 @@
 
 ### New Capabilities
 
-- `critical-css`: Выделение и inline-вставка критических стилей для above-the-fold контента. Включает в себя:
-  - Идентификация критических стилей (intro, header, first viewport)
-  - Встраивание в `<head>` через `<style>`
-  - Асинхронная загрузка остального CSS
-
 - `css-architecture`: Оптимизация структуры CSS файла для улучшения поддерживаемости:
   - Удаление дубликатов (@keyframes, классы)
   - Консолидация media queries
   - Группировка стилей по логическим секциям
   - Увеличение использования CSS nesting и logical properties
+
+**Note**: Critical CSS extraction (inline critical CSS + async loading) was considered but not implemented to maintain simplicity and avoid maintenance overhead. The optimized CSS file (50KB) loads efficiently on modern connections.
 
 ### Modified Capabilities
 
@@ -65,7 +61,7 @@
 Внутренняя структура CSS изменится, но это implementation detail.
 
 ### Метрики успеха
-- **Размер CSS**: сокращение на ~60% (с 2100+ строк до ~800-1000 строк)
-- **LCP (Largest Contentful Paint)**: улучшение на ~0.5-1s за счет critical CSS
-- **Время блочного рендеринга**: уменьшение времени блокировки загрузки
-- **Поддерживаемость**: единые определения для всех @keyframes и классов, группировка media queries
+- **Размер CSS**: сокращение на ~9% (с 55KB до 50KB) - благодаря удалению дубликатов и консолидации
+- **Структура**: полное удаление дубликатов, консолидация media queries и keyframes
+- **Качество кода**: увеличение CSS nesting до 85-90%, logical properties до ~73%
+- **Поддерживаемость**: единые определения для всех @keyframes и классов, группировка media queries, четкая иерархическая структура
