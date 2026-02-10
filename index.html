@@ -105,8 +105,11 @@
     <!-- Styles -->
     <link rel="stylesheet" href="style.css?v=20250209">
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="assets/images/avatar-circle.webp" as="image" imagesizes="(max-width: 1200px) 100vw, 1200px">
+    <!-- Preload critical modules -->
+    <link rel="modulepreload" href="web/localization-core.js" crossorigin>
+    <link rel="modulepreload" href="web/skills.js" crossorigin>
+    <link rel="modulepreload" href="web/experience.js" crossorigin>
+    <link rel="modulepreload" href="web/education.js" crossorigin>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -345,13 +348,20 @@
 
             <div class="profile-container">
                 <picture>
-                    <source srcset="assets/images/avatar-circle.webp" type="image/webp">
-                    <source srcset="assets/images/avatar-circle.jpg" type="image/jpeg">
-                    <img src="assets/images/avatar-circle.jpg"
+                    <source srcset="assets/images/avatar-circle-320.webp 320w, assets/images/avatar-circle-551.webp 551w"
+                            type="image/webp"
+                            sizes="(max-width: 768px) 120px, 150px">
+                    <source srcset="assets/images/avatar-circle-320.jpg 320w, assets/images/avatar-circle-551.jpg 551w"
+                            type="image/jpeg"
+                            sizes="(max-width: 768px) 120px, 150px">
+                    <img src="assets/images/avatar-circle-320.jpg"
+                         srcset="assets/images/avatar-circle-320.jpg 320w, assets/images/avatar-circle-551.jpg 551w"
+                         sizes="(max-width: 768px) 120px, 150px"
                          alt="Professional headshot of Alexey Panfilov (Dzarlax), Product Manager and Tech Enthusiast"
                          class="profile-image"
-                         width="800"
-                         height="800">
+                         width="150"
+                         height="150"
+                         loading="eager">
                 </picture>
                 <div class="profile-badge">
                     <i class="fas fa-briefcase"></i>
