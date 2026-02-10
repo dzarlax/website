@@ -267,10 +267,6 @@ window.addEventListener('resize', () => {
 
 // Initialize on page load
 async function initializeLocalization() {
-    console.log('[LOCALIZATION] initializeLocalization called');
-    console.log('[LOCALIZATION] Available translations:', Object.keys(translations));
-    console.log('[LOCALIZATION] English data exists:', !!translations.en);
-
     // Get preferred language
     const savedLang = localStorage.getItem('preferredLanguage');
     const browserLang = (navigator.language || navigator.userLanguage).split('-')[0];
@@ -283,18 +279,13 @@ async function initializeLocalization() {
         defaultLang = browserLang;
     } else if (savedLang && savedLang !== 'en') {
         // Language is saved but not loaded yet, load it asynchronously
-        console.log('[LOCALIZATION] Loading language async:', savedLang);
         try {
             await loadLanguage(savedLang);
             defaultLang = savedLang;
         } catch (error) {
-            console.error('[LOCALIZATION] Failed to load language:', error);
             defaultLang = 'en';
         }
     }
-
-    console.log('[LOCALIZATION] Using language:', defaultLang);
-    console.log('[LOCALIZATION] Data for language:', translations[defaultLang] ? Object.keys(translations[defaultLang]).slice(0, 5) : 'MISSING');
 
     // Initial content update
     updateContent(defaultLang);
@@ -302,7 +293,6 @@ async function initializeLocalization() {
     // Dispatch languageChanged event for other modules that need to update
     const event = new CustomEvent('languageChanged', { detail: { language: defaultLang } });
     document.dispatchEvent(event);
-    console.log('[LOCALIZATION] Dispatched languageChanged event');
 }
 
 // Check if DOM is already loaded

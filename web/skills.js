@@ -157,16 +157,10 @@ window.addEventListener('resize', () => {
 });
 
 // Listen for language changes
-document.addEventListener('languageChanged', () => {
-    console.log('[SKILLS] languageChanged event received');
-    setupSkills();
-});
+document.addEventListener('languageChanged', setupSkills);
 
 // Initial render on page load
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('[SKILLS] DOMContentLoaded fired');
-    setupSkills();
-});
+document.addEventListener('DOMContentLoaded', setupSkills);
 
 // Export for testing
 export { renderSkills, setupSkills, showPopover, hidePopover };

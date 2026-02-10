@@ -6,8 +6,6 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <!-- Google tag (gtag.js) - async for non-blocking -->
@@ -52,7 +50,7 @@
 
     <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://via.placeholder.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com;">
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https://via.placeholder.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com;">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Dzarlax - Alexey Panfilov | Product Manager & Tech Enthusiast">
@@ -85,12 +83,27 @@
     <link rel="icon" type="image/webp" sizes="128x128" href="assets/images/avatar-128x128.webp">
     <link rel="apple-touch-icon" sizes="512x512" href="assets/images/avatar-512x512.webp">
 
-    <!-- Fonts with optimized loading -->
-    <!-- Load Inter font with display=optional -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=optional" rel="stylesheet">
+    <!-- System fonts only - no external font loading (prevents CLS) -->
+    <style>
+        body {
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI Variable",
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif,
+                "Apple Color Emoji",
+                "Segoe UI Emoji",
+                "Segoe UI Symbol",
+                "Noto Color Emoji";
+        }
+    </style>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=20250115y&safari=1">
+    <link rel="stylesheet" href="style.css?v=20250209">
 
     <!-- Preload critical resources -->
     <link rel="preload" href="assets/images/avatar-circle.webp" as="image" imagesizes="(max-width: 1200px) 100vw, 1200px">
@@ -325,9 +338,6 @@
 
     <main id="main-content">
         <section id="intro" class="intro reveal">
-            <div class="shape-1"></div>
-            <div class="shape-2"></div>
-
             <!-- SEO H1 (visually hidden but accessible to search engines) -->
             <h1 style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;">
                 Dzarlax - Alexey Panfilov, Product Manager and Tech Enthusiast
@@ -343,7 +353,7 @@
                          width="800"
                          height="800">
                 </picture>
-                <div class="profile-badge floating">
+                <div class="profile-badge">
                     <i class="fas fa-briefcase"></i>
                 </div>
             </div>
@@ -632,15 +642,14 @@
 </div>
 <!-- End SEO Content -->
 
-<!-- Font Awesome - deferred loading -->
+<!-- Font Awesome - async loading -->
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-<!-- Scripts - loaded after page render for faster initial paint -->
+<!-- Critical scripts - loaded immediately -->
 <script src="web/theme.js" defer></script>
-<script src="web/contacts.js" defer></script>
 <script src="web/animation.js" defer></script>
 <script src="web/projects.js" defer></script>
-<script src="web/vitals.js" defer></script>
+<script src="web/contacts.js" defer></script>
 
 <!-- Localization module - auto-initializes on load -->
 <script type="module" src="./web/localization-core.js"></script>
@@ -649,6 +658,29 @@
 <script type="module" src="./web/skills.js"></script>
 <script type="module" src="./web/experience.js"></script>
 <script type="module" src="./web/education.js"></script>
+
+<!-- Analytics - lazy loaded -->
+<script>
+// Lazy load vitals.js (analytics only) when browser is idle
+if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+        const script = document.createElement('script');
+        script.src = 'web/vitals.js';
+        script.defer = true;
+        document.head.appendChild(script);
+    });
+} else {
+    // Fallback for browsers without requestIdleCallback
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const script = document.createElement('script');
+            script.src = 'web/vitals.js';
+            script.defer = true;
+            document.head.appendChild(script);
+        }, 2000);
+    });
+}
+</script>
 
 </body>
 

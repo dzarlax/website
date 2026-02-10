@@ -15,6 +15,8 @@ function renderEducation(data) {
 
     educationList.innerHTML = '';
 
+    educationList.innerHTML = '';
+
     data.education.items.forEach((item, index) => {
         const div = document.createElement('div');
         div.classList.add('education-item');
