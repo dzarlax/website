@@ -211,11 +211,11 @@ async function downloadResume() {
     const { jsPDF } = window.jspdf;
 
     // Get current language
-    const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+    const currentLang = localStorage.getItem('preferredLanguage') ?? 'en';
 
     // Get translations - ALWAYS use English for PDF to avoid encoding issues
-    const translations = window.translations || {};
-    const data = translations['en'] || {}; // Force English to avoid UTF-8 issues
+    const translations = window.translations ?? {};
+    const data = translations['en'] ?? {}; // Force English to avoid UTF-8 issues
 
     if (!data) {
         console.error('No translation data available');

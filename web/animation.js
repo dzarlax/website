@@ -3,6 +3,15 @@
  * Adds dynamic effects and interactions to improve user experience
  */
 
+// Debounce utility function
+function debounce(fn, delay = 16) {
+    let timeoutId;
+    return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
 // Typing effect for the intro title
 function setupTypingEffect() {
     const titleElement = document.querySelector('#intro h2');
@@ -15,8 +24,8 @@ function setupTypingEffect() {
     }
 
     // Get title from translations
-    const currentLang = localStorage.getItem('preferredLanguage') || 'en';
-    const title = window.translations?.[currentLang]?.intro?.title || 'Product Manager';
+    const currentLang = localStorage.getItem('preferredLanguage') ?? 'en';
+    const title = window.translations?.[currentLang]?.intro?.title ?? 'Product Manager';
 
     titleElement.textContent = '';
     titleElement.classList.add('typing-effect');
@@ -40,12 +49,13 @@ function setupParallax() {
     const header = document.querySelector('header');
     if (!header) return;
 
-    window.addEventListener('scroll', () => {
+    const handleScroll = debounce(() => {
         const scrollPosition = window.scrollY;
         if (scrollPosition < window.innerHeight) {
             header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
         }
     });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 }
 
 // Tilt effect for skill cards - DISABLED (causes jumping on mobile)
@@ -59,7 +69,7 @@ function setupCounters() {
     const experienceYears = document.querySelector('#experience-years');
     if (!experienceYears) return;
 
-    const targetNumber = parseInt(experienceYears.getAttribute('data-count') || '8');
+    const targetNumber = parseInt(experienceYears.getAttribute('data-count') ?? '8');
     let currentNumber = 0;
 
     const observer = new IntersectionObserver((entries) => {
@@ -123,7 +133,7 @@ function setupScrollSpy() {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav a');
 
-    window.addEventListener('scroll', () => {
+    const handleScroll = debounce(() => {
         let current = '';
 
         sections.forEach(section => {
@@ -143,6 +153,7 @@ function setupScrollSpy() {
             }
         });
     });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 }
 
 
@@ -153,13 +164,14 @@ function setupScrollToTop() {
     const scrollButton = document.getElementById('scroll-to-top');
     if (!scrollButton) return;
 
-    window.addEventListener('scroll', () => {
+    const handleScroll = debounce(() => {
         if (window.scrollY > 300) {
             scrollButton.classList.add('visible');
         } else {
             scrollButton.classList.remove('visible');
         }
     });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     scrollButton.addEventListener('click', () => {
         window.scrollTo({
@@ -189,29 +201,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('header nav');
     const menuOverlay = document.querySelector('.menu-overlay');
 
+    // Helper function to close menu with accessibility support
+    const closeMenu = () => {
+        hamburger?.classList.remove('active');
+        nav?.classList.remove('active');
+        menuOverlay?.classList.remove('active');
+        hamburger?.setAttribute('aria-expanded', 'false');
+    };
+
+    // Helper function to open menu
+    const openMenu = () => {
+        hamburger?.classList.add('active');
+        nav?.classList.add('active');
+        menuOverlay?.classList.add('active');
+        hamburger?.setAttribute('aria-expanded', 'true');
+    };
+
     if (hamburger && nav && menuOverlay) {
         // Toggle menu
         hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
-            hamburger.classList.toggle('active');
-            nav.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
+            const isOpen = hamburger.classList.contains('active');
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
 
         // Close menu when clicking on overlay
         menuOverlay.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            nav.classList.remove('active');
-            menuOverlay.classList.remove('active');
+            closeMenu();
+            hamburger?.focus();
         });
 
         // Close menu when clicking on navigation links
         const navLinks = nav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                nav.classList.remove('active');
-                menuOverlay.classList.remove('active');
+                closeMenu();
+                hamburger?.focus();
             });
         });
 
@@ -234,10 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Swipe left to close menu
             if (swipeDistance < -minSwipeDistance) {
-                if (hamburger.classList.contains('active')) {
-                    hamburger.classList.remove('active');
-                    nav.classList.remove('active');
-                    menuOverlay.classList.remove('active');
+                if (hamburger?.classList.contains('active')) {
+                    closeMenu();
                 }
             }
         }
@@ -269,10 +296,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scroll Progress Indicator
     const scrollProgress = document.getElementById('scrollProgress');
     if (scrollProgress) {
-        window.addEventListener('scroll', () => {
+        const handleScrollProgress = debounce(() => {
             const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (window.scrollY / windowHeight) * 100;
             scrollProgress.style.width = scrolled + '%';
         });
+        window.addEventListener('scroll', handleScrollProgress, { passive: true });
     }
 });

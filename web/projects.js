@@ -21,16 +21,19 @@ async function fetchProjects() {
     }
 }
 
-function createProjectCard(project) {
-    const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+function createProjectCard(project, index, total) {
+    const currentLang = localStorage.getItem('preferredLanguage') ?? 'en';
     const card = document.createElement('div');
     card.classList.add('project-card');
     card.id = project.id; // Add ID for SEO and sitemap anchoring
+    card.setAttribute('role', 'article');
+    card.setAttribute('aria-setsize', total);
+    card.setAttribute('aria-posinset', index + 1);
 
     // Safely escape HTML content to prevent XSS
-    const title = escapeHtml(project[`title_${currentLang}`] || project.title_en);
-    const description = escapeHtml(project[`description_${currentLang}`] || project.description_en);
-    const tags = project[`tags_${currentLang}`] || project.tags_en || [];
+    const title = escapeHtml(project[`title_${currentLang}`] ?? project.title_en);
+    const description = escapeHtml(project[`description_${currentLang}`] ?? project.description_en);
+    const tags = project[`tags_${currentLang}`] ?? project.tags_en ?? [];
     const link = escapeHtml(project.link);
 
     // Create title element
@@ -118,12 +121,12 @@ async function displayProjects() {
 
     if (projectsData && projectsData.length > 0) {
         projectsData.forEach((project, index) => {
-            const card = createProjectCard(project);
+            const card = createProjectCard(project, index, projectsData.length);
             card.style.setProperty('--i', index + 1); // For staggered animation
             container.appendChild(card);
         });
     } else {
-        const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+        const currentLang = localStorage.getItem('preferredLanguage') ?? 'en';
         let message = 'No projects to display at the moment.';
         if (currentLang === 'ru') {
             message = 'Проектов для отображения пока нет.';

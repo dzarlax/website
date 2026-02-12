@@ -715,10 +715,10 @@ section {
 /* Scroll to Top */
 #scroll-to-top {
     position: fixed;
-    inset-block-end: 30px;
-    inset-inline-end: 30px;
-    inline-size: 56px;
-    block-size: 56px;
+    inset-block-end: var(--s-8);
+    inset-inline-end: var(--s-8);
+    inline-size: calc(var(--s-10) + var(--s-4));
+    block-size: calc(var(--s-10) + var(--s-4));
     background: var(--gradient-primary);
     color: white;
     border: none;
@@ -1019,10 +1019,10 @@ section {
     position: absolute;
     background-color: var(--popover-bg-color);
     color: var(--popover-text-color);
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    max-inline-size: 320px;
+    padding: var(--s-5);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 var(--s-2) calc(var(--s-6) + var(--s-1)) rgba(0, 0, 0, 0.15);
+    max-inline-size: calc(var(--s-10) * 8);
     z-index: 1000;
     border: none;
     backdrop-filter: blur(10px);
@@ -1715,7 +1715,7 @@ footer {
         ul {
             flex-direction: column;
             gap: 0;
-            padding: 20px;
+            padding: var(--s-5);
 
             li {
                 inline-size: 100%;
@@ -1830,10 +1830,10 @@ footer {
     }
 
     .collapsible-content {
-        padding: 16px;
+        padding: var(--s-4);
         background-color: var(--bg-secondary);
-        border-radius: 8px;
-        margin-block-start: 8px;
+        border-radius: var(--s-2);
+        margin-block-start: var(--s-2);
         transition: all 0.3s ease-out;
         opacity: 0;
         max-block-size: 0;
@@ -1853,7 +1853,7 @@ footer {
     }
 
     .project-card {
-        padding: 20px;
+        padding: var(--s-5);
     }
 
     .project-title {
@@ -1872,10 +1872,10 @@ footer {
     .experience__item {
         inline-size: 100%;
         inset-inline-start: 0 !important;
-        padding-inline-start: 50px;
+        padding-inline-start: calc(var(--s-10) + var(--s-2));
         padding-inline-end: 0;
         text-align: start !important;
-        padding: 20px 0 20px 50px;
+        padding: var(--s-5) 0 var(--s-5) calc(var(--s-10) + var(--s-2));
     }
 
     .experience__item::before {
