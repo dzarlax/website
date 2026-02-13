@@ -75,8 +75,8 @@ const englishTranslations = {
     footer_text: '© 2024 Alexey Panfilov. Built with AI-augmented development.',
     intro: {
         title: 'Head of Product',
-        description: "<strong>AI-Native Product Executive</strong> with 15 years building high-load systems and product portfolios from 0 to 1. Don't treat AI as magic - understand the difference between prompt engineering and agent-based systems, knowing when to use generic LLMs vs. fine-tuned small models for business-critical tasks. Don't limit myself to major LLM vendors - constantly testing and evaluating new models and approaches.<br><br>" +
-            "Leveraging <strong>Cursor, Claude Code, and LLM agents</strong> to bridge ideation and technical execution - enabling rapid MVP prototyping with deep developer empathy. Successfully delivered systems at <strong>Yandex & Russian Post</strong> serving millions of users. Thrive in fast-evolving R&D environments, turning customer insights and OKRs into clear roadmaps and measurable outcomes. Adept storyteller for execs, engineers, and clients alike.<br><br>" +
+        description: "<strong>AI-Native Product Executive</strong> with 15 years building high-load systems and product portfolios from 0 to 1. Experience with prompt engineering and agent-based systems, knowing when to use generic LLMs vs. fine-tuned small models for business-critical tasks.<br><br>" +
+            "Leveraging <strong>Cursor, Claude Code, and LLM agents</strong> to bridge ideation and technical execution. Built <strong>AI/ML platforms for universities</strong> and data systems at <strong>Yandex & Russian Post</strong> serving millions of users.<br><br>" +
             "<strong>Languages:</strong> Native Russian, fluent English, conversational Serbian."
     },
     skills: {
@@ -147,14 +147,14 @@ const englishTranslations = {
                 company: 'Constructor.tech',
                 location: 'Belgrade',
                 period: '10/2024 - Present',
-                description: "<strong>Product Portfolio:</strong> Orchestrate strategy for multiple AI/ML products including ResearchPelt (computational platform for scientists), VS Code-based web IDE, University Chatbots, Groups with LLM integration, Model Engine, and Insights analytics platform.<br><br><strong>Team Leadership:</strong> Lead cross-functional teams while balancing resource allocation across high-stakes projects. Prioritize based on immediate business impact and technical feasibility.<br><br><strong>AI Advocacy:</strong> Serve as internal AI Advocate training product managers on AI agent development. Deliver enterprise-grade fine-tuned models for specialized business tasks."
+                description: "<strong>Product Portfolio:</strong> Orchestrate strategy for 6+ AI/ML products including Research (computational platform for scientists), VS Code-based web IDE with Kubernetes hosting, University Chatbots, Groups (video conferencing), Model Engine (corporate AI layer), and Insights.<br><br><strong>Insights:</strong> Building team productivity intelligence platform with AI-augmented development. Created working prototype with Semantic Layer (knowledge graph: 178 entities, 2700+ relationships), Gemini AI integration, Discovery Engine for auto-metrics. PostgreSQL + Express backend, React + Vite frontend.<br><br><strong>AI Advocacy:</strong> Internal AI Advocate training PMs on AI agent development. Deliver AI Agents for specialized business tasks."
             },
             {
                 title: 'Technical Project Manager',
                 company: 'Yandex Cloud',
                 location: 'Moscow-Belgrade',
                 period: '8/2022 - 9/2024',
-                description: "<strong>Product Management:</strong> Managed development team and processes for Yandex's data visualization product Datalens. Performed feature design, mockup preparation, and collaboration with team leads for planning and tracking development stages.<br><br><strong>Team Coordination:</strong> Coordinated cross-functional teams to ensure timely delivery of features and improvements in fast-paced environment."
+                description: "<strong>Product:</strong> DataLens - already the main BI system in Yandex with active internal usage and external clients.<br><br><strong>Role:</strong> Technical PM working with dev team on new features and technical solutions. Managed interactions within the team and with external teams. Both product and technical feature development.<br><br><strong>Key Contributions:</strong> Participated in open-source release and on-prem version preparation. Deep ClickHouse integration. 50,000+ users in largest installation."
             },
             {
                 title: 'Product Manager',
@@ -168,7 +168,7 @@ const englishTranslations = {
                 company: 'Russian Post',
                 location: 'Moscow',
                 period: '6/2020 - 4/2021',
-                description: "<strong>Product Development:</strong> Built and led distributed team creating high-load validation engine processing data for international giants including iHerb and AliExpress.<br><br><strong>Compliance:</strong> Ensured 100% GDPR compliance and significantly reduced data entry errors through automated validation workflows.<br><br><strong>Team Building:</strong> Hired and managed full-stack development team from scratch."
+                description: "<strong>Product:</strong> High-load validation engine for international shipping data<br><br><strong>Scale:</strong> Processed 2M+ addresses daily for clients including iHerb and AliExpress<br><br><strong>Quality:</strong> Reduced error rate from 30% to 2% through automated validation workflows. 100% GDPR compliance - zero incidents over 18 months.<br><br><strong>Team:</strong> Hired and managed full-stack development team from scratch (4 → 8 engineers)."
             },
             {
                 title: 'Product Owner',
