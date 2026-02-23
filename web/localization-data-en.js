@@ -228,12 +228,20 @@ const englishTranslations = {
             {
                 degree: 'Statistics Basics',
                 institution: 'Stepic',
-                type: 'course'
+                type: 'course',
+                link: 'https://stepik.org/cert/121767?lang=en'
             },
             {
                 degree: 'Business Metrics in Data-Driven Companies',
                 institution: 'Coursera',
-                type: 'course'
+                type: 'course',
+                link: 'https://coursera.org/share/8efefeec7cd620817621d6aa83f66326'
+            },
+            {
+                degree: 'SaaS Metrics Fundamentals for Managers, Founders & Investors',
+                institution: 'Udemy',
+                type: 'course',
+                link: 'https://www.udemy.com/certificate/UC-aaea3481-3c98-4ca7-8228-522c0d80e236/'
             }
         ]
     },

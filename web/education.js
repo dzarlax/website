@@ -38,7 +38,16 @@ function renderEducation(data) {
 
         const degreeElem = document.createElement('div');
         degreeElem.classList.add('education-degree');
-        degreeElem.textContent = item.degree;
+        if (item.link) {
+            const linkElem = document.createElement('a');
+            linkElem.href = item.link;
+            linkElem.target = '_blank';
+            linkElem.rel = 'noopener noreferrer';
+            linkElem.textContent = item.degree;
+            degreeElem.appendChild(linkElem);
+        } else {
+            degreeElem.textContent = item.degree;
+        }
         contentElem.appendChild(degreeElem);
 
         const institutionElem = document.createElement('div');
