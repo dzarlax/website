@@ -82,7 +82,83 @@
         "Zigbee2MQTT",
         "Home Assistant",
         "System Integration",
-        "Automation Platforms"
+        "Automation Platforms",
+        "Svelte",
+        "Vite",
+        "FastAPI",
+        "Qdrant Vector Database",
+        "Vector Embeddings",
+        "Model Context Protocol (MCP)",
+        "Semantic Search",
+        "Self-hosted AI Infrastructure",
+        "SaaS Metrics",
+        "Data Visualization",
+        "Stream Deck Plugins",
+        "Anthropic Claude API",
+        "Google Gemini API",
+        "OpenRouter"
+    ],
+    "hasCredential": [
+        {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Data Science Course - Mastering the Fundamentals",
+            "credentialCategory": "Certificate",
+            "recognizedBy": {
+                "@type": "Organization",
+                "name": "Scaler"
+            },
+            "dateCreated": "2026-03"
+        },
+        {
+            "@type": "EducationalOccupationalCredential",
+            "name": "SAAS METRICS CRASH COURSE",
+            "credentialCategory": "Certificate",
+            "recognizedBy": {
+                "@type": "Organization",
+                "name": "The SaaS Academy"
+            },
+            "dateCreated": "2026-02"
+        },
+        {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Data Visualization with Advanced Excel",
+            "credentialCategory": "Certificate",
+            "recognizedBy": {
+                "@type": "Organization",
+                "name": "PwC"
+            },
+            "dateCreated": "2026-02"
+        },
+        {
+            "@type": "EducationalOccupationalCredential",
+            "name": "SaaS Metrics Fundamentals for Managers, Founders & Investors",
+            "credentialCategory": "Certificate",
+            "recognizedBy": {
+                "@type": "Organization",
+                "name": "Udemy"
+            },
+            "dateCreated": "2026-02"
+        },
+        {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Business Metrics for Data-Driven Companies",
+            "credentialCategory": "Certificate",
+            "recognizedBy": {
+                "@type": "Organization",
+                "name": "Coursera"
+            },
+            "dateCreated": "2018-07"
+        },
+        {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Statistics Basics",
+            "credentialCategory": "Certificate",
+            "recognizedBy": {
+                "@type": "Organization",
+                "name": "Stepik"
+            },
+            "dateCreated": "2018-08"
+        }
     ],
     "sameAs": [
         "https://github.com/dzarlax",
