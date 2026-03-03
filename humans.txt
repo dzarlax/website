@@ -1,7 +1,7 @@
 /* TEAM */
   Founder: Alexey Panfilov (Dzarlax)
   Role: Senior Product Manager & Tech Enthusiast
-  Contact: me@dzarlax.dev
+  Contact: dzarlax@gmail.com
   Location: Belgrade, Serbia
   From: Moscow, Russia
 

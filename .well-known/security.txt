@@ -1,4 +1,4 @@
-Contact: mailto:me@dzarlax.dev
+Contact: mailto:dzarlax@gmail.com
 Expires: 2026-12-31T23:59:59.000Z
 Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/YOUR_FINGERPRINT
 Acknowledgments: https://dzarlax.dev/security-acknowledgments
@@ -42,7 +42,7 @@ We commit to:
 - Credit researchers for their valuable contributions
 
 ## How to Report
-Send your report to: me@dzarlax.dev
+Send your report to: dzarlax@gmail.com
 
 Please include:
 - Description of the vulnerability

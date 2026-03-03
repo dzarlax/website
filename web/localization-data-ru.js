@@ -241,10 +241,29 @@ const russianTranslations = {
                     institution: 'Udemy',
                     type: 'course',
                     link: 'https://www.udemy.com/certificate/UC-aaea3481-3c98-4ca7-8228-522c0d80e236/'
+                },
+                {
+                    degree: 'Data Visualization with Advanced Excel',
+                    institution: 'PwC',
+                    type: 'course',
+                    link: 'https://www.coursera.org/account/accomplishments/records/C1RKYPLTJVGH'
+                },
+                {
+                    degree: 'SAAS METRICS CRASH COURSE',
+                    institution: 'The SaaS Academy',
+                    type: 'course',
+                    link: 'https://www.canva.com/design/DAHCi3bhS-Y/XHpeNOyIuxBcqLgQSSqVaw/edit'
+                },
+                {
+                    degree: 'Data Science Course - Mastering the Fundamentals',
+                    institution: 'Scaler',
+                    type: 'course',
+                    link: 'https://moonshot.scaler.com/s/sl/D6AcRVHoj_'
                 }
             ]
         },
         education_title: 'Образование',
+        education_view_certificate: 'Смотреть сертификат',
         achievements_title: 'Достижения',
         achievement_1_title: 'AI-продукты в EdTech и науке',
         achievement_1_desc: 'Участвовал в запуске и развитии AI-платформ для научных исследований, управления грантами и образовательной аналитики в международной компании',

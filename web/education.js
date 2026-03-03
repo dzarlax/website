@@ -2,7 +2,7 @@
 const getTranslations = () => window.translations || {};
 
 // Helper function to render education with given data
-function renderEducation(data) {
+function renderEducation(data, lang) {
     const educationList = document.querySelector('.education__list');
 
     if (!educationList) {
@@ -38,22 +38,24 @@ function renderEducation(data) {
 
         const degreeElem = document.createElement('div');
         degreeElem.classList.add('education-degree');
-        if (item.link) {
-            const linkElem = document.createElement('a');
-            linkElem.href = item.link;
-            linkElem.target = '_blank';
-            linkElem.rel = 'noopener noreferrer';
-            linkElem.textContent = item.degree;
-            degreeElem.appendChild(linkElem);
-        } else {
-            degreeElem.textContent = item.degree;
-        }
+        degreeElem.textContent = item.degree;
         contentElem.appendChild(degreeElem);
 
         const institutionElem = document.createElement('div');
         institutionElem.classList.add('education-institution');
         institutionElem.textContent = `${item.institution}${item.location ? ', ' + item.location : ''}`;
         contentElem.appendChild(institutionElem);
+
+        if (item.link) {
+            const certLabel = data.education_view_certificate || 'View Certificate';
+            const certLink = document.createElement('a');
+            certLink.classList.add('education-cert-link');
+            certLink.href = item.link;
+            certLink.target = '_blank';
+            certLink.rel = 'noopener noreferrer';
+            certLink.innerHTML = `<i class="fas fa-external-link-alt"></i> ${certLabel}`;
+            contentElem.appendChild(certLink);
+        }
 
         div.appendChild(contentElem);
         educationList.appendChild(div);

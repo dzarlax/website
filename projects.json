@@ -1,17 +1,17 @@
 [
   {
     "id": "rss-summarizer",
-    "title_en": "RSS Summarizer",
-    "title_ru": "RSS Суммаризатор",
-    "title_rs": "RSS Сумаризатор",
-    "description_en": "AI-powered RSS feed aggregator that collects, summarizes, and distributes content using advanced AI summarization API. Features automatic content processing, S3 storage, and Telegram notifications.",
-    "description_ru": "AI-приложение для сбора, суммирования и распространения RSS-лент с использованием продвинутого API для AI-суммаризации. Включает автоматическую обработку контента, S3 хранилище и уведомления Telegram.",
-    "description_rs": "AI-апликација за прикупљање, сумирање и дистрибуцију RSS фидова користећи напредни AI API за сумирање. Укључује аутоматску обраду садржаја, S3 складиштење и Телеграм обавештења.",
+    "title_en": "RSS Summarizer v2",
+    "title_ru": "RSS Суммаризатор v2",
+    "title_rs": "RSS Сумаризатор v2",
+    "description_en": "Production-ready news aggregation system with AI summarization, web interface, and PostgreSQL database. Features multi-category support, dynamic category management, AI category mapping, and intelligent content extraction. Built with FastAPI and deployed via Docker.",
+    "description_ru": "Продакшн-система агрегации новостей с AI-суммаризацией, веб-интерфейсом и базой данных PostgreSQL. Поддерживает мультикатегорийность, динамическое управление категориями, AI-маппинг и интеллектуальное извлечение контента. Собрана на FastAPI, деплоится через Docker.",
+    "description_rs": "Produkcioni sistem za agregaciju vesti sa AI sumarizacijom, veb interfejsom i PostgreSQL bazom. Podržava više kategorija, dinamično upravljanje kategorijama, AI mapiranje i inteligentno ekstrakciju sadržaja. Izgrađen na FastAPI i deplojan putem Docker-a.",
     "image": "https://via.placeholder.com/300x200.png?text=RSS+Summarizer",
     "link": "https://github.com/dzarlax/RSS-summuriser",
-    "tags_en": ["Python", "AI", "OpenAI", "RSS", "S3", "Telegram", "AWS"],
-    "tags_ru": ["Python", "AI", "OpenAI", "RSS", "S3", "Telegram", "AWS"],
-    "tags_rs": ["Python", "AI", "OpenAI", "RSS", "S3", "Телеграм", "AWS"]
+    "tags_en": ["Python", "FastAPI", "AI", "PostgreSQL", "Docker", "OpenAI", "RSS"],
+    "tags_ru": ["Python", "FastAPI", "AI", "PostgreSQL", "Docker", "OpenAI", "RSS"],
+    "tags_rs": ["Python", "FastAPI", "AI", "PostgreSQL", "Docker", "OpenAI", "RSS"]
   },
   {
     "id": "todoist-telegram-bot",
@@ -40,5 +40,61 @@
     "tags_en": ["TypeScript", "Next.js", "React", "MySQL", "Docker", "NextAuth", "Business"],
     "tags_ru": ["TypeScript", "Next.js", "React", "MySQL", "Docker", "NextAuth", "Бизнес"],
     "tags_rs": ["TypeScript", "Next.js", "React", "MySQL", "Docker", "NextAuth", "Бизнис"]
+  },
+  {
+    "id": "personal-memory",
+    "title_en": "Personal Memory Stack",
+    "title_ru": "Personal Memory Stack",
+    "title_rs": "Personal Memory Stack",
+    "description_en": "Self-hosted semantic memory for any MCP-compatible AI client. Stores and retrieves facts using vector embeddings — no third-party cloud, all data stays on your own server. Built on Qdrant, FastMCP, and a multilingual embedding model.",
+    "description_ru": "Self-hosted семантическая память для любого MCP-совместимого AI-клиента. Хранит и извлекает факты через векторные embeddings — без сторонних облаков, все данные остаются на вашем сервере. Построено на Qdrant, FastMCP и мультиязычной модели embeddings.",
+    "description_rs": "Self-hosted semantička memorija za bilo koji MCP-kompatibilni AI klijent. Čuva i pretražuje činjenice pomoću vektorskih embeddinga — bez trećih strana, svi podaci ostaju na vašem serveru. Izgrađeno na Qdrant, FastMCP i višejezičnom modelu za embeddings.",
+    "image": "https://via.placeholder.com/300x200.png?text=Personal+Memory",
+    "link": "https://github.com/dzarlax/personal_memory",
+    "tags_en": ["Python", "AI", "MCP", "Qdrant", "Vector DB", "Self-hosted", "Claude"],
+    "tags_ru": ["Python", "AI", "MCP", "Qdrant", "Vector DB", "Self-hosted", "Claude"],
+    "tags_rs": ["Python", "AI", "MCP", "Qdrant", "Vector DB", "Self-hosted", "Claude"]
+  },
+  {
+    "id": "city-dashboard",
+    "title_en": "City Dashboard",
+    "title_ru": "City Dashboard",
+    "title_rs": "City Dashboard",
+    "description_en": "Web application providing real-time public transport information and 12-hour weather forecasts for multiple cities. Features a responsive design, caching to reduce API calls, and a React frontend backed by a Go API server.",
+    "description_ru": "Веб-приложение с реалтайм-информацией о транспорте и 12-часовым прогнозом погоды для нескольких городов. Адаптивный дизайн, кэширование API-запросов, React-фронтенд и Go-бэкенд.",
+    "description_rs": "Veb aplikacija sa realtime informacijama o javnom prevozu i 12-satnom vremenskom prognozom za više gradova. Responzivan dizajn, keširanje API poziva, React frontend i Go API server.",
+    "image": "https://via.placeholder.com/300x200.png?text=City+Dashboard",
+    "link": "https://github.com/dzarlax/city-dashboard",
+    "tags_en": ["React", "Go", "Tailwind CSS", "Docker", "Vite", "Transport", "Weather"],
+    "tags_ru": ["React", "Go", "Tailwind CSS", "Docker", "Vite", "Транспорт", "Погода"],
+    "tags_rs": ["React", "Go", "Tailwind CSS", "Docker", "Vite", "Prevoz", "Vreme"]
+  },
+  {
+    "id": "streamdeck-ai-plugin",
+    "title_en": "Stream Deck AI Plugin",
+    "title_ru": "Stream Deck AI Plugin",
+    "title_rs": "Stream Deck AI Plugin",
+    "description_en": "AI-powered text processing plugin for Elgato Stream Deck. Capture selected text or clipboard content, send it to an AI provider (OpenAI, Claude, Gemini, OpenRouter), and get the result pasted back instantly. Includes 9 built-in presets: grammar fix, translation, summarize, explain code, and more.",
+    "description_ru": "AI-плагин для Elgato Stream Deck для обработки текста. Выделите текст или используйте буфер обмена — плагин отправит его в AI (OpenAI, Claude, Gemini, OpenRouter) и вставит результат обратно. 9 встроенных пресетов: исправление грамматики, перевод, суммаризация, объяснение кода и другие.",
+    "description_rs": "AI plugin za Elgato Stream Deck za obradu teksta. Označite tekst ili koristite clipboard — plugin ga šalje AI provajderu (OpenAI, Claude, Gemini, OpenRouter) i vraća rezultat. 9 ugrađenih preseta: ispravka gramatike, prevod, sumarizacija, objašnjenje koda i još.",
+    "image": "https://via.placeholder.com/300x200.png?text=Stream+Deck+AI",
+    "link": "https://github.com/dzarlax/Streamdeck-AI-plugin",
+    "tags_en": ["Stream Deck", "AI", "OpenAI", "Claude", "Gemini", "Productivity", "Plugin"],
+    "tags_ru": ["Stream Deck", "AI", "OpenAI", "Claude", "Gemini", "Продуктивность", "Плагин"],
+    "tags_rs": ["Stream Deck", "AI", "OpenAI", "Claude", "Gemini", "Produktivnost", "Plugin"]
+  },
+  {
+    "id": "wishlist",
+    "title_en": "Wishlist App",
+    "title_ru": "Wishlist App",
+    "title_rs": "Wishlist App",
+    "description_en": "Modern wishlist app with AI-powered autofill — paste a link and AI extracts name, price, category, and image automatically. Features anonymous gift reservations with secret codes, multi-language support (EN/RU/RS), dark/light theme, and SQLite storage.",
+    "description_ru": "Современное приложение для вишлиста с AI-автозаполнением — вставьте ссылку, и AI сам извлечёт название, цену, категорию и изображение. Анонимные резервации с секретными кодами, мультиязычность (EN/RU/RS), тёмная/светлая тема, SQLite.",
+    "description_rs": "Moderna wishlist aplikacija sa AI automatskim popunjavanjem — nalepite link i AI automatski preuzima naziv, cenu, kategoriju i sliku. Anonimne rezervacije sa tajnim kodovima, višejezična podrška (EN/RU/RS), tamna/svetla tema, SQLite.",
+    "image": "https://via.placeholder.com/300x200.png?text=Wishlist",
+    "link": "https://github.com/dzarlax/wishlist",
+    "tags_en": ["Svelte", "Vite", "Tailwind CSS", "AI", "SQLite", "Multi-language"],
+    "tags_ru": ["Svelte", "Vite", "Tailwind CSS", "AI", "SQLite", "Мультиязычность"],
+    "tags_rs": ["Svelte", "Vite", "Tailwind CSS", "AI", "SQLite", "Višejezičnost"]
   }
 ]

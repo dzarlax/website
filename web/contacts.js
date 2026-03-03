@@ -1,7 +1,7 @@
 // Site configuration
 const siteConfig = {
     contact: {
-        email: "me@dzarlax.dev",
+        email: "dzarlax@gmail.com",
         linkedin: "https://www.linkedin.com/in/alexey-panfilov",
         github: "https://github.com/dzarlax",
         location: "Belgrade, Serbia"

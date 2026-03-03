@@ -1190,6 +1190,31 @@ section {
         color: var(--text-primary);
         opacity: 0.8;
     }
+
+    &-cert-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--s-1);
+        margin-block-start: var(--s-3);
+        padding: var(--s-1) var(--s-3);
+        font-family: inherit;
+        font-size: var(--f-xs);
+        font-weight: 600;
+        color: var(--color-btn-primary);
+        background: color-mix(in srgb, var(--color-btn-primary) 10%, transparent);
+        border-radius: var(--radius-input);
+        text-decoration: none;
+        transition: var(--transition-fast);
+
+        &:hover {
+            background: color-mix(in srgb, var(--color-btn-primary) 20%, transparent);
+            text-decoration: none;
+        }
+
+        i {
+            font-size: 0.7em;
+        }
+    }
 }
 
 .education-institution {

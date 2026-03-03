@@ -241,10 +241,29 @@ const serbianTranslations = {
                     institution: 'Udemy',
                     type: 'course',
                     link: 'https://www.udemy.com/certificate/UC-aaea3481-3c98-4ca7-8228-522c0d80e236/'
+                },
+                {
+                    degree: 'Data Visualization with Advanced Excel',
+                    institution: 'PwC',
+                    type: 'course',
+                    link: 'https://www.coursera.org/account/accomplishments/records/C1RKYPLTJVGH'
+                },
+                {
+                    degree: 'SAAS METRICS CRASH COURSE',
+                    institution: 'The SaaS Academy',
+                    type: 'course',
+                    link: 'https://www.canva.com/design/DAHCi3bhS-Y/XHpeNOyIuxBcqLgQSSqVaw/edit'
+                },
+                {
+                    degree: 'Data Science Course - Mastering the Fundamentals',
+                    institution: 'Scaler',
+                    type: 'course',
+                    link: 'https://moonshot.scaler.com/s/sl/D6AcRVHoj_'
                 }
             ]
         },
         education_title: 'Образовање',
+        education_view_certificate: 'Погледај сертификат',
         achievements_title: 'Достигнућа',
         achievement_1_title: 'AI производи у образовању и науци',
         achievement_1_desc: 'Учествовао у развоју и лансирању AI платформи за научна истраживања, управљање грантовима и образовну аналитику у међународном окружењу',
