@@ -46,14 +46,14 @@
     "title_en": "Personal Memory Stack",
     "title_ru": "Personal Memory Stack",
     "title_rs": "Personal Memory Stack",
-    "description_en": "Self-hosted semantic memory for any MCP-compatible AI client. Stores and retrieves facts using vector embeddings — no third-party cloud, all data stays on your own server. Built on Qdrant, FastMCP, and a multilingual embedding model.",
-    "description_ru": "Self-hosted семантическая память для любого MCP-совместимого AI-клиента. Хранит и извлекает факты через векторные embeddings — без сторонних облаков, все данные остаются на вашем сервере. Построено на Qdrant, FastMCP и мультиязычной модели embeddings.",
-    "description_rs": "Self-hosted semantička memorija za bilo koji MCP-kompatibilni AI klijent. Čuva i pretražuje činjenice pomoću vektorskih embeddinga — bez trećih strana, svi podaci ostaju na vašem serveru. Izgrađeno na Qdrant, FastMCP i višejezičnom modelu za embeddings.",
+    "description_en": "Self-hosted semantic memory for any MCP-compatible AI client (Claude, Claude Code, and more). Supports two modes: local stdio and remote HTTP. Stores and retrieves facts via vector embeddings on your own VPS — no third-party cloud. Built on Qdrant, FastMCP, and a multilingual embedding model with deduplication, namespaces, and expiration.",
+    "description_ru": "Self-hosted семантическая память для любого MCP-совместимого AI-клиента (Claude, Claude Code и др.). Два режима работы: локальный stdio и удалённый HTTP. Факты хранятся через векторные embeddings на вашем VPS — без сторонних облаков. Qdrant, FastMCP, мультиязычная модель, дедупликация, неймспейсы и срок действия фактов.",
+    "description_rs": "Self-hosted semantička memorija za MCP-kompatibilne AI klijente (Claude, Claude Code i dr.). Dva režima: lokalni stdio i udaljeni HTTP. Čuva činjenice putem vektorskih embeddinga na vašem VPS-u — bez trećih strana. Qdrant, FastMCP, višejezični model, deduplikacija, namespace-ovi i istek važnosti.",
     "image": "https://via.placeholder.com/300x200.png?text=Personal+Memory",
     "link": "https://github.com/dzarlax/personal_memory",
-    "tags_en": ["Python", "AI", "MCP", "Qdrant", "Vector DB", "Self-hosted", "Claude"],
-    "tags_ru": ["Python", "AI", "MCP", "Qdrant", "Vector DB", "Self-hosted", "Claude"],
-    "tags_rs": ["Python", "AI", "MCP", "Qdrant", "Vector DB", "Self-hosted", "Claude"]
+    "tags_en": ["Python", "AI", "MCP", "Qdrant", "Vector DB", "FastMCP", "Self-hosted", "Docker"],
+    "tags_ru": ["Python", "AI", "MCP", "Qdrant", "Vector DB", "FastMCP", "Self-hosted", "Docker"],
+    "tags_rs": ["Python", "AI", "MCP", "Qdrant", "Vector DB", "FastMCP", "Self-hosted", "Docker"]
   },
   {
     "id": "city-dashboard",
