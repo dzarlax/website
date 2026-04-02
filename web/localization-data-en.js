@@ -72,7 +72,7 @@ const englishTranslations = {
     cta_title: 'Interested in Collaboration?',
     cta_desc: "I'm always looking for opportunities to leverage AI-augmented development to build innovative products.",
     cta_button: 'Get in Touch',
-    footer_text: '© 2024 Alexey Panfilov. Built with AI-augmented development.',
+    footer_text: `© ${new Date().getFullYear()} Alexey Panfilov. Built with AI-augmented development.`,
     intro: {
         title: 'Head of Product',
         description: "<strong>AI-Native Product Executive</strong> with 15 years building high-load systems and product portfolios from 0 to 1. Experience with prompt engineering and agent-based systems, knowing when to use generic LLMs vs. fine-tuned small models for business-critical tasks.<br><br>" +
@@ -147,48 +147,48 @@ const englishTranslations = {
                 company: 'Constructor.tech',
                 location: 'Belgrade',
                 period: '10/2024 - Present',
-                description: "<strong>Product Portfolio:</strong> Orchestrate strategy for 6+ AI/ML products including Research (computational platform for scientists), VS Code-based web IDE with Kubernetes hosting, University Chatbots, Groups (video conferencing), Model Engine (corporate AI layer), and Insights.<br><br><strong>Insights:</strong> Building team productivity intelligence platform with AI-augmented development. Created working prototype with Semantic Layer (knowledge graph: 178 entities, 2700+ relationships), Gemini AI integration, Discovery Engine for auto-metrics. PostgreSQL + Express backend, React + Vite frontend.<br><br><strong>AI Advocacy:</strong> Internal AI Advocate training PMs on AI agent development. Deliver AI Agents for specialized business tasks."
+                description: "<strong>Product Portfolio:</strong> Orchestrate strategy for multiple AI/ML products including Research (VS Code-based computational platform for scientists with Kubernetes hosting), University Chatbots, Groups (video conferencing with LLM integration), Model Engine (corporate AI layer), and Insights (team productivity intelligence).<br><br><strong>Insights:</strong> Building team productivity intelligence platform with AI-augmented development. Created working prototype with Semantic Layer (knowledge graph: 178 entities, 2700+ relationships), Gemini AI integration, Discovery Engine for auto-metrics. PostgreSQL + Express backend, React + Vite frontend.<br><br><strong>AI Advocacy:</strong> Internal AI Advocate training PMs on AI agent development. Deliver AI Agents for specialized business tasks."
             },
             {
                 title: 'Technical Project Manager',
                 company: 'Yandex Cloud',
                 location: 'Moscow-Belgrade',
-                period: '8/2022 - 9/2024',
+                period: '8/2022 - 10/2024',
                 description: "<strong>Product:</strong> DataLens - already the main BI system in Yandex with active internal usage and external clients.<br><br><strong>Role:</strong> Technical PM working with dev team on new features and technical solutions. Managed interactions within the team and with external teams. Both product and technical feature development.<br><br><strong>Key Contributions:</strong> Participated in open-source release and on-prem version preparation. Deep ClickHouse integration. 50,000+ users in largest installation."
             },
             {
                 title: 'Product Manager',
                 company: 'Yandex.Market',
                 location: 'Moscow',
-                period: '4/2021 - 8/2022',
+                period: '3/2021 - 8/2022',
                 description: "<strong>Product Strategy:</strong> Led product roadmap for hyper-growth courier platform. Contributed to development of automated courier assignment system implementing algorithmic routing.<br><br><strong>Analytics Infrastructure:</strong> Built comprehensive analytics infrastructure enabling data-driven operational decisions.<br><br><strong>Team Leadership:</strong> Led 10-person cross-functional team delivering 100% of client innovations on schedule."
             },
             {
                 title: 'Product Owner',
                 company: 'Russian Post',
                 location: 'Moscow',
-                period: '6/2020 - 4/2021',
+                period: '6/2020 - 3/2021',
                 description: "<strong>Product:</strong> High-load validation engine for international shipping data<br><br><strong>Scale:</strong> Processed 2M+ addresses daily for clients including iHerb and AliExpress<br><br><strong>Quality:</strong> Reduced error rate from 30% to 2% through automated validation workflows. 100% GDPR compliance - zero incidents over 18 months.<br><br><strong>Team:</strong> Hired and managed full-stack development team from scratch (4 → 8 engineers)."
             },
             {
                 title: 'Product Owner',
                 company: 'Anywayanyday',
                 location: 'Moscow',
-                period: '2/2019 - 6/2020',
+                period: '8/2019 - 6/2020',
                 description: "<strong>Process Optimization:</strong> Refined mobile development management, contractor selection, and UI/UX prototyping processes.<br><br><strong>Analytics:</strong> Created analytics system to organize and act on findings from audience studies, product usage patterns, and competitive analyses.<br><br><strong>Technical:</strong> Refactored mobile app using Swift and latest Android framework."
             },
             {
                 title: 'Senior Analyst | Product Manager',
                 company: 'Biglion | Western Union | NAU | Phillip Morris International | Mango Telecom',
                 location: 'Moscow',
-                period: '7/2017 - 2/2019',
+                period: '7/2017 - 8/2019',
                 description: "<strong>Consulting:</strong> Advised on architecture and data format design for analytics projects across multiple industries.<br><br><strong>Product Management:</strong> Prepared mobile app launches and website upgrades. Project managed technical development of apps and monitored performance."
             },
             {
                 title: 'Chief Executive Officer',
                 company: 'Social Technologies',
                 location: 'Moscow',
-                period: '7/2016 - 8/2017',
+                period: '1/2016 - 8/2017',
                 description: "<strong>Team Management:</strong> Managed multi-disciplinary internal team and freelancers to create social media applications and web portals.<br><br><strong>Product Direction:</strong> Directed beta testing, UX/UI improvements and application release. Analyzed feedback and competitive landscape to position product appropriately."
             },
             {
@@ -282,7 +282,7 @@ const englishTranslations = {
         download_resume: 'Download Resume'
     },
     footer: {
-        copyright: '© 2025 Alexey Panfilov',
+        copyright: `© ${new Date().getFullYear()} Alexey Panfilov`,
         rights: 'All rights reserved',
         home: 'Home',
         projects: 'Projects',

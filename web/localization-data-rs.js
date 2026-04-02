@@ -71,7 +71,7 @@ const serbianTranslations = {
         cta_title: 'Заинтересован за сарадњу?',
         cta_desc: 'Увек тражим прилике да користим AI-augmented развој за стварање иновативних производа.',
         cta_button: 'Контакт',
-        footer_text: '© 2024 Алексеј Панфилов. Направљено са AI-augmented развојем.',
+        footer_text: `© ${new Date().getFullYear()} Алексеј Панфилов. Направљено са AI-augmented развојем.`,
         intro: {
             title: 'Head of Product',
             description: '<strong>AI-Native извршни директор производа</strong> са 15 година искуства у изградњи високо-оптеретћених система и продуктових портфеolia од 0 до 1. Искуство са prompt engineering-ом и agent-based системима, знам када користити генеричке LLM-ове, а када fine-tуновати мале моделе за бизнис-критичне задатке.<br><br>' +
@@ -146,48 +146,48 @@ const serbianTranslations = {
                     company: 'Constructor.tech',
                     location: 'Београд',
                     period: '10/2024 - сада',
-                    description: "<strong>Продукт портфолио:</strong> Оркестрирам стратегију за 6+ AI/ML производа укључујући Research (рачунска платформа за научнике), веб-IDE на бази VS Code са Kubernetes хостингом, University Chatbots, Groups (видео конференције), Model Engine (корпоративни AI слој) и Insights.<br><br><strong>Insights:</strong> Градим платформу тимске продуктивности са AI-augmented развојем. Радни прототип са Semantic Layer (граф знања: 178 ентитета, 2700+ релација), Gemini AI интеграција, Discovery Engine за ауто-метрике. PostgreSQL + Express бэкенд, React + Vite фронтенд.<br><br><strong>AI Advocacy:</strong> Интерни AI Advocate обучавајући PM-е на AI агент развој. Испоручујем AI агенте за специјализоване бизнис задатке."
+                    description: "<strong>Продукт портфолио:</strong> Оркестрирам стратегију за више AI/ML производа укључујући Research (рачунска платформа за научнике на бази VS Code са Kubernetes хостингом), University Chatbots, Groups (видео конференције), Model Engine (корпоративни AI слој) и Insights.<br><br><strong>Insights:</strong> Градим платформу тимске продуктивности са AI-augmented развојем. Радни прототип са Semantic Layer (граф знања: 178 ентитета, 2700+ релација), Gemini AI интеграција, Discovery Engine за ауто-метрике. PostgreSQL + Express бэкенд, React + Vite фронтенд.<br><br><strong>AI Advocacy:</strong> Интерни AI Advocate обучавајући PM-е на AI агент развој. Испоручујем AI агенте за специјализоване бизнис задатке."
                 },
                 {
                     title: 'Технички менаџер пројекта',
                     company: 'Yandex Cloud',
                     location: 'Москва-Београд',
-                    period: '8/2022 - 9/2024',
+                    period: '8/2022 - 10/2024',
                     description: "<strong>Продукт:</strong> DataLens - главни BI систем у Yandex-у са активном интерном употребом и екстерним клијентима.<br><br><strong>Улога:</strong> Технички PM који ради са дев тимом на новим функцијама и техничким решењима. Управљао интеракцијама у тиму и са екстерним тимовима. И продуктовни и технички развој функција.<br><br><strong>Кључни допринос:</strong> Учешће у open-source релизу и припреми on-prem верзије. Дубока ClickHouse интеграција. 50,000+ корисника у највећој инсталацији."
                 },
                 {
                     title: 'Менаџер производа',
                     company: 'Yandex.Market',
                     location: 'Москва',
-                    period: '4/2021 - 8/2022',
+                    period: '3/2021 - 8/2022',
                     description: "<strong>Стратегија:</strong> Водио roadmap за брзо-растућу курирску платформу. Учествовао у развоју система аутоматског додељивања курира са алгоритамском маршрутизацијом.<br><br><strong>Аналитика:</strong> Изградио свеобухватну аналитику за data-driven оперативне одлуке.<br><br><strong>Лидерство:</strong> Водио тим од 10 особа, обезбеђујући 100% благовремено испоручавање клијентских иновација."
                 },
                 {
                     title: 'Product Owner',
                     company: 'Руска пошта',
                     location: 'Москва',
-                    period: '6/2020 - 4/2021',
+                    period: '6/2020 - 3/2021',
                     description: "<strong>Продукт:</strong> High-load валидациони енџин за податке међународне испоруке<br><br><strong>Размера:</strong> Обрада 2M+ адреса дневно за клијенте укључујући iHerb и AliExpress<br><br><strong>Квалитет:</strong> Смањење стопе грешака са 30% на 2% кроз аутоматизоване валидационе токове. 100% GDPR сагласност - нула инцидената током 18 месеци.<br><br><strong>Тим:</strong> Запослио и водио full-stack развојни тим од нуле (4 → 8 инжењера)."
                 },
                 {
                     title: 'Product Owner',
                     company: 'Anywayanyday',
                     location: 'Москва',
-                    period: '2/2019 - 6/2020',
+                    period: '8/2019 - 6/2020',
                     description: "<strong>Оптимизација:</strong> Побољшао управљање мобилним развојем, избор извођача и процесе UI/UX прототипирања.<br><br><strong>Аналитика:</strong> Створио систем аналитике за организовање и деловање на основу студија публике и конкурентних анализа.<br><br><strong>Технологије:</strong> Преписио мобилну апликацију у Swift и најновији Android framework."
                 },
                 {
                     title: 'Старији аналитичар | Менаџер производа',
                     company: 'Biglion | Western Union | NAU | Phillip Morris International | Mango Telecom',
                     location: 'Москва',
-                    period: '7/2017 - 2/2019',
+                    period: '7/2017 - 8/2019',
                     description: "<strong>Консалтинг:</strong> Консултовао о архитектури и дизајну формата података за аналитичке пројекте у више индустрија.<br><br><strong>Продукт менаџмент:</strong> Припремао лансирање мобилних апликација и надоградње веб-сајтова. Управљао техничким развојем апликација и пратио перформансе."
                 },
                 {
                     title: 'Генерални директор',
                     company: 'Social Technologies',
                     location: 'Москва',
-                    period: '7/2016 - 8/2017',
+                    period: '1/2016 - 8/2017',
                     description: "<strong>Управљање тимом:</strong> Управљао мултидисциплинарним интерним тимом и фрилансерима за стварање апликација друштвених мрежа и веб портала.<br><br><strong>Продукт стратегија:</strong> Руководио бета тестирањем, побољшањима UX/UI и издавањем апликација. Анализирао повратне информације и конкурентски пејзаж."
                 },
                 {
@@ -281,7 +281,7 @@ const serbianTranslations = {
             download_resume: 'Преузми CV'
         },
         footer: {
-            copyright: '© 2025 Алексеј Панфилов',
+            copyright: `© ${new Date().getFullYear()} Алексеј Панфилов`,
             rights: 'Сва права задржана',
             home: 'Почетна',
             projects: 'Пројекти',
