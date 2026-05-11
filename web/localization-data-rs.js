@@ -1,6 +1,7 @@
 const serbianTranslations = {
         menu: {
             home: 'Почетна',
+            articles: 'Чланци',
             skills: 'Вештине',
             experience: 'Искуство',
             education: 'Образовање',

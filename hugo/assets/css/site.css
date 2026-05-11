@@ -1,0 +1,130 @@
+/* ========================================
+   dzarlax.dev — site overlay on top of design-system
+   Base: cdn.jsdelivr.net/gh/dzarlax/design-system@<tag>/dist/dzarlax.css
+   Only blog-specific tweaks live here. Most styling now comes from DS.
+   ======================================== */
+
+/* ── Site-internal variable aliases ─────────────────────────────── */
+:root {
+    --bg-primary:          var(--bg);
+    --bg-secondary:        var(--surface);
+    --bg-tertiary:         var(--surface-2);
+    --text-primary:        var(--text);
+    --border-primary:      var(--border);
+    --accent-primary:      var(--accent);
+
+    --color-graphite:      #1A1A1E;
+    --color-ivory:         #FCFAF7;
+
+    /* 4px spacing scale — site-local for now. */
+    --s-1:  4px;  --s-2:  8px;  --s-3:  12px; --s-4:  16px;
+    --s-5:  20px; --s-6:  24px; --s-8:  32px; --s-10: 40px; --s-12: 48px;
+
+    --section-padding:     clamp(40px, 10vh, 120px);
+    --container-max-width: 1200px;
+}
+
+/* ── Sticky footer (site needs full-height layout for short blog pages) ── */
+html { background-color: var(--bg); }
+body {
+    min-block-size: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main#main-content { flex: 1 0 auto; }
+body > footer    { flex-shrink: 0; }
+
+/* ── Skip-link (accessibility) ──────────────────────────────────── */
+.skip-nav {
+    position: absolute;
+    inset-block-start: -100px;
+    inset-inline-start: 0;
+    background: var(--text);
+    color: var(--bg);
+    padding: var(--s-3) var(--s-5);
+    z-index: 9999;
+    text-decoration: none;
+}
+.skip-nav:focus { inset-block-start: 0; }
+
+/* ── Cross-page language sync (no FOUC) ─────────────────────────── */
+.lng-ru, .lng-rs { display: none; }
+[data-lang="ru"] .lng-en { display: none; }
+[data-lang="ru"] .lng-ru { display: inline; }
+[data-lang="rs"] .lng-en { display: none; }
+[data-lang="rs"] .lng-rs { display: inline; }
+
+/* ── Article width — fluid with cap ─────────────────────────────── */
+.article {
+    max-inline-size: min(92vw, 1080px);
+    margin-inline: auto;
+}
+
+.hero--editorial .hero__lede {
+    max-inline-size: min(85vw, 760px);
+}
+
+/* ── Article footer (tags + related) ────────────────────────────── */
+.article__footer {
+    margin-block-start: var(--s-12);
+    padding-block-start: var(--s-10);
+    border-block-start: 1px solid var(--border);
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    padding: 0;
+    list-style: none;
+    margin: 0 0 var(--s-10);
+}
+
+.article__related { margin-block-start: var(--s-12); }
+
+/* ── TOC overrides (vertical, even on desktop) ──────────────────── */
+/* DS .prose-toc already does the styling; we only need to override the
+   lander's `nav ul { display: flex }` which would otherwise lay TOC
+   items horizontally. */
+.prose-toc nav#TableOfContents ul {
+    display: block;
+    list-style: disc;
+    padding-inline-start: var(--s-5);
+    margin: 0;
+    gap: 0;
+}
+.prose-toc nav#TableOfContents li {
+    display: list-item;
+    margin-block: var(--s-2);
+}
+.prose-toc nav#TableOfContents li a {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    display: inline;
+}
+
+/* On mobile, lander's `nav { position: fixed; visibility: hidden }`
+   for the hamburger drawer would hide the TOC too — reset it. */
+@media (max-width: 768px) {
+    .prose-toc nav#TableOfContents {
+        position: static;
+        inset: auto;
+        inline-size: auto;
+        block-size: auto;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        visibility: visible;
+        z-index: auto;
+        transition: none;
+    }
+}
+
+/* ── Nav: hover only on hover-capable devices ───────────────────── */
+@media (hover: none) {
+    nav ul li a:hover {
+        background: transparent;
+        color: var(--text);
+    }
+}

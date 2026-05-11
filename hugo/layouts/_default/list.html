@@ -1,0 +1,46 @@
+{{ define "main" }}
+<section id="articles" class="reveal">
+
+  <header class="hero hero--editorial">
+    <h1 class="hero__title">{{ .Title }}</h1>
+    {{- with .Description }}<p class="hero__lede">{{ . }}</p>{{ end }}
+  </header>
+
+  {{- $pages := where .RegularPagesRecursive "Type" "articles" }}
+  {{- if not $pages }}
+    <p style="text-align: center; color: var(--text-secondary);">No articles yet — check back soon.</p>
+  {{- else }}
+
+  {{- $paginator := .Paginate ($pages.ByDate.Reverse) }}
+  <div class="card-grid card-grid--3">
+    {{- range $paginator.Pages }}
+    <a class="card card--editorial card--link" href="{{ .RelPermalink }}">
+      {{- with .Params.tags }}
+      <p class="card__eyebrow">
+        {{- range $i, $t := . -}}
+          {{- if $i }} · {{ end -}}
+          {{- with $.Site.GetPage (printf "/tags/%s" $t) }}{{ .Title }}{{ else }}{{ $t }}{{ end -}}
+        {{- end -}}
+      </p>
+      {{- end }}
+      <h3 class="card__title">{{ .Title }}</h3>
+      {{- with .Description }}<p class="card__description">{{ . }}</p>{{ end }}
+      <p class="card__meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+        {{- with .ReadingTime }} · {{ . }} min read{{ end }}
+      </p>
+    </a>
+    {{- end }}
+  </div>
+
+  {{- if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="Pagination" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 48px; max-width: 1200px; margin-inline: auto;">
+    {{- if $paginator.HasPrev }}<a class="btn btn--ghost" href="{{ $paginator.Prev.URL }}">← Newer</a>{{ else }}<span></span>{{ end }}
+    <span style="font-size: var(--text-sm); opacity: 0.6;">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{- if $paginator.HasNext }}<a class="btn btn--ghost" href="{{ $paginator.Next.URL }}">Older →</a>{{ else }}<span></span>{{ end }}
+  </nav>
+  {{- end }}
+
+  {{- end }}
+</section>
+{{ end }}

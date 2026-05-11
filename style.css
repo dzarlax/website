@@ -1218,3 +1218,26 @@ footer {
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* ── Nav: hover only on hover-capable devices ────────────────────── */
+@media (hover: none) {
+    nav ul li a:hover {
+        background: transparent;
+        color: var(--text-primary);
+    }
+}
+
+/* ── Sticky footer ───────────────────────────────────────────────── */
+body {
+    min-block-size: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main#main-content {
+    flex: 1 0 auto;
+}
+body > footer {
+    flex-shrink: 0;
+}
+
+html { background-color: var(--bg-primary); }

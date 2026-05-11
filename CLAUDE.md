@@ -2,20 +2,72 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## What this repo is
+
+A **hybrid site**:
+- **Lander** at `/` — static `index.html` + `style.css` + `web/*.js`, hand-edited. Multilingual (en/ru/rs) via `localization-core.js`.
+- **Hugo-powered blog** at `/articles/`, `/tags/`, `/index.xml` — generated. Content lives in an Obsidian vault **outside** this repo (`$BLOG_VAULT`, defaults to `~/Projects/Documents/Personal/blog` on macOS or `/d/Documents/Personal/blog` on Windows).
+
+CI builds Hugo, drops Hugo's `index.html` (lander owns `/`), overlays static lander files, deploys the merged tree. See `.github/workflows/hugo-deploy.yml`.
+
+For detailed engineering reference: [OPERATIONS.md](OPERATIONS.md).
+Personal writing workflow lives in the vault at `<vault>/_meta/blog-playbook.md`.
+
+## Bootstrap on a new machine
+
+Run once per machine. Works on macOS and Windows (use **Git Bash** on Windows for the `bin/*.sh` scripts — PowerShell is not supported).
+
+1. **Install toolchain**
+   - macOS: `brew install hugo` (extended) + ensure Python 3 is available + install Obsidian.
+   - Windows: `winget install Hugo.Hugo.Extended Git.Git Python.Python.3.12` + install Obsidian. Use Git Bash for all script invocations.
+2. **Clone the repo**
+   ```bash
+   git clone <repo-url> website && cd website
+   ```
+3. **Point scripts at the vault**
+   The Obsidian vault is the source of truth for blog content and is **not committed** to this repo. Either set `BLOG_VAULT` in your shell profile (`~/.zshrc` / `~/.bashrc`) or copy `.env.example → .env` and edit it.
+   ```bash
+   # macOS example
+   export BLOG_VAULT="$HOME/Projects/Documents/Personal/blog"
+   # Windows Git Bash example
+   export BLOG_VAULT="/d/Documents/Personal/blog"
+   ```
+   Default probe order is in [bin/lib/vault.sh](bin/lib/vault.sh). First existing path wins.
+4. **Get the vault content onto this machine**
+   The vault is private — sync it separately (Obsidian Sync / OneDrive / iCloud / private GitHub repo / etc.). The website repo doesn't manage vault sync. Confirm `$BLOG_VAULT/articles/` and `$BLOG_VAULT/tags/` exist before continuing.
+5. **Verify the pipeline end-to-end**
+   ```bash
+   bin/sync-content.sh       # rsync vault → hugo/content/
+   bin/preview.sh build      # build only, no serve
+   bin/preview.sh            # build + serve at http://localhost:8000/
+   ```
+   Hit `http://localhost:8000/articles/` — if articles render, you're done.
+
+If `bin/sync-content.sh` fails with "Vault not found", `BLOG_VAULT` is wrong or the vault isn't on this machine yet — fix one of those.
+
 ## Development Commands
 
-### Local Development Server
-Due to AJAX requests and module loading, a local HTTP server is required:
+### Local preview (recommended)
+The merged lander + blog preview at `localhost:8000`, mirroring CI:
 
 ```bash
-# Python 3
-python3 -m http.server 8000
+bin/preview.sh                # sync vault + Hugo build + lander overlay + serve
+bin/preview.sh build          # build only (output in dist-preview/)
+bin/preview.sh --no-sync      # skip vault sync (use whatever is in hugo/content/)
+```
 
-# Node.js (npx serve)
-npx serve .
+### Hugo blog only (fastest template/CSS iteration)
 
-# Navigate to
-open http://localhost:8000
+```bash
+cd hugo && hugo server --disableFastRender
+# http://localhost:1313/articles/  — blog only, no lander
+```
+
+### Lander only (rare — if editing static files)
+
+```bash
+python3 -m http.server 8000   # from repo root
+# http://localhost:8000/ — lander served raw, no Hugo content
 ```
 
 ### Testing

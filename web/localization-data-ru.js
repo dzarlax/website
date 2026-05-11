@@ -1,6 +1,7 @@
 const russianTranslations = {
         menu: {
             home: 'Главная',
+            articles: 'Статьи',
             skills: 'Навыки',
             experience: 'Опыт',
             education: 'Образование',

@@ -1,0 +1,35 @@
+{{ define "main" }}
+{{/*
+  /tags/ — tag cloud, sized by article count. Uses DS .tag-chip + .tag-cloud.
+*/}}
+<section id="tags" class="reveal">
+  <header class="hero hero--editorial">
+    <h1 class="hero__title">{{ .Title | default "Tags" }}</h1>
+    {{- with .Description }}<p class="hero__lede">{{ . }}</p>{{ end }}
+  </header>
+
+  {{- $terms := .Pages }}
+  {{- if not $terms }}
+    <p style="text-align: center; color: var(--text-secondary);">No tags yet.</p>
+  {{- else }}
+
+  {{- $maxCount := 1 }}
+  {{- range $terms }}{{ if gt (len .Pages) $maxCount }}{{ $maxCount = len .Pages }}{{ end }}{{ end }}
+
+  <ul class="tag-cloud" role="list">
+    {{- range $terms.ByTitle }}
+    {{- $count := len .Pages }}
+    {{- $weight := div (mul $count 1.0) $maxCount }}
+    <li>
+      <a class="tag-chip tag-chip--cloud" href="{{ .RelPermalink }}"
+         style="--tag-weight: {{ $weight }};">
+        <span>{{ .Title }}</span>
+        <span class="tag-chip__count">{{ $count }}</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+
+  {{- end }}
+</section>
+{{ end }}

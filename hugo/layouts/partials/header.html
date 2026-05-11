@@ -1,0 +1,49 @@
+{{/*
+  Blog navbar — DS .navbar.navbar--pill + .navbar-controls.
+  Multi-span labels for cross-page language sync (no FOUC). The pre-paint
+  script in head.html sets <html data-lang="…"> from localStorage.
+*/}}
+{{- $section := .Section -}}
+
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+
+{{- $items := slice
+  (dict "key" "home"         "href" "/"              "en" "Home"         "ru" "Главная"     "rs" "Почетна")
+  (dict "key" "articles"     "href" "/articles/"     "en" "Articles"     "ru" "Статьи"      "rs" "Чланци")
+  (dict "key" "skills"       "href" "/#skills"       "en" "Skills"       "ru" "Навыки"      "rs" "Вештине")
+  (dict "key" "experience"   "href" "/#experience"   "en" "Experience"   "ru" "Опыт"        "rs" "Искуство")
+  (dict "key" "education"    "href" "/#education"    "en" "Education"    "ru" "Образование" "rs" "Образовање")
+  (dict "key" "achievements" "href" "/#achievements" "en" "Achievements" "ru" "Достижения"  "rs" "Достигнућа")
+  (dict "key" "projects"     "href" "/#projects"     "en" "Projects"     "ru" "Проекты"     "rs" "Пројекти")
+  (dict "key" "contact"      "href" "/#contact"      "en" "Contact"      "ru" "Контакты"    "rs" "Контакт")
+-}}
+
+<header>
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+    <span class="hamburger__line"></span>
+    <span class="hamburger__line"></span>
+    <span class="hamburger__line"></span>
+  </button>
+  <nav id="main-nav" class="navbar navbar--pill" role="navigation" aria-label="Main navigation">
+    <ul>
+      {{- range $items }}
+        {{- $isActive := false -}}
+        {{- if and (eq .key "articles") (or (eq $section "articles") (eq $section "tags")) }}{{ $isActive = true }}{{ end -}}
+        <li><a href="{{ .href }}" class="nav-link{{ if $isActive }} active{{ end }}" data-lang="menu.{{ .key }}">
+          <span class="lng-en">{{ .en }}</span><span class="lng-ru">{{ .ru }}</span><span class="lng-rs">{{ .rs }}</span>
+        </a></li>
+      {{- end }}
+    </ul>
+  </nav>
+</header>
+
+<div class="navbar-controls">
+  <div class="lang-switcher" role="group" aria-label="Language">
+    <button class="lang-btn" data-lang-pick="en" aria-label="English"  title="English">🇬🇧</button>
+    <button class="lang-btn" data-lang-pick="ru" aria-label="Русский"  title="Русский">🇷🇺</button>
+    <button class="lang-btn" data-lang-pick="rs" aria-label="Српски"   title="Српски">🇷🇸</button>
+  </div>
+  <button class="theme-toggle" aria-label="Toggle theme" title="Switch theme"></button>
+</div>
+
+<div class="menu-overlay"></div>
