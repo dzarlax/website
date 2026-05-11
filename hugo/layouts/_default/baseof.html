@@ -40,7 +40,11 @@
       var reveal = function () {
         var vh = window.innerHeight;
         document.querySelectorAll('.reveal').forEach(function (el) {
-          if (el.getBoundingClientRect().top < vh + 100) el.classList.add('active');
+          if (el.getBoundingClientRect().top < vh + 100) {
+            // DS uses .reveal.visible; lander's style.css uses .reveal.active.
+            // Add both so we cover both conventions.
+            el.classList.add('visible', 'active');
+          }
         });
         document.querySelectorAll('section').forEach(function (el) {
           if (el.getBoundingClientRect().top < vh + 100) el.classList.add('visible');

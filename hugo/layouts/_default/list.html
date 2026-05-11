@@ -12,6 +12,7 @@
   {{- else }}
 
   {{- $paginator := .Paginate ($pages.ByDate.Reverse) }}
+  <div class="container container--xl">
   <div class="card-grid card-grid--3">
     {{- range $paginator.Pages }}
     <a class="card card--editorial card--link" href="{{ .RelPermalink }}">
@@ -31,6 +32,7 @@
       </p>
     </a>
     {{- end }}
+  </div>
   </div>
 
   {{- if gt $paginator.TotalPages 1 }}
