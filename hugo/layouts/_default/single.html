@@ -1,0 +1,57 @@
+{{ define "main" }}
+<article class="article reveal">
+
+  <header class="hero hero--editorial">
+    <h1 class="hero__title">{{ .Title }}</h1>
+    {{- with .Description }}<p class="hero__lede">{{ . }}</p>{{ end }}
+    <p class="hero__meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{- with .ReadingTime }} · <span>{{ . }} min read</span>{{ end }}
+    </p>
+  </header>
+
+  {{- if .Params.toc }}
+  <aside class="prose-toc" aria-label="Table of contents">
+    <p class="prose-toc__title">Contents</p>
+    {{ .TableOfContents }}
+  </aside>
+  {{- end }}
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  <div class="article__footer">
+    {{- with .Params.tags }}
+    <ul class="tag-list" aria-label="Tags">
+      {{- range . }}
+        {{- $href := printf "/tags/%s/" . -}}
+        {{- $label := . -}}
+        {{- with $.Site.GetPage (printf "/tags/%s" .) -}}
+          {{- $href  = .RelPermalink -}}
+          {{- $label = .Title -}}
+        {{- end -}}
+        <li><a class="tag-chip" href="{{ $href }}">{{ $label }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+
+    {{- $related := .Site.RegularPages.Related . | first 3 }}
+    {{- with $related }}
+    <section class="article__related">
+      <h2 style="text-align: center;">Related</h2>
+      <div class="container container--xl">
+      <div class="card-grid card-grid--3">
+        {{- range . }}
+        <a class="card card--editorial card--link" href="{{ .RelPermalink }}">
+          <h3 class="card__title">{{ .Title }}</h3>
+          {{- with .Description }}<p class="card__description">{{ . }}</p>{{ end }}
+        </a>
+        {{- end }}
+      </div>
+      </div>
+    </section>
+    {{- end }}
+  </div>
+</article>
+{{ end }}

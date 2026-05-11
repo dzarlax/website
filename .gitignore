@@ -3,3 +3,5 @@ package-lock.json
 server.js
 localStorage.json
 .DS_Store
+.env
+dist-preview/

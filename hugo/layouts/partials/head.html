@@ -1,0 +1,95 @@
+{{- $title       := cond .IsHome .Site.Title (printf "%s — %s" .Title .Site.Title) -}}
+{{- $description := or .Description .Summary .Site.Params.description -}}
+{{- $dsTag       := .Site.Params.dsTag | default "main" -}}
+{{- $dsCSS       := printf "https://cdn.jsdelivr.net/gh/dzarlax/design-system@%s/dist/dzarlax.css" $dsTag -}}
+{{- $dsJS        := printf "https://cdn.jsdelivr.net/gh/dzarlax/design-system@%s/dist/dzarlax.js"  $dsTag -}}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+{{- with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{/* Open Graph */}}
+<meta property="og:type"        content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:site_name"   content="{{ .Site.Title }}">
+<meta property="og:title"       content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url"         content="{{ .Permalink }}">
+{{- with .Params.cover }}
+<meta property="og:image"       content="{{ . | absURL }}">
+{{- else }}
+<meta property="og:image"       content="{{ "og-default.png" | absURL }}">
+{{- end }}
+
+{{/* Twitter */}}
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+
+{{/* Performance hints */}}
+<link rel="preconnect"  href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="preconnect"  href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+{{/* Font Awesome — async loading */}}
+<link rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer">
+
+{{/* Design system — pinned via Site.Params.dsTag (CI replaces with release tag) */}}
+<link rel="stylesheet" href="{{ $dsCSS }}">
+<script src="{{ $dsJS }}" defer></script>
+
+{{/* Site-specific overlay (bridges, blog-only tweaks). Processed with Hugo Pipes. */}}
+{{- with resources.Get "css/site.css" }}
+  {{- $css := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- end }}
+
+{{/* Theme & language bootstrap — applied before paint, no FOUC.
+     Lander stores `preferredLanguage` and `theme` in localStorage; the blog
+     reads them so its nav inherits the lander's language and theme. */}}
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      var lang = localStorage.getItem('preferredLanguage');
+      if (lang && /^(en|ru|rs)$/.test(lang)) {
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.lang = lang;
+      }
+    } catch (e) {}
+  })();
+</script>
+
+{{/* RSS discovery */}}
+{{ range .AlternativeOutputFormats -}}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+{{ end -}}
+
+{{/* Structured data for articles */}}
+{{- if and .IsPage (eq .Section "articles") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ .Title | jsonify }},
+  "datePublished": {{ .Date.Format "2006-01-02" | jsonify }},
+  "dateModified": {{ .Lastmod.Format "2006-01-02" | jsonify }},
+  "author": { "@type": "Person", "name": {{ .Site.Params.author | jsonify }} },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": {{ .Permalink | jsonify }} }
+}
+</script>
+{{- end }}

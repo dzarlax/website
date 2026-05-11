@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{/*
+  ⚠️  Hugo dev-only placeholder.
+  In production, this file is REPLACED by the static lander (root index.html)
+  during deploy. See .github/workflows/hugo-deploy.yml — the merge step
+  overwrites Hugo's generated /index.html with the lander.
+  Keep this layout minimal: it only exists so `hugo server` doesn't 404 the
+  home route during local blog development.
+*/}}
+<section style="max-width: 720px; margin: 96px auto; padding: 0 var(--s-6); text-align: center;">
+  <p style="font-size: var(--f-sm); text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6;">Hugo dev preview</p>
+  <h1 style="margin-block: var(--s-4) var(--s-6);">Blog scaffold</h1>
+  <p style="font-size: clamp(1rem, 1.5vw, 1.15rem); opacity: 0.8;">
+    The production homepage at <code>/</code> is the static lander.
+    This page only renders inside <code>hugo server</code>.
+  </p>
+  <p style="margin-block-start: var(--s-8);">
+    <a class="project-link" href="{{ "/articles/" | relURL }}">Go to articles →</a>
+  </p>
+</section>
+{{ end }}

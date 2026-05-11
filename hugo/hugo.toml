@@ -1,0 +1,51 @@
+baseURL      = "https://dzarlax.dev/"
+locale       = "en-us"
+title        = "Alexey Panfilov — Product, AI, Systems"
+enableRobotsTXT = true
+enableGitInfo   = true
+
+# Markup
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true            # allow raw HTML in Markdown (for embeds, design-system components)
+  [markup.highlight]
+    noClasses    = false      # emit CSS classes so the design-system theme can style code blocks
+    codeFences   = true
+    guessSyntax  = true
+    tabWidth     = 2
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel   = 4
+
+# Pagination (articles listing)
+[pagination]
+  pagerSize = 12
+
+# Permalinks
+[permalinks]
+  articles = "/articles/:slug/"
+
+# Sections that count as "main" for .Site.RegularPages
+[params]
+  mainSections = ["articles"]
+  description  = "Notes on product, AI, and systems by Alexey Panfilov."
+  author       = "Alexey Panfilov"
+  twitter      = ""                 # add when ready
+  github       = "dzarlax"
+
+  # Design system — pinned tag is set in CI via env (HUGO_PARAMS_dstag);
+  # @main is fine for local dev. CDN URLs are assembled in partials/head.html.
+  dsTag        = "main"
+
+# Single taxonomy — tags is the only classification axis.
+[taxonomies]
+  tag = "tags"
+
+# Output formats — keep RSS on, add JSON for the article index (useful later)
+[outputs]
+  home    = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+# Minification
+[minify]
+  minifyOutput = true

@@ -1,7 +1,19 @@
 # Personal Website Repository
 
 ## Overview
-This repository contains the source code for a personal portfolio website managed by Alexey Panfilov (dzarlax). The codebase includes HTML, CSS, and JavaScript files for a modern, responsive personal website with multilingual support.
+This repository contains the source code for a personal portfolio website managed by Alexey Panfilov (dzarlax). The codebase includes HTML, CSS, and JavaScript files for a modern, responsive personal website with multilingual support **plus a Hugo-powered blog** at `/articles/`.
+
+## ✍️ Writing & shipping blog posts
+The detailed writing playbook lives in the Obsidian vault (private):
+`<vault>/_meta/blog-playbook.md`. Engineering-side docs (architecture,
+scripts, deployment) are in [OPERATIONS.md](OPERATIONS.md).
+
+TL;DR:
+- Write in Obsidian. Vault path resolved by `bin/lib/vault.sh` — defaults to
+  `~/Projects/Documents/Personal/blog` (macOS) or `/d/Documents/Personal/blog`
+  (Windows Git Bash). Override with `BLOG_VAULT` env var or `.env`.
+- `bin/new-article.sh "Title"` to scaffold, `bin/preview.sh` to preview on
+  `localhost:8000`, commit `hugo/content/` and push to deploy.
 
 ## 🌟 Key Features
 - **Multi-language Support**: Full localization for English, Russian, and Serbian

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  {{ partial "header.html" . }}
+
+  <main id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  {{/*
+    Blog-only JS. The lander has its own JS modules (skills.js,
+    experience.js, education.js, projects.js, localization-core.js) that
+    only matter on /, not here. We keep theme + animation so dark mode and
+    .reveal sections work consistently with the lander.
+  */}}
+  {{- with resources.Get "js/theme.js" }}
+    {{- $js := . | minify | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+  {{- end }}
+  {{- with resources.Get "js/animation.js" }}
+    {{- $js := . | minify | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+  {{- end }}
+
+  {{/*
+    Blog runtime — reveal animations, language switcher click handler.
+    Reveal: blog doesn't load localization-core.js (which triggers .reveal
+    on the lander). Without this, sections stay opacity:0 on desktop.
+    Language: <html data-lang> was already set pre-paint from localStorage,
+    so the navbar renders in the right language. Clicks persist + update
+    live without a reload.
+  */}}
+  <script>
+    (function () {
+      var reveal = function () {
+        var vh = window.innerHeight;
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          if (el.getBoundingClientRect().top < vh + 100) {
+            // DS uses .reveal.visible; lander's style.css uses .reveal.active.
+            // Add both so we cover both conventions.
+            el.classList.add('visible', 'active');
+          }
+        });
+        document.querySelectorAll('section').forEach(function (el) {
+          if (el.getBoundingClientRect().top < vh + 100) el.classList.add('visible');
+        });
+      };
+      document.addEventListener('DOMContentLoaded', reveal);
+      window.addEventListener('scroll', reveal, { passive: true });
+      window.addEventListener('resize', reveal, { passive: true });
+      setTimeout(reveal, 50);
+
+      // Language switcher
+      var currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+      var markActive = function (lang) {
+        document.querySelectorAll('.lang-btn').forEach(function (btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-lang-pick') === lang);
+        });
+      };
+      markActive(currentLang);
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('.lang-btn');
+        if (!btn) return;
+        var lang = btn.getAttribute('data-lang-pick');
+        if (!lang) return;
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.lang = lang;
+        try { localStorage.setItem('preferredLanguage', lang); } catch (e) {}
+        markActive(lang);
+      });
+    })();
+  </script>
+
+  {{ block "scripts" . }}{{ end }}
+</body>
+</html>

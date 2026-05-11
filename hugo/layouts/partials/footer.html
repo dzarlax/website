@@ -1,0 +1,37 @@
+{{/*
+  Footer — DS .footer.footer--editorial. Multi-span localization mirrors
+  the lander's intent (lander still uses data-lang via localization-core.js;
+  blog uses pre-paint CSS swap based on <html data-lang>).
+*/}}
+{{- $year := now.Year -}}
+
+<footer class="footer footer--editorial reveal">
+  <div class="footer__content">
+    <div class="footer__main">
+      <p>
+        <span class="lng-en">© {{ $year }} Alexey Panfilov</span>
+        <span class="lng-ru">© {{ $year }} Алексей Панфилов</span>
+        <span class="lng-rs">© {{ $year }} Алексеј Панфилов</span>
+      </p>
+      <p>
+        <span class="lng-en">All rights reserved</span>
+        <span class="lng-ru">Все права защищены</span>
+        <span class="lng-rs">Сва права задржана</span>
+      </p>
+    </div>
+
+    <div class="footer__social">
+      <h4>Connect</h4>
+      <div class="social-icons">
+        <a href="https://github.com/dzarlax"   target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/dzarlax" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:dzarlax@gmail.com"     aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="{{ "/index.xml" | relURL }}"  aria-label="RSS" type="application/rss+xml"><i class="fas fa-rss"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p>Made with ❤️ and lots of ☕</p>
+  </div>
+</footer>

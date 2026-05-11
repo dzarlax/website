@@ -2,6 +2,7 @@
 const englishTranslations = {
     menu: {
         home: 'Home',
+        articles: 'Articles',
         skills: 'Skills',
         experience: 'Experience',
         education: 'Education',
