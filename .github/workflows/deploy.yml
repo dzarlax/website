@@ -1,9 +1,12 @@
 name: Deploy to GitHub Pages
 
+# Unified deploy: builds Hugo blog, drops Hugo's home placeholder, overlays
+# the static lander files, uploads the merged tree as a GitHub Pages artifact.
+# GH Pages serves the artifact directly — no separate branch to manage.
+
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -12,26 +15,80 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: "0.161.1"
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # required for .GitInfo / enableGitInfo
+          submodules: false
+
+      - name: Install Hugo
+        run: |
+          curl -fsSL -o /tmp/hugo.tar.gz \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          tar -xzf /tmp/hugo.tar.gz -C /tmp
+          sudo mv /tmp/hugo /usr/local/bin/hugo
+          hugo version
+
+      - name: Resolve latest design-system release tag
+        id: ds
+        run: |
+          TAG=$(curl -fsSL -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/dzarlax/design-system/releases/latest \
+            | jq -r '.tag_name')
+          if [ -z "$TAG" ] || [ "$TAG" = "null" ]; then
+            echo "::warning::Could not resolve design-system release tag, falling back to @main"
+            TAG="main"
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Using design-system tag: $TAG"
+
+      - name: Build Hugo blog
+        working-directory: hugo
+        env:
+          HUGO_PARAMS_DSTAG: ${{ steps.ds.outputs.tag }}
+        run: hugo --minify --gc --destination ../_dist
+
+      - name: Drop Hugo's home placeholder (lander owns /)
+        run: rm -f _dist/index.html
+
+      - name: Overlay static lander files on top of Hugo output
+        run: |
+          set -euo pipefail
+          LANDER_FILES=(
+            index.html style.css ai-workflow.html ai-workflow.css
+            projects.json humans.txt llms.txt robots.txt sitemap.xml CNAME
+          )
+          for f in "${LANDER_FILES[@]}"; do
+            if [ -e "$f" ]; then cp -v "$f" "_dist/$f"; fi
+          done
+          for d in web assets .well-known; do
+            if [ -d "$d" ]; then cp -rv "$d" "_dist/"; fi
+          done
+          # Pin lander to the resolved DS tag so the CDN URL in index.html
+          # always matches the blog's CSS reference (closes Layer 1 drift).
+          sed -i "s|design-system@[^/\"]*|design-system@${{ steps.ds.outputs.tag }}|g" _dist/index.html
+
+          echo "── Final deploy tree ──"
+          find _dist -maxdepth 2 -type f | sort | head -40
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: _dist
 
       - name: Deploy to GitHub Pages
         id: deployment
