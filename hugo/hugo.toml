@@ -4,6 +4,11 @@ title        = "Alexey Panfilov — Product, AI, Systems"
 enableRobotsTXT = true
 enableGitInfo   = true
 
+# Google Analytics 4 — same property as the lander (index.html) so the blog
+# rolls up into one GA stream. Consumed by Hugo's internal google_analytics
+# template, included from layouts/partials/head.html.
+googleAnalytics = "G-RT3L9MP58G"
+
 # Markup
 [markup]
   [markup.goldmark.renderer]
@@ -30,8 +35,19 @@ enableGitInfo   = true
   mainSections = ["articles"]
   description  = "Notes on product, AI, and systems by Alexey Panfilov."
   author       = "Alexey Panfilov"
-  twitter      = ""                 # add when ready
+  twitter      = "dzarlax"          # handle without @, used by twitter:site/creator
   github       = "dzarlax"
+
+  # Author social profiles — consumed by Person JSON-LD `sameAs` (helps
+  # Google/AI search link the author to a single knowledge-graph entity)
+  # and by <link rel="me"> for Mastodon-style author verification.
+  # Add entries as new accounts come online; the array is rendered as-is.
+  socialProfiles = [
+    "https://github.com/dzarlax",
+    "https://linkedin.com/in/dzarlax",
+    "https://x.com/dzarlax",
+    "https://substack.com/@dzarlax",
+  ]
 
   # Design system — pinned tag is set in CI via env (HUGO_PARAMS_dstag);
   # @main is fine for local dev. CDN URLs are assembled in partials/head.html.
@@ -41,7 +57,16 @@ enableGitInfo   = true
 [taxonomies]
   tag = "tags"
 
-# Output formats — keep RSS on, add JSON for the article index (useful later)
+# Output formats — keep RSS on, add JSON for the article index (useful later).
+# LLMS is opt-in per-section via content frontmatter (see content/articles/_index.md);
+# defined globally here so the format is registered. Emits a plain-text file
+# `llms.txt` with markdown-flavoured content per the llmstxt.org convention.
+[outputFormats.LLMS]
+  mediaType      = "text/plain"
+  baseName       = "llms"
+  isPlainText    = true
+  notAlternative = true
+
 [outputs]
   home    = ["HTML", "RSS"]
   section = ["HTML", "RSS"]
@@ -49,3 +74,12 @@ enableGitInfo   = true
 # Minification
 [minify]
   minifyOutput = true
+
+# Sitemap — emit at /blog-sitemap.xml so it does not collide with the
+# lander's hand-maintained /sitemap.xml (the CI overlay step in
+# .github/workflows/deploy.yml would otherwise overwrite Hugo's sitemap).
+# Both sitemaps are declared in /robots.txt and Google merges them.
+[sitemap]
+  filename = "blog-sitemap.xml"
+  changefreq = "weekly"
+  priority = 0.6

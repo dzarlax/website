@@ -1,19 +1,25 @@
+# robots.txt for dzarlax.dev
+# Lander + Hugo blog. Both sitemaps below are merged by Google.
+# This file is overlaid onto the Hugo build in CI
+# (see .github/workflows/deploy.yml — LANDER_FILES).
+
+# ─── Sitemaps ───────────────────────────────────────────────────────────
+Sitemap: https://dzarlax.dev/sitemap.xml
+Sitemap: https://dzarlax.dev/blog-sitemap.xml
+
+# ─── Default rule ───────────────────────────────────────────────────────
 User-agent: *
 Allow: /
-
-# Sitemaps
-Sitemap: https://dzarlax.dev/sitemap.xml
-
-# Block crawling of certain file types and directories
-Disallow: /*.json$
+# Allow markdown sources at the lander root (achievements.md, skills.md,
+# experience.md, education.md, projects.md) so AI search can read them.
+Allow: /*.md$
+# Allow the LLM index file (https://llmstxt.org).
+Allow: /llms.txt
 Disallow: /web/
-Disallow: /rss/
 Disallow: /.well-known/
-
-# Crawl delay (optional, be respectful)
 Crawl-delay: 1
 
-# Popular crawlers
+# ─── Classic search engines ─────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
 
@@ -30,4 +36,69 @@ User-agent: Baiduspider
 Allow: /
 
 User-agent: YandexBot
+Allow: /
+
+# ─── AI search / training crawlers ──────────────────────────────────────
+# Explicit Allow blocks so policy stays clear even if defaults change.
+# Reference: each vendor's published user-agent docs.
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google (Gemini / Vertex AI training)
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Amazon (Alexa+ / Rufus)
+User-agent: Amazonbot
+Allow: /
+
+# DuckDuckGo AI assist
+User-agent: DuckAssistBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# ByteDance (Doubao)
+User-agent: Bytespider
+Allow: /
+
+# Common Crawl (corpus for many open LLMs)
+User-agent: CCBot
 Allow: /

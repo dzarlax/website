@@ -3,38 +3,157 @@
 {{- $dsTag       := .Site.Params.dsTag | default "main" -}}
 {{- $dsCSS       := printf "https://cdn.jsdelivr.net/gh/dzarlax/design-system@%s/dist/dzarlax.css" $dsTag -}}
 {{- $dsJS        := printf "https://cdn.jsdelivr.net/gh/dzarlax/design-system@%s/dist/dzarlax.js"  $dsTag -}}
+{{/* Resolve OG image. Priority:
+       1. .Params.cover — author-supplied (page-bundle resource or absolute URL)
+       2. Auto-generated 1200×630 PNG with article title (only for blog posts)
+       3. Site-wide /og-default.png (lives at repo root, deployed by CI)
+     The auto-generator uses hugo/assets/images/og-base.png as the canvas and
+     overlays the title via images.Text. Per-tag accent colors live in
+     hugo/data/tag_colors.json. Result is content-hashed by Hugo, so it only
+     rebuilds when the inputs (title/tag/base/font) actually change. */}}
+{{- $coverURL := "" -}}
+{{- if .Params.cover -}}
+  {{- $coverURL = .Params.cover | absURL -}}
+{{- else if and .IsPage (eq .Section "articles") -}}
+  {{- $base := resources.Get "images/og-base.png" -}}
+  {{- $fontBold := resources.Get "fonts/Inter-Bold.ttf" -}}
+  {{- $fontReg  := resources.Get "fonts/Inter-Regular.ttf" -}}
+  {{- if and $base $fontBold $fontReg -}}
+    {{/* Word-wrap the title at ~22 chars per line, max 3 lines. Inter-Bold
+         at 76px averages ~28 chars wide at 1040px — 22 is a safe ceiling so
+         even capital-heavy titles never overflow. */}}
+    {{- $maxLineLen := 22 -}}
+    {{- $maxLines := 3 -}}
+    {{- $words := split .Title " " -}}
+    {{- $lines := slice -}}
+    {{- $cur := "" -}}
+    {{- range $words -}}
+      {{- $try := cond (eq $cur "") . (printf "%s %s" $cur .) -}}
+      {{- if le (len $try) $maxLineLen -}}
+        {{- $cur = $try -}}
+      {{- else -}}
+        {{- $lines = $lines | append $cur -}}
+        {{- $cur = . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if ne $cur "" -}}{{- $lines = $lines | append $cur -}}{{- end -}}
+    {{- if gt (len $lines) $maxLines -}}
+      {{- $lines = first $maxLines $lines -}}
+      {{/* Add ellipsis to the last line if we truncated. */}}
+      {{- $last := index $lines (sub (len $lines) 1) -}}
+      {{- $lines = append (slice (printf "%s…" $last)) (first (sub (len $lines) 1) $lines) -}}
+    {{- end -}}
+
+    {{/* Pick accent color from the first tag, fall back to brand blue. */}}
+    {{- $colors := site.Data.tag_colors -}}
+    {{- $accent := index $colors "_fallback" -}}
+    {{- with .Params.tags -}}
+      {{- $first := index . 0 -}}
+      {{- with index $colors $first -}}{{- $accent = . -}}{{- end -}}
+    {{- end -}}
+
+    {{/* Build the image — start from base, paint tag chip, title lines,
+         then byline at the bottom. Y-coordinates are tuned for 1200×630. */}}
+    {{- $img := $base -}}
+    {{- $tagLabel := upper (or (index .Params.tags 0) "ARTICLE") -}}
+    {{- $tagLabel = replace $tagLabel "-" " " -}}
+    {{- $img = $img.Filter (images.Text $tagLabel (dict
+        "color" (printf "#%s" $accent)
+        "size" 22
+        "x" 80
+        "y" 80
+        "font" $fontBold
+        "linespacing" 4)) -}}
+    {{/* Title lines, 76px bold, white, ~88px line height. */}}
+    {{- $titleStartY := 180 -}}
+    {{- range $i, $line := $lines -}}
+      {{- $y := add $titleStartY (mul $i 92) -}}
+      {{- $img = $img.Filter (images.Text $line (dict
+          "color" "#f5f5f5"
+          "size" 76
+          "x" 80
+          "y" $y
+          "font" $fontBold
+          "linespacing" 4)) -}}
+    {{- end -}}
+    {{/* Byline + domain — matches DS --text-secondary (off-white @ ~70% α). */}}
+    {{- $img = $img.Filter (images.Text (printf "%s · dzarlax.dev" .Site.Params.author) (dict
+        "color" "#f5f5f5b3"
+        "size" 26
+        "x" 80
+        "y" 540
+        "font" $fontReg
+        "linespacing" 4)) -}}
+    {{- $coverURL = $img.Permalink -}}
+  {{- end -}}
+{{- end -}}
+{{- if eq $coverURL "" -}}{{- $coverURL = "og-default.png" | absURL -}}{{- end -}}
+{{/* Honor frontmatter canonical (e.g. when a post is republished from Substack)
+     and fall back to .Permalink. Critical for dup-content handling. */}}
+{{- $canonical   := or .Params.canonical .Permalink -}}
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
+{{/* theme-color tints the mobile browser chrome (Safari/Chrome iOS) and
+     supports the DS light/dark themes. Values come from the design-system
+     `--bg` token — keep aligned with hugo/assets/images/og-base.png. */}}
+<meta name="theme-color" content="#FCFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1D21" media="(prefers-color-scheme: dark)">
 
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $description }}">
 {{- with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
-<link rel="canonical" href="{{ .Permalink }}">
+<link rel="canonical" href="{{ $canonical }}">
+
+{{/* Author verification — rel=me links. Mastodon-style profile linking;
+     also surfaces to AI search (Perplexity, Claude) as authoritative author
+     handles. Same set as Person.sameAs in the JSON-LD below. */}}
+{{- range .Site.Params.socialProfiles }}
+<link rel="me" href="{{ . }}">
+{{- end }}
 
 {{/* Open Graph */}}
-<meta property="og:type"        content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:type"        content="{{ if and .IsPage (eq .Section "articles") }}article{{ else }}website{{ end }}">
 <meta property="og:site_name"   content="{{ .Site.Title }}">
 <meta property="og:title"       content="{{ $title }}">
 <meta property="og:description" content="{{ $description }}">
 <meta property="og:url"         content="{{ .Permalink }}">
-{{- with .Params.cover }}
-<meta property="og:image"       content="{{ . | absURL }}">
-{{- else }}
-<meta property="og:image"       content="{{ "og-default.png" | absURL }}">
+<meta property="og:locale"      content="en_US">
+<meta property="og:image"       content="{{ $coverURL }}">
+
+{{/* Article-specific OG — surfaces dates/tags/author to social and to crawlers
+     that prefer OG over JSON-LD (LinkedIn, Slack, some AI fetchers). */}}
+{{- if and .IsPage (eq .Section "articles") }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time"  content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- with .Site.Params.author }}<meta property="article:author" content="{{ . }}">{{ end }}
+{{- range .Params.tags }}
+<meta property="article:tag" content="{{ . }}">
+{{- end }}
 {{- end }}
 
-{{/* Twitter */}}
+{{/* Twitter / X */}}
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:title"       content="{{ $title }}">
 <meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image"       content="{{ $coverURL }}">
+{{- with .Site.Params.twitter }}
+<meta name="twitter:site"        content="@{{ . }}">
+<meta name="twitter:creator"     content="@{{ . }}">
+{{- end }}
 
 {{/* Performance hints */}}
 <link rel="preconnect"  href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 <link rel="preconnect"  href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+{{/* Google Analytics 4 — shares property G-RT3L9MP58G with the lander
+     (see hugo.toml `googleAnalytics`). Only emitted in production builds. */}}
+{{ template "_internal/google_analytics.html" . }}
 
 {{/* Font Awesome — async loading */}}
 <link rel="preload"
@@ -67,8 +186,11 @@
       }
       var lang = localStorage.getItem('preferredLanguage');
       if (lang && /^(en|ru|rs)$/.test(lang)) {
+        // Only set data-lang for nav-bar/UI strings — DO NOT rewrite
+        // document.documentElement.lang. Blog content is English; flipping
+        // the lang attribute would mislead screen readers and crawlers
+        // (Google/Bing/AI) about the actual content language.
         document.documentElement.setAttribute('data-lang', lang);
-        document.documentElement.lang = lang;
       }
     } catch (e) {}
   })();
@@ -79,17 +201,74 @@
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{ end -}}
 
-{{/* Structured data for articles */}}
+{{/* Structured data for articles.
+     Surfaces description/image/keywords/publisher so Google Rich Results,
+     Bing, and AI-search crawlers (Perplexity, ChatGPT browse, Claude) get
+     a complete entity. Built as a Go map and serialized once via `jsonify`
+     — Hugo's HTML minifier double-escapes per-field `| jsonify` output
+     inside <script>, so we hand it a single value instead. */}}
 {{- if and .IsPage (eq .Section "articles") }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": {{ .Title | jsonify }},
-  "datePublished": {{ .Date.Format "2006-01-02" | jsonify }},
-  "dateModified": {{ .Lastmod.Format "2006-01-02" | jsonify }},
-  "author": { "@type": "Person", "name": {{ .Site.Params.author | jsonify }} },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": {{ .Permalink | jsonify }} }
-}
-</script>
+{{- $person := dict
+    "@type" "Person"
+    "name" .Site.Params.author
+    "url" "https://dzarlax.dev/"
+    "sameAs" .Site.Params.socialProfiles -}}
+{{- $ld := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "headline" .Title
+    "description" $description
+    "image" $coverURL
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+    "author" $person
+    "publisher" $person
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+    "url" .Permalink
+-}}
+{{- with .Params.tags }}{{ $ld = merge $ld (dict "keywords" (delimit . ", ")) }}{{ end -}}
+{{- with .WordCount }}{{ $ld = merge $ld (dict "wordCount" .) }}{{ end -}}
+{{- if ne $canonical .Permalink }}{{ $ld = merge $ld (dict "isBasedOn" $canonical) }}{{ end -}}
+<script type="application/ld+json">{{ $ld | jsonify (dict "indent" "  ") | safeJS }}</script>
+
+{{/* BreadcrumbList — surfaces Home › Articles › Title in Google SERP and
+     gives AI-search a clean parent-chain. Static three-level structure
+     mirrors the actual URL hierarchy. */}}
+{{- $crumbs := dict
+    "@context" "https://schema.org"
+    "@type" "BreadcrumbList"
+    "itemListElement" (slice
+      (dict "@type" "ListItem" "position" 1 "name" "Home"     "item" (absURL "/"))
+      (dict "@type" "ListItem" "position" 2 "name" "Articles" "item" (absURL "/articles/"))
+      (dict "@type" "ListItem" "position" 3 "name" .Title     "item" .Permalink)
+    ) -}}
+<script type="application/ld+json">{{ $crumbs | jsonify (dict "indent" "  ") | safeJS }}</script>
+{{- end }}
+
+{{/* Structured data for the article index — helps AI-search and Google
+     understand the blog as a collection rather than orphan pages. */}}
+{{- if and .IsNode (eq .Section "articles") }}
+{{- $author := dict
+    "@type" "Person"
+    "name" .Site.Params.author
+    "url" "https://dzarlax.dev/"
+    "sameAs" .Site.Params.socialProfiles -}}
+{{- $posts := slice -}}
+{{- range where .Site.RegularPages "Section" "articles" -}}
+  {{- $posts = $posts | append (dict
+      "@type" "BlogPosting"
+      "headline" .Title
+      "url" .Permalink
+      "datePublished" (.Date.Format "2006-01-02")) -}}
+{{- end -}}
+{{- $ld := dict
+    "@context" "https://schema.org"
+    "@type" "Blog"
+    "name" .Title
+    "description" $description
+    "url" .Permalink
+    "author" $author
+    "blogPost" $posts
+-}}
+<script type="application/ld+json">{{ $ld | jsonify (dict "indent" "  ") | safeJS }}</script>
 {{- end }}
