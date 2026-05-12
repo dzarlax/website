@@ -82,6 +82,37 @@ for d in web assets .well-known; do
   [ -d "$d" ] && cp -r "$d" "$OUT/"
 done
 
+echo "▸ Resolving design-system release tag"
+# Mirror the CI bake step so local previews match prod (no runtime CDN).
+# Prefer gh CLI (authenticated, no anonymous rate-limit); fall back to curl.
+if command -v gh >/dev/null 2>&1; then
+  DS_TAG="$(gh api repos/dzarlax/design-system/releases/latest --jq '.tag_name' 2>/dev/null || true)"
+else
+  DS_TAG="$(curl -fsSL https://api.github.com/repos/dzarlax/design-system/releases/latest 2>/dev/null \
+    | sed -nE 's/.*"tag_name"[[:space:]]*:[[:space:]]*"([^"]+)".*/\1/p' | head -1)"
+fi
+if [ -z "${DS_TAG:-}" ] || [ "$DS_TAG" = "null" ]; then
+  echo "  ⚠ Could not resolve DS release tag, falling back to @main"
+  DS_TAG="main"
+fi
+echo "  Using design-system tag: $DS_TAG"
+
+echo "▸ Baking design-system bundle into $OUT/assets/ds/"
+mkdir -p "$OUT/assets/ds"
+for f in dzarlax.css dzarlax.js; do
+  curl -fsSL \
+    "https://github.com/dzarlax/design-system/releases/download/${DS_TAG}/${f}" \
+    -o "$OUT/assets/ds/${f}"
+  echo "  Baked $OUT/assets/ds/${f} ($(wc -c < "$OUT/assets/ds/${f}" | tr -d ' ') bytes)"
+done
+
+echo "▸ Rewriting CDN refs in HTML → same-origin /assets/ds/"
+# BSD sed (macOS) needs an empty -i arg; use '#' as s delimiter so '|' is free
+# for alternation inside the regex (matches both jsdelivr and statically forms).
+find "$OUT" -type f -name '*.html' -print0 | xargs -0 sed -i '' -E \
+  -e "s#https?://cdn\.(jsdelivr\.net/gh|statically\.io/gh)/dzarlax/design-system[@/][^\"']*dzarlax\.css#/assets/ds/dzarlax.css?v=${DS_TAG}#g" \
+  -e "s#https?://cdn\.(jsdelivr\.net/gh|statically\.io/gh)/dzarlax/design-system[@/][^\"']*dzarlax\.js#/assets/ds/dzarlax.js?v=${DS_TAG}#g"
+
 echo "▸ Built. Tree (top level):"
 find "$OUT" -maxdepth 2 -type f | sort | head -20 | sed 's|.*/dist-preview/|  /|'
 
