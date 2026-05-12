@@ -5,3 +5,5 @@ localStorage.json
 .DS_Store
 .env
 dist-preview/
+.claude/
+.vscode/

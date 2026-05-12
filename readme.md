@@ -1,190 +1,157 @@
-# Personal Website Repository
+# dzarlax.dev — personal site + blog
 
-## Overview
-This repository contains the source code for a personal portfolio website managed by Alexey Panfilov (dzarlax). The codebase includes HTML, CSS, and JavaScript files for a modern, responsive personal website with multilingual support **plus a Hugo-powered blog** at `/articles/`.
+Source for [dzarlax.dev](https://dzarlax.dev): a hand-built multilingual portfolio
+lander plus a Hugo-powered blog at `/articles/`. By Alexey Panfilov ([dzarlax](https://github.com/dzarlax)).
 
-## ✍️ Writing & shipping blog posts
-The detailed writing playbook lives in the Obsidian vault (private):
-`<vault>/_meta/blog-playbook.md`. Engineering-side docs (architecture,
-scripts, deployment) are in [OPERATIONS.md](OPERATIONS.md).
+## What's here
+
+- **Lander** (`/`) — static HTML/CSS/vanilla-JS. Multilingual (en/ru/rs), dark/light
+  theme, project showcase from `projects.json`.
+- **Blog** (`/articles/`, `/tags/`, `/index.xml`) — Hugo Modules pull content from
+  the public [`dzarlax/blog-content`](https://github.com/dzarlax/blog-content) repo
+  (an Obsidian vault) at build time.
+
+CI merges the two at deploy: Hugo builds the blog → lander files are overlaid on top
+→ GitHub Pages serves the merged tree. See [OPERATIONS.md](OPERATIONS.md) for the
+engineering reference, [docs/MIGRATION-LEVEL2.md](docs/MIGRATION-LEVEL2.md) for the
+vault-as-module setup.
+
+## ✍️ Writing a blog post
+
+The detailed writing playbook is in the Obsidian vault at
+`<vault>/_meta/blog-playbook.md` (gitignored).
 
 TL;DR:
-- Write in Obsidian. The vault is a git working copy of the public
-  `dzarlax/blog-content` repo. Path resolved by `bin/lib/vault.sh` —
-  defaults to `~/Projects/Documents/Personal/blog` (macOS) or
-  `/d/Documents/Personal/blog` (Windows Git Bash). Override with
-  `BLOG_VAULT` env var or `.env`.
-- `bin/new-article.sh "Title"` to scaffold, `bin/preview.sh` to preview on
-  `localhost:8000` (no sync step — vault is loaded as a Hugo module and
-  replaced with `$BLOG_VAULT` for local dev). Commit + push the article in
-  the vault repo; CI on the next deploy of this repo pulls the latest
-  blog-content commit automatically. See [docs/MIGRATION-LEVEL2.md](docs/MIGRATION-LEVEL2.md)
-  for the one-time bootstrap of the vault-as-module setup.
 
-## 🌟 Key Features
-- **Multi-language Support**: Full localization for English, Russian, and Serbian
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices (768px breakpoint)
-- **Dark/Light Theme**: Automatic theme switching based on user preference with HSL-based color system
-- **Dynamic Projects**: JSON-based project showcase with localized content
-- **Performance Optimized**: Lazy loading, optimized assets, Web Vitals monitoring
-- **Accessibility**: WCAG compliant with proper ARIA labels and keyboard navigation
-- **Modern CSS**: Design tokens, systematic spacing, logical properties, CSS nesting
+1. `bin/new-article.sh "Title"` — scaffold an article in `$BLOG_VAULT`
+2. Write in Obsidian; preview locally with `bin/preview.sh` (vault loaded via
+   Hugo module path replacement — no commit needed)
+3. `cd "$BLOG_VAULT" && git add . && git commit -m "..." && git push` — that
+   push fires `repository_dispatch` to this repo and triggers a deploy
+4. ~3 min later the post is live on dzarlax.dev
 
-## 🚀 Recent Updates
-- ✅ **Removed RSS/News Pages**: Deprecated feed.html and news.html for simplification
-- ✅ **Enhanced CSS Architecture**: Implemented design tokens and systematic spacing
-- ✅ **Improved Dark Mode**: High contrast colors for better readability
-- ✅ **Feature Toggle Removal**: Simplified configuration system
-- ✅ **SEO + AI-Search Discoverability**: Full Open Graph (with image dimensions), enriched JSON-LD (BlogPosting + BreadcrumbList + Blog collection), frontmatter canonical, auto-generated 1200×630 OG images per article, blog-sitemap.xml + auto-generated `/articles/llms.txt`, robots.txt allowlist for AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.), custom 404, image render hook for lazy-loading + CLS prevention
+`$BLOG_VAULT` defaults to `~/Projects/Documents/Personal/blog` (macOS) or
+`/d/Documents/Personal/blog` (Windows Git Bash). Override via env var or `.env`.
 
-## 📁 Project Structure
+## 🛠️ Setup & dev
 
-### Root Files
-- `index.html` - Main HTML file with semantic structure
-- `ai-workflow.html` - AI workflow documentation page
-- `style.css` - Primary stylesheet with CSS custom properties (47 design tokens)
-- `projects.json` - Project data with multilingual content
-- `manifest.json` - PWA manifest file
-- `sw.js` - Service Worker for offline functionality
+### Bootstrap (per machine)
 
-### `/web` Directory
-- `localization.js` - Multilingual translation system
-- `theme.js` - Dark/light theme management
-- `contacts.js` - Contact form and social links handler
-- `projects.js` - Dynamic project loading and display
-- `animation.js` - Scroll animations and visual effects
-- `vitals.js` - Web vitals monitoring
-- `optimization.js` - Performance optimizations
-- `main.js` - Main application entry point
-- `jspdf.min.js` - PDF generation library
+```bash
+# macOS
+brew install hugo go        # Hugo extended + Go 1.22+ (Hugo modules need Go)
+# Windows (Git Bash, not PowerShell)
+winget install Hugo.Hugo.Extended GoLang.Go
 
-### Documentation Files
-- `CSS_ARCHITECTURE.md` - Detailed CSS design system documentation
-- `EXPERIENCE_REFACTOR.md` - Before/after CSS refactoring example
-- `CLAUDE.md` - Developer guide for Claude Code AI assistant
-
-## 🛠️ Setup & Development
-
-### Prerequisites
-- Modern web browser with ES6+ support
-- HTTP server (for AJAX requests)
-
-### Local Development
-1. Clone the repository
-2. Start a local HTTP server:
-   ```bash
-   python3 -m http.server 8000
-   # or
-   npx serve .
-   ```
-3. Navigate to `http://localhost:8000`
-
-### Project Configuration
-Projects are managed through `projects.json` with the following structure:
-
-```json
-{
-  "id": "unique-project-id",
-  "title_en": "English Title",
-  "title_ru": "Русский заголовок",
-  "title_rs": "Српски наслов",
-  "description_en": "English description",
-  "description_ru": "Русское описание",
-  "description_rs": "Српски опис",
-  "link": "https://github.com/user/repo",
-  "tags_en": ["Tag1", "Tag2"],
-  "tags_ru": ["Тег1", "Тег2"],
-  "tags_rs": ["Таг1", "Таг2"]
-}
+git clone https://github.com/dzarlax/website.git && cd website
+git clone https://github.com/dzarlax/blog-content.git ~/Projects/Documents/Personal/blog
+bin/install-git-hooks.sh    # frontmatter lint on commit
+bin/preview.sh              # build + serve on :8000
 ```
 
-## 🎨 CSS Architecture
+Full setup details: [OPERATIONS.md](OPERATIONS.md).
 
-### Design Token System
-The project uses a comprehensive design token system with:
-- **HSL Color System**: `--brand-hue: 217` for easy theming
-- **4px Spacing Grid**: `--s-1: 4px`, `--s-2: 8px`, `--s-6: 24px`
-- **Typography Scale**: Modular scale with `--f-base: 1rem`
-- **47 total CSS variables** as single source of truth
+### Day-to-day
 
-### Modern CSS Features
-- **CSS Nesting** (~40% coverage)
-- **Logical Properties** (~15% coverage) for RTL support
-- **Component-based architecture** with BEM naming
-- **Systematic spacing** - no magic numbers
+| Command | Use |
+|---|---|
+| `bin/preview.sh` | Build merged lander + blog, serve on `:8000` |
+| `bin/preview.sh build` | Build only (output in `dist-preview/`) |
+| `bin/new-article.sh "Title"` | Scaffold a new article in the vault |
+| `bin/new-tag.sh slug "Label"` | Scaffold a new tag in the vault |
+| `bin/lint-frontmatter.sh` | Lint article frontmatter (also run as pre-commit hook) |
 
-### Layout Utilities
-```css
-.l-container { /* Max-width container */ }
-.l-grid { /* CSS Grid layouts */ }
-.l-section { /* Section spacing */ }
+For fastest template/CSS iteration on the blog only:
+
+```bash
+cd hugo && hugo server --disableFastRender
+# http://localhost:1313/articles/
 ```
 
-For detailed CSS architecture information, see `CSS_ARCHITECTURE.md`.
+### Deploying
+
+Push to `main` (or vault repo push, via dispatch) → `.github/workflows/deploy.yml`
+runs → GitHub Pages serves. ~2–3 min roundtrip.
+
+## 📁 Repo layout
+
+```
+.
+├── index.html, style.css         — lander
+├── projects.json                                              — lander data
+├── achievements.md, education.md, experience.md, skills.md   — lander content
+├── web/                                                       — lander JS
+├── assets/                                                    — lander images
+├── hugo/
+│   ├── hugo.toml         — [module] block imports blog-content
+│   ├── go.mod
+│   ├── layouts/, assets/, archetypes/, data/
+│   └── content/_index.md, content/articles/_index.md  — section metadata only
+├── bin/                  — scripts (preview, new-article, lint, etc.)
+├── docs/                 — engineering docs (migration runbooks)
+└── .github/workflows/    — CI
+```
+
+Lander files referenced in `index.html`:
+
+- `web/theme.js` — dark/light theme + localStorage persistence
+- `web/localization-core.js` + `web/localization-data-{en,ru,rs}.js` — i18n
+- `web/projects.js`, `web/experience.js`, `web/education.js`, `web/skills.js` —
+  dynamic content rendering
+- `web/skill-icons.js`, `web/contacts.js`, `web/animation.js`, `web/vitals.js` —
+  utilities
+- `web/structured-data.json` — JSON-LD payload
+
+## 🎨 CSS & design tokens
+
+The lander and blog share a token system, surfaced via the
+[`dzarlax/design-system`](https://github.com/dzarlax/design-system) CDN package.
+
+- **Monochrome editorial palette**: light = `#FCFAF7` ivory / `#1A1A1E` graphite;
+  dark = `#1A1D21` / `#F5F5F5`. (Older inline comments may still mention a
+  blue `--brand-hue: 217` — that palette has been retired.)
+- **4px spacing grid**: `--s-1: 4px`, `--s-2: 8px`, ..., `--s-6: 24px`
+- **Typography scale**: `--f-base: 1rem`, `--f-ratio: 1.2`
+- **BEM-ish naming**, layout utilities prefixed `.l-*`
+- **CSS nesting** + **logical properties** (`inline-size`, `margin-inline`, etc.)
+
+See [CSS_ARCHITECTURE.md](CSS_ARCHITECTURE.md) for the full token reference and
+the optimization roadmap.
 
 ## 🌐 Localization
-The website supports three languages:
-- **English (en)** - Default language
-- **Russian (ru)** - Full translation
-- **Serbian (rs)** - Full translation
 
-### Adding New Translations
-1. Update `web/localization.js` with new translation keys
-2. Add corresponding HTML `data-lang` attributes
-3. The system automatically updates content on language switch via `languageChanged` event
+Three locales: `en`, `ru`, `rs` (note: `rs`, not `sr`). All lander content is
+keyed by `data-lang="..."` attributes on HTML elements; translations live in
+`web/localization-data-*.js`. The `languageChanged` `CustomEvent` lets other
+modules (projects, experience, etc.) re-render when the language switches.
 
-### Translation Key Format
-- Simple keys: `data-lang="projects_title"`
-- Nested keys: `data-lang="menu.home"`, `data-lang="footer.copyright"`
-- Array access: Handled programmatically for dynamic content
+Blog content is single-language per article — articles use whatever language
+they're written in; tags and section metadata are en-only.
 
-## 🎨 Theming
-The website uses CSS custom properties for theming:
-- HSL-based color system for easy theme customization
-- Automatic dark/light mode detection via `prefers-color-scheme`
-- Manual theme toggle available
-- Consistent color scheme across all components
-- High contrast in dark mode for accessibility
+## 🔧 Development guidelines
 
-## 📱 Progressive Web App
-The website includes PWA features:
-- Service Worker for offline functionality
-- Web App Manifest for installation
-- Responsive design for all screen sizes
+CSS:
 
-## 📊 Performance
-- Lazy loading for images and content
-- Minified and optimized assets
-- Service Worker caching
-- Web vitals monitoring via `web/vitals.js`
-- Intersection Observer for performant scroll animations
+1. Always use design tokens — no hardcoded values
+2. Prefer logical properties for RTL support
+3. Nest component styles
+4. Follow BEM naming
+5. Test at 768px mobile breakpoint
 
-## 🔧 Development Guidelines
+JS:
 
-### CSS Best Practices
-1. **Always use design tokens** - No hardcoded values
-2. **Prefer logical properties** - Use `inline-size` instead of `width` for RTL support
-3. **Use CSS nesting** - Keep component styles together
-4. **Follow BEM naming** - `.component__element--modifier`
-5. **Test on mobile** - 768px breakpoint is critical
+- Vanilla, no frameworks
+- Event-driven cross-module communication (`languageChanged`, `themeChanged`)
+- Always escape user-rendered content (`escapeHtml()`)
 
-### JavaScript Conventions
-- All vanilla JavaScript - no frameworks
-- Event-driven architecture with custom events
-- Security first - always escape user-generated content
-- Modular design - independent modules
-
-## 🤝 Contributing
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test across different browsers and devices
-5. Submit a pull request
+See [CLAUDE.md](CLAUDE.md) for in-depth conventions and the architecture map.
 
 ## 📄 License
-This project is for personal use. All rights reserved.
+
+Personal project — all rights reserved.
 
 ## 📞 Contact
-- **GitHub**: [dzarlax](https://github.com/dzarlax)
-- **LinkedIn**: [Alexey Panfilov](https://linkedin.com/in/dzarlax)
-- **Website**: [dzarlax.dev](https://dzarlax.dev)
+
+- GitHub: [dzarlax](https://github.com/dzarlax)
+- LinkedIn: [Alexey Panfilov](https://linkedin.com/in/dzarlax)
+- Web: [dzarlax.dev](https://dzarlax.dev)

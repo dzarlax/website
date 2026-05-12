@@ -55,7 +55,6 @@ for the one-time vault-repo bootstrap.
 | `lint-frontmatter.sh [files...]` | Frontmatter linter for articles (title, description, date, tags, draft). Run by pre-commit hook |
 | `install-git-hooks.sh` | One-shot: installs the pre-commit hook into `.git/hooks/` |
 | `sync-content.sh` | **Deprecated** rsync flow. Only used as an emergency escape hatch (e.g. Go unavailable). Also handles PNG/JPG → WebP conversion |
-| `migrate-content-to-vault.sh` | One-time historical: copy existing `hugo/content/` into the vault |
 
 ## Environment
 

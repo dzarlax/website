@@ -12,7 +12,7 @@ CI builds Hugo, drops Hugo's `index.html` (lander owns `/`), overlays static lan
 
 ### CI overlay collision rules
 
-The deploy workflow has a fixed list `LANDER_FILES` (in `.github/workflows/deploy.yml`) — those files are `cp`-ed on top of the Hugo build, so **the lander always wins on filename conflicts**. Current list: `index.html, style.css, ai-workflow.html, ai-workflow.css, projects.json, humans.txt, llms.txt, robots.txt, sitemap.xml, CNAME, og-default.png` (+ directories `web`, `assets`, `.well-known`).
+The deploy workflow has a fixed list `LANDER_FILES` (in `.github/workflows/deploy.yml`) — those files are `cp`-ed on top of the Hugo build, so **the lander always wins on filename conflicts**. Current list: `index.html, style.css, projects.json, humans.txt, llms.txt, robots.txt, sitemap.xml, CNAME, og-default.png` (+ directories `web`, `assets`, `.well-known`).
 
 **Consequence:** any Hugo-generated file at one of these paths is silently overwritten in prod. If you need Hugo to ship something at a path that overlaps:
 - emit it under a different name (e.g. Hugo sitemap → `/blog-sitemap.xml`, not `/sitemap.xml`)
@@ -133,7 +133,6 @@ The project uses a **token-based design system** with systematic spacing and mod
 **Migration Notes**:
 - Target state: 60% smaller CSS file size through consolidation
 - See `CSS_ARCHITECTURE.md` for detailed optimization roadmap
-- See `EXPERIENCE_REFACTOR.md` for before/after refactoring example
 
 ### Module Loading Pattern
 Scripts are loaded in `index.html` in the following order:
@@ -317,7 +316,6 @@ The codebase uses custom events for module communication:
 
 ### Root Directory
 - `index.html` - Main page (single-page application)
-- `ai-workflow.html` - AI workflow documentation page
 - `style.css` - Global stylesheet with CSS custom properties
 - `projects.json` - Project data source
 

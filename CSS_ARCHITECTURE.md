@@ -222,8 +222,6 @@ color: #333;
 ## Related Documentation
 
 - `CLAUDE.md` - Development guidelines and CSS best practices
-- `openspec/changes/optimize-css/` - CSS optimization change documentation
-- `openspec/changes/optimize-css/OPTIMIZATION_RESULTS.md` - Optimization metrics and results
 
 ---
 
