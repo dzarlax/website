@@ -86,9 +86,35 @@ jobs:
       - name: Drop Hugo's home placeholder (lander owns /)
         run: rm -f _dist/index.html
 
+      - name: Bake design-system bundle into deploy tree
+        # Download dist/dzarlax.{css,js} from the resolved DS release and serve
+        # them same-origin from /assets/ds/. Drops the runtime CDN dependency
+        # entirely — no jsdelivr poisoned-cache incidents, no statically.io
+        # HTTPS-downgrade redirects, and ~50× faster than statically.io's
+        # cold cache (~46s on the v1.2.1 reroll vs <100ms same-origin).
+        #
+        # CDN URLs in sources stay so local previews still work; this step
+        # rewrites every emitted HTML file to point at /assets/ds/<file>?v=<tag>.
+        # The `?v=<tag>` query forces cache invalidation when DS bumps.
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.ds.outputs.tag }}"
+          mkdir -p _dist/assets/ds
+          for f in dzarlax.css dzarlax.js; do
+            # -L follows the GitHub release-asset 302 to Azure Blob; -f makes
+            # the build fail loudly on any non-2xx so a broken release doesn't
+            # silently ship an empty bundle.
+            curl -fsSL \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              "https://github.com/dzarlax/design-system/releases/download/${TAG}/${f}" \
+              -o "_dist/assets/ds/${f}"
+            echo "Baked _dist/assets/ds/${f} ($(wc -c < "_dist/assets/ds/${f}") bytes)"
+          done
+
       - name: Overlay static lander files on top of Hugo output
         run: |
           set -euo pipefail
+          TAG="${{ steps.ds.outputs.tag }}"
           LANDER_FILES=(
             index.html style.css
             projects.json humans.txt llms.txt robots.txt sitemap.xml CNAME
@@ -100,14 +126,19 @@ jobs:
           for d in web assets .well-known; do
             if [ -d "$d" ]; then cp -rv "$d" "_dist/"; fi
           done
-          # Pin lander to the resolved DS tag so the CDN URL in index.html
-          # always matches the blog's CSS reference (closes Layer 1 drift).
-          # We serve DS via cdn.statically.io (jsdelivr had a poisoned-cache
-          # incident on v1.2.0 — 404 cached at the edge after the tag race).
-          sed -i -E "s|cdn\.statically\.io/gh/dzarlax/design-system@[^/\"]*|cdn.statically.io/gh/dzarlax/design-system@${{ steps.ds.outputs.tag }}|g" _dist/index.html
+
+          # Rewrite every CDN reference (jsdelivr or statically) in any emitted
+          # HTML to the same-origin baked path. Run across the whole tree so
+          # both the lander's index.html and Hugo-generated blog pages flip.
+          find _dist -type f -name '*.html' -print0 | xargs -0 sed -i -E \
+            -e "s|https?://cdn\.(jsdelivr\.net/gh\|statically\.io/gh)/dzarlax/design-system[@/][^\"']*dzarlax\.css|/assets/ds/dzarlax.css?v=${TAG}|g" \
+            -e "s|https?://cdn\.(jsdelivr\.net/gh\|statically\.io/gh)/dzarlax/design-system[@/][^\"']*dzarlax\.js|/assets/ds/dzarlax.js?v=${TAG}|g"
 
           echo "── Final deploy tree ──"
           find _dist -maxdepth 2 -type f | sort | head -40
+          echo "── DS bake verification ──"
+          ls -la _dist/assets/ds/
+          grep -REho '(cdn\.(jsdelivr|statically)|/assets/ds/dzarlax)[^"'"'"']*' _dist --include='*.html' | sort -u | head -10
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
