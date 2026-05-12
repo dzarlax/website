@@ -76,8 +76,9 @@ const englishTranslations = {
     footer_text: `© ${new Date().getFullYear()} Alexey Panfilov. Built with AI-augmented development.`,
     intro: {
         title: 'Head of Product',
-        description: "<strong>AI-Native Product Executive</strong> with 15 years building high-load systems and product portfolios from 0 to 1. Experience with prompt engineering and agent-based systems, knowing when to use generic LLMs vs. fine-tuned small models for business-critical tasks.<br><br>" +
-            "Leveraging <strong>Cursor, Claude Code, and LLM agents</strong> to bridge ideation and technical execution. Built <strong>AI/ML platforms for universities</strong> and data systems at <strong>Yandex & Russian Post</strong> serving millions of users.<br><br>" +
+        description: "<strong>AI-Native Product Executive</strong> — 15 years building products at the seam of engineering and customer reality. Currently leading <strong>Insight</strong> at Constructor — analytics for how engineering teams actually work (and where AI adoption helps or hurts).<br><br>" +
+            "Lived experience across data platforms (<strong>DataLens at Yandex Cloud</strong>), B2C marketplaces (<strong>Yandex.Market</strong> — including 7 days as a courier), and high-volume validation (<strong>Russian Post</strong>, 2M+ addresses/day). Strong opinions on when to use generic LLMs vs. fine-tuned small models for business-critical tasks.<br><br>" +
+            "On the personal side: <strong>Personal Memory</strong> (Go MCP server combining semantic memory, document RAG, and Todoist into one tool surface for all my agents — Qdrant + local embeddings), <strong>Health Dashboard</strong> (multi-tenant Apple Health server with my own SwiftUI iOS client, Gemini-powered daily briefings, and an <em>Energy Bank</em> — continuous battery model integrating physiological strain and recovery across days), and <strong>Evening News</strong> (RSS + Telegram + web news pipeline with Gemini summarization, online-learning categorization, and daily digests to Telegram + Telegraph) — all in production.<br><br>" +
             "<strong>Languages:</strong> Native Russian, fluent English, conversational Serbian."
     },
     skills: {
@@ -155,28 +156,28 @@ const englishTranslations = {
                 company: 'Yandex Cloud',
                 location: 'Moscow-Belgrade',
                 period: '8/2022 - 10/2024',
-                description: "<strong>Product:</strong> DataLens - already the main BI system in Yandex with active internal usage and external clients.<br><br><strong>Role:</strong> Technical PM working with dev team on new features and technical solutions. Managed interactions within the team and with external teams. Both product and technical feature development.<br><br><strong>Key Contributions:</strong> Participated in open-source release and on-prem version preparation. Deep ClickHouse integration. 50,000+ users in largest installation."
+                description: "<strong>DataLens (Yandex Cloud BI platform):</strong> Technical PM for Yandex's flagship analytics product — open-source BI with deep ClickHouse integration, embedded dashboards, public API, and a permission/sharing model designed for large multi-team installations. Scaled to 20,000+ users in the largest deployment.<br><br><strong>Scope:</strong> Drove the open-source release and on-prem distribution, shaped the product API surface used by external integrators, and partnered with engineering on data modeling, query optimization, and tenant isolation. Worked across customer research, telemetry, and roadmap definition."
             },
             {
                 title: 'Product Manager',
                 company: 'Yandex.Market',
                 location: 'Moscow',
                 period: '3/2021 - 8/2022',
-                description: "<strong>Product Strategy:</strong> Led product roadmap for hyper-growth courier platform. Contributed to development of automated courier assignment system implementing algorithmic routing.<br><br><strong>Analytics Infrastructure:</strong> Built comprehensive analytics infrastructure enabling data-driven operational decisions.<br><br><strong>Team Leadership:</strong> Led 10-person cross-functional team delivering 100% of client innovations on schedule."
+                description: "<strong>Product Strategy:</strong> Led product roadmap for hyper-growth courier platform. Contributed to development of automated courier assignment system implementing algorithmic routing.<br><br><strong>Field Research:</strong> Worked 7 days as a courier on the platform — direct ground-truth on driver workflow, app friction, and dispatch edge cases that desk-bound discovery would never surface.<br><br><strong>Analytics Infrastructure:</strong> Built comprehensive analytics infrastructure enabling data-driven operational decisions.<br><br><strong>Team Leadership:</strong> Led 10-person cross-functional team shipping client-facing features and operational improvements through hyper-growth."
             },
             {
                 title: 'Product Owner',
                 company: 'Russian Post',
                 location: 'Moscow',
                 period: '6/2020 - 3/2021',
-                description: "<strong>Product:</strong> High-load validation engine for international shipping data<br><br><strong>Scale:</strong> Processed 2M+ addresses daily for clients including iHerb and AliExpress<br><br><strong>Quality:</strong> Reduced error rate from 30% to 2% through automated validation workflows. 100% GDPR compliance - zero incidents over 18 months.<br><br><strong>Team:</strong> Hired and managed full-stack development team from scratch (4 → 8 engineers)."
+                description: "<strong>Product:</strong> High-load validation engine for international shipping data<br><br><strong>Scale:</strong> Processed 2M+ addresses daily for clients including iHerb and AliExpress<br><br><strong>Quality:</strong> Reduced error rate from 30% to 2% through automated validation workflows. GDPR-compliant pipeline with role-based access.<br><br><strong>Team:</strong> Hired and managed full-stack development team from scratch (4 → 8 engineers)."
             },
             {
                 title: 'Product Owner',
                 company: 'Anywayanyday',
                 location: 'Moscow',
                 period: '8/2019 - 6/2020',
-                description: "<strong>Process Optimization:</strong> Refined mobile development management, contractor selection, and UI/UX prototyping processes.<br><br><strong>Analytics:</strong> Created analytics system to organize and act on findings from audience studies, product usage patterns, and competitive analyses.<br><br><strong>Technical:</strong> Refactored mobile app using Swift and latest Android framework."
+                description: "<strong>Mobile Redesign:</strong> Led the mobile app redesign that delivered a +3 percentage-point conversion lift.<br><br><strong>Process Optimization:</strong> Refined mobile development management, contractor selection, and UI/UX prototyping processes.<br><br><strong>Analytics:</strong> Created analytics system to organize and act on findings from audience studies, product usage patterns, and competitive analyses.<br><br><strong>Technical:</strong> Refactored the mobile app using Swift and the latest Android framework."
             },
             {
                 title: 'Senior Analyst | Product Manager',
@@ -197,7 +198,7 @@ const englishTranslations = {
                 company: 'Parallels',
                 location: 'Moscow',
                 period: '8/2012 - 12/2015',
-                description: "<strong>Career Growth:</strong> Promoted from QA Engineer to Program Manager in 2014 for establishing testing plans and executing QA responsibilities.<br><br><strong>Product Management:</strong> Led product update releases, oversaw feature documentation, and incorporated findings from in-app analytics, user feedback, and business needs assessments."
+                description: "<strong>Product:</strong> Parallels Access — remote-desktop app for iOS and Android (Parallels acquired by Corel).<br><br><strong>Career Growth:</strong> Promoted from QA Engineer to Program Manager in 2014 — consistently stepped beyond QA into product, proposing features and shaping releases, until the role caught up with the work.<br><br><strong>Product Management:</strong> Led product update releases, oversaw feature documentation, and incorporated findings from in-app analytics, user feedback, and business needs assessments."
             }
         ]
     },
