@@ -650,6 +650,13 @@ section h2 {
 
 /* Popover */
 #popover {
+    /* Baseline hidden — web/skills.js toggles via inline `style.display`
+       (block/none), which overrides this rule via inline-style specificity.
+       Previously relied on a no-op `class="hidden"` then on the native
+       [hidden] attribute; both interacted poorly with the JS-driven flow.
+       A CSS baseline is the simplest contract: nothing leaks before JS
+       takes over, and the existing show/hide code keeps working unchanged. */
+    display: none;
     position: absolute;
     background-color: var(--bg-secondary);
     color: var(--text-primary);
