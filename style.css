@@ -184,40 +184,8 @@ section h2 {
     margin-inline: auto;
 }
 
-/* ── Theme Toggle ───────────────────────── */
-
-.theme-toggle {
-    position: relative;
-    inline-size: 44px;
-    block-size: 24px;
-    background: var(--border-secondary);
-    border-radius: var(--s-3);
-    border: none;
-    cursor: pointer;
-    padding: var(--s-1);
-    transition: all 0.3s ease;
-    margin-inline-start: var(--s-1);
-}
-
-.theme-toggle::after {
-    content: '';
-    position: absolute;
-    inset-block-start: var(--s-1);
-    inset-inline-start: var(--s-1);
-    inline-size: 18px;
-    block-size: 18px;
-    background: white;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    box-shadow: 0 var(--s-1) var(--s-2) rgba(0, 0, 0, 0.2);
-}
-
-[dark-mode] .theme-toggle::after {
-    inset-inline-start: calc(100% - 21px);
-    background: var(--text-primary);
-}
-
-.theme-toggle:hover { transform: scale(1.05); }
+/* .theme-toggle now lives in dzarlax/design-system (components/theme-toggle.css).
+   Removed local copy on DS @ ≥ v1.2.0 — keep .hamburger below (site-specific). */
 
 /* ── Hamburger (site-specific floating style) ── */
 
@@ -541,14 +509,13 @@ section h2 {
 /* ── Focus styles ── */
 
 .nav-link:focus-visible,
-.lang-btn:focus-visible,
-.theme-toggle:focus-visible,
 .contact-btn:focus-visible,
 .project-link:focus-visible,
 .hamburger:focus-visible {
     outline: 2px solid var(--color-graphite);
     outline-offset: 3px;
 }
+/* .lang-btn and .theme-toggle focus styles ship with DS (≥ v1.2.0). */
 
 /* ── SECTIONS ──────────────────────────── */
 
@@ -913,11 +880,11 @@ header:hover {
 
 nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; }
 
-nav ul li a,
-.lang-btn {
+nav ul li a {
     text-decoration: none;
     color: var(--text-primary);
     font-weight: 500;
+    font-size: 1rem;
     padding: 6px 12px;
     border-radius: 100px;
     transition: all 0.2s ease;
@@ -927,25 +894,16 @@ nav ul li a,
     cursor: pointer;
 }
 
-nav ul li a { font-size: 1rem; }
-.lang-btn   { font-size: var(--f-lg); line-height: 1; }
-
 nav ul li a:hover,
 nav ul li a.active {
     color: var(--text-dark);
     background: var(--bg-primary);
 }
 
-.lang-btn:hover,
-.lang-btn.active { background: rgba(0, 0, 0, 0.06); color: var(--text-dark); }
-
 [dark-mode] nav ul li a:hover,
 [dark-mode] nav ul li a.active { background: rgba(255, 255, 255, 0.1); }
 
-[dark-mode] .lang-btn:hover,
-[dark-mode] .lang-btn.active   { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
-
-.lang-switcher { display: flex; gap: 4px; }
+/* .lang-btn + .lang-switcher now ship with DS (≥ v1.2.0). */
 
 /* ── Footer (dark footer, site-specific) ── */
 
