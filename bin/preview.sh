@@ -71,7 +71,7 @@ rm -f "$OUT/index.html"
 
 echo "▸ Overlaying static lander files"
 LANDER_FILES=(
-  index.html style.css ai-workflow.html ai-workflow.css
+  index.html style.css
   projects.json humans.txt llms.txt robots.txt sitemap.xml CNAME
   og-default.png
 )
