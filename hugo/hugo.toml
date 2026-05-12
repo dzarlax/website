@@ -4,6 +4,37 @@ title        = "Alexey Panfilov — Product, AI, Systems"
 enableRobotsTXT = true
 enableGitInfo   = true
 
+# ── Content source (Hugo Modules, Level 2 vault sync) ────────────────────────
+# Article and tag content lives in the public `dzarlax/blog-content` repo
+# (the Obsidian vault, with a `go.mod` at its root). Hugo pulls it at build
+# time via proxy.golang.org. Two mounts pick out the directories we care
+# about from the vault — everything else in the vault (`_meta/`, `.obsidian/`)
+# is ignored by simply not being mounted.
+#
+# Local development overrides the import with a path replacement so you read
+# straight from your working copy of the vault:
+#     HUGO_MODULE_REPLACEMENTS="github.com/dzarlax/blog-content -> $BLOG_VAULT"
+# This is set automatically by bin/preview.sh.
+#
+# Drafts: articles with `draft: true` in frontmatter live in the public repo
+# but Hugo skips them at render — safe to commit work-in-progress.
+#
+# Section-level `_index.md` files (engineering metadata: LLMS output config,
+# sitemap exclusions) stay in this repo under hugo/content/. Article page
+# bundles and tag term pages come from the module mounts.
+#
+# See docs/MIGRATION-LEVEL2.md for the one-time bootstrap of the vault repo.
+
+[module]
+  [[module.imports]]
+    path = "github.com/dzarlax/blog-content"
+    [[module.imports.mounts]]
+      source = "articles"
+      target = "content/articles"
+    [[module.imports.mounts]]
+      source = "tags"
+      target = "content/tags"
+
 # Google Analytics 4 — same property as the lander (index.html) so the blog
 # rolls up into one GA stream. Consumed by Hugo's internal google_analytics
 # template, included from layouts/partials/head.html.

@@ -3,5 +3,16 @@
 /resources/_gen/
 .hugo_build.lock
 
+# Hugo module lockfile — regenerated on every `hugo mod get` and changes
+# constantly with the unpinned blog-content module. CI regenerates in-place.
+/go.sum
+
+# Module-owned content (comes from github.com/dzarlax/blog-content at build
+# time). Section _index.md files are tracked; everything below them is not.
+# If a stray article appears here from a legacy `bin/sync-content.sh` run,
+# it's ignored — keeps the repo from drifting back to the old flow.
+/content/articles/*/
+/content/tags/*/
+
 # OS
 .DS_Store

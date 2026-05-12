@@ -9,11 +9,17 @@ The detailed writing playbook lives in the Obsidian vault (private):
 scripts, deployment) are in [OPERATIONS.md](OPERATIONS.md).
 
 TL;DR:
-- Write in Obsidian. Vault path resolved by `bin/lib/vault.sh` — defaults to
-  `~/Projects/Documents/Personal/blog` (macOS) or `/d/Documents/Personal/blog`
-  (Windows Git Bash). Override with `BLOG_VAULT` env var or `.env`.
+- Write in Obsidian. The vault is a git working copy of the public
+  `dzarlax/blog-content` repo. Path resolved by `bin/lib/vault.sh` —
+  defaults to `~/Projects/Documents/Personal/blog` (macOS) or
+  `/d/Documents/Personal/blog` (Windows Git Bash). Override with
+  `BLOG_VAULT` env var or `.env`.
 - `bin/new-article.sh "Title"` to scaffold, `bin/preview.sh` to preview on
-  `localhost:8000`, commit `hugo/content/` and push to deploy.
+  `localhost:8000` (no sync step — vault is loaded as a Hugo module and
+  replaced with `$BLOG_VAULT` for local dev). Commit + push the article in
+  the vault repo; CI on the next deploy of this repo pulls the latest
+  blog-content commit automatically. See [docs/MIGRATION-LEVEL2.md](docs/MIGRATION-LEVEL2.md)
+  for the one-time bootstrap of the vault-as-module setup.
 
 ## 🌟 Key Features
 - **Multi-language Support**: Full localization for English, Russian, and Serbian

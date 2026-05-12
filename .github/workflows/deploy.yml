@@ -8,6 +8,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Fires when dzarlax/blog-content pushes new commits to main — see the
+  # notify-website.yml workflow in that repo. Lets us rebuild the site
+  # whenever an article ships without needing a touch-commit in this repo.
+  repository_dispatch:
+    types: [blog-content-updated]
 
 permissions:
   contents: read
@@ -39,6 +44,25 @@ jobs:
           tar -xzf /tmp/hugo.tar.gz -C /tmp
           sudo mv /tmp/hugo /usr/local/bin/hugo
           hugo version
+
+      - name: Set up Go (for Hugo modules)
+        uses: actions/setup-go@v5
+        with:
+          # Tracks the toolchain that `hugo mod` commands write into go.mod
+          # locally. Hugo invokes `go mod` on every modules call which auto-
+          # bumps the `go` directive to the running toolchain version, so the
+          # CI Go must be ≥ whatever go.mod currently declares.
+          go-version: 'stable'
+
+      - name: Fetch Hugo modules
+        working-directory: hugo
+        run: |
+          # blog-content is a public Go-module repo, so no auth setup needed:
+          # the default Go module proxy (proxy.golang.org) serves it. We don't
+          # pin a version — the vault repo is single-author and we always want
+          # the freshest articles in the deploy.
+          hugo mod get -u
+          hugo mod graph
 
       - name: Resolve latest design-system release tag
         id: ds
