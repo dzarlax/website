@@ -129,124 +129,12 @@ body > footer    { flex-shrink: 0; }
     }
 }
 
-/* ── Header controls: theme toggle + lang switcher ────────────────
-   Carry over the lander's pill/switch look so the right-side controls
-   render identically on the lander and the blog. Long-term these should
-   move into DS as proper components. */
-
-.theme-toggle {
-    position: relative;
-    inline-size: 44px;
-    block-size: 24px;
-    background: rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    transition: all 0.3s ease;
-    margin-inline-start: 4px;
-}
-
-.theme-toggle::after {
-    content: '';
-    position: absolute;
-    inset-block-start: 4px;
-    inset-inline-start: 4px;
-    inline-size: 18px;
-    block-size: 18px;
-    background: white;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-[dark-mode] .theme-toggle::after {
-    inset-inline-start: calc(100% - 21px);
-    background: var(--text);
-}
-
-.theme-toggle:hover { transform: scale(1.05); }
-
-.lang-switcher { display: flex; gap: 4px; }
-
-.lang-btn {
-    text-decoration: none;
-    color: var(--text);
-    font-weight: 500;
-    padding: 6px 12px;
-    border-radius: 100px;
-    transition: all 0.2s ease;
-    display: block;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: var(--text-lg);
-    line-height: 1;
-}
-
-@media (hover: hover) {
-    .lang-btn:hover { background: rgba(0, 0, 0, 0.06); color: var(--text); }
-}
-
-.lang-btn.active { background: rgba(0, 0, 0, 0.06); color: var(--text); }
-
-[dark-mode] .lang-btn:hover,
-[dark-mode] .lang-btn.active {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text);
-}
-
-/* ── Mobile: turn the pill nav into a slide-out drawer ──────────────
-   Mirrors the lander's `@media (max-width: 768px) { nav { ... } }`
-   behavior (which DS doesn't provide for .navbar--pill).
-   On wide viewports the pill stays as-is. */
+/* Header controls (.theme-toggle, .lang-switcher, .lang-btn) now ship with
+   dzarlax/design-system ≥ v1.2.0. Mobile drawer behavior for .navbar--pill
+   and the .navbar-controls mobile tweak also live in DS now. What stays
+   here: the site-specific floating .hamburger styling on ≤ 768px. */
 
 @media (max-width: 768px) {
-    .navbar--pill {
-        position: fixed;
-        inset-block-start: 0;
-        inset-inline-start: -100%;
-        inset-inline-end: auto;
-        margin: 0;
-        inline-size: 280px;
-        max-inline-size: 80vw;
-        block-size: 100vh;
-        border-radius: 0;
-        padding-block: 80px var(--s-6);
-        padding-inline: var(--s-4);
-        background: var(--surface);
-        border: none;
-        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        transition: inset-inline-start 0.3s ease;
-        visibility: hidden;
-        z-index: 999;
-    }
-
-    .navbar--pill.active {
-        inset-inline-start: 0;
-        visibility: visible;
-    }
-
-    .navbar--pill ul {
-        flex-direction: column;
-        gap: 0;
-        inline-size: 100%;
-    }
-
-    .navbar--pill ul li {
-        inline-size: 100%;
-    }
-
-    .navbar--pill ul li a {
-        display: block;
-        padding: 12px 16px;
-        inline-size: 100%;
-        border-radius: 8px;
-        font-size: 1rem;
-    }
-
     /* Hamburger floats top-left with its own pill background */
     .hamburger {
         position: fixed;
@@ -263,13 +151,6 @@ body > footer    { flex-shrink: 0; }
 
     [dark-mode] .hamburger {
         background: rgba(22, 27, 34, 0.85);
-    }
-
-    /* Controls pill: tighter padding on mobile so it doesn't overlap nav */
-    .navbar-controls {
-        inset-block-start: 10px;
-        inset-inline-end: 10px;
-        padding: 6px 10px;
     }
 }
 
