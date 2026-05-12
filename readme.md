@@ -89,7 +89,6 @@ runs → GitHub Pages serves. ~2–3 min roundtrip.
 │   └── content/_index.md, content/articles/_index.md  — section metadata only
 ├── bin/                  — scripts (preview, new-article, lint, etc.)
 ├── docs/                 — engineering docs (migration runbooks)
-├── openspec/             — OpenSpec workflow artifacts
 └── .github/workflows/    — CI
 ```
 

@@ -6,3 +6,4 @@ localStorage.json
 .env
 dist-preview/
 .claude/
+.vscode/
