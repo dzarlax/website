@@ -133,7 +133,6 @@ The project uses a **token-based design system** with systematic spacing and mod
 **Migration Notes**:
 - Target state: 60% smaller CSS file size through consolidation
 - See `CSS_ARCHITECTURE.md` for detailed optimization roadmap
-- See `EXPERIENCE_REFACTOR.md` for before/after refactoring example
 
 ### Module Loading Pattern
 Scripts are loaded in `index.html` in the following order:

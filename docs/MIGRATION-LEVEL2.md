@@ -163,7 +163,10 @@ been committed locally to the vault repo. To finish wiring:
 1. Generate a fine-grained PAT at <https://github.com/settings/personal-access-tokens/new>:
    - Resource owner: `dzarlax`
    - Repository access: only `dzarlax/website`
-   - Repository permissions: **Actions = Read and write**, **Metadata = Read-only**
+   - Repository permissions: **Contents = Read and write**, **Metadata = Read-only**
+     (the `POST /repos/.../dispatches` endpoint that fires `repository_dispatch`
+     is gated on Contents:write, despite the visible side effect being an
+     Actions run — counterintuitive, but that's the GitHub API mapping.)
    - Expiration: 1 year (calendar a renewal task)
 2. Save the token as a secret in `blog-content`:
    ```bash
