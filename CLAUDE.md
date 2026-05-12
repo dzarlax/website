@@ -8,7 +8,17 @@ A **hybrid site**:
 - **Lander** at `/` — static `index.html` + `style.css` + `web/*.js`, hand-edited. Multilingual (en/ru/rs) via `localization-core.js`.
 - **Hugo-powered blog** at `/articles/`, `/tags/`, `/index.xml` — generated. Content lives in an Obsidian vault **outside** this repo (`$BLOG_VAULT`, defaults to `~/Projects/Documents/Personal/blog` on macOS or `/d/Documents/Personal/blog` on Windows).
 
-CI builds Hugo, drops Hugo's `index.html` (lander owns `/`), overlays static lander files, deploys the merged tree. See `.github/workflows/hugo-deploy.yml`.
+CI builds Hugo, drops Hugo's `index.html` (lander owns `/`), overlays static lander files, deploys the merged tree. See `.github/workflows/deploy.yml`.
+
+### CI overlay collision rules
+
+The deploy workflow has a fixed list `LANDER_FILES` (in `.github/workflows/deploy.yml`) — those files are `cp`-ed on top of the Hugo build, so **the lander always wins on filename conflicts**. Current list: `index.html, style.css, ai-workflow.html, ai-workflow.css, projects.json, humans.txt, llms.txt, robots.txt, sitemap.xml, CNAME, og-default.png` (+ directories `web`, `assets`, `.well-known`).
+
+**Consequence:** any Hugo-generated file at one of these paths is silently overwritten in prod. If you need Hugo to ship something at a path that overlaps:
+- emit it under a different name (e.g. Hugo sitemap → `/blog-sitemap.xml`, not `/sitemap.xml`)
+- or move the lander-owned counterpart out of `LANDER_FILES` and let Hugo own that path
+
+Current Hugo-owned alternate paths: `/blog-sitemap.xml` (declared in `hugo/hugo.toml` `[sitemap].filename`), `/articles/llms.txt` (Hugo `LLMS` output format opt-in via `content/articles/_index.md` frontmatter `outputs:`).
 
 For detailed engineering reference: [OPERATIONS.md](OPERATIONS.md).
 Personal writing workflow lives in the vault at `<vault>/_meta/blog-playbook.md`.
@@ -88,8 +98,11 @@ This is a vanilla JavaScript personal portfolio website with no build system or 
 
 The project uses a **token-based design system** with systematic spacing and modern CSS features:
 
-**Design Tokens** (defined in `:root`):
-- **HSL Color System**: `--brand-hue: 217`, `--brand-sat: 91%` for easy theming
+**Design Tokens** (resolved from `dzarlax/design-system` CDN, see `:root` bridges in `style.css` + `hugo/assets/css/site.css`):
+- **Monochrome editorial palette** (current DS state — replaces the old `--brand-hue: 217` blue tokens that older comments reference):
+  - Light: `--bg #FCFAF7` (ivory), `--text/--accent #1A1A1E` (graphite)
+  - Dark:  `--bg #1A1D21`, `--text #F5F5F5`
+  - OG images, theme-color meta, and any new branded surface should pull from these values
 - **Spacing Scale**: 4px grid system - `--s-1: 4px`, `--s-2: 8px`, `--s-6: 24px`, etc.
 - **Typography Scale**: Modular scale with `--f-base: 1rem`, `--f-ratio: 1.2`
 - **47 total CSS variables** as single source of truth
