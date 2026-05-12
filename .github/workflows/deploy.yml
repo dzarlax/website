@@ -68,6 +68,7 @@ jobs:
           LANDER_FILES=(
             index.html style.css ai-workflow.html ai-workflow.css
             projects.json humans.txt llms.txt robots.txt sitemap.xml CNAME
+            og-default.png
           )
           for f in "${LANDER_FILES[@]}"; do
             if [ -e "$f" ]; then cp -v "$f" "_dist/$f"; fi

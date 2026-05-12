@@ -1,0 +1,10 @@
+{
+  "_comment": "Per-tag accent colors used in auto-generated OG images. Hex without #. Add an entry here when you introduce a new tag. Fallback: brand color (set in head.html).",
+  "_fallback": "5b9dff",
+
+  "product-ai":          "ff9f4a",
+  "systems-automation":  "7ad1a3",
+  "claude-code":         "c690ff",
+  "build-logs":          "ffd96b",
+  "notes":               "9fb4d9"
+}

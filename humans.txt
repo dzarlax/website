@@ -7,7 +7,7 @@
 
   Social:
     GitHub: https://github.com/dzarlax
-    LinkedIn: https://linkedin.com/in/alexey-panfilov
+    LinkedIn: https://linkedin.com/in/dzarlax
     Twitter: https://twitter.com/dzarlax
 
 /* SITE */

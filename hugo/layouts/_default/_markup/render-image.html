@@ -1,0 +1,49 @@
+{{- /*
+  Markdown image render hook.
+
+  Replaces Goldmark's default <img> with a Core-Web-Vitals-friendly version:
+    - loading="lazy"   — defers offscreen images (saves LCP/CLS budget)
+    - decoding="async" — never blocks the rasterizer
+    - width/height     — pulled from the page-bundle resource when available;
+                         prevents CLS by reserving layout space
+    - <figure>+<figcaption> — when the markdown title (the "…" part of
+                              `![alt](src "title")`) is present, render it as
+                              an accessible caption
+
+  Hugo passes:
+    .Destination — image URL or relative path
+    .Text        — alt text (also used as a11y label)
+    .Title       — optional title from `![alt](src "title")`
+    .Page        — the owning Page, used for page-bundle resource lookup
+
+  Best-effort dimensions: if .Destination resolves to a Page-bundle
+  resource, we read width/height directly. Remote URLs and absolute paths
+  bypass this and emit without explicit dimensions (browser falls back to
+  intrinsic size — slightly worse CLS, but no template can fetch remotes
+  at build time safely).
+*/ -}}
+{{- $src    := .Destination -}}
+{{- $alt    := .Text -}}
+{{- $title  := .Title -}}
+{{- $width  := "" -}}
+{{- $height := "" -}}
+{{- /* Try to find the image as a page-bundle resource. */ -}}
+{{- if and (not (strings.HasPrefix $src "http")) (not (strings.HasPrefix $src "/")) -}}
+  {{- with .Page.Resources.GetMatch $src -}}
+    {{- $width  = .Width -}}
+    {{- $height = .Height -}}
+    {{- $src    = .RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+{{- if $title -}}
+<figure>
+  <img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy" decoding="async"
+    {{- with $width  }} width="{{ . }}"{{ end -}}
+    {{- with $height }} height="{{ . }}"{{ end -}}>
+  <figcaption>{{ $title }}</figcaption>
+</figure>
+{{- else -}}
+<img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy" decoding="async"
+  {{- with $width  }} width="{{ . }}"{{ end -}}
+  {{- with $height }} height="{{ . }}"{{ end -}}>
+{{- end -}}

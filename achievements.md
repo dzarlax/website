@@ -18,4 +18,4 @@ Worked on logistics, data visualization, video conferencing, and education-relat
 
 ---
 
-*For more information, visit [dzarlax.dev](https://dzarlax.dev) or connect on [LinkedIn](https://linkedin.com/in/alexey-panfilov)*
+*For more information, visit [dzarlax.dev](https://dzarlax.dev) or connect on [LinkedIn](https://linkedin.com/in/dzarlax)*

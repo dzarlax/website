@@ -10,9 +10,21 @@ This portfolio website showcases professional experience, technical skills, and 
 - [Technical Skills](https://dzarlax.dev/skills.md): Comprehensive list of technical proficiencies including Product Management, UI/UX, AI & Development, and Data Analysis
 - [Education & Certifications](https://dzarlax.dev/education.md): Academic background and professional certifications
 
+## Blog
+
+Long-form writing on product, AI, and the systems built around them.
+The full article index is machine-generated and auto-updates on every build —
+prefer that over this static section.
+
+- [Blog index for LLMs](https://dzarlax.dev/articles/llms.txt): Auto-generated catalogue of every article with title, date, tags, summary, and URL — primary entry point for AI search
+- [Articles (HTML)](https://dzarlax.dev/articles/): Human-readable article listing
+- [Tags index](https://dzarlax.dev/tags/): Topical taxonomy across all articles
+- [Blog RSS feed](https://dzarlax.dev/index.xml): Machine-readable feed of recent posts
+- [Blog sitemap](https://dzarlax.dev/blog-sitemap.xml): Complete URL list with last-modified timestamps
+
 ## Contact & Social
 
-- [LinkedIn Profile](https://linkedin.com/in/alexey-panfilov): Professional network and connections
+- [LinkedIn Profile](https://linkedin.com/in/dzarlax): Professional network and connections
 - [GitHub Profile](https://github.com/dzarlax): Open source projects and code repositories
 - Email: Available through contact form on website
 
