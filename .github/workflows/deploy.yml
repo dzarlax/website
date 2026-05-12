@@ -102,7 +102,9 @@ jobs:
           done
           # Pin lander to the resolved DS tag so the CDN URL in index.html
           # always matches the blog's CSS reference (closes Layer 1 drift).
-          sed -i "s|design-system@[^/\"]*|design-system@${{ steps.ds.outputs.tag }}|g" _dist/index.html
+          # We serve DS via cdn.statically.io (jsdelivr had a poisoned-cache
+          # incident on v1.2.0 — 404 cached at the edge after the tag race).
+          sed -i -E "s|cdn\.statically\.io/gh/dzarlax/design-system/[^/\"]*/dist|cdn.statically.io/gh/dzarlax/design-system/${{ steps.ds.outputs.tag }}/dist|g" _dist/index.html
 
           echo "── Final deploy tree ──"
           find _dist -maxdepth 2 -type f | sort | head -40
