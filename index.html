@@ -479,8 +479,12 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Popover for skill descriptions -->
-    <div id="popover" class="hidden"></div>
+    <!-- Popover for skill descriptions — hidden by default via the native
+         [hidden] attribute (the previous `class="hidden"` referenced a class
+         that wasn't defined anywhere, so the popover rendered empty at
+         top:0;left:0 until JS first ran hidePopover()). web/skills.js sets
+         inline display:block/none directly, which overrides [hidden]. -->
+    <div id="popover" hidden></div>
 
     <!-- Scripts -->
     <!-- jspdf.min.js loaded dynamically only when needed for resume download -->
