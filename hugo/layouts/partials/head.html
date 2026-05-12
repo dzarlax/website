@@ -1,8 +1,8 @@
 {{- $title       := cond .IsHome .Site.Title (printf "%s — %s" .Title .Site.Title) -}}
 {{- $description := or .Description .Summary .Site.Params.description -}}
 {{- $dsTag       := .Site.Params.dsTag | default "main" -}}
-{{- $dsCSS       := printf "https://cdn.statically.io/gh/dzarlax/design-system/%s/dist/dzarlax.css" $dsTag -}}
-{{- $dsJS        := printf "https://cdn.statically.io/gh/dzarlax/design-system/%s/dist/dzarlax.js"  $dsTag -}}
+{{- $dsCSS       := printf "https://cdn.statically.io/gh/dzarlax/design-system@%s/dist/dzarlax.css" $dsTag -}}
+{{- $dsJS        := printf "https://cdn.statically.io/gh/dzarlax/design-system@%s/dist/dzarlax.js"  $dsTag -}}
 {{/* Resolve OG image. Priority:
        1. .Params.cover — author-supplied (page-bundle resource or absolute URL)
        2. Auto-generated 1200×630 PNG with article title (only for blog posts)
