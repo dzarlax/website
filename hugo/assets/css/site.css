@@ -272,3 +272,20 @@ body > footer    { flex-shrink: 0; }
         padding: 6px 10px;
     }
 }
+
+/* ── Single-card centering ───────────────────────────────────────────────────
+ * /articles/ and /tags/<slug>/ render via .card-grid--3 (repeat(3, 1fr)).
+ * Until we have 3+ articles a lone card gets hugged to the left column.
+ * Collapse to a centered flex layout when there's only one direct .card child.
+ * Auto-disables itself once a second card appears. Drop this block once the
+ * listing regularly carries 3+ cards.
+ * ──────────────────────────────────────────────────────────────────────── */
+.card-grid--3:has(> .card:only-child) {
+    display: flex;
+    justify-content: center;
+}
+
+.card-grid--3:has(> .card:only-child) > .card {
+    max-inline-size: 380px;
+    flex: 0 1 380px;
+}
