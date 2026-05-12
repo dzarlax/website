@@ -11,9 +11,21 @@
      overlays the title via images.Text. Per-tag accent colors live in
      hugo/data/tag_colors.json. Result is content-hashed by Hugo, so it only
      rebuilds when the inputs (title/tag/base/font) actually change. */}}
-{{- $coverURL := "" -}}
+{{/* Cover image dimensions also feed og:image:width/height — Telegram,
+     LinkedIn, and Slack often refuse to render the large image card when
+     these are absent. All branches below produce 1200×630 (the OG-spec
+     size); only override if the author supplies a page-bundle resource
+     with intrinsic dimensions. */}}
+{{- $coverURL    := "" -}}
+{{- $coverWidth  := 1200 -}}
+{{- $coverHeight := 630  -}}
 {{- if .Params.cover -}}
   {{- $coverURL = .Params.cover | absURL -}}
+  {{- with .Resources.GetMatch .Params.cover -}}
+    {{- $coverURL    = .RelPermalink -}}
+    {{- $coverWidth  = .Width -}}
+    {{- $coverHeight = .Height -}}
+  {{- end -}}
 {{- else if and .IsPage (eq .Section "articles") -}}
   {{- $base := resources.Get "images/og-base.png" -}}
   {{- $fontBold := resources.Get "fonts/Inter-Bold.ttf" -}}
@@ -120,7 +132,11 @@
 <meta property="og:description" content="{{ $description }}">
 <meta property="og:url"         content="{{ .Permalink }}">
 <meta property="og:locale"      content="en_US">
-<meta property="og:image"       content="{{ $coverURL }}">
+<meta property="og:image"        content="{{ $coverURL }}">
+<meta property="og:image:type"   content="image/png">
+<meta property="og:image:width"  content="{{ $coverWidth }}">
+<meta property="og:image:height" content="{{ $coverHeight }}">
+<meta property="og:image:alt"    content="{{ $title }}">
 
 {{/* Article-specific OG — surfaces dates/tags/author to social and to crawlers
      that prefer OG over JSON-LD (LinkedIn, Slack, some AI fetchers). */}}
