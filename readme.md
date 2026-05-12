@@ -29,6 +29,7 @@ TL;DR:
 - ✅ **Enhanced CSS Architecture**: Implemented design tokens and systematic spacing
 - ✅ **Improved Dark Mode**: High contrast colors for better readability
 - ✅ **Feature Toggle Removal**: Simplified configuration system
+- ✅ **SEO + AI-Search Discoverability**: Full Open Graph (with image dimensions), enriched JSON-LD (BlogPosting + BreadcrumbList + Blog collection), frontmatter canonical, auto-generated 1200×630 OG images per article, blog-sitemap.xml + auto-generated `/articles/llms.txt`, robots.txt allowlist for AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.), custom 404, image render hook for lazy-loading + CLS prevention
 
 ## 📁 Project Structure
 
