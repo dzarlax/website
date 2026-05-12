@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 # Sync Obsidian vault → hugo/content/.
+#
+# ╔═══════════════════════════════════════════════════════════════════════╗
+# ║ DEPRECATED escape hatch as of the Level 2 vault sync migration.       ║
+# ║ The vault is now consumed as a Hugo module (see hugo/hugo.toml +      ║
+# ║ docs/MIGRATION-LEVEL2.md). bin/preview.sh and CI no longer call this  ║
+# ║ script. Keep it around for emergencies (e.g. Go unavailable on a      ║
+# ║ machine, or one-off content audits).                                  ║
+# ╚═══════════════════════════════════════════════════════════════════════╝
+#
 # The vault is the source of truth; hugo/content/ is a working copy that
-# gets committed (so CI builds from the same content without needing the vault).
+# would get committed if you used this flow.
 #
 # Usage:
 #   bin/sync-content.sh           # sync once

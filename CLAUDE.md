@@ -6,9 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A **hybrid site**:
 - **Lander** at `/` — static `index.html` + `style.css` + `web/*.js`, hand-edited. Multilingual (en/ru/rs) via `localization-core.js`.
-- **Hugo-powered blog** at `/articles/`, `/tags/`, `/index.xml` — generated. Content lives in an Obsidian vault **outside** this repo (`$BLOG_VAULT`, defaults to `~/Projects/Documents/Personal/blog` on macOS or `/d/Documents/Personal/blog` on Windows).
+- **Hugo-powered blog** at `/articles/`, `/tags/`, `/index.xml` — generated. Content lives in an Obsidian vault **outside** this repo and is consumed as a **Hugo Module** from the public `github.com/dzarlax/blog-content` repo. Locally, the import is replaced with `$BLOG_VAULT` (defaults to `~/Projects/Documents/Personal/blog` on macOS or `/d/Documents/Personal/blog` on Windows) via `HUGO_MODULE_REPLACEMENTS`. Drafts live in the repo with `draft: true` — Hugo skips them at render time.
 
-CI builds Hugo, drops Hugo's `index.html` (lander owns `/`), overlays static lander files, deploys the merged tree. See `.github/workflows/deploy.yml`.
+CI builds Hugo, drops Hugo's `index.html` (lander owns `/`), overlays static lander files, deploys the merged tree. See `.github/workflows/deploy.yml`. The legacy `bin/sync-content.sh → hugo/content/` flow survives as an escape hatch only — see [docs/MIGRATION-LEVEL2.md](docs/MIGRATION-LEVEL2.md).
 
 ### CI overlay collision rules
 
@@ -28,14 +28,14 @@ Personal writing workflow lives in the vault at `<vault>/_meta/blog-playbook.md`
 Run once per machine. Works on macOS and Windows (use **Git Bash** on Windows for the `bin/*.sh` scripts — PowerShell is not supported).
 
 1. **Install toolchain**
-   - macOS: `brew install hugo` (extended) + ensure Python 3 is available + install Obsidian.
-   - Windows: `winget install Hugo.Hugo.Extended Git.Git Python.Python.3.12` + install Obsidian. Use Git Bash for all script invocations.
+   - macOS: `brew install hugo go` (Hugo extended + Go 1.22+) + ensure Python 3 is available + install Obsidian.
+   - Windows: `winget install Hugo.Hugo.Extended GoLang.Go Git.Git Python.Python.3.12` + install Obsidian. Use Git Bash for all script invocations.
 2. **Clone the repo**
    ```bash
    git clone <repo-url> website && cd website
    ```
 3. **Point scripts at the vault**
-   The Obsidian vault is the source of truth for blog content and is **not committed** to this repo. Either set `BLOG_VAULT` in your shell profile (`~/.zshrc` / `~/.bashrc`) or copy `.env.example → .env` and edit it.
+   The Obsidian vault is the source of truth for blog content and is **not committed** to this repo (it lives in the private `dzarlax/blog-content` repo and is checked out separately as your working copy). Either set `BLOG_VAULT` in your shell profile (`~/.zshrc` / `~/.bashrc`) or copy `.env.example → .env` and edit it.
    ```bash
    # macOS example
    export BLOG_VAULT="$HOME/Projects/Documents/Personal/blog"
@@ -44,16 +44,20 @@ Run once per machine. Works on macOS and Windows (use **Git Bash** on Windows fo
    ```
    Default probe order is in [bin/lib/vault.sh](bin/lib/vault.sh). First existing path wins.
 4. **Get the vault content onto this machine**
-   The vault is private — sync it separately (Obsidian Sync / OneDrive / iCloud / private GitHub repo / etc.). The website repo doesn't manage vault sync. Confirm `$BLOG_VAULT/articles/` and `$BLOG_VAULT/tags/` exist before continuing.
-5. **Verify the pipeline end-to-end**
+   The vault lives at `git@github.com:dzarlax/blog-content.git` (public). Clone it to `$BLOG_VAULT` and keep it as a normal git working copy — Obsidian opens it as a vault, while Hugo reads it via the module replacement during local preview. Confirm `$BLOG_VAULT/articles/` and `$BLOG_VAULT/tags/` exist before continuing.
+5. **Install the pre-commit hook**
    ```bash
-   bin/sync-content.sh       # rsync vault → hugo/content/
+   bin/install-git-hooks.sh
+   ```
+   Lints article frontmatter (description, tags, date, draft) before allowing a commit.
+6. **Verify the pipeline end-to-end**
+   ```bash
    bin/preview.sh build      # build only, no serve
    bin/preview.sh            # build + serve at http://localhost:8000/
    ```
    Hit `http://localhost:8000/articles/` — if articles render, you're done.
 
-If `bin/sync-content.sh` fails with "Vault not found", `BLOG_VAULT` is wrong or the vault isn't on this machine yet — fix one of those.
+If `bin/preview.sh` fails with "Vault not found", `BLOG_VAULT` is wrong or the vault isn't on this machine yet — fix one of those. If it errors on the module fetch, you probably don't have Go installed.
 
 ## Development Commands
 
@@ -61,10 +65,11 @@ If `bin/sync-content.sh` fails with "Vault not found", `BLOG_VAULT` is wrong or 
 The merged lander + blog preview at `localhost:8000`, mirroring CI:
 
 ```bash
-bin/preview.sh                # sync vault + Hugo build + lander overlay + serve
+bin/preview.sh                # Hugo build (module replaced with $BLOG_VAULT) + lander overlay + serve
 bin/preview.sh build          # build only (output in dist-preview/)
-bin/preview.sh --no-sync      # skip vault sync (use whatever is in hugo/content/)
 ```
+
+The vault is loaded as a Hugo Module — `bin/preview.sh` automatically sets `HUGO_MODULE_REPLACEMENTS=github.com/dzarlax/blog-content -> $BLOG_VAULT` so you read from your working copy without committing or pushing anything.
 
 ### Hugo blog only (fastest template/CSS iteration)
 
