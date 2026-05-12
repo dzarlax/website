@@ -26,4 +26,4 @@ MQTT, Zigbee2MQTT, Home Assistant, system integration, connected devices, and au
 
 ---
 
-*For more information, visit [dzarlax.dev](https://dzarlax.dev) or connect on [LinkedIn](https://linkedin.com/in/alexey-panfilov)*
+*For more information, visit [dzarlax.dev](https://dzarlax.dev) or connect on [LinkedIn](https://linkedin.com/in/dzarlax)*

@@ -179,5 +179,5 @@ This project is for personal use. All rights reserved.
 
 ## 📞 Contact
 - **GitHub**: [dzarlax](https://github.com/dzarlax)
-- **LinkedIn**: [Alexey Panfilov](https://linkedin.com/in/alexey-panfilov)
+- **LinkedIn**: [Alexey Panfilov](https://linkedin.com/in/dzarlax)
 - **Website**: [dzarlax.dev](https://dzarlax.dev)

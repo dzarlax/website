@@ -24,7 +24,7 @@ prefer that over this static section.
 
 ## Contact & Social
 
-- [LinkedIn Profile](https://linkedin.com/in/alexey-panfilov): Professional network and connections
+- [LinkedIn Profile](https://linkedin.com/in/dzarlax): Professional network and connections
 - [GitHub Profile](https://github.com/dzarlax): Open source projects and code repositories
 - Email: Available through contact form on website
 

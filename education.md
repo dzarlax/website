@@ -38,4 +38,4 @@ Course focused on key performance indicators, analytics frameworks, and metrics-
 
 ---
 
-*For more information, visit [dzarlax.dev](https://dzarlax.dev) or connect on [LinkedIn](https://linkedin.com/in/alexey-panfilov)*
+*For more information, visit [dzarlax.dev](https://dzarlax.dev) or connect on [LinkedIn](https://linkedin.com/in/dzarlax)*

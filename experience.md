@@ -27,4 +27,4 @@ Promoted from QA Engineer to Program Manager in 2014 for establishing testing pl
 
 ---
 
-*For more information, visit [dzarlax.dev](https://dzarlax.dev) or connect on [LinkedIn](https://linkedin.com/in/alexey-panfilov)*
+*For more information, visit [dzarlax.dev](https://dzarlax.dev) or connect on [LinkedIn](https://linkedin.com/in/dzarlax)*
