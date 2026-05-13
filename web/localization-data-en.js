@@ -6,7 +6,6 @@ const englishTranslations = {
         skills: 'Skills',
         experience: 'Experience',
         education: 'Education',
-        achievements: 'Achievements',
         contact: 'Contact',
         projects_nav: 'Projects'
     },
@@ -267,15 +266,6 @@ const englishTranslations = {
     },
     education_title: 'Education',
     education_view_certificate: 'View Certificate',
-    achievements_title: 'Achievements',
-    achievement_1_title: 'AI Products in EdTech and Research',
-    achievement_1_desc: 'Contributed to the launch and development of AI platforms for scientific research, grant management, and educational analytics in an international environment',
-    achievement_2_title: 'Process Optimization and Metrics Growth',
-    achievement_2_desc: 'Improved internal workflows and introduced analytics in Yandex and other teams, resulting in increased efficiency and reduced team overhead',
-    achievement_3_title: 'Cross-Functional Team Leadership',
-    achievement_3_desc: 'Effectively led distributed teams of designers, analysts, and developers in complex product environments across web, mobile, and desktop',
-    achievement_4_title: 'Broad Experience Across IT Products',
-    achievement_4_desc: 'Worked on logistics, data visualization, video conferencing, and education-related platforms for both consumer and enterprise markets',
     contacts: {
         contact: 'Contact',
         email: 'Mail me',

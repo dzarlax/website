@@ -79,7 +79,7 @@ runs → GitHub Pages serves. ~2–3 min roundtrip.
 .
 ├── index.html, style.css         — lander
 ├── projects.json                                              — lander data
-├── achievements.md, education.md, experience.md, skills.md   — lander content
+├── education.md, experience.md, skills.md                    — lander content
 ├── web/                                                       — lander JS
 ├── assets/                                                    — lander images
 ├── hugo/

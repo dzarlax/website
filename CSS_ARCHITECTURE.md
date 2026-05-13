@@ -52,7 +52,7 @@ Reusable UI components with nested styles.
 - `.theme-toggle` - Dark/light mode switch
 - `.hamburger` - Mobile navigation menu
 - Buttons (`.contact-btn`, `.back-to-top`)
-- Cards (`.project-card`, `.achievement-card`)
+- Cards (`.project-card`)
 - Navigation items (`.nav-link`, `.nav-indicator`)
 - Skeleton loaders
 
@@ -65,7 +65,6 @@ Page-specific sections with nested styles.
 - `.experience` - Work experience timeline
 - `.education` - Education items
 - `.projects` - Projects grid
-- `.achievements` - Achievements grid
 - `.contact` - Contact form
 - `footer` - Footer with links
 
