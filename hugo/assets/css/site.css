@@ -170,3 +170,7 @@ body > footer    { flex-shrink: 0; }
     max-inline-size: 380px;
     flex: 0 1 380px;
 }
+
+/* Share component now lives in the design system (components/share.css).
+   Use .share / .share__btn / data-ds-share. */
+
