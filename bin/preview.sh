@@ -107,9 +107,16 @@ for f in dzarlax.css dzarlax.js; do
 done
 
 echo "▸ Rewriting CDN refs in HTML → same-origin /assets/ds/"
-# BSD sed (macOS) needs an empty -i arg; use '#' as s delimiter so '|' is free
-# for alternation inside the regex (matches both jsdelivr and statically forms).
-find "$OUT" -type f -name '*.html' -print0 | xargs -0 sed -i '' -E \
+# BSD sed (macOS) needs an empty arg after -i; GNU sed (Linux, Git Bash on
+# Windows) treats `-i ''` as an input filename and crashes. Detect once and
+# build the argv accordingly. The '#' delimiter keeps '|' free for the regex
+# alternation that matches both jsdelivr and statically CDN forms.
+if sed --version >/dev/null 2>&1; then
+  SED_INPLACE=(sed -i -E)   # GNU
+else
+  SED_INPLACE=(sed -i '' -E) # BSD / macOS
+fi
+find "$OUT" -type f -name '*.html' -print0 | xargs -0 "${SED_INPLACE[@]}" \
   -e "s#https?://cdn\.(jsdelivr\.net/gh|statically\.io/gh)/dzarlax/design-system[@/][^\"']*dzarlax\.css#/assets/ds/dzarlax.css?v=${DS_TAG}#g" \
   -e "s#https?://cdn\.(jsdelivr\.net/gh|statically\.io/gh)/dzarlax/design-system[@/][^\"']*dzarlax\.js#/assets/ds/dzarlax.js?v=${DS_TAG}#g"
 
