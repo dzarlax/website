@@ -65,10 +65,12 @@ body > footer    { flex-shrink: 0; }
 }
 
 /* ── Article footer (tags + related) ────────────────────────────── */
+/* The .share component (first child) provides the divider + breathing room
+   from the article body, so the footer itself adds no extra top border or
+   padding — otherwise we'd render two parallel hairlines. If a future
+   article omits the share block, restore the rules below. */
 .article__footer {
-    margin-block-start: var(--s-12);
-    padding-block-start: var(--s-10);
-    border-block-start: 1px solid var(--border);
+    margin-block-start: var(--s-6);
 }
 
 .tag-list {
