@@ -103,6 +103,8 @@ This is a vanilla JavaScript personal portfolio website with no build system or 
 
 The project uses a **token-based design system** with systematic spacing and modern CSS features:
 
+**Design system release cycle.** `dzarlax/design-system` releases itself on every push to `main`: conventional-commits drives the bump (`feat:` → minor, `fix:`/`chore:` → patch, `feat!:`/`BREAKING CHANGE` → major), `.github/workflows/release.yml` tags it and uploads `dzarlax.{css,js,min.css}` to a GitHub release. **Do not tag manually before pushing** — CI will see the conflict and bump again (one ghost tag in the release list). On the website side, `.github/workflows/deploy.yml` resolves `releases/latest` at deploy time and bakes the bundle into `/assets/ds/`; there is no `dsTag` to bump in `hugo/hugo.toml` (local dev uses `dsTag = "main"` which always tracks the tip). If you need to pin a specific version for a release-rollback, override via `HUGO_PARAMS_DSTAG` in the workflow env.
+
 **Design Tokens** (resolved from `dzarlax/design-system` CDN, see `:root` bridges in `style.css` + `hugo/assets/css/site.css`):
 - **Monochrome editorial palette** (current DS state — replaces the old `--brand-hue: 217` blue tokens that older comments reference):
   - Light: `--bg #FCFAF7` (ivory), `--text/--accent #1A1A1E` (graphite)
@@ -253,26 +255,27 @@ When adding or modifying styles:
    left: 0;
    ```
 
-3. **Use CSS nesting** for component organization:
+3. **Write flat CSS in `hugo/assets/css/site.css`** — no nesting.
+   Hugo's built-in CSS minifier (Hugo Pipes `| minify`) does NOT unwrap
+   CSS nesting (`& :hover`, `&__title`). Nested rules silently disappear
+   from the produced `site.min.*.css`, leading to subtle visual bugs that
+   only show up after the build pipeline runs. Always emit fully-qualified
+   selectors:
    ```css
-   /* ✅ Good - Nested */
+   /* ✅ Good — Hugo-minifier-safe */
+   .project-card        { background: var(--bg-secondary); }
+   .project-card:hover  { transform: translateY(-4px); }
+   .project-card__title { font-size: var(--f-h3); }
+
+   /* ❌ Bad — Hugo drops everything past &__ */
    .project-card {
        background: var(--bg-secondary);
-
-       &:hover {
-           transform: translateY(-4px);
-       }
-
-       &__title {
-           font-size: var(--f-h3);
-       }
+       &:hover  { transform: translateY(-4px); }
+       &__title { font-size: var(--f-h3); }
    }
-
-   /* ❌ Avoid - Fragmented */
-   .project-card { }
-   .project-card:hover { }
-   .project-card__title { }
    ```
+   The lander's `style.css` is served raw (no Hugo Pipes), so nesting works
+   there if used carefully — but consistency wins; keep both flat.
 
 4. **Follow BEM naming** for components:
    - Block: `.component`
