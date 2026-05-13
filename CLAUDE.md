@@ -228,6 +228,32 @@ Edit `web/localization.js`:
 3. For dynamic content, add logic in `updateContent()` function
 4. The system automatically updates content on language change via `languageChanged` event
 
+### Removing a lander section
+A lander section like `#achievements` or `#projects` has **seven** touch
+points — `grep` catches most but renumbering the JSON-LD breadcrumb is
+silent and easy to miss. Hit all seven before committing:
+
+1. `index.html` — the `<section id="...">` markup itself.
+2. `index.html` nav — the `<li><a href="#...">` inside `<nav>`.
+3. `index.html` JSON-LD `BreadcrumbList` — drop the `ListItem` **and
+   renumber `position` on every item after it** (1-based, contiguous).
+4. `hugo/layouts/partials/header.html` — remove the matching `dict` from
+   the `$items` slice (blog nav inherits this).
+5. `style.css` — section selectors (e.g. `#foo`, `.foo-grid`, `.foo-card`,
+   `.foo-icon`), the `#skills > *, #experience > *, ...` max-width sibling
+   list, and every `@media` override referencing those selectors.
+6. `web/localization-data-{en,ru,rs}.js` — `menu.<key>` in the menu
+   object, plus `<section>_title` and every `<section>_<n>_title/desc`
+   key. All three locales.
+7. Standalone source file (e.g. `achievements.md`, `skills.md`) if it
+   exists at repo root — these are author-facing copies, delete them too,
+   and clear references in `readme.md` + `CSS_ARCHITECTURE.md`.
+
+Final sweep: `grep -rln '<key>' --include='*.html' --include='*.css'
+--include='*.js' --include='*.md' --exclude-dir=dist-preview .` should
+return zero. Rebuild `dist-preview/` to verify the served HTML/CSS no
+longer reference the section.
+
 ### CSS Development Guidelines
 When adding or modifying styles:
 
