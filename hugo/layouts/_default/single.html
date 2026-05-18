@@ -10,6 +10,32 @@
     </p>
   </header>
 
+  {{/* Series context — populated when this article is part of a series of 2+ parts. */}}
+  {{- $seriesTerm := false -}}
+  {{- with .GetTerms "series" }}{{ $seriesTerm = index . 0 }}{{ end -}}
+  {{- $seriesCtx := false -}}
+  {{- with $seriesTerm }}
+    {{- $ordered := sort (sort .Pages "Date" "asc") "Params.series_part" "asc" -}}
+    {{- $total := len $ordered -}}
+    {{- if gt $total 1 }}
+      {{- $idx := 0 -}}
+      {{- range $i, $p := $ordered }}{{ if eq $p.RelPermalink $.RelPermalink }}{{ $idx = add $i 1 }}{{ end }}{{ end -}}
+      {{- $prev := false -}}
+      {{- $next := false -}}
+      {{- if gt $idx 1 }}{{ $prev = index $ordered (sub $idx 2) }}{{ end -}}
+      {{- if lt $idx $total }}{{ $next = index $ordered $idx }}{{ end -}}
+      {{- $seriesCtx = dict
+            "current" $
+            "term"    .
+            "ordered" $ordered
+            "idx"     $idx
+            "total"   $total
+            "prev"    $prev
+            "next"    $next -}}
+      {{ partial "series-callout.html" $seriesCtx }}
+    {{- end }}
+  {{- end }}
+
   {{- if .Params.toc }}
   <aside class="prose-toc" aria-label="Table of contents">
     <p class="prose-toc__title">Contents</p>
@@ -20,6 +46,8 @@
   <div class="prose">
     {{ .Content }}
   </div>
+
+  {{- with $seriesCtx }}{{ partial "series-nav.html" . }}{{ end }}
 
   <div class="article__footer">
     {{ partial "share.html" . }}
@@ -38,7 +66,9 @@
     </ul>
     {{- end }}
 
-    {{- $related := .Site.RegularPages.Related . | first 3 }}
+    {{- $related := .Site.RegularPages.Related . -}}
+    {{- with $seriesTerm }}{{ $related = $related | symdiff .Pages }}{{ end -}}
+    {{- $related = $related | first 3 -}}
     {{- with $related }}
     <section class="article__related">
       <h2 style="text-align: center;">Related</h2>

@@ -254,6 +254,44 @@ Final sweep: `grep -rln '<key>' --include='*.html' --include='*.css'
 return zero. Rebuild `dist-preview/` to verify the served HTML/CSS no
 longer reference the section.
 
+### Blog series (frontmatter + adding a new series)
+
+Articles can belong to a multi-part series. Two frontmatter fields drive
+the feature:
+
+- **`series`** *(string, slug)* — e.g. `series: "health-dashboard"`. The
+  matching taxonomy term lives at `/series/<slug>/`. Hugo also accepts a
+  list form (`series: ["health-dashboard"]`); both work because the
+  template reads via `.GetTerms "series"`.
+- **`series_part`** *(positive integer, required when `series` is set)* —
+  position inside the series. Order is explicit, not derived from `date`.
+  Enforced by `bin/lint-frontmatter.sh`.
+
+A series with only one part renders with neither callout nor prev/next —
+you don't need to remove the frontmatter, the UI just hides itself until
+a second part exists.
+
+To add a new series:
+
+1. **Vault — optional hub page.** In `dzarlax/blog-content`, create
+   `series/<slug>/_index.md` with frontmatter `title` and `description`,
+   plus optional intro prose in the body. Skip the file if you're happy
+   with the slug as the heading and no intro.
+2. **Vault — frontmatter on each part.** Every article in the series
+   gets `series: "<slug>"` and `series_part: <N>`.
+3. **Local verification.** Build with the real vault (drafts may need
+   `--buildDrafts`, future-dated parts need `--buildFuture`):
+   ```bash
+   HUGO_MODULE_REPLACEMENTS='github.com/dzarlax/blog-content -> D:\Projects\Documents\Personal\blog' \
+       hugo --buildDrafts --buildFuture --minify --destination ../dist-preview
+   ```
+   Open `/series/<slug>/` and each part. Confirm the callout appears with
+   the correct counter, the progress bar fills proportionally, the
+   "All parts" list is in `series_part` order, and prev/next on every
+   part point to the right neighbours.
+4. **Push the vault.** No website redeploy is required — the next deploy
+   picks up the fresh module automatically.
+
 ### CSS Development Guidelines
 When adding or modifying styles:
 

@@ -1,0 +1,39 @@
+{{- /* Context: dict with keys current, term, ordered, idx, total, prev, next. */ -}}
+{{- $current := .current -}}
+{{- $term    := .term -}}
+{{- $ordered := .ordered -}}
+{{- $idx     := .idx -}}
+{{- $total   := .total -}}
+
+<aside class="series-callout" aria-label="Series navigation">
+  <header class="series-callout__header">
+    <p class="series-callout__title">
+      Series: <a href="{{ $term.RelPermalink }}">{{ $term.Title }}</a>
+    </p>
+    <p class="series-callout__counter">Part {{ $idx }} of {{ $total }}</p>
+  </header>
+
+  <progress class="series-callout__progress"
+            max="{{ $total }}" value="{{ $idx }}"
+            aria-label="Part {{ $idx }} of {{ $total }}"></progress>
+
+  <details class="series-callout__list"{{ if eq $idx 1 }} open{{ end }}>
+    <summary>All parts</summary>
+    <ol class="series-callout__parts">
+      {{- range $i, $p := $ordered }}
+        {{- $n := add $i 1 -}}
+        {{- if eq $p.RelPermalink $current.RelPermalink }}
+          <li class="series-callout__part series-callout__part--current" aria-current="page">
+            <span class="series-callout__part-num">{{ printf "%02d" $n }}</span>
+            <span class="series-callout__part-title">{{ $p.Title }}</span>
+          </li>
+        {{- else }}
+          <li class="series-callout__part">
+            <span class="series-callout__part-num">{{ printf "%02d" $n }}</span>
+            <a class="series-callout__part-title" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+          </li>
+        {{- end }}
+      {{- end }}
+    </ol>
+  </details>
+</aside>
