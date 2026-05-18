@@ -343,3 +343,29 @@ body > footer    { flex-shrink: 0; }
     }
 }
 
+/* ── Footnote popover ───────────────────────────────────────────────
+   Click on a `[^N]` reference → shows the footnote body in a popover
+   positioned near the trigger. JS in web/footnotes.js. The canonical
+   `.footnotes` block at the bottom of the article is the no-JS fallback.
+   ──────────────────────────────────────────────────────────────── */
+.fn-popover {
+    position: absolute;
+    z-index: 100;
+    max-inline-size: min(360px, calc(100vw - 32px));
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md, 8px);
+    padding: var(--s-4) var(--s-5);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+[data-theme="dark"] .fn-popover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.fn-popover[hidden] { display: none; }
+.fn-popover > *:first-child { margin-block-start: 0; }
+.fn-popover > *:last-child { margin-block-end: 0; }
+.fn-popover p { margin-block: var(--s-2); }
+
