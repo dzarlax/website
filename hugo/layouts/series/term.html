@@ -1,0 +1,64 @@
+{{ define "main" }}
+<article class="series-index reveal">
+
+  <header class="hero hero--editorial">
+    <p class="hero__eyebrow">Series</p>
+    <h1 class="hero__title">{{ .Title }}</h1>
+    {{- with .Params.description }}<p class="hero__lede">{{ . }}</p>{{ end }}
+  </header>
+
+  {{- with .Content }}
+  <div class="prose series-index__intro">
+    {{ . }}
+  </div>
+  {{- end }}
+
+  {{- $ordered := sort (sort .Pages "Date" "asc") "Params.series_part" "asc" -}}
+  {{- $total   := len $ordered -}}
+
+  {{- if eq $total 0 }}
+  <p class="series-index__empty" style="opacity: 0.6;">No parts published yet — check back soon.</p>
+  {{- else }}
+  <section class="series-index__parts">
+    <ol class="series-toc" aria-label="Parts in this series">
+      {{- range $i, $p := $ordered }}
+        {{- $n := add $i 1 -}}
+        <li class="series-toc__item">
+          <a class="series-toc__link" href="{{ $p.RelPermalink }}">
+            <span class="series-toc__num" aria-hidden="true">{{ printf "%02d" $n }}</span>
+            <span class="series-toc__title">{{ $p.Title }}</span>
+            <span class="series-toc__meta">
+              <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "Jan 2" }}</time>
+              {{- with $p.ReadingTime }} · {{ . }} min{{ end }}
+            </span>
+          </a>
+        </li>
+      {{- end }}
+    </ol>
+  </section>
+  {{- end }}
+
+  {{- if gt $total 0 }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": {{ .Title | jsonify }},
+    "numberOfItems": {{ $total }},
+    "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    "itemListElement": [
+      {{- range $i, $p := $ordered -}}
+      {{- if $i }},{{ end }}
+      {
+        "@type": "ListItem",
+        "position": {{ add $i 1 }},
+        "url": {{ $p.Permalink | jsonify }},
+        "name": {{ $p.Title | jsonify }}
+      }
+      {{- end }}
+    ]
+  }
+  </script>
+  {{- end }}
+</article>
+{{ end }}

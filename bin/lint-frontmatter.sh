@@ -152,6 +152,29 @@ for f in "${FILES[@]}"; do
     errors+=("'draft: true' — commit blocked, set draft to false before committing")
   fi
 
+  # If `series` is set (scalar string or non-empty list), `series_part` must
+  # be a positive integer. Series taxonomy + per-article order — see
+  # docs/superpowers/specs/2026-05-18-blog-series-design.md.
+  has_series=0
+  series_scalar="$(get_scalar "$fm" series)"
+  if [ -n "$series_scalar" ] && [ "$series_scalar" != "[]" ]; then
+    has_series=1
+  fi
+  if [ "$has_series" = "0" ]; then
+    # Block-list form: `series:` line followed by `  - foo`
+    if awk '/^series[[:space:]]*:[[:space:]]*$/{block=1;next} block && /^[[:space:]]*-[[:space:]]+[^[:space:]]/{found=1;exit} block && /^[^[:space:]]/{exit} END{exit !found}' <<< "$fm"; then
+      has_series=1
+    fi
+  fi
+  if [ "$has_series" = "1" ]; then
+    series_part="$(get_scalar "$fm" series_part)"
+    if [ -z "$series_part" ]; then
+      errors+=("'series:' is set but 'series_part:' is missing — add an integer position >= 1")
+    elif ! [[ "$series_part" =~ ^[1-9][0-9]*$ ]]; then
+      errors+=("'series_part' must be a positive integer (got: $series_part)")
+    fi
+  fi
+
   if [ "${#errors[@]}" -gt 0 ]; then
     rel="${f#$ROOT/}"
     echo "✗ $rel"

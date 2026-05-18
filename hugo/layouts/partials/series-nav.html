@@ -1,0 +1,33 @@
+{{- /* Context: dict with keys current, term, ordered, idx, total, prev, next. */ -}}
+{{- $term  := .term -}}
+{{- $total := .total -}}
+{{- $prev  := .prev -}}
+{{- $next  := .next -}}
+
+<nav class="series-nav" aria-label="Series navigation">
+  <div class="card-grid card-grid--2 series-nav__grid">
+    {{- if $prev }}
+      <a class="card card--editorial card--link series-nav__link series-nav__link--prev"
+         href="{{ $prev.RelPermalink }}" rel="prev">
+        <span class="series-nav__label">← Previous</span>
+        <span class="series-nav__title">{{ $prev.Title }}</span>
+      </a>
+    {{- else }}
+      <span class="series-nav__placeholder" aria-hidden="true"></span>
+    {{- end }}
+
+    {{- if $next }}
+      <a class="card card--editorial card--link series-nav__link series-nav__link--next"
+         href="{{ $next.RelPermalink }}" rel="next">
+        <span class="series-nav__label">Next →</span>
+        <span class="series-nav__title">{{ $next.Title }}</span>
+      </a>
+    {{- else }}
+      <a class="card card--editorial card--link series-nav__link series-nav__link--index"
+         href="{{ $term.RelPermalink }}">
+        <span class="series-nav__label">To the series index →</span>
+        <span class="series-nav__title">All {{ $total }} parts</span>
+      </a>
+    {{- end }}
+  </div>
+</nav>
