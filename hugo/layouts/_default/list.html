@@ -11,16 +11,18 @@
     <p style="text-align: center; color: var(--text-secondary);">No articles yet — check back soon.</p>
   {{- else }}
 
-  {{/* Collapse series: each series contributes a single card pointing at its
-       term page. The latest-dated part decides where the series card sorts
-       in the feed. Standalone articles render as before. */}}
-  {{- $sorted := $pages.ByDate.Reverse -}}
+  {{/* Paginate over the source pages so Hugo still generates /articles/page/N/
+       routes for the configured pagerSize. Inside each page, collapse parts
+       of the same series of 2+ parts into a single card pointing at the
+       term page; a single-part series (term.Pages length == 1) renders as
+       a normal article card. */}}
+  {{- $paginator := .Paginate $pages.ByDate.Reverse -}}
   {{- $seenSeries := dict -}}
   {{- $items := slice -}}
-  {{- range $sorted }}
+  {{- range $paginator.Pages }}
     {{- $term := false -}}
     {{- with .GetTerms "series" }}{{ $term = index . 0 }}{{ end -}}
-    {{- if $term }}
+    {{- if and $term (gt (len $term.Pages) 1) }}
       {{- $key := $term.RelPermalink -}}
       {{- if not (isset $seenSeries $key) }}
         {{- $seenSeries = merge $seenSeries (dict $key true) -}}
@@ -68,6 +70,14 @@
     {{- end }}
   </div>
   </div>
+
+  {{- if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="Pagination" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 48px; max-width: 1200px; margin-inline: auto;">
+    {{- if $paginator.HasPrev }}<a class="btn btn--ghost" href="{{ $paginator.Prev.URL }}">← Newer</a>{{ else }}<span></span>{{ end }}
+    <span style="font-size: var(--text-sm); opacity: 0.6;">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{- if $paginator.HasNext }}<a class="btn btn--ghost" href="{{ $paginator.Next.URL }}">Older →</a>{{ else }}<span></span>{{ end }}
+  </nav>
+  {{- end }}
 
   {{- end }}
 </section>

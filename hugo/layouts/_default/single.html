@@ -67,7 +67,7 @@
     {{- end }}
 
     {{- $related := .Site.RegularPages.Related . -}}
-    {{- with $seriesTerm }}{{ $related = $related | symdiff .Pages }}{{ end -}}
+    {{- with $seriesTerm }}{{ $related = complement .Pages $related }}{{ end -}}
     {{- $related = $related | first 3 -}}
     {{- with $related }}
     <section class="article__related">
