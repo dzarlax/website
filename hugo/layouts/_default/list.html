@@ -11,37 +11,63 @@
     <p style="text-align: center; color: var(--text-secondary);">No articles yet — check back soon.</p>
   {{- else }}
 
-  {{- $paginator := .Paginate ($pages.ByDate.Reverse) }}
+  {{/* Collapse series: each series contributes a single card pointing at its
+       term page. The latest-dated part decides where the series card sorts
+       in the feed. Standalone articles render as before. */}}
+  {{- $sorted := $pages.ByDate.Reverse -}}
+  {{- $seenSeries := dict -}}
+  {{- $items := slice -}}
+  {{- range $sorted }}
+    {{- $term := false -}}
+    {{- with .GetTerms "series" }}{{ $term = index . 0 }}{{ end -}}
+    {{- if $term }}
+      {{- $key := $term.RelPermalink -}}
+      {{- if not (isset $seenSeries $key) }}
+        {{- $seenSeries = merge $seenSeries (dict $key true) -}}
+        {{- $items = $items | append (dict "kind" "series" "term" $term "date" .Date) -}}
+      {{- end }}
+    {{- else }}
+      {{- $items = $items | append (dict "kind" "article" "page" . "date" .Date) -}}
+    {{- end }}
+  {{- end }}
+
   <div class="container container--xl">
   <div class="card-grid card-grid--3">
-    {{- range $paginator.Pages }}
-    <a class="card card--editorial card--link" href="{{ .RelPermalink }}">
-      {{- with .Params.tags }}
-      <p class="card__eyebrow">
-        {{- range $i, $t := . -}}
-          {{- if $i }} · {{ end -}}
-          {{- with $.Site.GetPage (printf "/tags/%s" $t) }}{{ .Title }}{{ else }}{{ $t }}{{ end -}}
-        {{- end -}}
-      </p>
+    {{- range $items }}
+      {{- if eq .kind "series" }}
+        {{- $term := .term -}}
+        {{- $count := len $term.Pages -}}
+        <a class="card card--editorial card--link card--series" href="{{ $term.RelPermalink }}">
+          <p class="card__eyebrow">Series · {{ $count }} parts</p>
+          <h3 class="card__title">{{ $term.Title }}</h3>
+          {{- with $term.Params.description }}<p class="card__description">{{ . }}</p>{{ end }}
+          <p class="card__meta">
+            <time datetime="{{ .date.Format "2006-01-02" }}">{{ .date.Format "Jan 2, 2006" }}</time>
+            · {{ $count }}-part series
+          </p>
+        </a>
+      {{- else }}
+        {{- $p := .page -}}
+        <a class="card card--editorial card--link" href="{{ $p.RelPermalink }}">
+          {{- with $p.Params.tags }}
+          <p class="card__eyebrow">
+            {{- range $i, $t := . -}}
+              {{- if $i }} · {{ end -}}
+              {{- with $.Site.GetPage (printf "/tags/%s" $t) }}{{ .Title }}{{ else }}{{ $t }}{{ end -}}
+            {{- end -}}
+          </p>
+          {{- end }}
+          <h3 class="card__title">{{ $p.Title }}</h3>
+          {{- with $p.Description }}<p class="card__description">{{ . }}</p>{{ end }}
+          <p class="card__meta">
+            <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "Jan 2, 2006" }}</time>
+            {{- with $p.ReadingTime }} · {{ . }} min read{{ end }}
+          </p>
+        </a>
       {{- end }}
-      <h3 class="card__title">{{ .Title }}</h3>
-      {{- with .Description }}<p class="card__description">{{ . }}</p>{{ end }}
-      <p class="card__meta">
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-        {{- with .ReadingTime }} · {{ . }} min read{{ end }}
-      </p>
-    </a>
     {{- end }}
   </div>
   </div>
-
-  {{- if gt $paginator.TotalPages 1 }}
-  <nav class="pagination" aria-label="Pagination" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 48px; max-width: 1200px; margin-inline: auto;">
-    {{- if $paginator.HasPrev }}<a class="btn btn--ghost" href="{{ $paginator.Prev.URL }}">← Newer</a>{{ else }}<span></span>{{ end }}
-    <span style="font-size: var(--text-sm); opacity: 0.6;">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-    {{- if $paginator.HasNext }}<a class="btn btn--ghost" href="{{ $paginator.Next.URL }}">Older →</a>{{ else }}<span></span>{{ end }}
-  </nav>
-  {{- end }}
 
   {{- end }}
 </section>

@@ -8,7 +8,11 @@
     {{- with .Description }}<p class="hero__lede">{{ . }}</p>{{ end }}
   </header>
 
-  {{- $terms := .Pages }}
+  {{/* Hide zero-count terms — e.g. a series whose parts are still drafts.
+       Without this, /series/ would show "Health Dashboard · 0" in prod
+       while all 8 parts are still draft: true. */}}
+  {{- $terms := slice -}}
+  {{- range .Pages }}{{ if gt (len .Pages) 0 }}{{ $terms = $terms | append . }}{{ end }}{{ end -}}
   {{- if not $terms }}
     <p style="text-align: center; color: var(--text-secondary);">No tags yet.</p>
   {{- else }}
@@ -17,7 +21,7 @@
   {{- range $terms }}{{ if gt (len .Pages) $maxCount }}{{ $maxCount = len .Pages }}{{ end }}{{ end }}
 
   <ul class="tag-cloud" role="list">
-    {{- range $terms.ByTitle }}
+    {{- range sort $terms ".Title" "asc" }}
     {{- $count := len .Pages }}
     {{- $weight := div (mul $count 1.0) $maxCount }}
     <li>

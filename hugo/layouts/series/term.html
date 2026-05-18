@@ -16,24 +16,27 @@
   {{- $ordered := sort (sort .Pages "Date" "asc") "Params.series_part" "asc" -}}
   {{- $total   := len $ordered -}}
 
+  {{- if eq $total 0 }}
+  <p class="series-index__empty" style="opacity: 0.6;">No parts published yet — check back soon.</p>
+  {{- else }}
   <section class="series-index__parts">
-    <div class="container container--xl">
-      <ol class="card-grid card-grid--2">
-        {{- range $i, $p := $ordered }}
-          {{- $n := add $i 1 -}}
-          <li>
-            <a class="card card--editorial card--link series-index-item" href="{{ $p.RelPermalink }}">
-              <span class="series-index-item__num">{{ printf "%02d" $n }}</span>
-              <div class="series-index-item__body">
-                <h2 class="card__title">{{ $p.Title }}</h2>
-                {{- with $p.Description }}<p class="card__description">{{ . }}</p>{{ end }}
-              </div>
-            </a>
-          </li>
-        {{- end }}
-      </ol>
-    </div>
+    <ol class="series-toc" aria-label="Parts in this series">
+      {{- range $i, $p := $ordered }}
+        {{- $n := add $i 1 -}}
+        <li class="series-toc__item">
+          <a class="series-toc__link" href="{{ $p.RelPermalink }}">
+            <span class="series-toc__num" aria-hidden="true">{{ printf "%02d" $n }}</span>
+            <span class="series-toc__title">{{ $p.Title }}</span>
+            <span class="series-toc__meta">
+              <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "Jan 2" }}</time>
+              {{- with $p.ReadingTime }} · {{ . }} min{{ end }}
+            </span>
+          </a>
+        </li>
+      {{- end }}
+    </ol>
   </section>
+  {{- end }}
 
   {{- if gt $total 0 }}
   <script type="application/ld+json">
