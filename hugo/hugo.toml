@@ -34,6 +34,9 @@ enableGitInfo   = true
     [[module.imports.mounts]]
       source = "tags"
       target = "content/tags"
+    [[module.imports.mounts]]
+      source = "series"
+      target = "content/series"
 
 # Google Analytics 4 — same property as the lander (index.html) so the blog
 # rolls up into one GA stream. Consumed by Hugo's internal google_analytics
@@ -84,9 +87,10 @@ googleAnalytics = "G-RT3L9MP58G"
   # @main is fine for local dev. CDN URLs are assembled in partials/head.html.
   dsTag        = "main"
 
-# Single taxonomy — tags is the only classification axis.
+# Taxonomies — tags (per-article topics) + series (ordered multi-part articles).
 [taxonomies]
-  tag = "tags"
+  tag    = "tags"
+  series = "series"
 
 # Output formats — keep RSS on, add JSON for the article index (useful later).
 # LLMS is opt-in per-section via content frontmatter (see content/articles/_index.md);
