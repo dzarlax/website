@@ -1,16 +1,18 @@
 {{- /* {{< details summary="..." >}}…{{< /details >}}
 
-  Renders a native HTML <details>/<summary> disclosure. The inner content
-  is re-parsed as markdown via `markdownify` so authors can keep using
-  fenced code blocks (Chroma-highlighted) and other markdown features
-  inside the fold. Use the angle-bracket form of the shortcode; the
-  template handles the markdown step.
+  Renders a native HTML <details>/<summary> disclosure. Inner content is
+  re-parsed as markdown via `.Page.RenderString` (not `markdownify`) so
+  it carries page context: page-bundle resource lookups, the
+  render-image hook, and other Page-bound machinery keep working inside
+  the fold. Use the angle-bracket form of the shortcode; the template
+  handles the markdown step.
 
   Attribute:
-    summary — text shown on the always-visible summary row.
-              Defaults to "Show implementation" if omitted.
+    summary — markdown text shown on the always-visible summary row.
+              Defaults to "Show implementation" if omitted. Inline
+              markdown (backticks, bold) is supported.
 */ -}}
 <details class="code-fold">
-  <summary>{{ .Get "summary" | default "Show implementation" | markdownify }}</summary>
-  {{ .Inner | markdownify }}
+  <summary>{{ .Page.RenderString (.Get "summary" | default "Show implementation") }}</summary>
+  {{ .Page.RenderString (dict "display" "block") .Inner }}
 </details>
