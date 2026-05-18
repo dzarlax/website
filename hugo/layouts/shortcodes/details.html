@@ -1,0 +1,16 @@
+{{- /* {{< details summary="..." >}}…{{< /details >}}
+
+  Renders a native HTML <details>/<summary> disclosure. The inner content
+  is re-parsed as markdown via `markdownify` so authors can keep using
+  fenced code blocks (Chroma-highlighted) and other markdown features
+  inside the fold. Use the angle-bracket form of the shortcode; the
+  template handles the markdown step.
+
+  Attribute:
+    summary — text shown on the always-visible summary row.
+              Defaults to "Show implementation" if omitted.
+*/ -}}
+<details class="code-fold">
+  <summary>{{ .Get "summary" | default "Show implementation" | markdownify }}</summary>
+  {{ .Inner | markdownify }}
+</details>

@@ -369,3 +369,36 @@ body > footer    { flex-shrink: 0; }
 .fn-popover > *:last-child { margin-block-end: 0; }
 .fn-popover p { margin-block: var(--s-2); }
 
+/* ── Code-fold (details shortcode) ──────────────────────────────────
+   Used by {{< details summary="..." >}}…{{< /details >}} — see
+   hugo/layouts/shortcodes/details.html. Wraps a long block (typically
+   a code listing) behind a native <details>/<summary> toggle so the
+   article body stays scannable.
+   ──────────────────────────────────────────────────────────────── */
+details.code-fold {
+    margin-block: var(--s-6);
+    border-inline-start: 3px solid var(--accent, currentColor);
+    padding-inline-start: var(--s-4);
+}
+details.code-fold > summary {
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--text);
+    opacity: 0.6;
+    padding-block: var(--s-2);
+    user-select: none;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    transition: opacity 0.15s ease;
+}
+details.code-fold > summary:hover,
+details.code-fold[open] > summary {
+    opacity: 1;
+}
+details.code-fold[open] > summary {
+    margin-block-end: var(--s-3);
+}
+details.code-fold > pre,
+details.code-fold > .highlight {
+    margin-block-start: 0;
+}
+
