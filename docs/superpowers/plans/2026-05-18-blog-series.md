@@ -12,9 +12,9 @@
 
 **Prerequisites:**
 - `bin/preview.sh` runs cleanly on `main` before starting (sanity check that toolchain is healthy).
-- A dedicated **test vault** at `D:/tmp/series-test-vault/` (Windows) or `/tmp/series-test-vault/` (Unix), created in Task 2. All verification runs against this synthetic vault, not against the real `dzarlax/blog-content`. The test vault is deleted in Task 11. We use a synthetic vault rather than the real one because the real vault may not be checked out on the machine, and because a synthetic vault keeps verification hermetic.
+- A dedicated **test vault** at `D:\tmp\series-test-vault/` (Windows) or `/tmp/series-test-vault/` (Unix), created in Task 2. All verification runs against this synthetic vault, not against the real `dzarlax/blog-content`. The test vault is deleted in Task 11. We use a synthetic vault rather than the real one because the real vault may not be checked out on the machine, and because a synthetic vault keeps verification hermetic.
 
-**Windows path-form caveat:** When passing the vault path to Hugo (via `BLOG_VAULT=...`), use the Windows form `D:/tmp/...` rather than the Git-Bash form `/d/tmp/...` — Hugo on Windows misinterprets the latter as a theme name. All commands in this plan use the Windows form.
+**Windows path-form caveat:** When passing the vault path to Hugo via `BLOG_VAULT='...'`, use the **backslash** Windows form `D:\tmp\series-test-vault`. The forward-slash form `D:\tmp\series-test-vault` is silently broken because Hugo splits `HUGO_MODULE_REPLACEMENTS` on the colon, then falls back to the cached real module without complaining. The Git-Bash form `/d/tmp/...` Hugo interprets as a theme name and errors out. If you ever see articles from the real `dzarlax/blog-content` repo appearing in `dist-preview/articles/`, run `hugo mod clean --all` to flush the module cache and re-check that the `BLOG_VAULT` path is in the right form.
 
 ---
 
@@ -97,7 +97,7 @@ touch "$BLOG_VAULT/series/.gitkeep"
 
 - [ ] **Step 4: Verify Hugo build does not error**
 
-Run: `BLOG_VAULT='D:/tmp/series-test-vault' bin/preview.sh build`
+Run: `BLOG_VAULT='D:\tmp\series-test-vault' bin/preview.sh build`
 Expected: build completes with no errors. `dist-preview/` is populated. `dist-preview/series/index.html` exists (empty listing of all series terms).
 
 - [ ] **Step 5: Verify no existing page is broken**
@@ -115,11 +115,11 @@ git commit -m "feat(blog): add series taxonomy and module mount"
 
 ---
 
-## Task 2: Scaffold the synthetic test vault at `D:/tmp/series-test-vault/`
+## Task 2: Scaffold the synthetic test vault at `D:\tmp\series-test-vault/`
 
-This is verification scaffolding only. It is a self-contained Hugo content tree at `D:/tmp/series-test-vault/`, used via `HUGO_MODULE_REPLACEMENTS` (which `bin/preview.sh` derives from `$BLOG_VAULT`). It is deleted in Task 11. Nothing in this plan touches the real `dzarlax/blog-content` vault.
+This is verification scaffolding only. It is a self-contained Hugo content tree at `D:\tmp\series-test-vault/`, used via `HUGO_MODULE_REPLACEMENTS` (which `bin/preview.sh` derives from `$BLOG_VAULT`). It is deleted in Task 11. Nothing in this plan touches the real `dzarlax/blog-content` vault.
 
-**Files (all under `D:/tmp/series-test-vault/`, local only):**
+**Files (all under `D:\tmp\series-test-vault/`, local only):**
 - Create: `articles/control-no-series/index.md` — non-series article for regression checks
 - Create: `articles/seriestest-part-1/index.md`
 - Create: `articles/seriestest-part-2/index.md`
@@ -127,25 +127,26 @@ This is verification scaffolding only. It is a self-contained Hugo content tree 
 - Create: `series/seriestest/_index.md`
 - Create: `tags/.gitkeep` — empty mount source so Hugo does not error
 
-**Throughout the rest of the plan, all `bin/preview.sh` invocations are prefixed with `BLOG_VAULT='D:/tmp/series-test-vault'`** so the build reads from the synthetic vault.
+**Throughout the rest of the plan, all `bin/preview.sh` invocations are prefixed with `BLOG_VAULT='D:\tmp\series-test-vault'`** so the build reads from the synthetic vault.
 
 - [ ] **Step 0: Create the vault skeleton**
 
 ```bash
-mkdir -p D:/tmp/series-test-vault/articles
-mkdir -p D:/tmp/series-test-vault/tags
-mkdir -p D:/tmp/series-test-vault/series
-touch    D:/tmp/series-test-vault/tags/.gitkeep
+mkdir -p D:\tmp\series-test-vault/articles
+mkdir -p D:\tmp\series-test-vault/tags
+mkdir -p D:\tmp\series-test-vault/series
+touch    D:\tmp\series-test-vault/tags/.gitkeep
 ```
 
 - [ ] **Step 0.5: Create the control (non-series) article**
 
-Write to `D:/tmp/series-test-vault/articles/control-no-series/index.md`:
+Write to `D:\tmp\series-test-vault\articles\control-no-series\index.md`:
 
 ```markdown
 ---
 title: "Control article"
 description: "Used to verify a non-series article still renders without any series UI."
+slug: "control-no-series"
 date: 2026-05-10
 tags: ["testing"]
 draft: false
@@ -156,12 +157,13 @@ Body of the control article. This article must render with no series callout and
 
 - [ ] **Step 1: Create part 1**
 
-Write to `D:/tmp/series-test-vault/articles/seriestest-part-1/index.md`:
+Write to `D:\tmp\series-test-vault/articles/seriestest-part-1/index.md`:
 
 ```markdown
 ---
 title: "Series test — part 1"
 description: "First part of the series test fixture."
+slug: "seriestest-part-1"
 date: 2026-05-15
 tags: ["testing"]
 series: ["seriestest"]
@@ -174,12 +176,13 @@ Body of part 1. Lorem ipsum.
 
 - [ ] **Step 2: Create part 2**
 
-Write to `D:/tmp/series-test-vault/articles/seriestest-part-2/index.md`:
+Write to `D:\tmp\series-test-vault/articles/seriestest-part-2/index.md`:
 
 ```markdown
 ---
 title: "Series test — part 2"
 description: "Middle part of the series test fixture."
+slug: "seriestest-part-2"
 date: 2026-05-16
 tags: ["testing"]
 series: ["seriestest"]
@@ -192,12 +195,13 @@ Body of part 2. Lorem ipsum.
 
 - [ ] **Step 3: Create part 3**
 
-Write to `D:/tmp/series-test-vault/articles/seriestest-part-3/index.md`:
+Write to `D:\tmp\series-test-vault/articles/seriestest-part-3/index.md`:
 
 ```markdown
 ---
 title: "Series test — part 3"
 description: "Last part of the series test fixture."
+slug: "seriestest-part-3"
 date: 2026-05-17
 tags: ["testing"]
 series: ["seriestest"]
@@ -210,7 +214,7 @@ Body of part 3. Lorem ipsum.
 
 - [ ] **Step 4: Create series hub**
 
-Write to `D:/tmp/series-test-vault/series/seriestest/_index.md`:
+Write to `D:\tmp\series-test-vault/series/seriestest/_index.md`:
 
 ```markdown
 ---
@@ -224,7 +228,7 @@ This is the local fixture series. Used for end-to-end verification of the series
 - [ ] **Step 5: Verify Hugo picks up the new content from the synthetic vault**
 
 ```bash
-BLOG_VAULT='D:/tmp/series-test-vault' bin/preview.sh build
+BLOG_VAULT='D:\tmp\series-test-vault' bin/preview.sh build
 ```
 Expected: build succeeds. `dist-preview/articles/seriestest-part-1/index.html` exists. `dist-preview/articles/control-no-series/index.html` exists. `dist-preview/series/seriestest/index.html` exists (rendered with the default taxonomy template for now — Task 7 replaces it). `dist-preview/articles/seriestest-part-2/index.html` and `dist-preview/articles/seriestest-part-3/index.html` exist.
 
@@ -310,7 +314,7 @@ Still in `single.html`, find the `<div class="article__footer">` line (was line 
 
 - [ ] **Step 5: Verify build does not error**
 
-Run: `BLOG_VAULT='D:/tmp/series-test-vault' bin/preview.sh build`
+Run: `BLOG_VAULT='D:\tmp\series-test-vault' bin/preview.sh build`
 Expected: zero errors. Build succeeds.
 
 - [ ] **Step 6: Verify existing articles still render identically**
@@ -403,7 +407,7 @@ Overwrite `hugo/layouts/partials/series-callout.html` with:
 
 - [ ] **Step 2: Verify build**
 
-Run: `BLOG_VAULT='D:/tmp/series-test-vault' bin/preview.sh build`
+Run: `BLOG_VAULT='D:\tmp\series-test-vault' bin/preview.sh build`
 Expected: zero errors.
 
 - [ ] **Step 3: Visual check on a middle part**
@@ -495,7 +499,7 @@ Overwrite `hugo/layouts/partials/series-nav.html` with:
 
 - [ ] **Step 2: Verify build**
 
-Run: `BLOG_VAULT='D:/tmp/series-test-vault' bin/preview.sh build`
+Run: `BLOG_VAULT='D:\tmp\series-test-vault' bin/preview.sh build`
 Expected: zero errors.
 
 - [ ] **Step 3: Visual check on first part (no Prev)**
@@ -565,7 +569,7 @@ Note: `$series` was already defined earlier in the file by Task 3 (the series-co
 
 - [ ] **Step 3: Verify build**
 
-Run: `BLOG_VAULT='D:/tmp/series-test-vault' bin/preview.sh build`
+Run: `BLOG_VAULT='D:\tmp\series-test-vault' bin/preview.sh build`
 Expected: zero errors.
 
 - [ ] **Step 4: Verify a middle part does not list series siblings in Related**
@@ -665,7 +669,7 @@ Write to `hugo/layouts/series/term.html`:
 
 - [ ] **Step 2: Verify build**
 
-Run: `BLOG_VAULT='D:/tmp/series-test-vault' bin/preview.sh build`
+Run: `BLOG_VAULT='D:\tmp\series-test-vault' bin/preview.sh build`
 Expected: zero errors.
 
 - [ ] **Step 3: Visual check on the term page (with `_index.md`)**
@@ -685,7 +689,7 @@ Confirm:
 Temporarily move the hub out of the way to simulate a series with no `_index.md`:
 
 ```bash
-mv D:/tmp/series-test-vault/series/seriestest/_index.md D:/tmp/series-test-vault/series/seriestest/_index.md.bak
+mv D:\tmp\series-test-vault/series/seriestest/_index.md D:\tmp\series-test-vault/series/seriestest/_index.md.bak
 ```
 
 Rebuild and reopen http://localhost:8000/series/seriestest/
@@ -700,7 +704,7 @@ Confirm:
 Restore the hub:
 
 ```bash
-mv D:/tmp/series-test-vault/series/seriestest/_index.md.bak D:/tmp/series-test-vault/series/seriestest/_index.md
+mv D:\tmp\series-test-vault/series/seriestest/_index.md.bak D:\tmp\series-test-vault/series/seriestest/_index.md
 ```
 
 - [ ] **Step 5: Commit**
@@ -876,7 +880,7 @@ Append the block below at the end of the file. **If the DS audit found that a pr
 
 - [ ] **Step 4: Verify build and minifier output**
 
-Run: `BLOG_VAULT='D:/tmp/series-test-vault' bin/preview.sh build`
+Run: `BLOG_VAULT='D:\tmp\series-test-vault' bin/preview.sh build`
 Expected: zero errors.
 
 Then verify selectors survive minification:
@@ -1120,7 +1124,7 @@ Record any failures and fix before continuing. If you fix anything, commit those
 - [ ] **Step 2: Remove the synthetic test vault**
 
 ```bash
-rm -rf D:/tmp/series-test-vault
+rm -rf D:\tmp\series-test-vault
 ```
 
 Also clean up the placeholder created in Task 1 if it is still in the real vault working copy:
