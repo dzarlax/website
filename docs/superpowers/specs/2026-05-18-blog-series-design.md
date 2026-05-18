@@ -77,7 +77,8 @@ templates live under `layouts/series/`.
 ### Series context built in `single.html`
 
 ```go-template
-{{- $series := index (.Params.series | default slice) 0 -}}
+{{- $series := "" -}}
+{{- with .Params.series }}{{ $series = index . 0 }}{{ end -}}
 {{- if $series }}
   {{- $all := where site.RegularPages "Params.series" "intersect" (slice $series) -}}
   {{- $ordered := sort (sort $all "Date" "asc") "Params.series_order" "asc" -}}
