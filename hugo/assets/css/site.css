@@ -402,3 +402,47 @@ details.code-fold > .highlight {
     margin-block-start: 0;
 }
 
+
+/* ── Article images: proportional, never overflow column ───────────────
+ * render-image.html emits intrinsic width/height from page-bundle resources
+ * (good for CLS), but a 2640×590 screenshot would otherwise render at
+ * literal 2640px wide. Cap inline-size at the column and recover aspect
+ * ratio by overriding the height attribute back to auto.
+ * ──────────────────────────────────────────────────────────────────── */
+.prose img,
+.prose figure img {
+    max-inline-size: 100%;
+    block-size: auto;
+    display: block;
+    margin-inline: auto;
+    border-radius: 6px;
+}
+
+.prose figure {
+    margin-block: var(--s-8);
+    margin-inline: auto;
+    max-inline-size: 100%;
+}
+
+.prose figcaption {
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--muted, var(--text));
+    opacity: 0.75;
+    margin-block-start: var(--s-3);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* The article markdown uses `![alt](file.png)\n\n*caption*` pattern (plain
+ * italic paragraph after the image), not Markdown title-syntax that would
+ * trigger <figcaption>. Style that follow-up italic paragraph the same way
+ * a real figcaption would look, so both patterns read consistently. */
+.prose img + p > em:only-child,
+.prose p:has(> img) + p > em:only-child {
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    opacity: 0.75;
+    line-height: 1.4;
+}
