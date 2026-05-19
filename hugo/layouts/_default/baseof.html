@@ -59,24 +59,11 @@
       window.addEventListener('resize', reveal, { passive: true });
       setTimeout(reveal, 50);
 
-      // Language switcher
-      var currentLang = document.documentElement.getAttribute('data-lang') || 'en';
-      var markActive = function (lang) {
-        document.querySelectorAll('.lang-btn').forEach(function (btn) {
-          btn.classList.toggle('active', btn.getAttribute('data-lang-pick') === lang);
-        });
-      };
-      markActive(currentLang);
-      document.addEventListener('click', function (e) {
-        var btn = e.target.closest('.lang-btn');
-        if (!btn) return;
-        var lang = btn.getAttribute('data-lang-pick');
-        if (!lang) return;
-        document.documentElement.setAttribute('data-lang', lang);
-        document.documentElement.lang = lang;
-        try { localStorage.setItem('preferredLanguage', lang); } catch (e) {}
-        markActive(lang);
-      });
+      // Language switcher is URL-based in the blog: each .lang-btn is an
+      // <a href> to the same page in the target language. The pre-paint
+      // script in head.html keeps localStorage in sync with the current
+      // build's language so the lander reads it correctly on cross-site
+      // navigation. No click handler needed here.
     })();
   </script>
 

@@ -113,6 +113,14 @@ body {
 html.loading-language body { cursor: wait; }
 html.loading-language [data-lang] { opacity: 0.7; transition: opacity var(--transition-normal); }
 
+/* lang-preloading: applied by the inline script in index.html when the
+   user's stored preferredLanguage is RU/RS. Hides translatable content
+   until web/localization-core.js applies the saved language, then JS
+   removes the class. visibility:hidden preserves layout (no shift) and
+   eliminates the EN→RU/RS flash that would otherwise be visible to
+   anyone returning to / from /ru/articles/ or /rs/articles/. */
+html.lang-preloading [data-lang] { visibility: hidden; }
+
 /* ── Typography overrides ───────────────── */
 /* Site uses large clamp() sizes that override DS defaults */
 
@@ -438,8 +446,8 @@ section h2 {
         transition: all 0.8s ease;
     }
     .reveal.active { opacity: 1; }
-    section { opacity: 0; transition: all 0.8s ease; }
-    section.visible { opacity: 1; }
+    section.reveal { opacity: 0; transition: all 0.8s ease; }
+    section.reveal.active, section.reveal.visible { opacity: 1; }
 }
 
 .stagger-animation {

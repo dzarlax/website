@@ -1,0 +1,51 @@
+# Hugo i18n strings — Russian.
+
+menu_home:              "Главная"
+menu_articles:          "Статьи"
+menu_skills:            "Навыки"
+menu_experience:        "Опыт"
+menu_education:         "Образование"
+menu_projects:          "Проекты"
+menu_contact:           "Контакты"
+
+articles_page_title:    "Статьи"
+articles_page_lede:     "Заметки о продукте, AI и системах, которые я вокруг них собираю."
+
+min_read:               "мин чтения"
+contents:               "Содержание"
+related:                "По теме"
+
+series_label:           "Серия:"
+series_eyebrow:         "Серия"
+all_parts:              "Все части"
+prev_part:              "← Предыдущая"
+next_part:              "Следующая →"
+series_index_link:      "К содержанию серии →"
+series_counter:         "Часть {{ .idx }} из {{ .total }}"
+series_index_total:     "Все {{ .total }} частей"
+series_card_eyebrow:    "Серия · {{ .count }} частей"
+series_card_meta:       "Серия из {{ .count }} частей"
+series_empty:           "Частей пока нет — загляни позже."
+
+details_default:        "Показать реализацию"
+
+footer_connect:         "Контакты"
+footer_tagline:         "Сделано с ❤️ и тоннами ☕"
+footer_copyright:       "© {{ .year }} Алексей Панфилов"
+footer_rights:          "Все права защищены"
+
+empty_articles:         "Статей пока нет — загляни позже."
+
+pagination_newer:       "← Новее"
+pagination_older:       "Старше →"
+pagination_page:        "Страница {{ .page }} из {{ .total }}"
+empty_tags:             "Тегов пока нет."
+
+notfound_eyebrow:       "404 — страница не найдена"
+notfound:               "Эта страница куда-то ушла."
+notfound_body:          "Этот URL ни с чем здесь не сходится. Возможно, опечатка, устаревшая закладка или переименованная статья."
+notfound_home:          "← Главная"
+notfound_browse_articles: "К статьям"
+notfound_browse_tags:   "К тегам"
+
+article_not_translated: "Эта статья пока не переведена на русский."

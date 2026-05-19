@@ -8,7 +8,7 @@
 
   {{- $pages := where .RegularPagesRecursive "Type" "articles" }}
   {{- if not $pages }}
-    <p style="text-align: center; color: var(--text-secondary);">No articles yet — check back soon.</p>
+    <p style="text-align: center; color: var(--text-secondary);">{{ i18n "empty_articles" }}</p>
   {{- else }}
 
   {{/* Paginate over the source pages so Hugo still generates /articles/page/N/
@@ -40,12 +40,12 @@
         {{- $term := .term -}}
         {{- $count := len $term.Pages -}}
         <a class="card card--editorial card--link card--series" href="{{ $term.RelPermalink }}">
-          <p class="card__eyebrow">Series · {{ $count }} parts</p>
+          <p class="card__eyebrow">{{ i18n "series_card_eyebrow" (dict "count" $count) }}</p>
           <h3 class="card__title">{{ $term.Title }}</h3>
           {{- with $term.Params.description }}<p class="card__description">{{ . }}</p>{{ end }}
           <p class="card__meta">
             <time datetime="{{ .date.Format "2006-01-02" }}">{{ .date.Format "Jan 2, 2006" }}</time>
-            · {{ $count }}-part series
+            · {{ i18n "series_card_meta" (dict "count" $count) }}
           </p>
         </a>
       {{- else }}
@@ -73,9 +73,9 @@
 
   {{- if gt $paginator.TotalPages 1 }}
   <nav class="pagination" aria-label="Pagination" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 48px; max-width: 1200px; margin-inline: auto;">
-    {{- if $paginator.HasPrev }}<a class="btn btn--ghost" href="{{ $paginator.Prev.URL }}">← Newer</a>{{ else }}<span></span>{{ end }}
-    <span style="font-size: var(--text-sm); opacity: 0.6;">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-    {{- if $paginator.HasNext }}<a class="btn btn--ghost" href="{{ $paginator.Next.URL }}">Older →</a>{{ else }}<span></span>{{ end }}
+    {{- if $paginator.HasPrev }}<a class="btn btn--ghost" href="{{ $paginator.Prev.URL }}">{{ i18n "pagination_newer" }}</a>{{ else }}<span></span>{{ end }}
+    <span style="font-size: var(--text-sm); opacity: 0.6;">{{ i18n "pagination_page" (dict "page" $paginator.PageNumber "total" $paginator.TotalPages) }}</span>
+    {{- if $paginator.HasNext }}<a class="btn btn--ghost" href="{{ $paginator.Next.URL }}">{{ i18n "pagination_older" }}</a>{{ else }}<span></span>{{ end }}
   </nav>
   {{- end }}
 

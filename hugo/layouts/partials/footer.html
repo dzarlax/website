@@ -8,20 +8,12 @@
 <footer class="footer footer--editorial reveal">
   <div class="footer__content">
     <div class="footer__main">
-      <p>
-        <span class="lng-en">© {{ $year }} Alexey Panfilov</span>
-        <span class="lng-ru">© {{ $year }} Алексей Панфилов</span>
-        <span class="lng-rs">© {{ $year }} Алексеј Панфилов</span>
-      </p>
-      <p>
-        <span class="lng-en">All rights reserved</span>
-        <span class="lng-ru">Все права защищены</span>
-        <span class="lng-rs">Сва права задржана</span>
-      </p>
+      <p>{{ i18n "footer_copyright" (dict "year" $year) }}</p>
+      <p>{{ i18n "footer_rights" }}</p>
     </div>
 
     <div class="footer__social">
-      <h4>Connect</h4>
+      <h4>{{ i18n "footer_connect" }}</h4>
       <div class="social-icons">
         <a href="https://github.com/dzarlax"   target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
         <a href="https://linkedin.com/in/dzarlax" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -32,6 +24,6 @@
   </div>
 
   <div class="footer__bottom">
-    <p>Made with ❤️ and lots of ☕</p>
+    <p>{{ i18n "footer_tagline" }}</p>
   </div>
 </footer>

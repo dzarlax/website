@@ -13,6 +13,6 @@
               markdown (backticks, bold) is supported.
 */ -}}
 <details class="code-fold">
-  <summary>{{ .Page.RenderString (.Get "summary" | default "Show implementation") }}</summary>
+  <summary>{{ .Page.RenderString (.Get "summary" | default (i18n "details_default")) }}</summary>
   {{ .Page.RenderString (dict "display" "block") .Inner }}
 </details>

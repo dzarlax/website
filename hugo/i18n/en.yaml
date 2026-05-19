@@ -1,0 +1,52 @@
+# Hugo i18n strings — English (default).
+# Used by templates via {{ i18n "key" }} or {{ i18n "key" (dict "field" $val) }}.
+
+menu_home:              "Home"
+menu_articles:          "Articles"
+menu_skills:            "Skills"
+menu_experience:        "Experience"
+menu_education:         "Education"
+menu_projects:          "Projects"
+menu_contact:           "Contact"
+
+articles_page_title:    "Articles"
+articles_page_lede:     "Notes on product, AI, and the systems I build around them."
+
+min_read:               "min read"
+contents:               "Contents"
+related:                "Related"
+
+series_label:           "Series:"
+series_eyebrow:         "Series"
+all_parts:              "All parts"
+prev_part:              "← Previous"
+next_part:              "Next →"
+series_index_link:      "To the series index →"
+series_counter:         "Part {{ .idx }} of {{ .total }}"
+series_index_total:     "All {{ .total }} parts"
+series_card_eyebrow:    "Series · {{ .count }} parts"
+series_card_meta:       "{{ .count }}-part series"
+series_empty:           "No parts published yet — check back soon."
+
+details_default:        "Show implementation"
+
+footer_connect:         "Connect"
+footer_tagline:         "Made with ❤️ and lots of ☕"
+footer_copyright:       "© {{ .year }} Alexey Panfilov"
+footer_rights:          "All rights reserved"
+
+empty_articles:         "No articles yet — check back soon."
+
+pagination_newer:       "← Newer"
+pagination_older:       "Older →"
+pagination_page:        "Page {{ .page }} of {{ .total }}"
+empty_tags:             "No tags yet."
+
+notfound_eyebrow:       "404 — Page not found"
+notfound:               "This page wandered off."
+notfound_body:          "The URL doesn’t match anything on this site. It might be a typo, a stale bookmark, or an article that was renamed."
+notfound_home:          "← Home"
+notfound_browse_articles: "Browse articles"
+notfound_browse_tags:   "Browse tags"
+
+article_not_translated: "This article isn’t available in English yet."

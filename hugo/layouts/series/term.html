@@ -2,7 +2,7 @@
 <article class="series-index reveal">
 
   <header class="hero hero--editorial">
-    <p class="hero__eyebrow">Series</p>
+    <p class="hero__eyebrow">{{ i18n "series_eyebrow" }}</p>
     <h1 class="hero__title">{{ .Title }}</h1>
     {{- with .Params.description }}<p class="hero__lede">{{ . }}</p>{{ end }}
   </header>
@@ -17,7 +17,7 @@
   {{- $total   := len $ordered -}}
 
   {{- if eq $total 0 }}
-  <p class="series-index__empty" style="opacity: 0.6;">No parts published yet — check back soon.</p>
+  <p class="series-index__empty" style="opacity: 0.6;">{{ i18n "series_empty" }}</p>
   {{- else }}
   <section class="series-index__parts">
     <ol class="series-toc" aria-label="Parts in this series">
