@@ -38,19 +38,19 @@ function createProjectCard(project, index, total) {
 
     // Create title element
     const titleElement = document.createElement('h3');
-    titleElement.className = 'project-title';
+    titleElement.className = 'project-card__title';
     titleElement.textContent = title;
     card.appendChild(titleElement);
 
     // Create description element
     const descElement = document.createElement('p');
-    descElement.className = 'project-description';
+    descElement.className = 'project-card__description';
     descElement.textContent = description;
     card.appendChild(descElement);
 
     // Create tags container
     const tagsContainer = document.createElement('div');
-    tagsContainer.className = 'project-tags';
+    tagsContainer.className = 'project-card__tags';
     tags.forEach(tag => {
         const tagElement = document.createElement('span');
         tagElement.className = 'project-tag';

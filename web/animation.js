@@ -12,37 +12,6 @@ function debounce(fn, delay = 16) {
     };
 }
 
-// Typing effect for the intro title
-function setupTypingEffect() {
-    const titleElement = document.querySelector('#intro h2');
-    if (!titleElement) return;
-
-    // Don't add typing effect if title is already set
-    // This prevents the duplicate title issue
-    if (titleElement.textContent && titleElement.textContent.trim() !== '') {
-        return;
-    }
-
-    // Get title from translations
-    const currentLang = localStorage.getItem('preferredLanguage') ?? 'en';
-    const title = window.translations?.[currentLang]?.intro?.title ?? 'Product Manager';
-
-    titleElement.textContent = '';
-    titleElement.classList.add('typing-effect');
-
-    let i = 0;
-    const typeInterval = setInterval(() => {
-        if (i < title.length) {
-            titleElement.textContent += title.charAt(i);
-            i++;
-        } else {
-            clearInterval(typeInterval);
-            setTimeout(() => {
-                titleElement.classList.remove('typing-effect');
-            }, 1000);
-        }
-    }, 100);
-}
 
 // Parallax effect for the header
 function setupParallax() {
@@ -190,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('mobileHeaderCollapsed');
 
     // Setup all animations
-    setupTypingEffect();
     setupParallax();
     setupTiltEffect();
     setupCounters();

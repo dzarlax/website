@@ -8,11 +8,6 @@ class PerformanceMonitor {
     }
 
     init() {
-        // Only run in production and if browser supports the APIs
-        if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-            return;
-        }
-
         this.observePerformance();
         this.trackUserInteractions();
     }
@@ -131,8 +126,10 @@ class PerformanceMonitor {
     reportMetric(name, value) {
         // Only report if we have a reasonable value
         if (value && value > 0 && value < 60000) {
-            // Send to analytics (could be Google Analytics, custom endpoint, etc.)
-            if (typeof gtag !== 'undefined') {
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+            // Send to analytics in production
+            if (typeof gtag !== 'undefined' && !isLocal) {
                 gtag('event', 'web_vitals', {
                     event_category: 'Performance',
                     event_label: name,
@@ -142,14 +139,16 @@ class PerformanceMonitor {
             }
 
             // Log for development (localhost only)
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            if (isLocal) {
                 console.log(`Performance: ${name} = ${value}ms`);
             }
         }
     }
 
     reportEvent(category, action, label) {
-        if (typeof gtag !== 'undefined') {
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+        if (typeof gtag !== 'undefined' && !isLocal) {
             gtag('event', action, {
                 event_category: category,
                 event_label: label
@@ -157,7 +156,7 @@ class PerformanceMonitor {
         }
 
         // Log for development
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        if (isLocal) {
             console.log(`Event: ${category} > ${action} > ${label}`);
         }
     }

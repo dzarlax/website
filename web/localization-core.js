@@ -108,76 +108,8 @@ function updateLocalizedContentWithData(data, lang) {
 function updateLocalizedContent() {
     const currentLang = localStorage.getItem('preferredLanguage') || 'en';
     const data = translations[currentLang];
-    if (!data) return;
-
-    document.querySelectorAll('[data-lang]').forEach(element => {
-        const key = element.getAttribute('data-lang');
-        let translationValue; // Renamed from textContent for clarity
-
-        if (key.includes('.')) {
-            // Handle nested keys like 'menu.home', 'footer.copyright', etc.
-            const parts = key.split('.');
-            const section = parts[0];
-            const subKey = parts[1];
-
-            if (data[section] && data[section][subKey] !== undefined) {
-                translationValue = data[section][subKey];
-            }
-        } else {
-            translationValue = data[key];
-        }
-
-        if (translationValue !== undefined) {
-            if (typeof translationValue === 'string') {
-                element.textContent = translationValue;
-            } else {
-                console.warn(`Translation for key "${key}" in language "${currentLang}" is an object, not a string. Element:`, element);
-                // Optionally, to avoid breaking the UI with "[object Object]", 
-                // you could set a fallback text or leave the content unchanged.
-                // For now, just logging is fine, as the main fix will be in HTML data-lang attributes.
-            }
-        } else {
-            // console.warn(`Translation key "${key}" not found for language "${currentLang}"`);
-        }
-    });
-
-    // Specific updates for sections not solely relying on data-lang attributes for all text
-    if (data.intro) {
-        const introTitle = document.querySelector('#intro h2'); // Target specifically
-        if (introTitle) {
-            // Clear any existing animation first
-            if (introTitle.typingTimeout) {
-                clearTimeout(introTitle.typingTimeout);
-                introTitle.typingTimeout = null;
-            }
-            // Reset and restart typing animation with proper text length
-            startTypingAnimation(introTitle, data.intro.title);
-        }
-        const introDesc = document.querySelector('#intro p');
-        if (introDesc) introDesc.innerHTML = data.intro.description;
-    }
-
-    if (data.skills) {
-        const skillsTitle = document.querySelector('#skills h2');
-        if (skillsTitle) skillsTitle.textContent = data.skills.title;
-        // Skills items are handled by setupSkills
-    }
-
-    if (data.experience) {
-        const experienceTitle = document.querySelector('#experience h2');
-        if (experienceTitle) experienceTitle.textContent = data.experience.title;
-        // Experience items are handled by updateContent
-    }
-
-    if (data.projects_title) { // Ensure this is updated
-        const projectsTitleEl = document.querySelector('#projects h2[data-lang="projects_title"]');
-        if (projectsTitleEl) projectsTitleEl.textContent = data.projects_title;
-    }
-
-    if (data.contacts) {
-        const contactTitle = document.querySelector('#contact h2');
-        if (contactTitle) contactTitle.textContent = data.contacts.contact;
-        // Removed direct id-based updates for contact buttons, now handled by data-lang
+    if (data) {
+        updateLocalizedContentWithData(data, currentLang);
     }
 }
 

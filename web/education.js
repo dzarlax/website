@@ -29,27 +29,27 @@ function renderEducation(data, lang) {
         };
 
         const iconElem = document.createElement('div');
-        iconElem.classList.add('education-icon');
+        iconElem.classList.add('education-item-icon');
         iconElem.innerHTML = `<i class="${typeIcon[item.type] || 'fas fa-book'}"></i>`;
         div.appendChild(iconElem);
 
         const contentElem = document.createElement('div');
-        contentElem.classList.add('education-content');
+        contentElem.classList.add('education-item-content');
 
         const degreeElem = document.createElement('div');
-        degreeElem.classList.add('education-degree');
+        degreeElem.classList.add('education-item-degree');
         degreeElem.textContent = item.degree;
         contentElem.appendChild(degreeElem);
 
         const institutionElem = document.createElement('div');
-        institutionElem.classList.add('education-institution');
+        institutionElem.classList.add('education-item-institution');
         institutionElem.textContent = `${item.institution}${item.location ? ', ' + item.location : ''}`;
         contentElem.appendChild(institutionElem);
 
         if (item.link) {
             const certLabel = data.education_view_certificate || 'View Certificate';
             const certLink = document.createElement('a');
-            certLink.classList.add('education-cert-link');
+            certLink.classList.add('education-item-cert-link');
             certLink.href = item.link;
             certLink.target = '_blank';
             certLink.rel = 'noopener noreferrer';
