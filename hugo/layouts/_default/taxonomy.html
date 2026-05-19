@@ -14,7 +14,7 @@
   {{- $terms := slice -}}
   {{- range .Pages }}{{ if gt (len .Pages) 0 }}{{ $terms = $terms | append . }}{{ end }}{{ end -}}
   {{- if not $terms }}
-    <p style="text-align: center; color: var(--text-secondary);">No tags yet.</p>
+    <p style="text-align: center; color: var(--text-secondary);">{{ i18n "empty_tags" }}</p>
   {{- else }}
 
   {{- $maxCount := 1 }}

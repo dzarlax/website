@@ -23,15 +23,24 @@
     <!-- Inline theme script to prevent flash of wrong theme -->
     <script>
         (function () {
-            // Pre-paint theme bootstrap. Sets one of two attributes eagerly so
-            // DS's `@media (prefers-color-scheme: dark) :root:not([light-mode])`
-            // fallback can't override the user's manual choice on devices whose
-            // system pref disagrees. Canonical pattern, see web/theme.js.
+            // Pre-paint bootstrap. Sets the theme attribute eagerly (see
+            // web/theme.js for the canonical two-attribute pattern), and —
+            // if the user previously picked RU/RS on the blog or anywhere
+            // else — hides the lander's [data-lang] content until
+            // web/localization-core.js finishes applying the saved language.
+            // The visibility:hidden flip preserves layout (no jump) and
+            // eliminates the EN→RU/RS flash that was visible to anyone
+            // navigating back from /ru/articles/ or /rs/articles/ to /.
             try {
                 var stored = localStorage.getItem('theme');
                 var dark = stored === 'dark'
                     || (stored !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
                 document.documentElement.setAttribute(dark ? 'dark-mode' : 'light-mode', '');
+
+                var lang = localStorage.getItem('preferredLanguage');
+                if (lang && /^(ru|rs)$/.test(lang)) {
+                    document.documentElement.classList.add('lang-preloading');
+                }
             } catch (_) {}
         })();
     </script>

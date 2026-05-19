@@ -267,28 +267,34 @@ window.addEventListener('resize', () => {
 
 // Initialize on page load
 async function initializeLocalization() {
-    // Get preferred language
+    // Get preferred language. Priority: explicit user choice (localStorage) →
+    // browser language → English. The previous ordering checked
+    // translations[savedLang] *before* attempting to async-load it. RU/RS
+    // translation modules are lazy-imported on demand, so on a fresh visit
+    // translations[savedLang] is undefined and the logic fell through to
+    // browserLang — breaking cross-site persistence: pick RU on /ru/articles/
+    // → click Home → lander rendered in EN.
     const savedLang = localStorage.getItem('preferredLanguage');
     const browserLang = (navigator.language || navigator.userLanguage).split('-')[0];
 
-    // Check if saved language is available, otherwise use browser language or English
     let defaultLang = 'en';
-    if (savedLang && translations[savedLang]) {
-        defaultLang = savedLang;
-    } else if (translations[browserLang]) {
-        defaultLang = browserLang;
-    } else if (savedLang && savedLang !== 'en') {
-        // Language is saved but not loaded yet, load it asynchronously
-        try {
-            await loadLanguage(savedLang);
-            defaultLang = savedLang;
-        } catch (error) {
-            defaultLang = 'en';
+    if (savedLang && savedLang !== 'en') {
+        if (!translations[savedLang]) {
+            try { await loadLanguage(savedLang); } catch (_) {}
         }
+        if (translations[savedLang]) defaultLang = savedLang;
+    }
+    if (defaultLang === 'en' && !savedLang && translations[browserLang]) {
+        defaultLang = browserLang;
     }
 
     // Initial content update
     updateContent(defaultLang);
+
+    // Pre-paint in index.html sets `lang-preloading` on <html> when stored
+    // lang is RU/RS, which hides [data-lang] elements via CSS until the
+    // translation is applied. Remove it now so content becomes visible.
+    document.documentElement.classList.remove('lang-preloading');
 
     // Dispatch languageChanged event for other modules that need to update
     const event = new CustomEvent('languageChanged', { detail: { language: defaultLang } });

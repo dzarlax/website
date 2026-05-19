@@ -1,8 +1,43 @@
 baseURL      = "https://dzarlax.dev/"
-locale       = "en-us"
 title        = "Alexey Panfilov — Product, AI, Systems"
 enableRobotsTXT = true
 enableGitInfo   = true
+
+# ── Multilingual ─────────────────────────────────────────────────────────────
+# The blog ships UI in three languages. EN at root (/articles/foo/), RU at
+# /ru/articles/foo/, RS at /rs/articles/foo/. The lander stays at / and uses
+# its own JS-driven localization; the blog is a proper Hugo multilingual build
+# where every page is one language. UI labels live in i18n/<lang>.yaml and
+# resolve at build time via {{ i18n "key" }}.
+#
+# Article bodies are currently English-only. Authors add an `index.ru.md` /
+# `index.rs.md` sibling inside the article bundle to translate it. Until
+# they do, RU/RS sites carry the translated UI on empty article listings.
+#
+# `rs` is kept as the language key (URL prefix, HTML lang attribute) for
+# parity with the lander's existing en/ru/rs scheme; ISO purists would use
+# `sr-Cyrl-RS`, but the personal-blog convention wins.
+defaultContentLanguage         = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    languageCode = "en"
+    weight       = 1
+  [languages.ru]
+    languageName = "Русский"
+    languageCode = "ru"
+    weight       = 2
+    # The lander owns /, served at root by the deploy overlay. We don't
+    # ship a /ru/ or /rs/ lander, so skip Hugo's home output for these.
+    # Lang switcher links to /ru/articles/ instead.
+    disableKinds = ["home"]
+  [languages.rs]
+    languageName = "Српски"
+    languageCode = "rs"
+    weight       = 3
+    disableKinds = ["home"]
 
 # ── Content source (Hugo Modules, Level 2 vault sync) ────────────────────────
 # Article and tag content lives in the public `dzarlax/blog-content` repo

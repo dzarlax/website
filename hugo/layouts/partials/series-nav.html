@@ -9,7 +9,7 @@
     {{- if $prev }}
       <a class="card card--editorial card--link series-nav__link series-nav__link--prev"
          href="{{ $prev.RelPermalink }}" rel="prev">
-        <span class="series-nav__label">← Previous</span>
+        <span class="series-nav__label">{{ i18n "prev_part" }}</span>
         <span class="series-nav__title">{{ $prev.Title }}</span>
       </a>
     {{- else }}
@@ -19,14 +19,14 @@
     {{- if $next }}
       <a class="card card--editorial card--link series-nav__link series-nav__link--next"
          href="{{ $next.RelPermalink }}" rel="next">
-        <span class="series-nav__label">Next →</span>
+        <span class="series-nav__label">{{ i18n "next_part" }}</span>
         <span class="series-nav__title">{{ $next.Title }}</span>
       </a>
     {{- else }}
       <a class="card card--editorial card--link series-nav__link series-nav__link--index"
          href="{{ $term.RelPermalink }}">
-        <span class="series-nav__label">To the series index →</span>
-        <span class="series-nav__title">All {{ $total }} parts</span>
+        <span class="series-nav__label">{{ i18n "series_index_link" }}</span>
+        <span class="series-nav__title">{{ i18n "series_index_total" (dict "total" $total) }}</span>
       </a>
     {{- end }}
   </div>

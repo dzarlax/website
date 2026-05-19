@@ -191,8 +191,19 @@
 {{- end }}
 
 {{/* Theme & language bootstrap — applied before paint, no FOUC.
-     Lander stores `preferredLanguage` and `theme` in localStorage; the blog
-     reads them so its nav inherits the lander's language and theme. */}}
+
+     Theme: writes [dark-mode] or [light-mode] on <html> from localStorage
+     (or system pref). Same canonical pattern as the lander, see web/theme.js.
+
+     Language sync: the blog is built as a Hugo multilingual site (EN at root,
+     RU at /ru/, RS at /rs/). Cross-site behaviour:
+       - If the URL is non-default-language-prefixed (/ru/… or /rs/…), the
+         URL is authoritative. We just write localStorage to match so the
+         next lander visit reads the right value.
+       - If the URL is the default (EN, no prefix) but the user previously
+         picked RU/RS on the lander, we redirect to the prefixed equivalent.
+         If that URL has no translation, Hugo's localized 404 page surfaces
+         in the chosen language — acceptable, the user knows their pick. */}}
 <script>
   (function () {
     try {
@@ -200,14 +211,16 @@
       var dark = t === 'dark'
         || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.setAttribute(dark ? 'dark-mode' : 'light-mode', '');
-      var lang = localStorage.getItem('preferredLanguage');
-      if (lang && /^(en|ru|rs)$/.test(lang)) {
-        // Only set data-lang for nav-bar/UI strings — DO NOT rewrite
-        // document.documentElement.lang. Blog content is English; flipping
-        // the lang attribute would mislead screen readers and crawlers
-        // (Google/Bing/AI) about the actual content language.
-        document.documentElement.setAttribute('data-lang', lang);
+
+      var current = "{{ site.Language.Lang }}";
+      var path = location.pathname;
+      var prefixed = /^\/(ru|rs)(\/|$)/.test(path);
+      var stored = localStorage.getItem('preferredLanguage');
+      if (!prefixed && stored && /^(ru|rs)$/.test(stored)) {
+        location.replace('/' + stored + path + location.search + location.hash);
+        return;
       }
+      localStorage.setItem('preferredLanguage', current);
     } catch (e) {}
   })();
 </script>

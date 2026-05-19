@@ -1,0 +1,51 @@
+# Hugo i18n strings — Serbian (Cyrillic).
+
+menu_home:              "Почетна"
+menu_articles:          "Чланци"
+menu_skills:            "Вештине"
+menu_experience:        "Искуство"
+menu_education:         "Образовање"
+menu_projects:          "Пројекти"
+menu_contact:           "Контакт"
+
+articles_page_title:    "Чланци"
+articles_page_lede:     "Белешке о производу, AI-у и системима које правим око њих."
+
+min_read:               "мин читања"
+contents:               "Садржај"
+related:                "Везани чланци"
+
+series_label:           "Серија:"
+series_eyebrow:         "Серија"
+all_parts:              "Сви делови"
+prev_part:              "← Претходно"
+next_part:              "Следеће →"
+series_index_link:      "На страницу серије →"
+series_counter:         "Део {{ .idx }} од {{ .total }}"
+series_index_total:     "Свих {{ .total }} делова"
+series_card_eyebrow:    "Серија · {{ .count }} делова"
+series_card_meta:       "Серија од {{ .count }} делова"
+series_empty:           "Делови још нису објављени — врати се касније."
+
+details_default:        "Прикажи имплементацију"
+
+footer_connect:         "Контакти"
+footer_tagline:         "Направљено са ❤️ и тонама ☕"
+footer_copyright:       "© {{ .year }} Алексеј Панфилов"
+footer_rights:          "Сва права задржана"
+
+empty_articles:         "Још увек нема чланака — врати се касније."
+
+pagination_newer:       "← Новије"
+pagination_older:       "Старије →"
+pagination_page:        "Страница {{ .page }} од {{ .total }}"
+empty_tags:             "Још увек нема тагова."
+
+notfound_eyebrow:       "404 — страница није пронађена"
+notfound:               "Ова страница је негде залутала."
+notfound_body:          "URL се не поклапа ни са чим на овом сајту. Можда грешка у куцању, застарели обележивач, или чланак који је преименован."
+notfound_home:          "← Почетна"
+notfound_browse_articles: "Прегледај чланке"
+notfound_browse_tags:   "Прегледај тагове"
+
+article_not_translated: "Овај чланак још није преведен на српски."

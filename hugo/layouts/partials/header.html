@@ -1,20 +1,27 @@
 {{/*
   Blog navbar — DS .navbar.navbar--pill + .navbar-controls.
-  Multi-span labels for cross-page language sync (no FOUC). The pre-paint
-  script in head.html sets <html data-lang="…"> from localStorage.
+  Multilingual: nav strings come from i18n/<lang>.yaml via {{ i18n }} (this
+  template renders once per language build). The lang switcher links to the
+  translation of the current page when one exists, else to the lang's
+  /articles/ section as a sensible fallback. Lander section links (Home,
+  Skills, Experience, …) point at the static lander at / regardless of
+  current build language — the lander does its own JS-based localization.
+  Only the Articles link tracks the current build language.
 */}}
 {{- $section := .Section -}}
+{{- $lang := site.Language.Lang -}}
+{{- $articlesPath := cond (eq $lang "en") "/articles/" (printf "/%s/articles/" $lang) -}}
 
 <a href="#main-content" class="skip-nav">Skip to main content</a>
 
 {{- $items := slice
-  (dict "key" "home"         "href" "/"              "en" "Home"         "ru" "Главная"     "rs" "Почетна")
-  (dict "key" "articles"     "href" "/articles/"     "en" "Articles"     "ru" "Статьи"      "rs" "Чланци")
-  (dict "key" "skills"       "href" "/#skills"       "en" "Skills"       "ru" "Навыки"      "rs" "Вештине")
-  (dict "key" "experience"   "href" "/#experience"   "en" "Experience"   "ru" "Опыт"        "rs" "Искуство")
-  (dict "key" "education"    "href" "/#education"    "en" "Education"    "ru" "Образование" "rs" "Образовање")
-  (dict "key" "projects"     "href" "/#projects"     "en" "Projects"     "ru" "Проекты"     "rs" "Пројекти")
-  (dict "key" "contact"      "href" "/#contact"      "en" "Contact"      "ru" "Контакты"    "rs" "Контакт")
+  (dict "key" "home"        "href" "/")
+  (dict "key" "articles"    "href" $articlesPath)
+  (dict "key" "skills"      "href" "/#skills")
+  (dict "key" "experience"  "href" "/#experience")
+  (dict "key" "education"   "href" "/#education")
+  (dict "key" "projects"    "href" "/#projects")
+  (dict "key" "contact"     "href" "/#contact")
 -}}
 
 <header>
@@ -27,23 +34,38 @@
     <ul>
       {{- range $items }}
         {{- $isActive := false -}}
-        {{- if and (eq .key "articles") (or (eq $section "articles") (eq $section "tags")) }}{{ $isActive = true }}{{ end -}}
-        <li><a href="{{ .href }}" class="nav-link{{ if $isActive }} active{{ end }}" data-lang="menu.{{ .key }}">
-          <span class="lng-en">{{ .en }}</span><span class="lng-ru">{{ .ru }}</span><span class="lng-rs">{{ .rs }}</span>
-        </a></li>
+        {{- if and (eq .key "articles") (or (eq $section "articles") (eq $section "tags") (eq $section "series")) }}{{ $isActive = true }}{{ end -}}
+        <li><a href="{{ .href }}" class="nav-link{{ if $isActive }} active{{ end }}">{{ i18n (printf "menu_%s" .key) }}</a></li>
       {{- end }}
     </ul>
   </nav>
 </header>
 
 <div class="navbar-controls">
-  {{/* Language switcher hidden in blog section for now — theme toggle only. */}}
-  <div class="lang-switcher" role="group" aria-label="Language" hidden style="display:none">
-    <button class="lang-btn" data-lang-pick="en" aria-label="English"  title="English">🇬🇧</button>
-    <button class="lang-btn" data-lang-pick="ru" aria-label="Русский"  title="Русский">🇷🇺</button>
-    <button class="lang-btn" data-lang-pick="rs" aria-label="Српски"   title="Српски">🇷🇸</button>
+  <div class="lang-switcher" role="group" aria-label="Language">
+    {{- /* For each configured language, link to the translation of the
+       current page when one exists, else to that language's /articles/
+       (the safe fallback that always renders). Active button = current
+       build language. */ -}}
+    {{- $flags := dict "en" "🇬🇧" "ru" "🇷🇺" "rs" "🇷🇸" -}}
+    {{- range site.Languages }}
+      {{- $targetLang := . -}}
+      {{- $href := cond (eq $targetLang.Lang "en") "/articles/" (printf "/%s/articles/" $targetLang.Lang) -}}
+      {{- with $.AllTranslations -}}
+        {{- range . -}}
+          {{- if eq .Language.Lang $targetLang.Lang -}}{{ $href = .RelPermalink }}{{- end -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if eq $targetLang.Lang $lang -}}{{ $href = $.RelPermalink }}{{- end -}}
+      <a class="lang-btn{{ if eq $targetLang.Lang $lang }} active{{ end }}"
+         href="{{ $href }}"
+         hreflang="{{ $targetLang.Lang }}"
+         data-lang-pick="{{ $targetLang.Lang }}"
+         aria-label="{{ $targetLang.LanguageName }}"
+         title="{{ $targetLang.LanguageName }}">{{ index $flags $targetLang.Lang }}</a>
+    {{- end }}
   </div>
-  <button class="theme-toggle" aria-label="Toggle theme" title="Switch theme"></button>
+  <button class="theme-toggle" aria-label="Toggle theme" title="Switch theme" data-ds-theme-toggle></button>
 </div>
 
 <div class="menu-overlay"></div>
