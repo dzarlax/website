@@ -22,13 +22,17 @@
 
     <!-- Inline theme script to prevent flash of wrong theme -->
     <script>
-        (function() {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const storedTheme = localStorage.getItem('theme');
-
-            if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
-                document.documentElement.setAttribute('dark-mode', '');
-            }
+        (function () {
+            // Pre-paint theme bootstrap. Sets one of two attributes eagerly so
+            // DS's `@media (prefers-color-scheme: dark) :root:not([light-mode])`
+            // fallback can't override the user's manual choice on devices whose
+            // system pref disagrees. Canonical pattern, see web/theme.js.
+            try {
+                var stored = localStorage.getItem('theme');
+                var dark = stored === 'dark'
+                    || (stored !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+                document.documentElement.setAttribute(dark ? 'dark-mode' : 'light-mode', '');
+            } catch (_) {}
         })();
     </script>
 

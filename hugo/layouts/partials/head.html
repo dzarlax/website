@@ -197,9 +197,9 @@
   (function () {
     try {
       var t = localStorage.getItem('theme');
-      if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
+      var dark = t === 'dark'
+        || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute(dark ? 'dark-mode' : 'light-mode', '');
       var lang = localStorage.getItem('preferredLanguage');
       if (lang && /^(en|ru|rs)$/.test(lang)) {
         // Only set data-lang for nav-bar/UI strings — DO NOT rewrite
