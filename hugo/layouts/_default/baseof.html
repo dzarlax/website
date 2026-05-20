@@ -59,11 +59,21 @@
       window.addEventListener('resize', reveal, { passive: true });
       setTimeout(reveal, 50);
 
-      // Language switcher is URL-based in the blog: each .lang-btn is an
-      // <a href> to the same page in the target language. The pre-paint
-      // script in head.html keeps localStorage in sync with the current
-      // build's language so the lander reads it correctly on cross-site
-      // navigation. No click handler needed here.
+      // Language switcher is URL-based: each .lang-btn is an <a href> to
+      // the same page in the target language. Before the browser follows
+      // the link we MUST update localStorage.preferredLanguage to match
+      // the user's pick — otherwise the destination page's pre-paint
+      // redirect (head.html) sees the stale stored language, decides
+      // the URL is wrong, and bounces the user right back to where they
+      // came from. Symptom: "can't switch to English on the blog".
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('.lang-btn');
+        if (!btn) return;
+        var lang = btn.getAttribute('data-lang-pick');
+        if (!lang || !/^(en|ru|rs)$/.test(lang)) return;
+        try { localStorage.setItem('preferredLanguage', lang); } catch (_) {}
+        // Don't preventDefault — let the browser follow the href as usual.
+      });
     })();
   </script>
 
