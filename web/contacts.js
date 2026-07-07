@@ -82,42 +82,43 @@ async function downloadResume() {
         return currentY;
     }
 
-    // Parse HTML into segments with formatting info
+    // Parse the small trusted HTML subset used by localized resume copy.
     function parseHtmlSegments(html) {
         const segments = [];
-        const regex = /<strong>(.*?)<\/strong>/gi;
-        let lastIndex = 0;
-        let match;
+        const template = document.createElement('template');
+        template.innerHTML = html;
 
-        while ((match = regex.exec(html)) !== null) {
-            // Add text before strong tag
-            if (match.index > lastIndex) {
-                const text = html.substring(lastIndex, match.index);
-                if (text.trim()) {
-                    segments.push({ text: text.trim(), bold: false });
+        function visit(node, formatting = { bold: false, italic: false }) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                if (node.textContent.trim()) {
+                    segments.push({
+                        text: node.textContent.trim(),
+                        bold: formatting.bold,
+                        italic: formatting.italic
+                    });
                 }
+                return;
             }
 
-            // Add bold text
-            if (match[1].trim()) {
-                segments.push({ text: match[1].trim(), bold: true });
+            if (node.nodeType !== Node.ELEMENT_NODE) {
+                return;
             }
 
-            lastIndex = regex.lastIndex;
-        }
-
-        // Add remaining text
-        if (lastIndex < html.length) {
-            const text = html.substring(lastIndex);
-            if (text.trim()) {
-                segments.push({ text: text.trim(), bold: false });
+            if (node.tagName.toLowerCase() === 'br') {
+                segments.push({ text: ' ', bold: formatting.bold, italic: formatting.italic });
+                return;
             }
+
+            const tagName = node.tagName.toLowerCase();
+            const nextFormatting = {
+                bold: formatting.bold || tagName === 'strong' || tagName === 'b',
+                italic: formatting.italic || tagName === 'em' || tagName === 'i'
+            };
+
+            node.childNodes.forEach(child => visit(child, nextFormatting));
         }
 
-        // If no strong tags found, treat entire paragraph as plain text
-        if (segments.length === 0 && html.trim()) {
-            segments.push({ text: html.trim(), bold: false });
-        }
+        template.content.childNodes.forEach(node => visit(node));
 
         return segments;
     }
@@ -134,7 +135,7 @@ async function downloadResume() {
             const segWords = seg.text.split(/\s+/);
             segWords.forEach((word, idx) => {
                 if (word) {
-                    words.push({ text: word, bold: seg.bold, space: idx < segWords.length - 1 });
+                    words.push({ text: word, bold: seg.bold, italic: seg.italic, space: idx < segWords.length - 1 });
                 }
             });
         });
@@ -144,7 +145,7 @@ async function downloadResume() {
         let lineWidth = 0;
 
         words.forEach(word => {
-            doc.setFont('helvetica', word.bold ? 'bold' : 'normal');
+            doc.setFont('helvetica', getFontStyle(word));
             const wordWidth = doc.getTextWidth(word.text + (word.space ? ' ' : ''));
 
             if (lineWidth + wordWidth <= maxWidth || lineWords.length === 0) {
@@ -181,11 +182,7 @@ async function downloadResume() {
         words.forEach((word, index) => {
             const isLastWord = index === words.length - 1;
 
-            if (word.bold) {
-                doc.setFont('helvetica', 'bold');
-            } else {
-                doc.setFont('helvetica', 'normal');
-            }
+            doc.setFont('helvetica', getFontStyle(word));
 
             // Render word
             const textToRender = isLastWord ? word.text : word.text + ' ';
@@ -194,6 +191,13 @@ async function downloadResume() {
         });
 
         return startY + lineHeight;
+    }
+
+    function getFontStyle(word) {
+        if (word.bold && word.italic) return 'bolditalic';
+        if (word.bold) return 'bold';
+        if (word.italic) return 'italic';
+        return 'normal';
     }
 
     // Load jspdf.min.js dynamically only when needed
@@ -456,4 +460,3 @@ async function downloadResume() {
         alert('Error generating PDF: ' + error.message);
     }
 }
-
